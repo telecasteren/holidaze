@@ -11,13 +11,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from '@/components/shared-theme/AppTheme';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { brandSettings } from '@/lib/brand/brandSettings';
 
+import { brandSettings } from '@/lib/brand/brandSettings';
+import { CustomError } from "@/lib/route-states/CustomError";
+import { DefaultNotFound } from "@/lib/route-states/DefaultNotFound";
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
-
-import appCss from '../styles.css?url'
-
 import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {
@@ -45,10 +44,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
     links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
       {
         rel: "icon",
         href: `${brandSettings.logo}`,
@@ -96,12 +91,14 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
         <AppTheme disableCustomTheme={disableCustomTheme}>
           <CssBaseline enableColorScheme />
           <Header />
-          {children}
+          <main>
+            {children}
+          </main>
           <Footer />
         </AppTheme>
         <TanStackDevtools
           config={{
-            position: 'bottom-right',
+            position: 'bottom-left',
           }}
           plugins={[
             {

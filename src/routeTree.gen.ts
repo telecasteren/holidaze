@@ -10,24 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AccountRouteImport } from './routes/account'
 import { Route as JournalRouteImport } from './routes/journal'
-import { Route as VenuesRouteImport } from './routes/venues'
+import { Route as AccountProfileIdRouteImport } from './routes/account/$profileId'
+import { Route as BookingCalendarRouteImport } from './routes/booking/calendar'
+import { Route as CompanyAboutRouteImport } from './routes/company/about'
+import { Route as CompanyContactRouteImport } from './routes/company/contact'
+import { Route as LegalPrivacyRouteImport } from './routes/legal/privacy'
+import { Route as LegalTermsRouteImport } from './routes/legal/terms'
+import { Route as VenuesVenueIdRouteImport } from './routes/venues/$venueId'
+import { Route as VenuesVenuesRouteImport } from './routes/venues/venues'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AccountRoute = AccountRouteImport.update({
-  id: '/account',
-  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -35,48 +30,133 @@ const JournalRoute = JournalRouteImport.update({
   path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VenuesRoute = VenuesRouteImport.update({
-  id: '/venues',
-  path: '/venues',
+const AccountProfileIdRoute = AccountProfileIdRouteImport.update({
+  id: '/$profileId',
+  path: '/$profileId',
+  getParentRoute: () => AccountRoute,
+} as any)
+const BookingCalendarRoute = BookingCalendarRouteImport.update({
+  id: '/booking/calendar',
+  path: '/booking/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyAboutRoute = CompanyAboutRouteImport.update({
+  id: '/company/about',
+  path: '/company/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyContactRoute = CompanyContactRouteImport.update({
+  id: '/company/contact',
+  path: '/company/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenuesVenueIdRoute = VenuesVenueIdRouteImport.update({
+  id: '/venues/$venueId',
+  path: '/venues/$venueId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VenuesVenuesRoute = VenuesVenuesRouteImport.update({
+  id: '/venues/venues',
+  path: '/venues/venues',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/account': typeof AccountRoute
   '/journal': typeof JournalRoute
-  '/venues': typeof VenuesRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/booking/calendar': typeof BookingCalendarRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/contact': typeof CompanyContactRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues/venues': typeof VenuesVenuesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/account': typeof AccountRoute
   '/journal': typeof JournalRoute
-  '/venues': typeof VenuesRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/booking/calendar': typeof BookingCalendarRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/contact': typeof CompanyContactRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues/venues': typeof VenuesVenuesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/account': typeof AccountRoute
   '/journal': typeof JournalRoute
-  '/venues': typeof VenuesRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/booking/calendar': typeof BookingCalendarRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/contact': typeof CompanyContactRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues/venues': typeof VenuesVenuesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/account' | '/journal' | '/venues'
+  fullPaths:
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/booking/calendar'
+    | '/company/about'
+    | '/company/contact'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues/venues'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/account' | '/journal' | '/venues'
-  id: '__root__' | '/' | '/about' | '/account' | '/journal' | '/venues'
+  to:
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/booking/calendar'
+    | '/company/about'
+    | '/company/contact'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues/venues'
+  id:
+    | '__root__'
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/booking/calendar'
+    | '/company/about'
+    | '/company/contact'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues/venues'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AccountRoute: typeof AccountRoute
   JournalRoute: typeof JournalRoute
-  VenuesRoute: typeof VenuesRoute
+  BookingCalendarRoute: typeof BookingCalendarRoute
+  CompanyAboutRoute: typeof CompanyAboutRoute
+  CompanyContactRoute: typeof CompanyContactRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
+  VenuesVenueIdRoute: typeof VenuesVenueIdRoute
+  VenuesVenuesRoute: typeof VenuesVenuesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -88,20 +168,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/account': {
-      id: '/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AccountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/journal': {
       id: '/journal'
       path: '/journal'
@@ -109,11 +175,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/venues': {
-      id: '/venues'
-      path: '/venues'
-      fullPath: '/venues'
-      preLoaderRoute: typeof VenuesRouteImport
+    '/account/$profileId': {
+      id: '/account/$profileId'
+      path: '/$profileId'
+      fullPath: '/account/$profileId'
+      preLoaderRoute: typeof AccountProfileIdRouteImport
+      parentRoute: typeof AccountRoute
+    }
+    '/booking/calendar': {
+      id: '/booking/calendar'
+      path: '/booking/calendar'
+      fullPath: '/booking/calendar'
+      preLoaderRoute: typeof BookingCalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/about': {
+      id: '/company/about'
+      path: '/company/about'
+      fullPath: '/company/about'
+      preLoaderRoute: typeof CompanyAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/contact': {
+      id: '/company/contact'
+      path: '/company/contact'
+      fullPath: '/company/contact'
+      preLoaderRoute: typeof CompanyContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/$venueId': {
+      id: '/venues/$venueId'
+      path: '/venues/$venueId'
+      fullPath: '/venues/$venueId'
+      preLoaderRoute: typeof VenuesVenueIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/venues': {
+      id: '/venues/venues'
+      path: '/venues/venues'
+      fullPath: '/venues/venues'
+      preLoaderRoute: typeof VenuesVenuesRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -121,10 +236,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  AccountRoute: AccountRoute,
   JournalRoute: JournalRoute,
-  VenuesRoute: VenuesRoute,
+  BookingCalendarRoute: BookingCalendarRoute,
+  CompanyAboutRoute: CompanyAboutRoute,
+  CompanyContactRoute: CompanyContactRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalTermsRoute: LegalTermsRoute,
+  VenuesVenueIdRoute: VenuesVenueIdRoute,
+  VenuesVenuesRoute: VenuesVenuesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
