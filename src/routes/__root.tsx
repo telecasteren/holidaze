@@ -8,9 +8,11 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Toaster } from "react-hot-toast";
 
 import CssBaseline from '@mui/material/CssBaseline';
-import AppTheme from '../components/shared-theme/AppTheme';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
+import AppTheme from '@/components/shared-theme/AppTheme';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import { brandSettings } from '@/lib/brand/brandSettings';
+
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
@@ -35,7 +37,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Holidaze',
+        name: "description",
+        content: `${brandSettings.description}`,
+      },
+      {
+        title: `${brandSettings.name}`,
       },
     ],
     links: [
@@ -43,9 +49,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: "icon",
+        href: `${brandSettings.logo}`,
+      },
     ],
   }),
   shellComponent: RootDocument,
+  errorComponent: CustomError,
+  notFoundComponent: DefaultNotFound,
 })
 
 function RootDocument({ children, disableCustomTheme }: { children: React.ReactNode; disableCustomTheme?: boolean }) {

@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import SitemarkIcon from './BrandLogo';
 import { toast } from 'react-hot-toast';
 import { LinkedInIcon, TwitterIcon, InstagramIcon } from './icons';
+import { brandSettings } from '@/lib/brand/brandSettings';
 
 function Copyright() {
   const currentYear = new Date().getFullYear();
@@ -23,7 +24,7 @@ function Copyright() {
           color: 'text.secondary',
         }}
       >
-        Holidaze
+        {brandSettings.name}
       </Link>
     </Typography>
   );
