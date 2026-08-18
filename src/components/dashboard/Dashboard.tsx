@@ -1,17 +1,12 @@
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import AppTheme from '../shared-theme/AppTheme';
-
 import Hero from './Hero';
 import Services from './Services';
 import Reviews from './Reviews';
 import FAQ from './FAQ';
 
-export default function Dashboard(props: { disableCustomTheme?: boolean }) {
+export default function Dashboard() {
   return (
-    <AppTheme {...props}>
-      <CssBaseline enableColorScheme />
-
+    <>
       <Hero />
       <div>
         <Services />
@@ -21,7 +16,6 @@ export default function Dashboard(props: { disableCustomTheme?: boolean }) {
         <FAQ />
         <Divider />
       </div>
-
-    </AppTheme>
+    </>
   );
 }

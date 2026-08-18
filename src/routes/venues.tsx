@@ -1,23 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import AppTheme from '../components/shared-theme/AppTheme';
 
 export const Route = createFileRoute('/venues')({
   component: Venues,
+  notFoundComponent: () => {
+     return <p>This page doesn't exist.</p>
+   },
 })
 
-export default function Venues(props: { disableCustomTheme?: boolean }) {
+function Venues() {
   return (
-    <AppTheme {...props}>
-      <CssBaseline enableColorScheme />
-
       <div>
         This will be the VENUES page.
         <Divider />
       </div>
-
-    </AppTheme>
   );
 }

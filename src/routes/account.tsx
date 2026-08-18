@@ -1,24 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
-
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import AppTheme from '../components/shared-theme/AppTheme';
 
 export const Route = createFileRoute('/account')({
   component: Account,
+  notFoundComponent: () => {
+     return <p>This page doesn't exist.</p>
+   },
 })
 
-
-export default function Account(props: { disableCustomTheme?: boolean }) {
+function Account() {
   return (
-    <AppTheme {...props}>
-      <CssBaseline enableColorScheme />
 
       <div>
         This will be the ACCOUNT page.
         <Divider />
       </div>
 
-    </AppTheme>
   );
 }
