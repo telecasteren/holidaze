@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ArrowBack from "@mui/icons-material/ArrowBack";
 
 export {
   LinkedInIcon,
@@ -18,4 +19,5 @@ export {
   DevicesRoundedIcon,
   ViewQuiltRoundedIcon,
   CalendarMonthIcon,
+  ArrowBack,
 };

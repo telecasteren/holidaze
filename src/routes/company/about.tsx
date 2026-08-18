@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/about')({
+export const Route = createFileRoute('/company/about')({
   component: About,
   notFoundComponent: () => {
      return <p>This page doesn't exist.</p>
@@ -9,10 +9,8 @@ export const Route = createFileRoute('/about')({
 
 function About() {
   return (
-    <main>
-      <section>
-        <p>About</p>
-      </section>
-    </main>
+    <section>
+      <p>About</p>
+    </section>
   )
 }
