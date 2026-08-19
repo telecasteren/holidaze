@@ -31,9 +31,9 @@ const JournalRoute = JournalRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountProfileIdRoute = AccountProfileIdRouteImport.update({
-  id: '/$profileId',
-  path: '/$profileId',
-  getParentRoute: () => AccountRoute,
+  id: '/account/$profileId',
+  path: '/account/$profileId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BookingCalendarRoute = BookingCalendarRouteImport.update({
   id: '/booking/calendar',
@@ -150,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JournalRoute: typeof JournalRoute
+  AccountProfileIdRoute: typeof AccountProfileIdRoute
   BookingCalendarRoute: typeof BookingCalendarRoute
   CompanyAboutRoute: typeof CompanyAboutRoute
   CompanyContactRoute: typeof CompanyContactRoute
@@ -177,10 +178,10 @@ declare module '@tanstack/react-router' {
     }
     '/account/$profileId': {
       id: '/account/$profileId'
-      path: '/$profileId'
+      path: '/account/$profileId'
       fullPath: '/account/$profileId'
       preLoaderRoute: typeof AccountProfileIdRouteImport
-      parentRoute: typeof AccountRoute
+      parentRoute: typeof rootRouteImport
     }
     '/booking/calendar': {
       id: '/booking/calendar'
@@ -237,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JournalRoute: JournalRoute,
+  AccountProfileIdRoute: AccountProfileIdRoute,
   BookingCalendarRoute: BookingCalendarRoute,
   CompanyAboutRoute: CompanyAboutRoute,
   CompanyContactRoute: CompanyContactRoute,

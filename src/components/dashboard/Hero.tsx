@@ -7,6 +7,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import visuallyHidden from '@mui/utils/visuallyHidden';
 import { styled } from '@mui/material/styles';
+import DateRangePicker from '../calendar/DateRangePicker';
+
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
@@ -99,11 +101,12 @@ export default function Hero() {
             Be adventurous and discover new places to stay.
           </Typography>
           <Stack
-            direction={{ xs: 'column', sm: 'row' }}
+            direction={{ sm: 'column' }}
             spacing={1}
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
+            <DateRangePicker />
             <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
               Search
             </InputLabel>

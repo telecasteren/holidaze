@@ -40,7 +40,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: `${brandSettings.description}`,
       },
       {
-        title: `${brandSettings.name}`,
+        title: `${brandSettings.name} — ${brandSettings.tagline}`,
       },
     ],
     links: [
