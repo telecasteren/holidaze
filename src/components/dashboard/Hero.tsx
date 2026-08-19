@@ -1,20 +1,15 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import visuallyHidden from '@mui/utils/visuallyHidden';
 import { styled } from '@mui/material/styles';
-import DateRangePicker from '../calendar/DateRangePicker';
+import { Typography, Box, Container, Stack } from '@mui/material';
 
+import DateRangePicker from '@/components/booking/DateRangePicker';
+import GuestCountPicker from '@/components/booking/GuestCountPicker';
+import SearchForm from '@/components/search/SearchForm';
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
   width: '100%',
   height: 400,
-  marginTop: theme.spacing(8),
+  marginTop: theme.spacing(6),
   borderRadius: (theme.vars || theme).shape.borderRadius,
   outline: '6px solid',
   outlineColor: 'hsla(220, 25%, 80%, 0.2)',
@@ -24,7 +19,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   backgroundImage: "url(/unsplash/frames-for-your-heart-zSG-kd-L6vw-unsplash.jpg)", // use API venue img later ?
   backgroundSize: 'cover',
   [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(6),
     height: 700,
   },
   ...theme.applyStyles('dark', {
@@ -39,17 +34,17 @@ export default function Hero() {
   return (
     <Box
       id="hero"
-      sx={(theme) => ({
-        width: '100%',
-        backgroundRepeat: 'no-repeat',
+      // sx={(theme) => ({
+      //   width: '100%',
+      //   backgroundRepeat: 'no-repeat',
 
-        backgroundImage:
-          'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
-        ...theme.applyStyles('dark', {
-          backgroundImage:
-            'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
-        }),
-      })}
+      //   backgroundImage:
+      //     'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
+      //   ...theme.applyStyles('dark', {
+      //     backgroundImage:
+      //       'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
+      //   }),
+      // })}
     >
       <Container
         sx={{
@@ -100,40 +95,16 @@ export default function Hero() {
             Explore our remarkable venues and and find your next destination.
             Be adventurous and discover new places to stay.
           </Typography>
-          <Stack
+          {/* <Stack
             direction={{ sm: 'column' }}
             spacing={1}
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
             <DateRangePicker />
-            <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
-              Search
-            </InputLabel>
-            <TextField
-              id="search-hero"
-              hiddenLabel
-              size="medium"
-              variant="outlined"
-              aria-label="Search for venues"
-              placeholder="Your next venue"
-              fullWidth
-              slotProps={{
-                htmlInput: {
-                  autoComplete: 'off',
-                  'aria-label': 'Search for venues',
-                },
-              }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              size="medium"
-              sx={{ minWidth: 'fit-content' }}
-            >
-              Search
-            </Button>
-          </Stack>
+            <GuestCountPicker />
+            <SearchForm />
+          </Stack>*/}
         </Stack>
         <StyledBox id="image" />
       </Container>
