@@ -86,3 +86,6 @@ In this project, AI can be used to:
 ### Resources
 
 - Material UI documentation and template: [Marketing page](https://mui.com/material-ui/getting-started/templates/)
+- Material UI [createTheme and colors](https://mui.com/material-ui/customization/color/)
+- Material UI [colour system](https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors)
+- TanStack Start [docs](https://tanstack.com/start/latest/docs/framework/react/getting-started)
