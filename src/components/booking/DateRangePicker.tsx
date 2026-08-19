@@ -4,7 +4,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import type { Dayjs } from 'dayjs';
 
-import Box from '@mui/material/Box';
+import { Box, Typography } from '@mui/material';
 
 export default function DateRangePicker() {
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
@@ -12,6 +12,9 @@ export default function DateRangePicker() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Typography variant="h6" gutterBottom>
+        Search venues by dates
+      </Typography>
       <Box sx={{ display: 'flex', flexDirection: { sm: "column" }, gap: 2, flexWrap: 'wrap' }}>
         <DatePicker
           label="Check-in"
