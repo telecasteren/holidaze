@@ -18,3 +18,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+::selection {
+  background-color: #027af2; /* 700 */
+  color: white;
+}
+
+/*
+MUI COLOUR THEME IN HEX
+900: #1647c1
+800: #0d68e0
+700: #027af2
+600: #008dff
+500: #009cff
+400: #2babff
+300: #5abbff
+200: #8dceff
+100: #bbe1ff
+50: #e3f3ff
+*/

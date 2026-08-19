@@ -7,6 +7,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Toaster } from "react-hot-toast";
 
+import '../styles.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from '@/components/shared-theme/AppTheme';
 import Header from '@/components/layout/Header';
