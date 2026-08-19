@@ -1,12 +1,25 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import { Box, Drawer, AppBar, Toolbar, Button, IconButton, Container, Divider, MenuItem } from '@mui/material';
+import {
+  styled, alpha,
+  MenuList,
+  Box,
+  Drawer,
+  AppBar,
+  Toolbar,
+  Button,
+  IconButton,
+  Container,
+  Divider,
+  MenuItem,
+} from '@mui/material';
+
+import { Link } from '@tanstack/react-router';
+import { navOptions } from "@/lib/link-options/navOptions"
 
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import BrandLogo from '@/components/layout/BrandLogo';
 import { MenuIcon, CloseRoundedIcon } from './icons';
 import { toast } from 'react-hot-toast';
-
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -55,20 +68,20 @@ export default function Header() {
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-            <BrandLogo />
+             <BrandLogo />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
-               Venues
-              </Button>
-              <Button variant="text" color="info" size="small">
-                Calendar
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Journal
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Reviews
-              </Button>
+              {navOptions().map((item) => {
+                return (
+                  <Link
+                    {...item.link}
+                    key={item.label}
+                  >
+                      <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                      {item.label}
+                        </Button>
+                    </Link>
+                  )
+              })}
             </Box>
           </Box>
           <Box
@@ -88,6 +101,8 @@ export default function Header() {
             </Button>
             <ColorModeIconDropdown />
           </Box>
+
+          {/* Mobile menu */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             <ColorModeIconDropdown size="medium" />
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
@@ -116,24 +131,28 @@ export default function Header() {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-
-                <MenuItem>Venues</MenuItem>
-                <MenuItem>Calendar</MenuItem>
-                <MenuItem>Journal</MenuItem>
-                <MenuItem>Reviews</MenuItem>
+                <MenuList sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                  {navOptions().map((item) => {
+                    return (
+                    <Link
+                      {...item.link}
+                        key={item.label}
+                        style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      <MenuItem>{item.label}</MenuItem>
+                    </Link>
+                    )
+                  })}
+                </MenuList>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth
-                   onClick={() => handleAuth(false)}>
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth
-                    onClick={() => handleAuth(true)}>
-                    Sign in
-                  </Button>
-                </MenuItem>
+                <Button color="primary" variant="contained" fullWidth
+                  onClick={() => handleAuth(false)}>
+                  Sign up
+                </Button>
+                <Button color="primary" variant="outlined" fullWidth
+                  onClick={() => handleAuth(true)}>
+                  Sign in
+                </Button>
               </Box>
             </Drawer>
           </Box>

@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import Divider from '@mui/material/Divider';
+import { Container, Divider } from '@mui/material';
 
 export const Route = createFileRoute('/journal')({
   component: Journal,
@@ -10,10 +10,10 @@ export const Route = createFileRoute('/journal')({
 
 function Journal() {
   return (
-      <div>
-        This will be the BLOG page.
+    <Container id="services" sx={{ py: { xs: 8, sm: 16 } }}>
+      <p>This will be the BLOG page.
+        Here comes news and stuff.</p>
         <Divider />
-        Here comes news and stuff.
-      </div>
+      </Container>
   );
 }

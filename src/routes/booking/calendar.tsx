@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Container } from '@mui/material';
 
 export const Route = createFileRoute('/booking/calendar')({
   component: Calendar,
@@ -8,5 +9,9 @@ export const Route = createFileRoute('/booking/calendar')({
 })
 
 function Calendar() {
-  return <div>Hello "/booking/calendar"!</div>
+  return (
+    <Container id="calendar" sx={{ py: { xs: 8, sm: 16 } }}>
+      <p>This will be the CALENDAR page.</p>
+    </Container>
+  )
 }
