@@ -47,6 +47,9 @@ importers:
       '@tanstack/react-start':
         specifier: latest
         version: 1.168.46(crossws@0.4.10(srvx@0.11.22))(esbuild@0.28.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.4)(vite@8.2.1(@types/node@22.20.1)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.9.0))
+      dayjs:
+        specifier: ^1.11.23
+        version: 1.11.23
       react:
         specifier: ^19.2.0
         version: 19.2.8
