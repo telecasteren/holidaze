@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import { Drawer, AppBar, Toolbar, Button, IconButton, Container, Divider, MenuItem } from '@mui/material';
+import { Box, Drawer, AppBar, Toolbar, Button, IconButton, Container, Divider, MenuItem } from '@mui/material';
 
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import BrandLogo from '@/components/layout/BrandLogo';

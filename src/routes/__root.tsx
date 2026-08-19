@@ -65,7 +65,7 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
       </head>
       <body>
         <Toaster
-          position="bottom-left"
+          position="top-center"
           toastOptions={{
             duration: 4000,
             style: {
