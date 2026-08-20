@@ -1,24 +1,21 @@
-import { apiProfileSchema, profileByIdSchema } from "@/lib/zod/profileSchema";
+import { apiProfileSchema, apiSingleProfileSchema } from "@/lib/zod/index";
 import { withApiHandler } from "../api-config/handler";
-import { API_URL } from "../api-config/endpoints";
+import { getAuthHeaders } from "../api-config/headers";
+import { API_URL, PROFILES } from "../api-config/endpoints";
 
 export const getAllProfiles = withApiHandler({
-  endpoint: API_URL,
+  endpoint: `${API_URL}${PROFILES}`,
   schema: apiProfileSchema,
+  init: () => ({
+    headers: getAuthHeaders(),
+  }),
 });
 
  // API does not support id lookup, so we use name as the identifier
 export const getProfileById = withApiHandler({
-  endpoint: (name: string) => `${API_URL}/${name}`,
-  schema: profileByIdSchema,
-});
-
-export const getProfileBookings = withApiHandler({
-  endpoint: (name: string) => `${API_URL}/${name}/bookings`,
-  schema: apiProfileSchema,
-});
-
-export const getProfileVenues = withApiHandler({
-  endpoint: (name: string) => `${API_URL}/${name}/venues`,
-  schema: apiProfileSchema,
+  endpoint: (name: string) => `${API_URL}${PROFILES}/${name}`,
+  schema: apiSingleProfileSchema,
+  init: () => ({
+    headers: getAuthHeaders(),
+  }),
 });

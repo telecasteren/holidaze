@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
 
 export const useSearchForm = () => {
-  const navigate = useNavigate();
   const [inputQuery, setInputQuery] = useState("");
   const [submittedQuery, setSubmittedQuery] = useState("");
   const showClearSearch =
@@ -14,15 +12,7 @@ export const useSearchForm = () => {
     setInputQuery(trimmedQuery);
     setSubmittedQuery(trimmedQuery);
 
-    navigate({
-      to: "/",
-      search: (prev) => ({
-        ...prev,
-        query: trimmedQuery,
-        page: 1,
-      }),
-      resetScroll: false,
-    });
+    console.log("Search query: ", trimmedQuery)
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,14 +22,6 @@ export const useSearchForm = () => {
   const handleClearSearch = () => {
     setInputQuery("");
     setSubmittedQuery("");
-    navigate({
-      to: "/",
-      search: (prev) => ({
-        ...prev,
-        query: "",
-        page: 1,
-      }),
-    });
   };
 
   return {

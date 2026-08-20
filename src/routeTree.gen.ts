@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as AccountProfileIdRouteImport } from './routes/account/$profileId'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as BookingIndexRouteImport } from './routes/booking/index'
 import { Route as BookingCalendarRouteImport } from './routes/booking/calendar'
 import { Route as BookingSuccessRouteImport } from './routes/booking/success'
@@ -37,6 +39,16 @@ const JournalRoute = JournalRouteImport.update({
 const AccountProfileIdRoute = AccountProfileIdRouteImport.update({
   id: '/account/$profileId',
   path: '/account/$profileId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingIndexRoute = BookingIndexRouteImport.update({
@@ -99,6 +111,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
   '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
@@ -115,6 +129,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
   '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
@@ -132,6 +148,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
   '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
@@ -150,6 +168,8 @@ export interface FileRouteTypes {
     | '/'
     | '/journal'
     | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
     | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
@@ -166,6 +186,8 @@ export interface FileRouteTypes {
     | '/'
     | '/journal'
     | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
     | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
@@ -182,6 +204,8 @@ export interface FileRouteTypes {
     | '/'
     | '/journal'
     | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
     | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
@@ -199,6 +223,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JournalRoute: typeof JournalRoute
   AccountProfileIdRoute: typeof AccountProfileIdRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthSignupRoute: typeof AuthSignupRoute
   BookingCalendarRoute: typeof BookingCalendarRoute
   BookingSuccessRoute: typeof BookingSuccessRoute
   CompanyAboutRoute: typeof CompanyAboutRoute
@@ -233,6 +259,20 @@ declare module '@tanstack/react-router' {
       path: '/account/$profileId'
       fullPath: '/account/$profileId'
       preLoaderRoute: typeof AccountProfileIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking/': {
@@ -319,6 +359,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JournalRoute: JournalRoute,
   AccountProfileIdRoute: AccountProfileIdRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthSignupRoute: AuthSignupRoute,
   BookingCalendarRoute: BookingCalendarRoute,
   BookingSuccessRoute: BookingSuccessRoute,
   CompanyAboutRoute: CompanyAboutRoute,

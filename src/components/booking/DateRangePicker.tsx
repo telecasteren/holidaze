@@ -15,7 +15,7 @@ export default function DateRangePicker() {
       <Typography variant="h6" gutterBottom>
         Search venues by dates
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: { sm: "column" }, gap: 2, flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', flexDirection: { sm: "column"}, gap: 2, flexWrap: 'wrap' }}>
         <DatePicker
           label="Check-in"
           value={startDate}

@@ -10,19 +10,23 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
 }: ApiConfig<TResult, TArgs>): ApiHandler<TResult, TArgs> {
   return async (...args: TArgs): Promise<TResult> => {
     try {
-      const result =
+      const resolvedEndpoint =
         typeof endpoint === "function" ? endpoint(...args) : endpoint;
+      const resolvedInit =
+        typeof init === "function" ? init(...args) : init;
 
-      const response = await fetch(`${baseUrl}${result}`, init);
+      const response = await fetch(`${baseUrl}${resolvedEndpoint}`, resolvedInit);
 
       if (!response.ok) {
-        throw new ApiError("Invalid response", response.status);
+        const body = await response.text().catch(() => "");
+        throw new ApiError(`Request failed ${response.status}`, response.status, body);
       }
 
       const payload: unknown = await response.json();
       const parsedPayload = schema.safeParse(payload);
 
       if (!parsedPayload.success) {
+        console.log("parsedPayload: ", parsedPayload)
         throw new ApiError(
           "Payload failed schema validation",
           500,
@@ -32,13 +36,12 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
 
       return parsedPayload.data;
     } catch (error) {
-      console.error("API error:", error); // for debugging
 
       if (error instanceof ApiError) {
         throw error;
       }
 
-      throw new ApiError("Internal server error", 500, error);
+      throw new ApiError("FUCK OFF: Internal server error", 500, error);
     }
   };
 }

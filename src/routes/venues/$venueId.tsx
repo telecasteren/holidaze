@@ -1,8 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { brandSettings } from '@/lib/brand/brandSettings'
 import { venueByIdQuery } from "@/lib/queries/venuesQuery";
-import type { Venue } from "../../../services/models/Venue";
+import type { Venue } from "../../lib/zod/venueSchema";
+
 import { Container } from '@mui/material';
+import PageTitle from '@/components/layout/PageTitle';
+
 
 export const Route = createFileRoute('/venues/$venueId')({
   loader: async ({ context, params }): Promise<Venue> => {
@@ -29,7 +32,8 @@ function VenueById() {
 
   return (
     <Container id="venue-details" sx={{ py: { xs: 8, sm: 16 } }}>
-      <h1>{venue.name}</h1>
+      <PageTitle title={venue.name} />
+
       <p>{hasRatings ? "Has ratings" : "No ratings"}</p>
     </Container>
   );

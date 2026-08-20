@@ -9,3 +9,7 @@ export const metaSchema = z.object({
   previousPage: z.number().int().nullable(),
   totalCount: z.number().int(),
 });
+
+export const emptyMetaSchema = z.object({});
+
+export type ApiMeta = z.infer<typeof metaSchema>;

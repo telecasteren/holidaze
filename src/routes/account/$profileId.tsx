@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { brandSettings } from '@/lib/brand/brandSettings'
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
-import type { Profile } from "../../../services/models/Profile";
+import type { Profile } from "@/lib/zod/index";
 
 import { Container } from '@mui/material';
+import PageTitle from '@/components/layout/PageTitle';
 
 export const Route = createFileRoute('/account/$profileId')({
   loader: async ({ context, params }): Promise<Profile> => {
@@ -29,7 +30,7 @@ function ProfileById() {
 
   return (
     <Container id="profile-details" sx={{ py: { xs: 8, sm: 16 } }}>
-      <h1 key={user.name}>Hello, {user.name}!</h1>
+      <PageTitle title={user.name} />
       <p>{user.email}</p>
     </Container>
   )

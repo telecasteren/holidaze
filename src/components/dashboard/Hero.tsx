@@ -1,9 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Typography, Box, Container, Stack } from '@mui/material';
-
-import DateRangePicker from '@/components/booking/DateRangePicker';
-import GuestCountPicker from '@/components/booking/GuestCountPicker';
 import SearchForm from '@/components/search/SearchForm';
+import HeroTitle from '@/components/layout/HeroTitle';
 
 const StyledBox = styled('div')(({ theme }) => ({
   alignSelf: 'center',
@@ -58,33 +56,10 @@ export default function Hero() {
         <Stack
           spacing={2}
           useFlexGap
-          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              alignItems: 'center',
-              gap: { sm: 1.5 },
-              fontSize: 'clamp(3rem, 10vw, 3.5rem)',
-            }}
-          >
-            Most popular
-            <Typography
-              component="span"
-              variant="h1"
-              sx={(theme) => ({
-                fontSize: 'inherit',
-                color: 'primary.main',
-                ...theme.applyStyles('dark', {
-                  color: 'primary.light',
-                }),
-              })}
-            >
-              venues
-            </Typography>
-          </Typography>
+          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}>
+
+          <HeroTitle title="Most popular" span="venues"/>
+
           <Typography
             sx={{
               textAlign: 'center',
@@ -95,16 +70,8 @@ export default function Hero() {
             Explore our remarkable venues and and find your next destination.
             Be adventurous and discover new places to stay.
           </Typography>
-          {/* <Stack
-            direction={{ sm: 'column' }}
-            spacing={1}
-            useFlexGap
-            sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
-          >
-            <DateRangePicker />
-            <GuestCountPicker />
-            <SearchForm />
-          </Stack>*/}
+
+           <SearchForm />
         </Stack>
         <StyledBox id="image" />
       </Container>

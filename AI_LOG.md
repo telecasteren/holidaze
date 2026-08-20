@@ -12,3 +12,8 @@
 **Date:** 17.08.26<br/>
 **Purpose:** Generated some temporary mockdata used in scaffolding<br/>
 **Outcome:** Initial layout scaffolding was faster<br/>
+
+**Tool used:** Llama 3.1<br/>
+**Date:** 20.08.26<br/>
+**Purpose:** My mind froze, got help debugging the error: `husky - pre-commit script failed (code 254)`<br/>
+**Outcome:** Fixed husky pre-commit script error<br/>
