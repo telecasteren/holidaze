@@ -1,18 +1,18 @@
 import { useState } from "react";
+import { Route } from "@/routes/venues/index";
 
 export const useSearchForm = () => {
-  const [inputQuery, setInputQuery] = useState("");
-  const [submittedQuery, setSubmittedQuery] = useState("");
+  const navigate = Route.useNavigate();
+  const {query: urlQuery} = Route.useSearch();
+  const [inputQuery, setInputQuery] = useState(urlQuery);
   const showClearSearch =
-    submittedQuery.length > 0 && inputQuery.trim() === submittedQuery;
+    inputQuery.length > 0 && inputQuery.trim() === urlQuery && urlQuery.length > 0;
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedQuery = inputQuery.trim();
     setInputQuery(trimmedQuery);
-    setSubmittedQuery(trimmedQuery);
-
-    console.log("Search query: ", trimmedQuery)
+    navigate({ search: (prev) => ({ ...prev, query: trimmedQuery, page: 1})})
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ export const useSearchForm = () => {
 
   const handleClearSearch = () => {
     setInputQuery("");
-    setSubmittedQuery("");
+    navigate({ search: (prev) => ({ ...prev, query: "", page: 1})})
   };
 
   return {

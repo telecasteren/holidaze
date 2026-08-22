@@ -45,7 +45,8 @@ function Venues() {
       {query.trim() && visibleVenues.length === 0 && (
         <Alert
           severity="warning"
-          onClose={() => {}}
+          onClose={() => { }}
+          sx={{ m: 4, justifySelf: 'center'}}
         >This search did not give any results.</Alert>
       )}
 

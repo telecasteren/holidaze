@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
 import { Typography, Box, Container, Stack } from '@mui/material';
-import SearchForm from '@/components/search/SearchForm';
 import HeroTitle from '@/components/layout/HeroTitle';
 
 const StyledBox = styled('div')(({ theme }) => ({
@@ -70,8 +69,6 @@ export default function Hero() {
             Explore our remarkable venues and and find your next destination.
             Be adventurous and discover new places to stay.
           </Typography>
-
-           <SearchForm />
         </Stack>
         <StyledBox id="image" />
       </Container>
