@@ -17,3 +17,8 @@
 **Date:** 20.08.26<br/>
 **Purpose:** My mind froze, got help debugging the error: `husky - pre-commit script failed (code 254)`<br/>
 **Outcome:** Fixed husky pre-commit script error<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 22.08.26<br/>
+**Purpose:** Explanation/teaching the concept of state management, pointing me in the right direction for toggling favorites<br/>
+**Outcome:** Remembered to create a record of id's in the state first so we know which has been clicked and not<br/>

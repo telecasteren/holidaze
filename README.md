@@ -70,6 +70,13 @@ pnpm format
 pnpm check
 ```
 
+### Application Weaknesses
+
+**Venues: toggling favorites**<br/>
+Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
+
+---
+
 ## AI Usage
 
 In this project, AI can be used to:
@@ -89,3 +96,6 @@ In this project, AI can be used to:
 - Material UI [createTheme and colors](https://mui.com/material-ui/customization/color/)
 - Material UI [colour system](https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors)
 - TanStack Start [docs](https://tanstack.com/start/latest/docs/framework/react/getting-started)
+- TanStack search params [docs](https://tanstack.com/router/latest/docs/guide/search-params)
+- MUI breakpoints [docs](https://mui.com/material-ui/customization/breakpoints/)
+- MUI Pagination [docs](https://mui.com/material-ui/react-pagination/)

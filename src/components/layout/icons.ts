@@ -8,6 +8,8 @@ import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ArrowBack from "@mui/icons-material/ArrowBack";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export {
   LinkedInIcon,
@@ -20,4 +22,6 @@ export {
   ViewQuiltRoundedIcon,
   CalendarMonthIcon,
   ArrowBack,
+  FavoriteBorderIcon,
+  FavoriteIcon
 };

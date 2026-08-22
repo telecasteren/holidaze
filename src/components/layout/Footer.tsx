@@ -33,6 +33,7 @@ function Copyright() {
 export default function Footer() {
 
   const handleSubscribe = () => {
+    toast.remove();
     toast.success("Subscribed! Great content heading your way.");
   }
 
