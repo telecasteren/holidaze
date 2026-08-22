@@ -4,7 +4,7 @@ import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import type { Profile } from "@/lib/zod/index";
 
 import { Container } from '@mui/material';
-import PageTitle from '@/components/layout/PageTitle';
+import { PageTitle } from '@/components/index';
 
 export const Route = createFileRoute('/account/$profileId')({
   loader: async ({ context, params }): Promise<Profile> => {

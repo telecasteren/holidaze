@@ -6,7 +6,7 @@ import type { Dayjs } from 'dayjs';
 
 import { Box, Typography } from '@mui/material';
 
-export default function DateRangePicker() {
+export function DateRangePicker() {
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
 

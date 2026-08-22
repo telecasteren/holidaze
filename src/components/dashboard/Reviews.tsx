@@ -37,7 +37,7 @@ const userReviews = [
   },
 ];
 
-export default function Reviews() {
+export function Reviews() {
 
   return (
     <Container

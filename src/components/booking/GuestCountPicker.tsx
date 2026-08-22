@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, InputLabel, MenuItem, TextField } from '@mui/material';
 
-export default function GuestCountPicker() {
+export function GuestCountPicker() {
   const totalGuestsAllowed = 20;
   const [guests, setGuests] = useState(1);
 

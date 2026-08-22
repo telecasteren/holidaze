@@ -2,7 +2,7 @@ import { useSearchForm } from '../../hooks/useSearchForm';
 import { visuallyHidden } from '@mui/utils';
 import { InputLabel, TextField, Button, FormControl } from '@mui/material';
 
-export default function SearchForm() {
+export function SearchForm() {
   const { inputQuery, showClearSearch, handleSubmit, handleOnChange, handleClearSearch } = useSearchForm();
 
   return (

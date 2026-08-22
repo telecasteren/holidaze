@@ -1,9 +1,9 @@
-import CircularProgress from "@mui/material/CircularProgress";
+import { Container, CircularProgress } from "@mui/material";
 
 export const RouteLoader = () => {
   return (
-    <div>
-      <CircularProgress aria-label="Loading…" size="3rem" />
-    </div>
+    <Container id="loader" sx={{ py: { xs: 8, sm: 16 } }}>
+      <CircularProgress aria-label="Loading…" size="3rem" sx={{ justifyContent: 'center' }} />
+    </Container>
   );
 };

@@ -4,14 +4,8 @@ import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema } from '@/lib/zod/index';
 
-import { Container, Divider, Typography, Stack, Card, Alert } from '@mui/material';
-import { RouteLoader } from '@/components/layout/RouteLoader';
-import PageTitle from '@/components/layout/PageTitle';
-import DateRangePicker from '@/components/booking/DateRangePicker';
-import GuestCountPicker from '@/components/booking/GuestCountPicker';
-import SearchForm from '@/components/search/SearchForm';
-import Pagination from '@mui/material/Pagination';
-import { FavoriteBorderIcon, FavoriteIcon } from "@/components/layout/icons"
+import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
+import { RouteLoader, PageTitle, DateRangePicker, GuestCountPicker, SearchForm, FavoriteBorderIcon, FavoriteIcon } from '@/components/index';
 import { toast } from 'react-hot-toast';
 
 export const Route = createFileRoute('/venues/')({
@@ -61,7 +55,6 @@ function Venues() {
       {query.trim() && visibleVenues.length === 0 && (
         <Alert
           severity="warning"
-          onClose={() => { }}
           sx={{ m: 4, justifySelf: 'center'}}
         >This search did not give any results.</Alert>
       )}

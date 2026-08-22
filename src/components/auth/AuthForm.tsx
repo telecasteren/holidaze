@@ -1,6 +1,6 @@
 
 
-export default function AuthForm() {
+export function AuthForm() {
   return (
     <div>
       AUTHFORM

@@ -4,8 +4,7 @@ import { venueByIdQuery } from "@/lib/queries/venuesQuery";
 import type { Venue } from "../../lib/zod/venueSchema";
 
 import { Container } from '@mui/material';
-import PageTitle from '@/components/layout/PageTitle';
-
+import { PageTitle } from '@/components/index';
 
 export const Route = createFileRoute('/venues/$venueId')({
   loader: async ({ context, params }): Promise<Venue> => {

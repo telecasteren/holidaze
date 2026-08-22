@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { ExpandMoreIcon } from '@/components/layout/icons';
 
-export default function FAQ() {
+export function FAQ() {
   const [expanded, setExpanded] = React.useState<string[]>([]);
 
   const handleChange =

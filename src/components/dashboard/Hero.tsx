@@ -27,7 +27,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   }),
 }));
 
-export default function Hero() {
+export function Hero() {
   return (
     <Box
       id="hero"
