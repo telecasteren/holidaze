@@ -15,12 +15,12 @@ export const CustomError = ({ error, reset }: ErrorComponentProps) => {
           message: "Could not reach the server. Check your connection.",
           showRetry: true,
         }
-      : type === "missingVenue"
+      : type === "missingPage"
         ? {
-            title: "Venue not found",
-            message: "This venue does not exist or the URL is invalid.",
+            title: "Page not found",
+            message: "This page does not exist or the URL is invalid.",
             showRetry: false,
-          }
+        }
         : type === "invalid"
           ? {
               title: "Unexpected data",
