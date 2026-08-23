@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, stripSearchParams, useNavigate } from '@tanstack/react-router'
 import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
-import { searchSchema } from '@/lib/zod/index';
+import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
 import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
 import { RouteLoader, PageTitle, DateRangePicker, GuestCountPicker, SearchForm, FavoriteBorderIcon, FavoriteIcon } from '@/components/index';
@@ -25,6 +25,9 @@ export const Route = createFileRoute('/venues/')({
   pendingComponent: RouteLoader,
   shouldReload: false,
   validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams(defaultSearch)],
+  },
   notFoundComponent: () => {
      return <p>This page doesn't exist.</p>
    },

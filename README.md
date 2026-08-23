@@ -120,3 +120,4 @@ In this project, AI can be used to:
 - Authentication service [docs](https://www.robinwieruch.de/how-to-roll-your-own-auth/)
 - TanStack cookie store and server fn [docs](https://tanstack.com/start/latest/docs/framework/react/guide/authentication-server-primitives)
 - TanStack beforeLoad / loader [docs](https://github.com/TanStack/router/discussions/1949)
+- TanStack stripSearchParams [docs](https://tanstack.com/router/latest/docs/api/router/stripSearchParamsFunction)

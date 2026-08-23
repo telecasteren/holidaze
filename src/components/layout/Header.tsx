@@ -168,14 +168,42 @@ export default function Header() {
                   })}
                 </MenuList>
                 <Divider sx={{ my: 3 }} />
-                <Button type="link" color="primary" variant="contained" fullWidth
+                {/* <Button type="link" color="primary" variant="contained" fullWidth
                   href="/auth/signup">
                   Sign up
                 </Button>
                 <Button type="link" color="primary" variant="outlined" fullWidth
                   href="/auth/login">
                   Sign in
-                </Button>
+                </Button>*/}
+                {!isAuthenticated ? (
+                  <>
+                <Button type="link" color="primary" variant="text" size="small"
+                 href="/auth/login">
+                 Sign in
+               </Button>
+               <Button type="link" color="primary" variant="contained" size="small"
+                 href="/auth/signup">
+                 Sign up
+                    </Button>
+                  </>
+                )
+                :
+                  (
+                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                  <Link
+                    to="/account/$profileId"
+                    params={{ profileId: userName }}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Avatar key={userName} {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
+                  </Link>
+                  <Button size="small"
+                    onClick={() => handleLogout()}>
+                    <LogoutIcon />
+                  </Button>
+                  </Box>
+                )}
               </Box>
             </Drawer>
           </Box>
