@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import SitemarkIcon from './BrandLogo';
+import { BrandLogo } from './BrandLogo';
 import { toast } from 'react-hot-toast';
 import { LinkedInIcon, TwitterIcon, InstagramIcon } from './icons';
 import { brandSettings } from '@/lib/brand/brandSettings';
@@ -65,7 +65,7 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-            <SitemarkIcon />
+            <BrandLogo />
             <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
               Join the newsletter
             </Typography>

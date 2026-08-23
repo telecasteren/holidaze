@@ -1,9 +1,14 @@
+import SignupForm from "./SignupForm";
+import LoginForm from "./LoginForm";
 
+interface AuthFormProps {
+  isSignup: boolean;
+}
 
-export function AuthForm() {
+export function AuthForm({ isSignup }: AuthFormProps) {
   return (
     <div>
-      AUTHFORM
+      {isSignup ? <SignupForm /> : <LoginForm />}
     </div>
   )
 }

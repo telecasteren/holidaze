@@ -1,4 +1,10 @@
 import * as React from 'react';
+import { useAuth } from '@/hooks/useAuth';
+import { Link } from '@tanstack/react-router';
+import { navOptions } from "@/lib/link-options/navOptions"
+import { stringAvatar } from '@/lib/stringAvatar';
+import { toast } from 'react-hot-toast';
+
 import {
   styled, alpha,
   MenuList,
@@ -11,15 +17,12 @@ import {
   Container,
   Divider,
   MenuItem,
+  Avatar
 } from '@mui/material';
 
-import { Link } from '@tanstack/react-router';
-import { navOptions } from "@/lib/link-options/navOptions"
-
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
-import BrandLogo from '@/components/layout/BrandLogo';
-import { MenuIcon, CloseRoundedIcon } from './icons';
-import { toast } from 'react-hot-toast';
+import { BrandLogo } from '@/components/layout/BrandLogo';
+import { MenuIcon, CloseRoundedIcon, LogoutIcon } from './icons';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -39,19 +42,18 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
+  const {isAuthenticated, user, logout} = useAuth();
+  const avatarProps = stringAvatar(user?.name ?? "John Doe");
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
 
-  const handleAuth = (signin: boolean) => {
-    if (signin) {
-      console.log("Signing in...")
-      toast.success("Signing in...")
-    } else {
-      console.log("Signing up...")
-      toast.success("Signing up...")
-    }
+  const handleLogout = () => {
+    toast.success("Logging out...");
+    setTimeout(() => {
+      logout();
+    }, 1500);
   };
 
   return (
@@ -91,14 +93,34 @@ export default function Header() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small"
-              onClick={() => handleAuth(true)}>
-              Sign in
-            </Button>
-            <Button color="primary" variant="contained" size="small"
-              onClick={() => handleAuth(false)}>
-              Sign up
-            </Button>
+            {!isAuthenticated ? (
+              <>
+            <Button type="link" color="primary" variant="text" size="small"
+             href="/auth/login">
+             Sign in
+           </Button>
+           <Button type="link" color="primary" variant="contained" size="small"
+             href="/auth/signup">
+             Sign up
+                </Button>
+              </>
+            )
+            :
+              (
+              <>
+              <Link
+                to="/account/$profileId"
+                params={{ profileId: "tele_user1" }}
+                style={{ textDecoration: 'none' }}
+              >
+                <Avatar key="user.name here" {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
+              </Link>
+              <Button size="small"
+                onClick={() => handleLogout()}>
+                <LogoutIcon />
+              </Button>
+              </>
+            )}
             <ColorModeIconDropdown />
           </Box>
 
@@ -145,12 +167,12 @@ export default function Header() {
                   })}
                 </MenuList>
                 <Divider sx={{ my: 3 }} />
-                <Button color="primary" variant="contained" fullWidth
-                  onClick={() => handleAuth(false)}>
+                <Button type="link" color="primary" variant="contained" fullWidth
+                  href="/auth/signup">
                   Sign up
                 </Button>
-                <Button color="primary" variant="outlined" fullWidth
-                  onClick={() => handleAuth(true)}>
+                <Button type="link" color="primary" variant="outlined" fullWidth
+                  href="/auth/login">
                   Sign in
                 </Button>
               </Box>

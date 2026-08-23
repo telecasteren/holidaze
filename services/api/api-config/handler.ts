@@ -19,7 +19,8 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
 
       if (!response.ok) {
         const body = await response.text().catch(() => "");
-        throw new ApiError(`Request failed ${response.status}`, response.status, body);
+        throw new ApiError(`Request to ${baseUrl}${resolvedEndpoint} failed: ${response.status}, ${body}`,
+          response.status, body);
       }
 
       const payload: unknown = await response.json();

@@ -1,12 +1,12 @@
-import { loadKey } from "@/lib/utils/storage";
+import { readSession } from "@/server/readSession";
 
 export function getAuthHeaders(hasBody = false): Record<string, string> {
-  const token = loadKey<string>("token");
-  const apiKey =
-    loadKey<string>("apiKey");
+  const session = readSession();
+  const accessToken = session?.accessToken;
+  const apiKey = session?.apiKey;
 
   return {
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
     ...(apiKey ? { 'X-Noroff-API-Key': apiKey } : {}),
     ...(hasBody ? { 'Content-Type': 'application/json' } : {}),
   };

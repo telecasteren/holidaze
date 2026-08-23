@@ -1,12 +1,13 @@
 import { loginAuthSchema } from "@/lib/zod/index";
 import { withApiHandler } from "../api-config/handler";
-import { getAuthHeaders } from "../api-config/headers";
-import { API_URL, AUTH, LOGIN } from "../api-config/endpoints";
+import { AUTH, LOGIN } from "../api-config/endpoints";
 
 export const loginProfile = withApiHandler({
-  endpoint: `${API_URL}${AUTH}${LOGIN}`,
+  endpoint: `${AUTH}${LOGIN}`,
   schema: loginAuthSchema,
-  init: () => ({
-    headers: getAuthHeaders(),
+  init: (data: FormData) => ({
+    headers: {"Content-Type": "application/json"},
+    method: "POST",
+    body: JSON.stringify(Object.fromEntries(data)),
   }),
 });

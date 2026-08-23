@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { brandSettings } from '@/lib/brand/brandSettings'
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import type { Profile } from "@/lib/zod/index";
@@ -7,11 +7,14 @@ import { Container } from '@mui/material';
 import { PageTitle } from '@/components/index';
 
 export const Route = createFileRoute('/account/$profileId')({
+  beforeLoad({ context }) {
+    if (!context.user) throw redirect({ to: "/auth/login" })
+  },
   loader: async ({ context, params }): Promise<Profile> => {
     const data = await context.queryClient.ensureQueryData(
       profileByIdQuery(params.profileId),
-    );
-    return data.data;
+      );
+     return data.data;
   },
   head: ({ loaderData }) => ({
     meta: [

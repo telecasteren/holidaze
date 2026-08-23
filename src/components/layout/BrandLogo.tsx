@@ -1,7 +1,7 @@
 import { brandSettings } from '@/lib/brand/brandSettings';
 import { Link } from '@tanstack/react-router';
 
-export default function BrandLogo() {
+export function BrandLogo() {
   return (
     <Link to="/" aria-label="Site logo and link to homepage">
       <img

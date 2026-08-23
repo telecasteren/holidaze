@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import { Container } from '@mui/material';
 import { AuthForm } from "@/components/index";
 
@@ -21,7 +20,7 @@ export const Route = createFileRoute('/auth/login')({
 function Login() {
   return (
     <Container id="login" sx={{ py: { xs: 8, sm: 16 } }}>
-      <AuthForm />
+      <AuthForm isSignup={false} />
     </Container>
   )
 }

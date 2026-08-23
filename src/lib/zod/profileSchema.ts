@@ -1,10 +1,10 @@
 import z from "zod";
-import { emptyMetaSchema, metaSchema } from "./metaSchema";
+import { emptyMetaSchema } from "./metaSchema";
 
 export const profileSchema = z.object({
   name: z.string(),
   email: z.string(),
-  bio: z.string(),
+  bio: z.string().nullable(),
   avatar: z.object({
     url: z.string(),
     alt: z.string(),
@@ -87,11 +87,6 @@ export const profileSchema = z.object({
 });
 
 export type Profile = z.infer<typeof profileSchema>;
-
-export const apiProfileSchema = z.object({
-  data: z.array(profileSchema),
-  meta: metaSchema,
-});
 
 export const apiSingleProfileSchema = z.object({
   data: profileSchema,

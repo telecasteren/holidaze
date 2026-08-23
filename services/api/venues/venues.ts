@@ -1,4 +1,4 @@
-import { apiVenueSchema, apiSingleVenueSchema, apiProfileSchema } from "@/lib/zod/index";
+import { apiVenueSchema, apiSingleVenueSchema, apiSingleProfileSchema } from "@/lib/zod/index";
 import { withApiHandler } from "../api-config/handler";
 import { API_URL,VENUES } from "../api-config/endpoints";
 
@@ -14,5 +14,5 @@ export const getVenueById = withApiHandler({
 
 export const getVenuesByProfile = withApiHandler({
   endpoint: (name: string) => `${API_URL}/${name}/venues`,
-  schema: apiProfileSchema,
+  schema: apiSingleProfileSchema,
 });

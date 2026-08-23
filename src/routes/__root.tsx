@@ -7,6 +7,8 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Toaster } from "react-hot-toast";
 
+import { getSession } from '@/server/authFunctions';
+
 import '../styles.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from '@/components/shared-theme/AppTheme';
@@ -51,6 +53,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
+  beforeLoad: async () => {
+      const user = await getSession()
+      return {
+          user,
+      }
+   },
   shellComponent: RootDocument,
   errorComponent: CustomError,
   notFoundComponent: DefaultNotFound,
@@ -67,7 +75,7 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
         <Toaster
           position="top-center"
           toastOptions={{
-            duration: 4000,
+            duration: 3000,
             style: {
               color: "#1e40af",
               backgroundColor: "#dbeafe",
@@ -111,6 +119,6 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
         />
         <Scripts />
       </body>
-    </html>
+      </html>
   )
 }

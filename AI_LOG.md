@@ -22,3 +22,8 @@
 **Date:** 22.08.26<br/>
 **Purpose:** Explanation/teaching the concept of state management, pointing me in the right direction for toggling favorites<br/>
 **Outcome:** Remembered to create a record of id's in the state first so we know which has been clicked and not<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 22.08.26<br/>
+**Purpose:** Asked it to point to which file had a wrong import, producing this error: `cause: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.`<br/>
+**Outcome:** Found the files.<br/>

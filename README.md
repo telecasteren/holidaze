@@ -10,6 +10,7 @@
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Installation](#installation)
+- [Session Management](#session_management)
 - [AI Usage](#ai_usage)
 
 
@@ -23,6 +24,8 @@ This project is my exams project at Noroff School of Technology and Digital Medi
 - TypeScript
 - TanStack Start
 - MUI
+- Zod
+- react-hot-toast
 - Noroff v2 REST API
 
 *Noroff API docs:*
@@ -56,8 +59,11 @@ Build this app for production
 pnpm build
 ```
 
---> ADD DEPLOYMENT INSTRUCTIONS LATER
+### Deployment
 
+This app is deployed on Netlify.<br/>
+**Live site:** [holidaze](https://holidaze.telecasternilsen.com)
+<br/>
 
 **Linting & Formatting**
 
@@ -70,10 +76,22 @@ pnpm format
 pnpm check
 ```
 
+### Session Management
+
+This app uses a cookie-based session management system, utilizing the TanStack Cookie Store. Server functions can be found here: [src/server/](src/server/session.ts).
+
+All authentication logic is handled server-side. That means that all authenticated endpoints require a valid session cookie, and must be called from the server, never from the client. See example invoked from the server: [profileFunctions](src/server/profileFunctions.ts), then served to the client: [profilesQuery](src/lib/queries/profilesQuery.ts).
+
 ### Application Weaknesses
 
 **Venues: toggling favorites**<br/>
 Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
+
+**Login: Forgot password route**<br/>
+Purely visual, no `password reset` logic implemented.
+
+**Login: Remember me**<br/>
+Purely visual, no `remember me` logic implemented.
 
 ---
 
@@ -89,7 +107,6 @@ In this project, AI can be used to:
 *All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md).*
 
 
-
 ### Resources
 
 - Material UI documentation and template: [Marketing page](https://mui.com/material-ui/getting-started/templates/)
@@ -99,3 +116,7 @@ In this project, AI can be used to:
 - TanStack search params [docs](https://tanstack.com/router/latest/docs/guide/search-params)
 - MUI breakpoints [docs](https://mui.com/material-ui/customization/breakpoints/)
 - MUI Pagination [docs](https://mui.com/material-ui/react-pagination/)
+- React Avatar and `stringAvatar` [docs](https://mui.com/material-ui/react-avatar/)
+- Authentication service [docs](https://www.robinwieruch.de/how-to-roll-your-own-auth/)
+- TanStack cookie store and server fn [docs](https://tanstack.com/start/latest/docs/framework/react/guide/authentication-server-primitives)
+- TanStack beforeLoad / loader [docs](https://github.com/TanStack/router/discussions/1949)
