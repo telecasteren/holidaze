@@ -42,8 +42,9 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
-  const {isAuthenticated, user, logout} = useAuth();
-  const avatarProps = stringAvatar(user?.name ?? "John Doe");
+  const { isAuthenticated, user, logout } = useAuth();
+  const userName = user?.name as string;
+  const avatarProps = stringAvatar(userName || "John Doe");
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -110,10 +111,10 @@ export default function Header() {
               <>
               <Link
                 to="/account/$profileId"
-                params={{ profileId: "tele_user1" }}
+                params={{ profileId: userName }}
                 style={{ textDecoration: 'none' }}
               >
-                <Avatar key="user.name here" {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
+                <Avatar key={userName} {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
               </Link>
               <Button size="small"
                 onClick={() => handleLogout()}>
