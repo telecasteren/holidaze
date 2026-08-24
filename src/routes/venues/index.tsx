@@ -52,15 +52,7 @@ function Venues() {
 
   return (
     <Container id="venues" sx={{ py: { xs: 8, sm: 16 } }}>
-      <PageTitle title="VENUES" />
-      <SearchForm />
-
-      {query.trim() && visibleVenues.length === 0 && (
-        <Alert
-          severity="warning"
-          sx={{ m: 4, justifySelf: 'center'}}
-        >This search did not give any results.</Alert>
-      )}
+      <PageTitle title="VENUES" styles={{ textAlign: "center" }} />
 
        <Stack
         direction={{ sm: 'column' }}
@@ -71,6 +63,14 @@ function Venues() {
         <DateRangePicker />
         <GuestCountPicker />
       </Stack>
+
+      <SearchForm />
+      {query.trim() && visibleVenues.length === 0 && (
+        <Alert
+          severity="warning"
+          sx={{ m: 2, justifySelf: 'center'}}
+        >This search did not give any results.</Alert>
+      )}
 
       <Stack sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 4, m: 4 }}>
       {visibleVenues.map((venue) => (

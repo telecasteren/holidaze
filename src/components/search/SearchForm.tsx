@@ -6,7 +6,11 @@ export function SearchForm() {
   const { inputQuery, showClearSearch, handleSubmit, handleOnChange, handleClearSearch } = useSearchForm();
 
   return (
-    <FormControl component="form" onSubmit={handleSubmit} sx={{ width: '50%', mx: 'auto', display: 'flex', alignItems: 'center', gap: 1 }}>
+    <FormControl
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ width: '50%', mx: 'auto', mt: 2, display: 'flex', alignItems: 'center', gap: 1 }}
+    >
       <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
         Search
       </InputLabel>

@@ -10,7 +10,14 @@ export function GuestCountPicker() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: { sm: "column" }, gap: 0.5, flexWrap: 'wrap' }}>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: { xs: "row", sm: "column" },
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 0.5,
+      flexWrap: 'wrap',
+    }}>
       <InputLabel
         htmlFor="guest-count"
         aria-label="Number of guests"
