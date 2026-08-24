@@ -74,7 +74,9 @@ function Venues() {
 
       <Stack sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 4, m: 4 }}>
       {visibleVenues.map((venue) => (
-        <Card key={venue.id}>
+        <Card key={venue.id}
+          onClick={() => navigate({ to: `/venues/${venue.id}` })}
+        >
           <Stack sx={{ position: 'relative' }}>
             {favorites[venue.id] ? <FavoriteIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }} />
               :
