@@ -4,7 +4,8 @@ import { venueByIdQuery } from "@/lib/queries/venuesQuery";
 import type { Venue } from "../../lib/zod/venueSchema";
 
 import { Container, Typography, Divider, Stack, Box, Avatar } from '@mui/material';
-import { DateRangePicker, GuestCountPicker, PageTitle } from '@/components/index';
+import { PageTitle } from '@/components/index';
+import { CalendarDisplay } from "@/components/booking/CalendarDisplay";
 import { Gallery } from '@/components/venues/Gallery';
 import { VenueMeta } from '@/components/venues/VenueMeta';
 
@@ -54,13 +55,9 @@ function VenueById() {
 
           <Stack
             direction={{ xs: "column", sm: "row" }}
-            spacing={2}
-            sx={{
-              justifyContent: "space-between",
-              alignItems: { xs: "center", sm: "stretch" } }}
+            sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}
           >
-            <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}>
-
+             <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}>
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
               <Typography variant="body2"><strong>Managed by</strong></Typography>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }}>
@@ -69,23 +66,28 @@ function VenueById() {
                   alt={venue.owner?.avatar.alt}
                   sx={{ width: 25, height: 25 }}
                 />
-                <Typography variant="body2">{venue.owner?.name || "unknown"}</Typography>
+                 <Typography variant="body2">{venue.owner?.name || "unknown"}</Typography>
               </Box>
               </Stack>
 
-              <Typography variant="body2">{venue.maxGuests} guests</Typography>
+
               <Typography variant="body2"><strong>Rating:</strong> {hasRatings ? venue.rating : "No rating yet"}</Typography>
+              <Typography variant="body2">Max {venue.maxGuests} guests</Typography>
 
               <Typography variant="h5" sx={{ mt: 2 }}>What this place offers</Typography>
-              <VenueMeta venue={venue} />
-            </Box>
-
-            <Box sx={{ mt: 2 }}>
-              <DateRangePicker />
-              <GuestCountPicker />
-            </Box>
+               <VenueMeta venue={venue} />
+              </Box>
           </Stack>
         </Stack>
+
+        {/* Calendar */}
+        <Typography
+          variant="h5"
+          sx={{ mt: 8, textAlign: "center" }}
+        >
+          See availability
+        </Typography>
+        <CalendarDisplay />
     </Container>
       <Divider />
     </>

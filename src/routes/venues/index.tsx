@@ -5,7 +5,7 @@ import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
 import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
-import { RouteLoader, PageTitle, DateRangePicker, GuestCountPicker, SearchForm, FavoriteBorderIcon, FavoriteIcon } from '@/components/index';
+import { RouteLoader, PageTitle, SearchForm, FavoriteBorderIcon, FavoriteIcon } from '@/components/index';
 import { toast } from 'react-hot-toast';
 
 export const Route = createFileRoute('/venues/')({
@@ -54,16 +54,6 @@ function Venues() {
     <Container id="venues" sx={{ py: { xs: 8, sm: 16 } }}>
       <PageTitle title="VENUES" styles={{ textAlign: "center" }} />
 
-       <Stack
-        direction={{ sm: 'column' }}
-        spacing={1}
-        useFlexGap
-        sx={{ justifySelf: 'center', pt: 2, width: { xs: '100%', sm: '350px'} }}
-      >
-        <DateRangePicker />
-        <GuestCountPicker />
-      </Stack>
-
       <SearchForm />
       {query.trim() && visibleVenues.length === 0 && (
         <Alert
@@ -76,6 +66,7 @@ function Venues() {
       {visibleVenues.map((venue) => (
         <Card key={venue.id}
           onClick={() => navigate({ to: `/venues/${venue.id}` })}
+          sx={{cursor: "pointer"}}
         >
           <Stack sx={{ position: 'relative' }}>
             {favorites[venue.id] ? <FavoriteIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }} />

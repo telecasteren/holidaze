@@ -27,3 +27,8 @@
 **Date:** 22.08.26<br/>
 **Purpose:** Asked it to point to which file had a wrong import, producing this error: `cause: Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined.`<br/>
 **Outcome:** Found the files.<br/>
+
+**Tool used:** Claude Opus 5<br/>
+**Date:** 25.08.26<br/>
+**Purpose:** Save some time by converting the Range Calendar component from Tailwind to MUI styles<br/>
+**Outcome:** Scaffolding the MUI version of the calendar component<br/>

@@ -14,14 +14,14 @@ export function GuestCountPicker() {
       display: 'flex',
       flexDirection: { xs: "row", sm: "column" },
       justifyContent: "center",
-      alignItems: "center",
       gap: 0.5,
       flexWrap: 'wrap',
+      mt: 2
     }}>
       <InputLabel
         htmlFor="guest-count"
         aria-label="Number of guests"
-        sx={{ fontWeight: 'bold' }}>
+        sx={{ fontWeight: "bold"}}>
         Number of guests
       </InputLabel>
       <TextField

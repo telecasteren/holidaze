@@ -1,40 +1,47 @@
-import { useState } from "react";
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import type { Dayjs } from 'dayjs';
+// import { useState } from "react";
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import type { Dayjs } from 'dayjs';
 
-import { Box } from '@mui/material';
+// import { Box } from '@mui/material';
 
-export function DateRangePicker() {
-  const [startDate, setStartDate] = useState<Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<Dayjs | null>(null);
+// type DateRangePickerProps = {
+//   onClick?: () => void;
+// };
 
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: { xs: "row", sm: "column" },
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 2,
-        flexWrap: 'wrap',
-      }}>
-        <DatePicker
-          label="Check-in"
-          value={startDate}
-          onChange={(newValue) => setStartDate(newValue)}
-          disablePast
-          maxDate={endDate || undefined}
-        />
-        <DatePicker
-          label="Check-out"
-          value={endDate}
-          onChange={(newValue) => setEndDate(newValue)}
-          disablePast
-          minDate={startDate || undefined}
-        />
-      </Box>
-    </LocalizationProvider>
-  );
-}
+// export const DateRangePicker = ({ onClick }: DateRangePickerProps) => {
+//   const [startDate, setStartDate] = useState<Dayjs | null>(null);
+//   const [endDate, setEndDate] = useState<Dayjs | null>(null);
+
+//   return (
+//     <LocalizationProvider dateAdapter={AdapterDayjs}>
+//       <Box
+//         onClick={onClick}
+//         sx={{
+//         display: 'flex',
+//         flexDirection: { xs: "row", sm: "column" },
+//         justifyContent: "center",
+//         alignItems: "center",
+//         gap: 2,
+//         flexWrap: 'wrap',
+//       }}
+//       >
+//         <DatePicker
+//           label="Check-in"
+//           value={startDate}
+//           onChange={(newValue) => setStartDate(newValue)}
+//           disablePast
+//           maxDate={endDate || undefined}
+//         />
+//         <DatePicker
+//           label="Check-out"
+//           value={endDate}
+//           onChange={(newValue) => setEndDate(newValue)}
+//           disablePast
+//           minDate={startDate || undefined}
+//         />
+//       </Box>
+//     </LocalizationProvider>
+//   );
+// }

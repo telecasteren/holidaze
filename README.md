@@ -121,3 +121,4 @@ In this project, AI can be used to:
 - TanStack cookie store and server fn [docs](https://tanstack.com/start/latest/docs/framework/react/guide/authentication-server-primitives)
 - TanStack beforeLoad / loader [docs](https://github.com/TanStack/router/discussions/1949)
 - TanStack stripSearchParams [docs](https://tanstack.com/router/latest/docs/api/router/stripSearchParamsFunction)
+- Untitled UI Range Calendar [docs](https://www.untitledui.com/react/components/date-pickers)

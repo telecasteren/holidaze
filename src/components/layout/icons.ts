@@ -11,6 +11,8 @@ import ArrowBack from "@mui/icons-material/ArrowBack";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 export {
   LinkedInIcon,
@@ -25,5 +27,7 @@ export {
   ArrowBack,
   FavoriteBorderIcon,
   FavoriteIcon,
-  LogoutIcon
+  LogoutIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 };
