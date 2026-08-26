@@ -168,15 +168,9 @@ export default function Header() {
                   })}
                 </MenuList>
                 <Divider sx={{ my: 3 }} />
-                {/* <Button type="link" color="primary" variant="contained" fullWidth
-                  href="/auth/signup">
-                  Sign up
-                </Button>
-                <Button type="link" color="primary" variant="outlined" fullWidth
-                  href="/auth/login">
-                  Sign in
-                </Button>*/}
+
                 {!isAuthenticated ? (
+                  // Show sign in/sign up buttons if not authenticated
                   <>
                 <Button type="link" color="primary" variant="text" size="small"
                  href="/auth/login">
@@ -188,8 +182,9 @@ export default function Header() {
                     </Button>
                   </>
                 )
-                :
+                  :
                   (
+                    // Show Avatar and logout button if authenticated
                   <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                   <Link
                     to="/account/$profileId"

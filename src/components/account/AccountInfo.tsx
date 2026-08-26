@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { ModalWindow } from "@/components/layout/Modal";
+import { VenueManagerCheckbox } from "@/components/account/RegisterVenueManager";
 
 interface AccountInfoProps {
   user: {
@@ -9,6 +12,11 @@ interface AccountInfoProps {
 }
 
 export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
+  const [open, setOpen] = useState(false);
+
+  const openModal = () => {
+    setOpen(true);
+  }
   return (
       <Box>
         <Typography variant="body1"><strong>Name:</strong> {user.name}</Typography>
@@ -19,9 +27,17 @@ export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
         <Button
           variant="outlined"
           sx={{mt: 2}}
-          onClick={() => { }}
+          onClick={openModal}
         >Register as venue manager</Button>
         )}
-      </Box>
+
+      <ModalWindow
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Register as venue manager"
+        text=""
+        content={<VenueManagerCheckbox />}
+      />
+    </Box>
   )
 };

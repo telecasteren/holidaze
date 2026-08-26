@@ -88,7 +88,28 @@ export const profileSchema = z.object({
 
 export type Profile = z.infer<typeof profileSchema>;
 
+export const baseProfileSchema = z.object({
+  name: z.string().optional(),
+  bio: z.string().nullable().optional(),
+  avatar: z.object({
+    url: z.string(),
+    alt: z.string(),
+  }).optional(),
+  banner: z.object({
+    url: z.string(),
+    alt: z.string(),
+  }).optional(),
+  venueManager: z.boolean().optional(),
+});
+
+export type ProfilePayload = z.infer<typeof baseProfileSchema>;
+
 export const apiSingleProfileSchema = z.object({
   data: profileSchema,
+  meta: emptyMetaSchema,
+});
+
+export const apibaseProfileSchema = z.object({
+  data: baseProfileSchema,
   meta: emptyMetaSchema,
 });

@@ -27,7 +27,7 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
       const parsedPayload = schema.safeParse(payload);
 
       if (!parsedPayload.success) {
-        console.log("parsedPayload: ", parsedPayload)
+        console.log("parsedPayload: ", parsedPayload) // debugging
         throw new ApiError(
           "Payload failed schema validation",
           500,
@@ -42,7 +42,7 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
         throw error;
       }
 
-      throw new ApiError("FUCK OFF: Internal server error", 500, error);
+      throw new ApiError("Internal server error", 500, error);
     }
   };
 }
