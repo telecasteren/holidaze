@@ -1,21 +1,9 @@
 import { PageTitle } from '@/components/index';
-import { Box, Avatar } from '@mui/material';
+import { Box } from '@mui/material';
+import { AvatarDisplay } from '@/components/account/components/AvatarDisplay';
+import type { Profile } from "@/lib/zod/index"
 
-type AccountHeroProps = {
-  user: {
-    name: string;
-    avatar: {
-      url: string;
-      alt: string;
-    };
-    banner: {
-      url: string;
-      alt: string;
-    };
-  };
-};
-
-export const AccountHero = ({ user }: AccountHeroProps) => {
+export const AccountHero = ({ user }: {user: Profile}) => {
   return (
     <Box id="profile-header" sx={{ mt: 2, position: 'relative' }}>
       <Box
@@ -27,14 +15,11 @@ export const AccountHero = ({ user }: AccountHeroProps) => {
           alignItems: "center",
           justifyContent: "space-between",
           px: 6,
+          xs: { px: 2 }
         }}
       >
-      <PageTitle title={`Welcome, ${user.name}`} />
-      <Avatar
-        src={user.avatar.url}
-        alt={user.avatar.alt}
-        sx={{ width: 150, height: 150 }}
-        />
+        <PageTitle title={`Welcome, ${user.name}`} />
+        <AvatarDisplay user={user} />
       </Box>
 
       <img

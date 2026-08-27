@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { ModalWindow } from "@/components/layout/Modal";
-import { VenueManagerCheckbox } from "@/components/account/RegisterVenueManager";
+import { VenueManagerForm } from "#/components/account/components/VenueManagerForm";
 
 interface AccountInfoProps {
   user: {
@@ -36,7 +36,7 @@ export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
         onClose={() => setOpen(false)}
         title="Register as venue manager"
         text=""
-        content={<VenueManagerCheckbox />}
+        content={<VenueManagerForm />}
       />
     </Box>
   )

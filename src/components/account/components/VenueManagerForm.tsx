@@ -5,7 +5,7 @@ import { updateProfileFn } from "@/server/profileFunctions";
 import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
 import { toast } from "react-hot-toast";
 
-export const VenueManagerCheckbox = () => {
+export const VenueManagerForm = () => {
   const { user } = useAuth();
   const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
@@ -23,7 +23,9 @@ export const VenueManagerCheckbox = () => {
       sx={{
 
       }}>
-      <FormControlLabel required control={<Checkbox checked={isChecked} onChange={() => setIsChecked(!isChecked)} />} label="Yes, sign me up as a venue manager!" />
+      <FormControlLabel required control={
+        <Checkbox checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
+      } label="Yes, sign me up as a venue manager!" />
       <Button
         variant="contained"
         onClick={handleSubmit}

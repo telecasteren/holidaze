@@ -14,6 +14,9 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 2,
 };
 
 type ModalWindowProps = {
@@ -38,7 +41,7 @@ export const ModalWindow = ({ open, onClose, title, text, content }: ModalWindow
           <Typography id="modal-title" variant="h6" component="h2">
             {title}
           </Typography>
-          <Typography id="modal-description" sx={{ mt: 2 }}>
+          <Typography id="modal-description">
             {text}
           </Typography>
           {content && <Box>{content}</Box>}
