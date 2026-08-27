@@ -15,7 +15,6 @@ import { Route as AccountProfileIdRouteImport } from './routes/account/$profileI
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
 import { Route as BookingIndexRouteImport } from './routes/booking/index'
-import { Route as BookingCalendarRouteImport } from './routes/booking/calendar'
 import { Route as BookingSuccessRouteImport } from './routes/booking/success'
 import { Route as CompanyAboutRouteImport } from './routes/company/about'
 import { Route as CompanyCareersRouteImport } from './routes/company/careers'
@@ -24,7 +23,7 @@ import { Route as LegalTermsRouteImport } from './routes/legal/terms'
 import { Route as VenuesIndexRouteImport } from './routes/venues/index'
 import { Route as VenuesVenueIdRouteImport } from './routes/venues/$venueId'
 import { Route as CompanyContactIndexRouteImport } from './routes/company/contact/index'
-import { Route as CompanyContactThankYouRouteImport } from './routes/company/contact/thank-you'
+import { Route as CompanyContactThankYouRouteImport } from './routes/company/contact/thankYou'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -54,11 +53,6 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
 const BookingIndexRoute = BookingIndexRouteImport.update({
   id: '/booking/',
   path: '/booking/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingCalendarRoute = BookingCalendarRouteImport.update({
-  id: '/booking/calendar',
-  path: '/booking/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingSuccessRoute = BookingSuccessRouteImport.update({
@@ -102,8 +96,8 @@ const CompanyContactIndexRoute = CompanyContactIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompanyContactThankYouRoute = CompanyContactThankYouRouteImport.update({
-  id: '/company/contact/thank-you',
-  path: '/company/contact/thank-you',
+  id: '/company/contact/thankYou',
+  path: '/company/contact/thankYou',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -113,7 +107,6 @@ export interface FileRoutesByFullPath {
   '/account/$profileId': typeof AccountProfileIdRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
   '/company/careers': typeof CompanyCareersRoute
@@ -122,7 +115,7 @@ export interface FileRoutesByFullPath {
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/booking/': typeof BookingIndexRoute
   '/venues/': typeof VenuesIndexRoute
-  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesByTo {
@@ -131,7 +124,6 @@ export interface FileRoutesByTo {
   '/account/$profileId': typeof AccountProfileIdRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
   '/company/careers': typeof CompanyCareersRoute
@@ -140,7 +132,7 @@ export interface FileRoutesByTo {
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/booking': typeof BookingIndexRoute
   '/venues': typeof VenuesIndexRoute
-  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesById {
@@ -150,7 +142,6 @@ export interface FileRoutesById {
   '/account/$profileId': typeof AccountProfileIdRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
-  '/booking/calendar': typeof BookingCalendarRoute
   '/booking/success': typeof BookingSuccessRoute
   '/company/about': typeof CompanyAboutRoute
   '/company/careers': typeof CompanyCareersRoute
@@ -159,7 +150,7 @@ export interface FileRoutesById {
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/booking/': typeof BookingIndexRoute
   '/venues/': typeof VenuesIndexRoute
-  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRouteTypes {
@@ -170,7 +161,6 @@ export interface FileRouteTypes {
     | '/account/$profileId'
     | '/auth/login'
     | '/auth/signup'
-    | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
     | '/company/careers'
@@ -179,7 +169,7 @@ export interface FileRouteTypes {
     | '/venues/$venueId'
     | '/booking/'
     | '/venues/'
-    | '/company/contact/thank-you'
+    | '/company/contact/thankYou'
     | '/company/contact/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -188,7 +178,6 @@ export interface FileRouteTypes {
     | '/account/$profileId'
     | '/auth/login'
     | '/auth/signup'
-    | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
     | '/company/careers'
@@ -197,7 +186,7 @@ export interface FileRouteTypes {
     | '/venues/$venueId'
     | '/booking'
     | '/venues'
-    | '/company/contact/thank-you'
+    | '/company/contact/thankYou'
     | '/company/contact'
   id:
     | '__root__'
@@ -206,7 +195,6 @@ export interface FileRouteTypes {
     | '/account/$profileId'
     | '/auth/login'
     | '/auth/signup'
-    | '/booking/calendar'
     | '/booking/success'
     | '/company/about'
     | '/company/careers'
@@ -215,7 +203,7 @@ export interface FileRouteTypes {
     | '/venues/$venueId'
     | '/booking/'
     | '/venues/'
-    | '/company/contact/thank-you'
+    | '/company/contact/thankYou'
     | '/company/contact/'
   fileRoutesById: FileRoutesById
 }
@@ -225,7 +213,6 @@ export interface RootRouteChildren {
   AccountProfileIdRoute: typeof AccountProfileIdRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
-  BookingCalendarRoute: typeof BookingCalendarRoute
   BookingSuccessRoute: typeof BookingSuccessRoute
   CompanyAboutRoute: typeof CompanyAboutRoute
   CompanyCareersRoute: typeof CompanyCareersRoute
@@ -280,13 +267,6 @@ declare module '@tanstack/react-router' {
       path: '/booking'
       fullPath: '/booking/'
       preLoaderRoute: typeof BookingIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking/calendar': {
-      id: '/booking/calendar'
-      path: '/booking/calendar'
-      fullPath: '/booking/calendar'
-      preLoaderRoute: typeof BookingCalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking/success': {
@@ -345,10 +325,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanyContactIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/company/contact/thank-you': {
-      id: '/company/contact/thank-you'
-      path: '/company/contact/thank-you'
-      fullPath: '/company/contact/thank-you'
+    '/company/contact/thankYou': {
+      id: '/company/contact/thankYou'
+      path: '/company/contact/thankYou'
+      fullPath: '/company/contact/thankYou'
       preLoaderRoute: typeof CompanyContactThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -361,7 +341,6 @@ const rootRouteChildren: RootRouteChildren = {
   AccountProfileIdRoute: AccountProfileIdRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
-  BookingCalendarRoute: BookingCalendarRoute,
   BookingSuccessRoute: BookingSuccessRoute,
   CompanyAboutRoute: CompanyAboutRoute,
   CompanyCareersRoute: CompanyCareersRoute,
