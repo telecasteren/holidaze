@@ -1,12 +1,9 @@
-
-import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
-import { CloseRoundedIcon } from "@/components/layout/icons";
-import { toast } from "react-hot-toast";
 import { useState } from "react";
-import { updateProfileFn } from "@/server/profileFunctions";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "@tanstack/react-router";
-
+import { updateProfileFn } from "@/server/profileFunctions";
+import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
+import { toast } from "react-hot-toast";
 
 export const VenueManagerCheckbox = () => {
   const { user } = useAuth();
@@ -26,7 +23,6 @@ export const VenueManagerCheckbox = () => {
       sx={{
 
       }}>
-      <CloseRoundedIcon />
       <FormControlLabel required control={<Checkbox checked={isChecked} onChange={() => setIsChecked(!isChecked)} />} label="Yes, sign me up as a venue manager!" />
       <Button
         variant="contained"

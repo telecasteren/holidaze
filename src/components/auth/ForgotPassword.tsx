@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { toast } from 'react-hot-toast';
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -13,6 +14,12 @@ interface ForgotPasswordProps {
 }
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
+
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    toast.success("New activation link sent to your email");
+  };
+
   return (
     <Dialog
       open={open}
@@ -23,6 +30,7 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           onSubmit: (event: React.SubmitEvent<HTMLFormElement>) => {
             event.preventDefault();
             handleClose();
+            handleSubmit(event);
           },
           sx: { backgroundImage: 'none' },
         },

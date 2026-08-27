@@ -1,6 +1,10 @@
-import * as React from 'react';
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { registerFn } from "@/server/authFunctions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signUpFormSchema } from "@/lib/zod/signUpFormSchema";
+import type { SignUpFormSchemaType } from "@/lib/zod/signUpFormSchema";
 import { toast } from 'react-hot-toast';
 
 import {
@@ -13,6 +17,8 @@ import {
   TextField,
   Typography,
   Stack,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiCard from '@mui/material/Card';
@@ -65,24 +71,27 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 export default function SignupForm(props: { disableCustomTheme?: boolean }) {
   const navigate = useNavigate();
   const router = useRouter();
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [nameError, setNameError] = React.useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [isChecked, setIsChecked] = useState(false);
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm<SignUpFormSchemaType>({
+    resolver: zodResolver(signUpFormSchema),
+    mode: "onBlur",
+  });
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!validateInputs()) return;
 
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
     const password = data.get("password") as string;
     const name = data.get("name") as string;
+    const venueManager = isChecked;
 
     try {
-      await registerFn({ data: { name, email, password } });
+      await registerFn({ data: { name, email, password, venueManager } });
       await router.invalidate();
       toast.success("Signing you up...");
 
@@ -90,45 +99,12 @@ export default function SignupForm(props: { disableCustomTheme?: boolean }) {
         navigate({ to: "/account/$profileId", params: { profileId: name } })
       }, 1500)
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      toast.error(
+        `Sending failed: ${errorMessage}`,
+      );
       throw new Error("Register failed", { cause: error as string });
     }
-  };
-
-  const validateInputs = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-    const name = document.getElementById('name') as HTMLInputElement;
-
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
-    }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    if (!name.value || name.value.length < 1) {
-      setNameError(true);
-      setNameErrorMessage('Name is required.');
-      isValid = false;
-    } else {
-      setNameError(false);
-      setNameErrorMessage('');
-    }
-
-    return isValid;
   };
 
   return (
@@ -153,15 +129,16 @@ export default function SignupForm(props: { disableCustomTheme?: boolean }) {
               <FormLabel htmlFor="name">Full name</FormLabel>
               <TextField
                 autoComplete="name"
-                name="name"
                 required
                 fullWidth
                 id="name"
                 placeholder="Jon Snow"
-                error={nameError}
-                helperText={nameErrorMessage}
-                color={nameError ? 'error' : 'primary'}
+                {...register("name")}
+                aria-invalid={!!errors.name}
+                helperText={errors.name ? errors.name.message : null}
+                error={!!errors.name}
               />
+              {errors.name && <p role="alert">{errors.name.message}</p>}
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
@@ -170,35 +147,44 @@ export default function SignupForm(props: { disableCustomTheme?: boolean }) {
                 fullWidth
                 id="email"
                 placeholder="your@email.com"
-                name="email"
                 autoComplete="email"
                 variant="outlined"
-                error={emailError}
-                helperText={emailErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
+                {...register("email")}
+                aria-invalid={!!errors.email}
+                helperText={errors.email ? errors.email.message : null}
+                error={!!errors.email}
               />
+              {errors.email && <p role="alert">{errors.email.message}</p>}
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
                 required
                 fullWidth
-                name="password"
                 placeholder="••••••"
                 type="password"
                 id="password"
                 autoComplete="new-password"
                 variant="outlined"
-                error={passwordError}
-                helperText={passwordErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
+                {...register("password")}
+                aria-invalid={!!errors.password}
+                helperText={errors.password ? errors.password.message : null}
+                error={!!errors.password}
+              />
+              {errors.password && <p role="alert">{errors.password.message}</p>}
+            </FormControl>
+
+            <FormControl>
+            <FormControlLabel
+              label="Sign me up as a venue manager!"
+              control={<Checkbox checked={isChecked} onChange={() => setIsChecked(!isChecked)} />}
               />
             </FormControl>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
               Sign up
             </Button>

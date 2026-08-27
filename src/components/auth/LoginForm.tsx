@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useNavigate, useRouter } from "@tanstack/react-router";
+import { useForm } from "react-hook-form";
 import { loginFn } from '@/server/authFunctions';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginFormSchema } from "@/lib/zod/loginFormSchema";
+import type { LoginFormSchemaType } from "@/lib/zod/loginFormSchema";
 import { toast } from 'react-hot-toast';
 
 import {
@@ -70,11 +74,15 @@ const LoginContainer = styled(Stack)(({ theme }) => ({
 export default function LoginForm(props: { disableCustomTheme?: boolean }) {
   const navigate = useNavigate();
   const router = useRouter();
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm<LoginFormSchemaType>({
+    resolver: zodResolver(loginFormSchema),
+    mode: "onBlur",
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,7 +94,6 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!validateInputs()) return;
 
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
@@ -106,32 +113,6 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
     }
   };
 
-  const validateInputs = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
-    }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-
-    return isValid;
-  };
 
   return (
     <AppTheme {...props}>
@@ -160,26 +141,23 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField
-                error={emailError}
-                helperText={emailErrorMessage}
                 id="email"
                 type="email"
-                name="email"
                 placeholder="your@email.com"
                 autoComplete="email"
                 autoFocus
                 required
                 fullWidth
                 variant="outlined"
-                color={emailError ? 'error' : 'primary'}
+                {...register("email")}
+                aria-invalid={!!errors.email}
+                helperText={errors.email ? errors.email.message : null}
+                error={!!errors.email}
               />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Password</FormLabel>
               <TextField
-                error={passwordError}
-                helperText={passwordErrorMessage}
-                name="password"
                 placeholder="••••••"
                 type="password"
                 id="password"
@@ -188,7 +166,10 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
                 required
                 fullWidth
                 variant="outlined"
-                color={passwordError ? 'error' : 'primary'}
+                {...register("password")}
+                aria-invalid={!!errors.password}
+                helperText={errors.password ? errors.password.message : null}
+                error={!!errors.password}
               />
             </FormControl>
             <FormControlLabel
@@ -200,7 +181,6 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
               Sign in
             </Button>

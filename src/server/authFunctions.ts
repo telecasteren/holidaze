@@ -33,10 +33,11 @@ export const registerFn = createServerFn({ method: "POST" })
   .validator(z.object({
     name: z.string().min(1),
     email: z.email(),
-    password: z.string().min(1)
+    password: z.string().min(1),
+    venueManager: z.boolean().optional(),
   }))
   .handler(async ({ data }) => {
-    await registerNewProfile(toFormData(data));
+    await registerNewProfile(data);
     return establishSession(data.email, data.password);
   })
 

@@ -19,7 +19,8 @@ export const signupAuthSchema = z.object({
     email: z.string(),
     bio: z.string().nullable(),
     avatar: z.object({ url: z.string(), alt: z.string() }).optional(),
-    banner: z.object({ url: z.string(), alt: z.string()}).optional(),
+    banner: z.object({ url: z.string(), alt: z.string() }).optional(),
+    venueManager: z.boolean().optional(),
   }),
   meta: emptyMetaSchema
 });
