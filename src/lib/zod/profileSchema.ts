@@ -42,6 +42,9 @@ export const profileSchema = z.object({
       lat: z.number(),
       lng: z.number(),
     }),
+    _count: z.object({
+      bookings: z.number(),
+    }),
   })).optional(),
   bookings: z.array(z.object({
     id: z.string(),

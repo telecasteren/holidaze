@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import { useVenue } from "@/hooks/useVenue";
 import { Box, InputLabel, MenuItem, TextField } from '@mui/material';
 
-export function GuestCountPicker() {
-  const totalGuestsAllowed = 20;
+interface GuestCountPickerProps {
+  venueId?: string;
+}
+
+export function GuestCountPicker({ venueId }: GuestCountPickerProps) {
+  const { singleVenue } = useVenue(venueId);
+  const totalGuestsAllowed = singleVenue?.maxGuests ?? 20;
   const [guests, setGuests] = useState(1);
 
   const handleGuestCount = (e: any) => {

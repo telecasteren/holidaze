@@ -1,5 +1,5 @@
 import { RangeCalendarContext, useSlottedContext } from "react-aria-components";
-import { PresetButtonRoot } from "../RangeCalendar";
+import { PresetButtonRoot } from "@/components/booking/components/PresetButtonRoot";
 import type { DateValue } from "@internationalized/date";
 
 interface RangePresetButtonProps extends React.HTMLAttributes<HTMLButtonElement> {

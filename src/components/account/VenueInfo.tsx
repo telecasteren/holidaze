@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate } from '@tanstack/react-router';
-import type { Venue } from '@/../services/Venue';
+import type { Venue } from '@/lib/zod/index';
 
 interface VenueInfoProps {
   venueInfo: Venue[];

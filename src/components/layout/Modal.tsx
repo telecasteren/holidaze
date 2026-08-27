@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { CloseRoundedIcon } from "@/components/layout/icons";
 
 const style = {
   position: 'absolute',
@@ -33,6 +34,7 @@ export const ModalWindow = ({ open, onClose, title, text, content }: ModalWindow
         aria-describedby="modal-description"
       >
         <Box sx={style}>
+          <CloseRoundedIcon onClick={onClose} sx={{ cursor: 'pointer' }} />
           <Typography id="modal-title" variant="h6" component="h2">
             {title}
           </Typography>

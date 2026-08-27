@@ -87,7 +87,7 @@ function VenueById() {
         >
           See availability
         </Typography>
-        <CalendarDisplay />
+        <CalendarDisplay venueId={venue.id} />
     </Container>
       <Divider />
     </>

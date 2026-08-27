@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { getAllBookings, getBookingById } from "../../../services/api/booking/bookings";
+import { getAllBookings, getBookingById } from "../../../services/api/bookings/bookings";
 
 export const bookingsQuery = () => {
   return queryOptions({

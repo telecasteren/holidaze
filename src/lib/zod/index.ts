@@ -4,3 +4,4 @@ export * from "./profileSchema";
 export * from "./authSchema";
 export * from "./searchSchema";
 export * from "./apiKeySchema";
+export * from "./signUpFormSchema";
