@@ -9,7 +9,15 @@ export function SearchForm() {
     <FormControl
       component="form"
       onSubmit={handleSubmit}
-      sx={{ width: '50%', mx: 'auto', mt: 2, display: 'flex', alignItems: 'center', gap: 1 }}
+      sx={{
+        width: '50%',
+        mx: 'auto',
+        mt: 4,
+        mb: 6,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1
+      }}
     >
       <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
         Search

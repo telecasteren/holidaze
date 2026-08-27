@@ -11,10 +11,10 @@ export const navOptions = () => [
   },
   {
     link: linkOptions({
-      to: "/booking/calendar",
+      to: "/booking",
       activeOptions: { exact: true },
     }),
-    label: "Calendar",
+    label: "Booking",
     icon: false,
   },
   {
@@ -34,21 +34,4 @@ export const navOptions = () => [
     label: "Reviews",
     icon: false,
   },
-  {
-    link: linkOptions({ // authenticated route
-      to: "/booking",
-      activeOptions: { exact: true },
-    }),
-    label: "Booking",
-    icon: false,
-  },
-  // {
-  //   link: linkOptions({ // authenticated route
-  //     to: `/account/$profileId`,
-  //     params: { profileId },
-  //     activeOptions: { exact: true },
-  //   }),
-  //   label: "Account",
-  //   icon: false,
-  // },
 ];
