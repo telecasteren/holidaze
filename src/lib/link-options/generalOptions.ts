@@ -5,5 +5,5 @@ export const bookingSuccessOptions = linkOptions({
 });
 
 export const contactSuccessOptions = linkOptions({
-  to: "/company/contact/thank-you",
+  to: "/company/contact/thankYou",
 });
