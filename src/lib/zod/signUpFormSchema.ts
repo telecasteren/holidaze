@@ -5,7 +5,7 @@ export const signUpFormSchema = z.object({
     .string()
     .min(3, "Name must be at least 3 characters.")
     .max(32, "Name must be at most 45 characters."),
-  email: z.email("Email must be a valid email."),
+  email: z.email("Email must be a valid email.").includes("@stud.noroff.no"),
   password: z.string().min(8, "Password must be at least 8 characters."),
   venueManager: z.boolean()
     .optional()});

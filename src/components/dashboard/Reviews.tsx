@@ -90,7 +90,7 @@ export function Reviews() {
                   sx={{ color: 'text.secondary' }}
                 >
                   <Typography variant="subtitle1" gutterBottom sx={{ color: 'text.secondary' }}>
-                    <Link href={review.venue}>{review.venue}</Link>
+                    <Link href="/venues">{review.venue}</Link>
                   </Typography>
                   {review.reviewText}
                 </Typography>
