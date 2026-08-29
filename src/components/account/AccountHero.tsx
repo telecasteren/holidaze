@@ -1,4 +1,4 @@
-import { PageTitle } from '@/components/index';
+import { PageTitle } from '@/components/layout/index';
 import { Box } from '@mui/material';
 import { AvatarDisplay } from '@/components/account/components/AvatarDisplay';
 import type { Profile } from "@/lib/zod/index"

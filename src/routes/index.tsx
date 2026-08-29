@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Divider from '@mui/material/Divider';
-import { Reviews, Services, Hero, FAQ } from "@/components/index";
+import { Reviews, Services, Hero, FAQ } from "@/components/dashboard/index";
 
 export const Route = createFileRoute('/')({ component: Dashboard })
 

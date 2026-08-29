@@ -5,7 +5,8 @@ import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
 import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
-import { RouteLoader, PageTitle, SearchForm } from '@/components/index';
+import { RouteLoader, PageTitle } from '@/components/layout/index';
+import { SearchForm } from '@/components/search/SearchForm';
 import { FavoriteBorderIcon, FavoriteIcon } from '@/components/layout/icons';
 import { toast } from 'react-hot-toast';
 

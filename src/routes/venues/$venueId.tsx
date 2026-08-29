@@ -4,7 +4,7 @@ import { venueByIdQuery } from "@/lib/queries/venuesQuery";
 import type { Venue } from "../../lib/zod/venueSchema";
 
 import { Container, Typography, Divider, Stack, Box, Avatar } from '@mui/material';
-import { PageTitle } from '@/components/index';
+import { PageTitle } from '@/components/layout/index';
 import { CalendarDisplay } from "@/components/booking/CalendarDisplay";
 import { Gallery } from '@/components/venues/Gallery';
 import { VenueMeta } from '@/components/venues/VenueMeta';

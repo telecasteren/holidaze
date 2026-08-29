@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Container } from '@mui/material';
-import { AuthForm } from "@/components/index";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 export const Route = createFileRoute('/auth/signup')({
   head: () => ({
