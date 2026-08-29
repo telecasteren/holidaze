@@ -7,12 +7,12 @@ import {
     RangeCalendarContext,
     useSlottedContext,
 } from "react-aria-components";
-import { RangeCalendarTitle } from "./components/RangeCalendarTitle";
-import { RangeDateField } from "./components/RangeDateField";
-import { PresetButton } from "./components/PresetButton";
-import { RangeCalendarContextProvider } from "./components/RangeCalendarContextProvider";
-import { NavButton } from "./components/NavButton";
-import { CalendarCell } from "./components/CalendarCell";
+import { RangeCalendarTitle } from "./calendar-components/RangeCalendarTitle";
+import { RangeDateField } from "./calendar-components/RangeDateField";
+import { PresetButton } from "./calendar-components/PresetButton";
+import { RangeCalendarContextProvider } from "./calendar-components/RangeCalendarContextProvider";
+import { NavButton } from "./calendar-components/NavButton";
+import { CalendarCell } from "./calendar-components/CalendarCell";
 import {
   CalendarRoot,
   CalendarPanel,
@@ -22,7 +22,7 @@ import {
   CalendarHeaderCell,
   WeekdayLabel,
   CalendarGridBody,
-} from "./components/CalendarLayout";
+} from "./calendar-components/CalendarLayout";
 
 interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
     /** The dates to highlight. */
@@ -32,7 +32,7 @@ interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
     /** Whether to show out of range dates. */
     showOutOfRangeDates?: boolean;
     /** Whether to show presets on desktop. */
-    showPresetsOnDesktop?: boolean;
+  showPresetsOnDesktop?: boolean;
 }
 
 export const RangeCalendar = ({

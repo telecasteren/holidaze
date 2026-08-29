@@ -93,6 +93,9 @@ Purely visual, no `password reset` logic implemented.
 **Login: Remember me**<br/>
 Purely visual, no `remember me` logic implemented.
 
+**Reviews:**<br/>
+Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
+
 ---
 
 ## AI Usage
@@ -122,3 +125,4 @@ In this project, AI can be used to:
 - TanStack beforeLoad / loader [docs](https://github.com/TanStack/router/discussions/1949)
 - TanStack stripSearchParams [docs](https://tanstack.com/router/latest/docs/api/router/stripSearchParamsFunction)
 - Untitled UI Range Calendar [docs](https://www.untitledui.com/react/components/date-pickers)
+- Controller and useForm [docs](https://react-hook-form.com/docs/usecontroller/controller)

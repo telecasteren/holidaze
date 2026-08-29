@@ -32,3 +32,15 @@
 **Date:** 25.08.26<br/>
 **Purpose:** Save some time by converting the Range Calendar component from Tailwind to MUI styles<br/>
 **Outcome:** Scaffolding the MUI version of the calendar component<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 27.08.26<br/>
+**Purpose:** Complete brain freeze.. Asked it to tell me the command for getting back my `stash`.<br/>
+**Outcome:** Got it. `got stash pop`<br/>
+
+**Tool used:** llama3<br/>
+**Date:** 29.08.26<br/>
+**Purpose:** Help me understand the incompatibility of expected `onChange` value on MUIs TextField component.<br/>
+***Example:**
+`onChange={onChange}` vs `onChange={(event) => onChange(Number(event.target.value))}`*<br/>
+**Outcome:** Understood that the onChange event on the TextField expects a function that takes an event.<br/>

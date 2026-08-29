@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { Link } from '@tanstack/react-router';
 import { navOptions } from "@/lib/link-options/navOptions"
-import { stringAvatar } from '@/lib/stringAvatar';
+import { stringAvatar } from '@/lib/utils/stringAvatar';
 import { toast } from 'react-hot-toast';
 
 import {

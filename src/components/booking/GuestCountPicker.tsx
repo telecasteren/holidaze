@@ -1,19 +1,15 @@
-import { useState } from 'react';
 import { useVenue } from "@/hooks/useVenue";
 import { Box, InputLabel, MenuItem, TextField } from '@mui/material';
 
 interface GuestCountPickerProps {
   venueId?: string;
+  value: number;
+  onChange: (value: number) => void;
 }
 
-export function GuestCountPicker({ venueId }: GuestCountPickerProps) {
+export function GuestCountPicker({ venueId, value, onChange }: GuestCountPickerProps) {
   const { singleVenue } = useVenue(venueId);
-  const totalGuestsAllowed = singleVenue?.maxGuests ?? 20;
-  const [guests, setGuests] = useState(1);
-
-  const handleGuestCount = (e: any) => {
-    setGuests(e.target.value);
-  };
+  const totalGuestsAllowed = singleVenue?.maxGuests ?? 1;
 
   return (
     <Box sx={{
@@ -34,13 +30,13 @@ export function GuestCountPicker({ venueId }: GuestCountPickerProps) {
         id="guest-count"
         aria-label="Select number of guests"
         select
-        value={guests}
-        onChange={handleGuestCount}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
         sx={{ minWidth: 250 }}
       >
-        {Array.from({ length: totalGuestsAllowed }, (_, i) => i + 1).map((value) => (
-          <MenuItem key={value} value={value}>
-            {value}
+        {Array.from({ length: totalGuestsAllowed }, (_, i) => i + 1).map((amount) => (
+          <MenuItem key={amount} value={amount}>
+            {amount}
           </MenuItem>
         ))}
       </TextField>

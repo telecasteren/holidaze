@@ -5,7 +5,7 @@ import {
     CalendarHeaderCell as AriaCalendarHeaderCell,
     RangeCalendar as AriaRangeCalendar,
 } from "react-aria-components";
-import { CELL_SIZE } from "@/components/booking/components/CalendarCell";
+import { CELL_SIZE } from "#/components/booking/calendar-components/CalendarCell";
 
 export const VERTICAL_ROW_SPACING = "4px solid transparent";
 
