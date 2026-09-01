@@ -70,7 +70,6 @@ function VenueById() {
               </Box>
               </Stack>
 
-
               <Typography variant="body2"><strong>Rating:</strong> {hasRatings ? venue.rating : "No rating yet"}</Typography>
               <Typography variant="body2">Max {venue.maxGuests} guests</Typography>
 
