@@ -16,6 +16,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ClearIcon from '@mui/icons-material/Clear';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export {
   LinkedInIcon,
@@ -35,5 +36,6 @@ export {
   ChevronRightIcon,
   EditIcon,
   ArrowForwardIcon,
-  ClearIcon
+  ClearIcon,
+  DeleteIcon
 };

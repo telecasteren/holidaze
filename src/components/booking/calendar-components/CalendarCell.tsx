@@ -67,7 +67,14 @@ const CellRoot = styled(AriaCalendarCell, {
 
         "&[data-disabled]": {
             pointerEvents: "none",
-        },
+      },
+      "&[data-unavailable]": {
+          cursor: "not-allowed",
+      },
+      [`&[data-unavailable] .${CONTENT_CLASS}`]: {
+      textDecoration: "line-through",
+      color: alpha(theme.palette.text.secondary, 0.5),
+      },
         "&[data-outside-month]": {
             opacity: 0.5,
             ...(hideOutsideMonth && { display: "none" }),

@@ -55,7 +55,7 @@ export const venueSchema = z.object({
       })),
       price: z.number(),
       maxGuests: z.number().int(),
-      rating: z.number(),
+      rating: z.number().optional(),
       created: z.string(),
       updated: z.string(),
       meta: venueMetaSchema,
@@ -75,13 +75,6 @@ export const venueSchema = z.object({
         avatar: z.object({ url: z.string(), alt: z.string() }),
         banner: z.object({ url: z.string(), alt: z.string() }),
       }).optional(),
-    }).optional(),
-    customer: z.object({
-      name: z.string(),
-      email: z.string(),
-      bio: z.string(),
-      avatar: z.object({ url: z.string(), alt: z.string() }),
-      banner: z.object({ url: z.string(), alt: z.string() }),
     }).optional(),
   })).optional(),
   _count: z.object({ bookings: z.number().optional()}).optional()

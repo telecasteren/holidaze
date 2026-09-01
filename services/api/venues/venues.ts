@@ -1,7 +1,7 @@
 import { apiVenueSchema, apiSingleVenueSchema } from "@/lib/zod/index";
 import { withApiHandler} from "../api-config/handler";
 import {  getAuthHeaders } from "../api-config/headers";
-import { API_URL, VENUES } from "../api-config/endpoints";
+import { API_URL, VENUES, VENUES_PARAMS } from "../api-config/endpoints";
 import type { VenuePayload } from "@/lib/zod/index";
 
 export const getAllVenues = withApiHandler({
@@ -12,7 +12,7 @@ export const getAllVenues = withApiHandler({
 
 export const getVenueById = withApiHandler({
   label: "getVenueById",
-  endpoint: (id: string) => `${API_URL}${VENUES}/${id}`,
+  endpoint: (id: string) => `${API_URL}${VENUES}/${id}${VENUES_PARAMS}`,
   schema: apiSingleVenueSchema,
 });
 

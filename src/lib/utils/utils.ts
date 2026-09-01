@@ -26,5 +26,3 @@ export const formatDate = (value: string): string => {
   const formatted = `${dd}.${mm}.${yyyy}`;
   return formatted;
 }
-
-export const getAllMediaUrls = (urls: string[]) => urls.map((url) => url.trim()).filter(Boolean);
