@@ -7,6 +7,7 @@ import { searchSchema, defaultSearch } from '@/lib/zod/index';
 import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
 import { RouteLoader, PageTitle } from '@/components/layout/index';
 import { SearchForm } from '@/components/search/SearchForm';
+import { CardsStack } from "#/components/CardsStack";
 import { FavoriteBorderIcon, FavoriteIcon } from '@/components/layout/icons';
 import { toast } from 'react-hot-toast';
 
@@ -64,33 +65,33 @@ function Venues() {
         >This search did not give any results.</Alert>
       )}
 
-      <Stack sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 4, m: 4 }}>
-      {visibleVenues.map((venue) => (
-        <Card key={venue.id}
-          onClick={() => navigate({ to: `/venues/${venue.id}` })}
-          sx={{cursor: "pointer"}}
-        >
-          <Stack sx={{ position: 'relative' }}>
-            {favorites[venue.id] ? <FavoriteIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }} />
-              :
-              <FavoriteBorderIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }} />
+      <CardsStack>
+        {visibleVenues.map((venue) => (
+          <Card key={venue.id}
+            onClick={() => navigate({ to: `/venues/${venue.id}` })}
+            sx={{cursor: "pointer"}}
+          >
+            <Stack sx={{ position: 'relative' }}>
+              {favorites[venue.id] ? <FavoriteIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }} />
+                :
+                <FavoriteBorderIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }} />
+              }
+              <img src={venue.media[0]?.url} alt={venue.name} style={{ width: '100%' }} />
+            </Stack>
+            <Typography variant="h3">{venue.name}</Typography>
+
+            {venue.location?.city && venue.location.country && (
+            <Typography variant="body1">{venue.location.city} • {venue.location.country}</Typography>
+            )}
+
+            {venue.rating > 0 ?
+              <Typography variant="body2" sx={{fontSize: '0.8rem', color: 'primary'}}>Rating: {venue.rating}</Typography>
+            :
+              <Typography variant="body2" sx={{fontSize: '0.8rem', color: 'primary'}}>No rating yet</Typography>
             }
-            <img src={venue.media[0]?.url} alt={venue.name} style={{ width: '100%' }} />
-          </Stack>
-          <Typography variant="h3">{venue.name}</Typography>
-
-          {venue.location.city && venue.location.country && (
-          <Typography variant="body1">{venue.location.city} • {venue.location.country}</Typography>
-          )}
-
-          {venue.rating > 0 ?
-            <Typography variant="body2" sx={{fontSize: '0.8rem', color: 'primary'}}>Rating: {venue.rating}</Typography>
-          :
-            <Typography variant="body2" sx={{fontSize: '0.8rem', color: 'primary'}}>No rating yet</Typography>
-          }
-        </Card>
-      ))}
-      </Stack>
+          </Card>
+        ))}
+      </CardsStack>
 
       <Pagination count={totalPages} page={page} onChange={handleNextPage} sx={{ display: 'flex', justifyContent: 'end'}} />
       <Divider sx={{ mt: 2 }} />

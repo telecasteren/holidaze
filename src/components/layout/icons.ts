@@ -14,6 +14,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditIcon from '@mui/icons-material/Edit';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export {
   LinkedInIcon,
@@ -31,5 +33,7 @@ export {
   LogoutIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  EditIcon
+  EditIcon,
+  ArrowForwardIcon,
+  ClearIcon
 };

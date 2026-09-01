@@ -4,11 +4,10 @@ import { CloseRoundedIcon } from '@/components/layout/icons';
 interface BookingAppBarProps {
   venueName: string | undefined;
   disabled: boolean;
-  handleConfirmBooking: () => void;
   close: () => void;
 }
 
-export const BookingAppBar = ({ venueName, disabled, handleConfirmBooking, close }: BookingAppBarProps) => {
+export const BookingAppBar = ({ venueName, disabled, close }: BookingAppBarProps) => {
   return (
     <AppBar sx={{ position: 'relative' }}>
       <Toolbar>
@@ -24,9 +23,9 @@ export const BookingAppBar = ({ venueName, disabled, handleConfirmBooking, close
           Booking overview for {venueName}
         </Typography>
         <Button
+          type="submit"
           autoFocus
           variant="contained"
-          onClick={handleConfirmBooking}
           disabled={disabled}
         >
           Confirm booking

@@ -31,8 +31,8 @@ export const Route = createFileRoute('/venues/$venueId')({
 function VenueById() {
   const venue = Route.useLoaderData();
   const hasRatings = venue.rating > 0;
-  const venueCity = venue.location.city || "unknown city";
-  const venueCountry = venue.location.country || "unknown country";
+  const venueCity = venue.location?.city || "unknown city";
+  const venueCountry = venue.location?.country || "unknown country";
 
   return (
     <>

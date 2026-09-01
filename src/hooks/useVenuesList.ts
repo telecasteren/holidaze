@@ -15,7 +15,7 @@ export const useVenuesList = () => {
     const filtered = normalizedQuery
       ? venues.filter((v) => {
           const byTitle = normalize(v.name).includes(normalizedQuery);
-          const byLocation = v.location.city?.toLowerCase().includes(normalizedQuery);
+          const byLocation = v.location?.city?.toLowerCase().includes(normalizedQuery);
           const byDescription = normalize(v.description).includes(
             normalizedQuery,
           );

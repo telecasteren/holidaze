@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useVenue } from "@/hooks/useVenue";
 import { useBookingSummary } from '@/hooks/useBookingSummary';
+import { useRouter, useNavigate } from "@tanstack/react-router";
+import { createNewBookingFn } from "@/server/bookingFunctions";
+
 import type { DateValue, RangeValue } from "react-aria-components";
 import type { TransitionProps } from '@mui/material/transitions';
 import { VenueDetails } from './booking-components/VenueDetails';
@@ -24,7 +27,7 @@ const Transitions = React.forwardRef(function Transition(
 });
 
 interface BookingWindowProps {
-  venueId?: string;
+  venueId: string;
   open: boolean;
   close: () => void;
   booking: {
@@ -34,6 +37,9 @@ interface BookingWindowProps {
 }
 
 export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowProps) => {
+  const router = useRouter();
+  const navigate = useNavigate();
+
   const [isChecked, setIsChecked] = useState(false);
   const [disabled, setIsDisabled] = useState(false);
   const [paymentChecked, setPaymentIsChecked] = useState(false);
@@ -49,10 +55,33 @@ export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowPr
     setIsDisabled(!checked);
   };
 
-  const handleConfirmBooking = () => {
-    toast.success('Booking confirmed!');
-    close();
-  };
+  const handleConfirmBooking = async (event: React.SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+      if (!booking.dateRange) {
+        toast.error("No dates selected.")
+        return;
+      }
+
+      const dateFrom = booking.dateRange.start.toString();
+      const dateTo = booking.dateRange.end.toString();
+      const guests = booking.guests;
+
+      try {
+        await createNewBookingFn({ data: { venueId, dateFrom, dateTo, guests } });
+        await router.invalidate();
+        toast.success("Processing booking...");
+
+        setTimeout(() => {
+          navigate({ to: "/booking/success" })
+        }, 1500)
+      } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        toast.error(
+          `Sending failed: ${errorMessage}`,
+        );
+      }
+  }
 
   useEffect(() => {
     if (paymentChecked) {
@@ -72,25 +101,36 @@ export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowPr
               transition: Transitions,
             }}
           >
-            <BookingAppBar
-              close={close}
-              venueName={venueName}
-              disabled={disabled}
-              handleConfirmBooking={handleConfirmBooking}
-            />
+             <form onSubmit={handleConfirmBooking}>
+              <BookingAppBar
+                close={close}
+                venueName={venueName}
+                disabled={disabled}
+              />
 
-            <Container
-              sx={{
-                mt: 4,
-                mb: 4,
-                display: "grid",
-                gridTemplateColumns: "1fr 2fr",
-                gap: 6,
-              }}>
-              <PaymentDetails checked={isChecked} onCheck={handlePaymentChange} onChange={() => {}} />
-              <VenueDetails singleVenue={singleVenue} dates={dates} totalPrice={totalPrice} nights={nights} guests={booking.guests} />
-            </Container>
+              <Container
+                sx={{
+                  mt: 4,
+                  mb: 4,
+                  display: "grid",
+                  gridTemplateColumns: "1fr 2fr",
+                  gap: 6,
+                }}>
+                <PaymentDetails
+                  checked={isChecked}
+                  onCheck={handlePaymentChange}
+                  onChange={() => { }}
+                />
 
+                <VenueDetails
+                  singleVenue={singleVenue}
+                  dates={dates}
+                  totalPrice={totalPrice}
+                  nights={nights}
+                  guests={booking.guests}
+                />
+              </Container>
+             </form>
             <Divider />
           </Dialog>
         </>

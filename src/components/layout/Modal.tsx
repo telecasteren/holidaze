@@ -2,14 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { CloseRoundedIcon } from "@/components/layout/icons";
+import { ClearIconButton }  from "@/components/layout/ClearIconButton"
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: 400,
+  minWidth: 320,
+  maxHeight: "90vh",
+  overflowY: "auto",
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -37,11 +39,11 @@ export const ModalWindow = ({ open, onClose, title, text, content }: ModalWindow
         aria-describedby="modal-description"
       >
         <Box sx={style}>
-          <CloseRoundedIcon onClick={onClose} sx={{ cursor: 'pointer' }} />
-          <Typography id="modal-title" variant="h6" component="h2">
+          <ClearIconButton onClick={onClose} />
+          <Typography id="modal-title" variant="h6" component="h6">
             {title}
           </Typography>
-          <Typography id="modal-description">
+          <Typography id="modal-description" variant="body1" component="p">
             {text}
           </Typography>
           {content && <Box>{content}</Box>}

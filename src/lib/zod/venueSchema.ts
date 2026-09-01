@@ -8,8 +8,6 @@ export const venueMetaSchema = z.object({
   pets: z.boolean(),
 });
 
-export type VenueMeta = z.infer<typeof venueMetaSchema>;
-
 export const venueSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -32,7 +30,7 @@ export const venueSchema = z.object({
     continent: z.string().nullable(),
     lat: z.number().nullable(),
     lng: z.number().nullable(),
-  }),
+  }).optional(),
   owner: z.object({
     name: z.string(),
     email: z.string(),
@@ -69,7 +67,7 @@ export const venueSchema = z.object({
         continent: z.string().nullable(),
         lat: z.number().nullable(),
         lng: z.number().nullable(),
-      }),
+      }).optional(),
       owner: z.object({
         name: z.string(),
         email: z.string(),
@@ -86,10 +84,30 @@ export const venueSchema = z.object({
       banner: z.object({ url: z.string(), alt: z.string() }),
     }).optional(),
   })).optional(),
-  _count: z.object({ bookings: z.number()})
+  _count: z.object({ bookings: z.number().optional()})
 });
 
-export type Venue = z.infer<typeof venueSchema>;
+export const postVenueSchema = z.object({
+    name: z.string(),
+    description: z.string(),
+    media: z.array(z.object({
+      url: z.string(),
+      alt: z.string(),
+    })).optional(),
+    price: z.number(),
+    maxGuests: z.number().int(),
+    rating: z.number().optional(),
+    meta: venueMetaSchema,
+    location: z.object({
+      address: z.string().nullable(),
+      city: z.string().nullable(),
+      zip: z.string().nullable(),
+      country: z.string().nullable(),
+      continent: z.string().nullable(),
+      lat: z.float64().nullable(),
+      lng: z.float64().nullable(),
+    }).optional(),
+})
 
 export const apiVenueSchema = z.object({
   data: z.array(venueSchema),
@@ -100,3 +118,35 @@ export const apiSingleVenueSchema = z.object({
   data: venueSchema,
   meta: emptyMetaSchema,
 });
+
+export const apiVenueResponseSchema = z.object({
+  data: z.object({
+    id: z.string(),
+    name: z.string().nullable(),
+    description: z.string().nullable(),
+    media: z.array(z.object({
+      url: z.string(),
+      alt: z.string(),
+    })),
+    price: z.number(),
+    maxGuests: z.number().int(),
+    rating: z.number(),
+    created: z.string(),
+    updated: z.string(),
+    meta: venueMetaSchema,
+    location: z.object({
+      address: z.string().nullable(),
+      city: z.string().nullable(),
+      zip: z.string().nullable(),
+      country: z.string().nullable(),
+      continent: z.string().nullable(),
+      lat: z.float64().nullable(),
+      lng: z.float64().nullable(),
+    }),
+  }),
+  meta: emptyMetaSchema,
+})
+
+export type VenueMeta = z.infer<typeof venueMetaSchema>;
+export type Venue = z.infer<typeof venueSchema>;
+export type VenuePayload = z.infer<typeof postVenueSchema>;

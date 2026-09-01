@@ -3,6 +3,7 @@ import { withApiHandler } from "../api-config/handler";
 import { AUTH, LOGIN } from "../api-config/endpoints";
 
 export const loginProfile = withApiHandler({
+  label: "loginProfile",
   endpoint: `${AUTH}${LOGIN}`,
   schema: loginAuthSchema,
   init: (data: FormData) => ({

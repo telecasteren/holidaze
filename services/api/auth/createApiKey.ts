@@ -3,6 +3,7 @@ import { withApiHandler } from "../api-config/handler";
 import { AUTH, CREATE_API_KEY } from "../api-config/endpoints";
 
 export const createApiKey = withApiHandler({
+  label: "createApiKey",
   endpoint: `${AUTH}${CREATE_API_KEY}`,
   schema: apiKeySchema,
   init: (accessToken: string) => ({

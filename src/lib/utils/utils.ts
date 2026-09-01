@@ -14,3 +14,17 @@ export const formatCurrency = (value: number): string => {
     style: "currency",
   }).format(roundMaxDecimals(value));
 };
+
+// format date to fit Norwegian date formats
+export const formatDate = (value: string): string => {
+  const iso = value;
+  const date = new Date(iso);
+
+  const dd = String(date.getUTCDate()).padStart(2, "0");
+  const mm = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const yyyy = date.getUTCFullYear();
+  const formatted = `${dd}.${mm}.${yyyy}`;
+  return formatted;
+}
+
+export const getAllMediaUrls = (urls: string[]) => urls.map((url) => url.trim()).filter(Boolean);

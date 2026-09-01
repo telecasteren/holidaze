@@ -28,7 +28,7 @@ interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
     /** The dates to highlight. */
     highlightedDates?: DateValue[];
     /** The date presets to display. */
-    presets?: Record<string, { label: string; value: { start: DateValue; end: DateValue } }>;
+    presets?: Record<string, { label: string; value: { start: DateValue; end: DateValue } }>
     /** Whether to show out of range dates. */
     showOutOfRangeDates?: boolean;
     /** Whether to show presets on desktop. */

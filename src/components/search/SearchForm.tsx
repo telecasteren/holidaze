@@ -19,7 +19,7 @@ export function SearchForm() {
         gap: 1
       }}
     >
-      <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
+       <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
         Search
       </InputLabel>
       <TextField
@@ -28,7 +28,7 @@ export function SearchForm() {
         size="medium"
         variant="outlined"
         aria-label="Search for venues"
-        placeholder="Your next venue"
+        placeholder="Find your next venue..."
         fullWidth
         value={inputQuery}
         onChange={handleOnChange}

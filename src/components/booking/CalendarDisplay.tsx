@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
 import type { BookingForm } from "@/lib/zod/index";
+import { brandSettings } from "@/lib/brand/brandSettings";
 
 import { Stack, Box, Typography, Button } from "@mui/material";
 import { RangeCalendar } from "@/components/booking/RangeCalendar";
@@ -14,7 +15,7 @@ import { BookingWindow } from "@/components/booking/BookingWindow";
 import { ModalWindow } from "@/components/layout/Modal";
 
 interface CalendarDisplayProps {
-  venueId?: string;
+  venueId: string;
 }
 
 export const CalendarDisplay = ({ venueId }: CalendarDisplayProps) => {
@@ -44,12 +45,20 @@ export const CalendarDisplay = ({ venueId }: CalendarDisplayProps) => {
         onClose={() => setShowLoginModal(false)}
         title={"Log in to book this venue."}
         content={
-          <Button
-            onClick={() => navigate({ to: "/auth/login" })}
-            variant="contained"
-          >
-            Go to log in
-          </Button>
+          <>
+            <Button
+              onClick={() => navigate({ to: "/auth/login" })}
+              variant="contained"
+            >
+              Go to log in
+            </Button>
+            <Button
+              onClick={() => navigate({ to: "/auth/signup" })}
+              variant="outlined"
+            >
+              Sign up to {brandSettings.name}
+            </Button>
+          </>
         }
       />
 

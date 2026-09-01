@@ -6,4 +6,12 @@ export const calendarBookingSchema = z.object({
   dateRange: z.custom<RangeValue<DateValue> | null>().nullable(),
 });
 
+export const apiCalendarBookingSchema = z.object({
+  venueId: z.string(),
+  dateFrom: z.string(),
+  dateTo: z.string(),
+  guests: z.number().min(0),
+});
+
 export type BookingForm = z.infer<typeof calendarBookingSchema>;
+export type BookingFormPayload = z.infer<typeof apiCalendarBookingSchema>;

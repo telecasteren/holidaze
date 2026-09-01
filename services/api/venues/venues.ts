@@ -1,18 +1,28 @@
-import { apiVenueSchema, apiSingleVenueSchema, apiSingleProfileSchema } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
-import { API_URL,VENUES } from "../api-config/endpoints";
+import { apiVenueSchema, apiSingleVenueSchema } from "@/lib/zod/index";
+import { withApiHandler} from "../api-config/handler";
+import {  getAuthHeaders } from "../api-config/headers";
+import { API_URL, VENUES } from "../api-config/endpoints";
+import type { VenuePayload } from "@/lib/zod/index";
 
 export const getAllVenues = withApiHandler({
+  label: "getAllVenues",
   endpoint:  `${API_URL}${VENUES}`,
   schema: apiVenueSchema,
 });
 
 export const getVenueById = withApiHandler({
+  label: "getVenueById",
   endpoint: (id: string) => `${API_URL}${VENUES}/${id}`,
   schema: apiSingleVenueSchema,
 });
 
-export const getVenuesByProfile = withApiHandler({
-  endpoint: (name: string) => `${API_URL}/${name}/venues`,
-  schema: apiSingleProfileSchema,
+export const registerNewVenue = withApiHandler({
+  label: "registerNewVenue",
+  endpoint: `${API_URL}${VENUES}`,
+  schema: apiSingleVenueSchema,
+  init: (body: VenuePayload) => ({
+    method: "POST",
+    headers: getAuthHeaders(true),
+    body: JSON.stringify(body),
+  }),
 });

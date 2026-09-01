@@ -13,6 +13,7 @@ export type ApiConfig<TResult, TArgs extends unknown[] = []> = {
   schema: ZodType<TResult>;
   init?: InitResolver<TArgs>;
   baseUrl?: string;
+  label?: string;
 };
 
 export type ApiHandler<TResult, TArgs extends unknown[] = []> = (

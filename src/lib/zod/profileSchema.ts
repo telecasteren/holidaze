@@ -34,17 +34,14 @@ export const profileSchema = z.object({
       pets: z.boolean(),
     }),
     location: z.object({
-      address: z.string(),
-      city: z.string(),
-      zip: z.string(),
-      country: z.string(),
-      continent: z.string(),
-      lat: z.number(),
-      lng: z.number(),
-    }),
-    _count: z.object({
-      bookings: z.number(),
-    }),
+      address: z.string().nullable(),
+      city: z.string().nullable(),
+      zip: z.string().nullable(),
+      country: z.string().nullable(),
+      continent: z.string().nullable(),
+      lat: z.number().nullable(),
+      lng: z.number().nullable(),
+    }).optional(),
   })).optional(),
   bookings: z.array(z.object({
     id: z.string(),
@@ -73,14 +70,14 @@ export const profileSchema = z.object({
         pets: z.boolean(),
       }),
       location: z.object({
-        address: z.string(),
-        city: z.string(),
-        zip: z.string(),
-        country: z.string(),
-        continent: z.string(),
-        lat: z.number(),
-        lng: z.number(),
-      }),
+        address: z.string().nullable(),
+        city: z.string().nullable(),
+        zip: z.string().nullable(),
+        country: z.string().nullable(),
+        continent: z.string().nullable(),
+        lat: z.number().nullable(),
+        lng: z.number().nullable(),
+      }).optional(),
     }),
   })).optional(),
   _count: z.object({
@@ -88,8 +85,6 @@ export const profileSchema = z.object({
     bookings: z.number(),
   }),
 });
-
-export type Profile = z.infer<typeof profileSchema>;
 
 export const baseProfileSchema = z.object({
   name: z.string().optional(),
@@ -105,8 +100,6 @@ export const baseProfileSchema = z.object({
   venueManager: z.boolean().optional(),
 });
 
-export type ProfilePayload = z.infer<typeof baseProfileSchema>;
-
 export const apiSingleProfileSchema = z.object({
   data: profileSchema,
   meta: emptyMetaSchema,
@@ -116,3 +109,6 @@ export const apibaseProfileSchema = z.object({
   data: baseProfileSchema,
   meta: emptyMetaSchema,
 });
+
+export type Profile = z.infer<typeof profileSchema>;
+export type ProfilePayload = z.infer<typeof baseProfileSchema>;

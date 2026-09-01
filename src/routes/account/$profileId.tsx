@@ -44,7 +44,6 @@ function ProfileById() {
   const user = Route.useLoaderData();
   const [activeTab, setActiveTab] = useState<DirectoryKey>("account");
   const hasVenueManagerRole = user.venueManager;
-  const bookingInfo = user.bookings ?? [];
   const venueInfo = user.venues ?? [];
 
   return (
@@ -68,7 +67,7 @@ function ProfileById() {
             )}
 
             {activeTab === 'bookings' && (
-              <BookingInfo bookingInfo={bookingInfo} />
+              <BookingInfo />
             )}
 
             {activeTab === 'venues' &&

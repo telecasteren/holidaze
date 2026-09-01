@@ -10,6 +10,7 @@ type RegisterPayload = {
 };
 
 export const registerNewProfile = withApiHandler({
+  label: "registerNewProfile",
   endpoint: `${AUTH}${REGISTER}`,
   schema: signupAuthSchema,
   init: (data: RegisterPayload) => ({

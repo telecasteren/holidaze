@@ -7,6 +7,7 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   schema,
   init,
   baseUrl = BASE_URL,
+  label
 }: ApiConfig<TResult, TArgs>): ApiHandler<TResult, TArgs> {
   return async (...args: TArgs): Promise<TResult> => {
     try {
@@ -14,6 +15,7 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
         typeof endpoint === "function" ? endpoint(...args) : endpoint;
       const resolvedInit =
         typeof init === "function" ? init(...args) : init;
+      console.log(`[${label ?? "unlabeled"}] →`, resolvedEndpoint); // debugging
 
       const response = await fetch(`${baseUrl}${resolvedEndpoint}`, resolvedInit);
 
@@ -42,6 +44,7 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
         throw error;
       }
 
+      console.log("withApiHandler failed: ", error) // debugging
       throw new ApiError("Internal server error", 500, error);
     }
   };

@@ -68,7 +68,7 @@ export const RangeDateField = ({ part, "aria-label": ariaLabel }: RangeDateField
     throw new Error("<RangeDateField /> must be used within a <RangeCalendar /> compoment");
   }
 
-  const value = (part === "start" ? state.value?.start : state.value?.end ?? null);
+  const value = (part === "start" ? state.value?.start : state.value?.end);
 
   const handleChange = (date: DateValue | null) => {
     if (!date) return;
