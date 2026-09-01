@@ -6,7 +6,7 @@ import { registerNewProfile } from "../../services/api/auth/register";
 import { createApiKey } from "../../services/api/auth/createApiKey";
 import { createSession } from "./createSession";
 import { clearSessionCookie } from "./session.server";
-import { readSession } from "@/server/readSession";
+import { readSession } from "@/server/readSession.server";
 
 const toFormData = (fields: Record<string, string>): FormData => {
   const form = new FormData();
