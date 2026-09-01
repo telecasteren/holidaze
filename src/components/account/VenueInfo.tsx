@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { useNavigate, Link } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import type { Venue } from '@/lib/zod/index';
 
-import { Stack, Box, Button, Typography, styled } from '@mui/material';
+import { Stack, Box, Button, Typography } from '@mui/material';
 import { AccountVenueCard } from "@/components/account/components/AccountVenueCard";
 import { ModalWindow } from '@/components/layout/Modal';
 import { newVenueTitle, newVenueTips, RegisterVenueForm } from "@/components/account/components/RegisterVenueForm";
