@@ -84,7 +84,7 @@ export const venueSchema = z.object({
       banner: z.object({ url: z.string(), alt: z.string() }),
     }).optional(),
   })).optional(),
-  _count: z.object({ bookings: z.number().optional()})
+  _count: z.object({ bookings: z.number().optional()}).optional()
 });
 
 export const postVenueSchema = z.object({
