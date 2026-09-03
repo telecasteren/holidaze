@@ -1,4 +1,4 @@
-import { readSession } from "#/server/readSession.server";
+import { readSession } from "@/server/readSession.server";
 
 export function getAuthHeaders(hasBody = false): Record<string, string> {
   const session = readSession();
