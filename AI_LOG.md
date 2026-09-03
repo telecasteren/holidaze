@@ -44,3 +44,8 @@
 ***Example:**
 `onChange={onChange}` vs `onChange={(event) => onChange(Number(event.target.value))}`*<br/>
 **Outcome:** Understood that the onChange event on the TextField expects a function that takes an event.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 03.09.26<br/>
+**Purpose:** Helping me understand how to handle external dependencies in Vites SSR module runner, supporting `.mjs` and `.cjs` imports.<br/>
+**Outcome:** Learnt that there is an option to set `ssr: { noExternal: ...}` in vite.config.<br/>

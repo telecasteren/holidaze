@@ -1,7 +1,5 @@
 export const getFormData = (data: FormData) => {
   const name = data.get("venue-name") as string;
-  const description = data.get("venue-desc") as string;
-
   const mediaUrls = data.getAll("venue-media") as string[];
   const media = mediaUrls.filter(Boolean).map((url) => ({ url, alt: name }))
 
@@ -27,5 +25,5 @@ export const getFormData = (data: FormData) => {
     lat: rawLat ? Number(rawLat) : 0,
     lng: rawLong ? Number(rawLong) : 0,
   }
-  return {name, description, media, maxGuests, price, meta, location,}
+  return {name, media, maxGuests, price, meta, location,}
 }

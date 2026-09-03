@@ -128,3 +128,4 @@ In this project, AI can be used to:
 - Controller and useForm [docs](https://react-hook-form.com/docs/usecontroller/controller)
 - StackOverflow: handle negative numbers (TextField) [docs](https://stackoverflow.com/questions/77828960/negative-value-of-mui-textfield-type-number-on-xiaomi)
 - Format dates [docs](https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript)
+- mui-tiptap RichTextEditor [docs](https://www.npmjs.com/package/mui-tiptap)
