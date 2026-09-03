@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { queryClient } from "@/lib/queries/queryClient";
 import { registerNewVenueFn } from "@/server/venueFunctions";
@@ -12,7 +12,6 @@ import {
   FormControlLabel,
   Checkbox,
   TextField,
-  TextareaAutosize,
   Button,
   InputLabel,
   Typography,
@@ -20,6 +19,8 @@ import {
   styled
 } from "@mui/material";
 import { toast } from "react-hot-toast";
+import { TextEditor } from "@/components/text-editor/TextEditor";
+import type { TextEditorHandle } from "@/components/text-editor/TextEditor";
 
 export const newVenueTitle = "Register a new venue";
 export const newVenueTips = "Tips: Customers tend to favour venues with that has good information, so add as much about the venue as you can.";
@@ -37,6 +38,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 export const RegisterVenueForm = ({ close }: RegisterVenueForm) => {
   const [submitting, setSubmitting] = useState(false);
+  const descRef = useRef<TextEditorHandle>(null);
   const { user } = useAuth();
   if (!user) return null;
 
@@ -47,12 +49,12 @@ export const RegisterVenueForm = ({ close }: RegisterVenueForm) => {
 
     const {
     name,
-    description,
     media,
     maxGuests,
     price,
     meta,
     location } = getFormData(data);
+    const description = descRef.current?.getHTML() ?? "";
 
     try {
       const result = await registerNewVenueFn({
@@ -90,10 +92,7 @@ export const RegisterVenueForm = ({ close }: RegisterVenueForm) => {
             <TextField id="venue-name" name="venue-name" required placeholder="Venue name" />
           </GridBox>
 
-            <GridBox>
-            <InputLabel htmlFor="venue-desc">Description of the venue{" "} <RequiredField/></InputLabel>
-            <TextareaAutosize id="venue-desc" name="venue-desc" required minRows={2} style={{ padding: 20 }} placeholder="Description of the venue..." />
-         </GridBox>
+          <TextEditor ref={descRef} />
 
           <MediaInputs id="venue-media"/>
         </Stack>
