@@ -42,7 +42,7 @@ export const VenueInfo = ({ venueInfo }: VenueInfoProps) => {
     <Box sx={{ display: "grid", gap: 2 }}>
       {venueInfo.length > 0 ? (
             venueInfo.map((venue) => (
-              <AccountVenueCard venue={venue}/>
+              <AccountVenueCard key={venue.id} venue={venue}/>
           ))
     ) : (
       <Box>
