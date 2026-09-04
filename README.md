@@ -131,3 +131,5 @@ In this project, AI can be used to:
 - mui-tiptap RichTextEditor [docs](https://www.npmjs.com/package/mui-tiptap)
 - Tiptap editor [docs](https://tiptap.dev/docs/editor/getting-started/style-editor)
 - React forwardRef, useImperativeHandle [docs](https://react.dev/reference/react/useImperativeHandle)
+- DOMPurify [docs](https://www.npmjs.com/package/isomorphic-dompurify)
+- dangerouslySetInnerHTML [docs](https://dev.to/hijazi313/using-dangerouslysetinnerhtml-safely-in-react-and-nextjs-production-systems-115n)
