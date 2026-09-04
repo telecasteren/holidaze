@@ -40,7 +40,10 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
           </Typography>
           <Typography variant="body2">
             <strong>Last updated:</strong> {formatDate(venue.updated)}
-          </Typography>
+        </Typography>
+        <Typography variant="body2">
+          <strong>Total bookings:</strong> {venue._count?.bookings || "No bookings"}
+        </Typography>
           <LinkToVenue
             venueId={venue.id}
             styles={{ width: "fit-content" }}

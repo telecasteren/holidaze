@@ -14,7 +14,7 @@ export const LinkToVenue = ({venueId, children, styles}: LinkToVenueProps) => {
     params={{ venueId: venueId }}
       style={{
         textDecoration: "none",
-        color: "black",
+        color: "inherit",
         display: "flex",
         alignItems: "center",
         marginTop: 1,
