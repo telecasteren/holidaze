@@ -8,6 +8,7 @@ import { PageTitle } from '@/components/layout/index';
 import { CalendarDisplay } from "@/components/booking/CalendarDisplay";
 import { Gallery } from '@/components/venues/Gallery';
 import { VenueMeta } from '@/components/venues/VenueMeta';
+import { VenueDesc } from "@/components/venues/VenueDesc";
 
 export const Route = createFileRoute('/venues/$venueId')({
   loader: async ({ context, params }): Promise<Venue> => {
@@ -48,7 +49,7 @@ function VenueById() {
         <Stack sx={{ mt: 2 }}>
           <Box>
             <Typography variant="h4"><strong>About:</strong></Typography>
-            <Typography variant="body1">{venue.description}</Typography>
+            <VenueDesc content={venue.description}/>
           </Box>
 
           <Divider sx={{ mt: 2, mb: 2 }} />
