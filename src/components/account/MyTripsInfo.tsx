@@ -18,8 +18,12 @@ export const MyTripsInfo = () => {
       <CardsStack
       >
         {bookings?.data.length ? (
-          bookings.data.map((booking) => (
-            <Card key={booking.id}>
+          bookings.data.map((booking) => {
+            const today = new Date();
+            const hasPassed = new Date(booking.dateTo) <= today;
+
+            return (
+            <Card key={booking.id} sx={{ opacity: hasPassed ? 0.6 : 1 }}>
               <Typography variant="body1"><strong>Venue booked:</strong> {booking.venue?.name}</Typography>
               <img
                 src={booking.venue?.media[0].url}
@@ -35,7 +39,7 @@ export const MyTripsInfo = () => {
                 See venue
               </LinkToVenue>
             </Card>
-          ))
+            )})
         ) : (
           <Box>
             <Typography variant="body1">You have no bookings yet.</Typography>
