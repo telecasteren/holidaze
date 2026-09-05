@@ -25,6 +25,10 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
           response.status, body);
       }
 
+      if (response.status === 204) {
+        return schema.parse(undefined)
+      }
+
       const payload: unknown = await response.json();
       const parsedPayload = schema.safeParse(payload);
 

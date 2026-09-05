@@ -51,7 +51,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
           </LinkToVenue>
       </Box>
 
-      <AccountVenueActions />
+      <AccountVenueActions venue={venue} />
     </StyledCard>
   )
 }

@@ -143,3 +143,6 @@ export const apiVenueResponseSchema = z.object({
 export type VenueMeta = z.infer<typeof venueMetaSchema>;
 export type Venue = z.infer<typeof venueSchema>;
 export type VenuePayload = z.infer<typeof postVenueSchema>;
+
+export const updateVenueSchema = postVenueSchema.extend({ id: z.string()});
+export type UpdateVenuePayload = z.infer<typeof updateVenueSchema>;

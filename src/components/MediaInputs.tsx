@@ -6,6 +6,7 @@ import { Stack, Box, TextField, Button, InputLabel } from "@mui/material";
 interface MediaInputsProps {
   id: string;
   initialAmount?: number;
+  initialUrls?: string[];
   max?: number;
 }
 
@@ -21,9 +22,11 @@ interface MediaInputsProps {
 //   }
 //   })
 
-export const MediaInputs = ({ id, initialAmount = 1, max = 10 }: MediaInputsProps) => {
+export const MediaInputs = ({ id, initialAmount = 1, initialUrls, max = 10 }: MediaInputsProps) => {
   const [urls, setUrls] = useState<string[]>(
-    Array(Math.min(Math.max(0, initialAmount), max)).fill(""),
+    initialUrls && initialUrls.length > 0
+      ? initialUrls
+      : Array(Math.min(Math.max(0, initialAmount), max)).fill(""),
   );
 
   const addInput = useCallback((amount: number) => {
