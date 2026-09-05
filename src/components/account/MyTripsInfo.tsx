@@ -5,7 +5,7 @@ import { Stack, Box, Card, Button, Typography } from '@mui/material';
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
 
-export const BookingInfo = () => {
+export const MyTripsInfo = () => {
   const navigate = useNavigate();
   const { bookings, isLoading } = useProfileBookings();
 
@@ -14,7 +14,7 @@ export const BookingInfo = () => {
   return (
 
     <Stack>
-      <Typography variant="h4" sx={{ mb: 2 }}>Total bookings: {bookings?.meta.totalCount}</Typography>
+      <Typography variant="h4" sx={{ mb: 2 }}>Total trips: {bookings?.meta.totalCount}</Typography>
       <CardsStack
       >
         {bookings?.data.length ? (

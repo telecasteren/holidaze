@@ -7,9 +7,10 @@ import type { Profile } from "@/lib/zod/index";
 
 import { Container, Stack, Tabs, Tab, Divider } from '@mui/material';
 import { AccountInfo } from '@/components/account/AccountInfo';
-import { BookingInfo } from '@/components/account/BookingInfo';
+import { MyTripsInfo } from '@/components/account/MyTripsInfo';
 import { VenueInfo } from '@/components/account/VenueInfo';
 import { AccountHero } from '@/components/account/AccountHero';
+import { BookingsInfo } from '#/components/account/BookingsInfo';
 
 export const Route = createFileRoute('/account/$profileId')({
   beforeLoad({ context }) {
@@ -38,9 +39,10 @@ export const Route = createFileRoute('/account/$profileId')({
 })
 
 const availableDirectories = {
-  account: "Account",
-  bookings: "Bookings",
-  venues: "Venues",
+  account: "My account",
+  myTrips: "My trips",
+  venues: "Manage venues",
+  bookings: "Manage bookings",
 } as const;
 
 type DirectoryKey = keyof typeof availableDirectories;
@@ -71,14 +73,20 @@ function ProfileById() {
               <AccountInfo user={user} isManager={hasVenueManagerRole} />
             )}
 
-            {activeTab === 'bookings' && (
-              <BookingInfo />
+            {activeTab === 'myTrips' && (
+              <MyTripsInfo />
             )}
 
             {activeTab === 'venues' &&
               hasVenueManagerRole &&
               (
               <VenueInfo venueInfo={venueInfo} />
+              )}
+
+            {activeTab === 'bookings' &&
+              hasVenueManagerRole &&
+              (
+              <BookingsInfo venueInfo={venueInfo} />
             )}
           </Stack>
       </Stack>
