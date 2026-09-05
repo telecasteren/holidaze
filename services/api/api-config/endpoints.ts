@@ -9,6 +9,6 @@ export const REGISTER = "/register";
 export const VENUES = "/venues";
 export const VENUES_PARAMS = "?_owner=true&_bookings=true";
 export const BOOKINGS = "/bookings";
-export const BOOKINGS_WITH_VENUES = "/bookings?_venue=true";
+export const BOOKINGS_PARAMS = "?_venue=true&_customer=true";
 export const PROFILES = "/profiles";
 export const PROFILE_PARAMS = "?_bookings=true&_venues=true";
