@@ -1,4 +1,5 @@
 import z from "zod";
+import { customerSchema } from "./customerSchema";
 import { emptyMetaSchema, metaSchema } from "./metaSchema";
 
 export const bookingSchema = z.object({
@@ -8,6 +9,7 @@ export const bookingSchema = z.object({
   guests: z.number(),
   created: z.string(),
   updated: z.string(),
+  customer: customerSchema.optional(),
   venue: z.object({
     id: z.string(),
     name: z.string(),
@@ -35,7 +37,7 @@ export const bookingSchema = z.object({
       continent: z.string().nullable(),
       lat: z.number().nullable(),
       lng: z.number().nullable(),
-    }),
+    }).optional(),
   }).optional()
 });
 
