@@ -19,7 +19,6 @@ const StyledBox = styled(Box)(() => ({
 const iconStyles = {
   cursor: "pointer",
   transition: "ease-in-out 0.2s",
-  "&:hover": { transform: "scale(1.2)" }
 }
 
 interface AccountVenueActionsProps {
