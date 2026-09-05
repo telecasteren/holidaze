@@ -158,7 +158,7 @@ export const RegisterVenueForm = ({ close }: RegisterVenueForm) => {
 
           <GridBox>
             <InputLabel htmlFor="venue-lat">Coordinates</InputLabel>
-            <StyledLink href="https://coordinates-converter.com/en" target="_blank"
+            <StyledLink href="https://coordinates-converter.com/en" target="_blank" rel="noreferrer"
             >
               WGS 84: online converter
             </StyledLink>
