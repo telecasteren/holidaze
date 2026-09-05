@@ -6,8 +6,6 @@ import { API_URL, PROFILES, PROFILE_PARAMS } from "../api-config/endpoints";
 
  // Global: API does not support id lookup, so we use name as the identifier
 
- // getProfileById: this endpoint is responsible for fetching profile,
- // and venues and bookings for that profile
 export const getProfileById = withApiHandler({
   label: "getProfileById",
   endpoint: (name: string) => `${API_URL}${PROFILES}/${name}${PROFILE_PARAMS}`,

@@ -1,7 +1,7 @@
-// import { z } from "zod";
+import { z } from "zod";
 import { createServerFn } from "@tanstack/react-start";
 import {
-  // getVenuesByProfile,
+  getVenuesByProfile,
   registerNewVenue
 } from "../../services/api/venues/venues";
 import { postVenueSchema } from "@/lib/zod/index";
@@ -12,11 +12,11 @@ import { postVenueSchema } from "@/lib/zod/index";
 //     return getVenueById(id);
 //   });
 
-// export const getUserVenuesFn = createServerFn({ method: "GET" })
-//   .validator(z.string())
-//   .handler(async ({ data: name }) => {
-//     return getVenuesByProfile(name);
-//   });
+export const getUserVenuesFn = createServerFn({ method: "GET" })
+  .validator(z.string())
+  .handler(async ({ data: name }) => {
+    return getVenuesByProfile(name);
+  });
 
 export const registerNewVenueFn = createServerFn({ method: "POST" })
   .validator(postVenueSchema)

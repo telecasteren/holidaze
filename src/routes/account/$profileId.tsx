@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { brandSettings } from '@/lib/brand/brandSettings'
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
+import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
 import type { Profile } from "@/lib/zod/index";
 
 import { Container, Stack, Tabs, Tab, Divider } from '@mui/material';
@@ -18,7 +19,11 @@ export const Route = createFileRoute('/account/$profileId')({
     const data = await context.queryClient.ensureQueryData(
       profileByIdQuery(params.profileId),
       );
-     return data.data;
+    if (data.data.venueManager) {
+      const venuesData = await context.queryClient.ensureQueryData(venuesByProfileQuery(params.profileId))
+      return { ...data.data, venues: venuesData.data };
+    }
+    return data.data;
   },
   head: ({ loaderData }) => ({
     meta: [
