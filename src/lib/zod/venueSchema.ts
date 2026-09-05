@@ -1,4 +1,5 @@
 import z from "zod";
+import { customerSchema } from "./customerSchema";
 import { metaSchema, emptyMetaSchema } from "./metaSchema";
 
 export const venueMetaSchema = z.object({
@@ -45,37 +46,7 @@ export const venueSchema = z.object({
     guests: z.number(),
     created: z.string(),
     updated: z.string(),
-    venue: z.object({
-      id: z.string(),
-      name: z.string(),
-      description: z.string(),
-      media: z.array(z.object({
-        url: z.string(),
-        alt: z.string(),
-      })),
-      price: z.number(),
-      maxGuests: z.number().int(),
-      rating: z.number().optional(),
-      created: z.string(),
-      updated: z.string(),
-      meta: venueMetaSchema,
-      location: z.object({
-        address: z.string().nullable(),
-        city: z.string().nullable(),
-        zip: z.string().nullable(),
-        country: z.string().nullable(),
-        continent: z.string().nullable(),
-        lat: z.number().nullable(),
-        lng: z.number().nullable(),
-      }).optional(),
-      owner: z.object({
-        name: z.string(),
-        email: z.string(),
-        bio: z.string().nullable(),
-        avatar: z.object({ url: z.string(), alt: z.string() }),
-        banner: z.object({ url: z.string(), alt: z.string() }),
-      }).optional(),
-    }).optional(),
+    customer: customerSchema,
   })).optional(),
   _count: z.object({ bookings: z.number().optional()}).optional()
 });
