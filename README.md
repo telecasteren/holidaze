@@ -133,3 +133,4 @@ In this project, AI can be used to:
 - React forwardRef, useImperativeHandle [docs](https://react.dev/reference/react/useImperativeHandle)
 - DOMPurify [docs](https://www.npmjs.com/package/isomorphic-dompurify)
 - dangerouslySetInnerHTML [docs](https://dev.to/hijazi313/using-dangerouslysetinnerhtml-safely-in-react-and-nextjs-production-systems-115n)
+- Zod empty states (void/undefined) [docs](https://didoesdigital.com/blog/zod-type-parsing-functions/)
