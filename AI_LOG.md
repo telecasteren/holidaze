@@ -49,3 +49,8 @@
 **Date:** 03.09.26<br/>
 **Purpose:** Helping me understand how to handle external dependencies in Vites SSR module runner, supporting `.mjs` and `.cjs` imports.<br/>
 **Outcome:** Learnt that there is an option to set `ssr: { noExternal: ...}` in vite.config.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 05.09.26<br/>
+**Purpose:** Check if it was safe to delete "unused" utility file that came in during mui-tiptap install.<br/>
+**Outcome:** Got confirmation that it was safe, e.g. functions not used by node_modules etc.<br/>
