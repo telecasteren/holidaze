@@ -1,17 +1,21 @@
 # Holidaze
 
-### A venue booking system where users can browse and book venues, manage their venues and bookings.
-
+A venue booking system where users can browse and book venues, manage their venues and bookings.
 **Author:** Tele Caster Nilsen<br/>
-**Website:** https://telecasternilsen.com
+**Live site:** https://holidaze.telecasternilsen.com
+
+
 ---
 
 **Table of Contents**
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Installation](#installation)
+- [Deployment](#deployment)
 - [Session Management](#session_management)
+- [Application Weaknesses](#application-weaknesses)
 - [AI Usage](#ai_usage)
+- [Resources](#resources)
 
 
 ## Introduction
