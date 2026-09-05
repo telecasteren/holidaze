@@ -5,13 +5,12 @@ import { AccountVenueActions } from "./AccountVenueActions";
 import { formatDate } from "@/lib/utils/utils";
 import type { Venue } from "@/lib/zod";
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   display: "flex",
   gap: 1,
-  border: "1px solid",
-  borderRadius: theme.shape.borderRadius,
   padding: "2rem",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  lineHeight: "1.5",
 }))
 
 interface AccountVenueCardProps {
