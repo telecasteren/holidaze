@@ -37,7 +37,7 @@ function VenueById() {
 
   return (
     <>
-    <Container id="venue-details" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="venue-details" sx={{ py: 16 }}>
         <Gallery venueMedia={venue.media} />
         <PageTitle title={venue.name} styles={{ textAlign: "left", marginTop: 4 }} />
         <Typography variant="body2"

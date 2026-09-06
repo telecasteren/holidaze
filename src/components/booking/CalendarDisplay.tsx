@@ -66,7 +66,13 @@ export const CalendarDisplay = ({ venueId, bookings }: CalendarDisplayProps) => 
         }
       />
 
-      <Stack sx={{ display: "grid", gridTemplateColumns: "1fr 2fr", justifyItems: "center", width: "100%" }}>
+      <Stack
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 2fr" },
+          justifyItems: "center",
+          width: "100%"
+        }}>
         <Controller
           name="dateRange"
           control={control}
