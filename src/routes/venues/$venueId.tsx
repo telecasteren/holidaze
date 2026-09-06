@@ -34,6 +34,7 @@ function VenueById() {
   const hasRatings = venue.rating > 0;
   const venueCity = venue.location?.city || "unknown city";
   const venueCountry = venue.location?.country || "unknown country";
+  const anyVenueMetaIsTrue = venue.meta.wifi || venue.meta.pets || venue.meta.parking || venue.meta.breakfast;
 
   return (
     <>
@@ -48,7 +49,7 @@ function VenueById() {
 
         <Stack sx={{ mt: 2 }}>
           <Box>
-            <Typography variant="h4"><strong>About:</strong></Typography>
+            <Typography variant="h5"><strong>About this venue</strong></Typography>
             <VenueDesc content={venue.description}/>
           </Box>
 
@@ -58,7 +59,7 @@ function VenueById() {
             direction={{ xs: "column", sm: "row" }}
             sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}
           >
-             <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 1 }}>
+             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
               <Typography variant="body2"><strong>Managed by</strong></Typography>
                 <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 1 }}>
@@ -74,8 +75,12 @@ function VenueById() {
               <Typography variant="body2"><strong>Rating:</strong> {hasRatings ? venue.rating : "No rating yet"}</Typography>
               <Typography variant="body2">Max {venue.maxGuests} guests</Typography>
 
-              <Typography variant="h5" sx={{ mt: 2 }}>What this place offers</Typography>
-               <VenueMeta venue={venue} />
+              {anyVenueMetaIsTrue && (
+                <Box sx={{ display: "grid", gap: 1 }}>
+                <Typography variant="h6" sx={{ mt: 2 }}>What this place offers</Typography>
+                  <VenueMeta venue={venue} />
+                </Box>
+              )}
               </Box>
           </Stack>
         </Stack>

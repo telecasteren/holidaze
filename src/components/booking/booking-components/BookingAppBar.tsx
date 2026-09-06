@@ -2,12 +2,11 @@ import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { CloseRoundedIcon } from '@/components/layout/icons';
 
 interface BookingAppBarProps {
-  venueName: string | undefined;
   disabled: boolean;
   close: () => void;
 }
 
-export const BookingAppBar = ({ venueName, disabled, close }: BookingAppBarProps) => {
+export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
   return (
     <AppBar sx={{ position: 'relative' }}>
       <Toolbar>
@@ -19,8 +18,12 @@ export const BookingAppBar = ({ venueName, disabled, close }: BookingAppBarProps
         >
           <CloseRoundedIcon />
         </IconButton>
-        <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-          Booking overview for {venueName}
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flex: 1, px: 1, fontSize: { xs: 16, sm: 20 } }}
+        >
+          Booking overview
         </Typography>
         <Button
           type="submit"

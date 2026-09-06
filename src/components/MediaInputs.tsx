@@ -10,18 +10,6 @@ interface MediaInputsProps {
   max?: number;
 }
 
-// todo: fix to use breakpoints properly at element
-// const styles = (theme) => ({
-//   root: {
-//     display: "grid",
-//     gridTemplateColumns: "1fr",
-//     gap: 2,
-//     [theme.breakpoints.up("md")]: {
-//       gridTemplateColumns: "2fr 3fr",
-//     }
-//   }
-//   })
-
 export const MediaInputs = ({ id, initialAmount = 1, initialUrls, max = 10 }: MediaInputsProps) => {
   const [urls, setUrls] = useState<string[]>(
     initialUrls && initialUrls.length > 0
@@ -51,12 +39,14 @@ export const MediaInputs = ({ id, initialAmount = 1, initialUrls, max = 10 }: Me
       <GridBox
         id={id}
         ariaLabel="Media input group"
+        styles={{ gap: 2 }}
       >
         {urls.map((url, i) => {
           const index = i + 1;
           return (
             <Box key={index}
-              sx={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+              sx={{display: "flex", flexDirection: "row", alignItems: "center", gap: 2}}
+              >
               <TextField
                 type="text"
                 id={`media-input-${index}`}
@@ -64,7 +54,7 @@ export const MediaInputs = ({ id, initialAmount = 1, initialUrls, max = 10 }: Me
                 placeholder="https://yourpublicimagehere.com"
                 value={url}
                 onChange={(e) => updateUrl(i, e.target.value)}
-                // sx={{ styles }}
+                sx={{ width: "100%" }}
               />
               <ClearIconButton onClick={() => removeInput(i)}/>
             </Box>

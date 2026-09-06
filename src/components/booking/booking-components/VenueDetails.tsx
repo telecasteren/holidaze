@@ -1,7 +1,8 @@
-import type { Venue } from "@/lib/zod/index";
-import { Box, Stack, Typography, Link, styled } from "@mui/material";
+import { Box, Stack, Typography, styled } from "@mui/material";
 import { TooltipWithContent } from "@/components/layout/Tooltips";
+import { LinkToVenue } from "@/components/LinkToVenue";
 import { formatCurrency } from "@/lib/utils/utils";
+import type { Venue } from "@/lib/zod/index";
 
 interface VenueDetailsProps {
   singleVenue: Venue | undefined;
@@ -34,14 +35,15 @@ export const VenueDetails = ({ singleVenue, dates, totalPrice, nights, guests }:
 
   return (
     <Stack sx={{ display: "grid", justifyContent: "center", gap: 2 }}>
-      <Link
-        href={`/venues/${venueId}`}
-        style={{ textDecoration: "none" }}
+      <LinkToVenue
+        venueId={venueId || ""}
+        unstyled
       >
         <TooltipWithContent
           trigger={
             <HoverBox>
-            <img
+            <Box
+              component="img"
               src={firstImage?.url}
               alt={firstImage?.alt}
               style={{ width: "100%", height: "auto", borderRadius: 8 }}
@@ -51,7 +53,11 @@ export const VenueDetails = ({ singleVenue, dates, totalPrice, nights, guests }:
         >
           <Typography variant="body1">Click image to go to venue</Typography>
         </TooltipWithContent>
-      </Link>
+      </LinkToVenue>
+
+      <Typography variant="h6">
+        {singleVenue?.name}
+      </Typography>
 
       <BoxSummary>
         <Typography variant="body1">

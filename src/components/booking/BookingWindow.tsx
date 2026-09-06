@@ -45,7 +45,6 @@ export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowPr
   const [paymentChecked, setPaymentIsChecked] = useState(false);
 
   const { singleVenue } = useVenue(venueId);
-  const venueName = singleVenue?.name;
   const { dates, nights } = useBookingSummary(booking.dateRange);
   const totalPrice = singleVenue?.price ? singleVenue.price * nights : 0;
 
@@ -104,7 +103,6 @@ export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowPr
              <form onSubmit={handleConfirmBooking}>
               <BookingAppBar
                 close={close}
-                venueName={venueName}
                 disabled={disabled}
               />
 

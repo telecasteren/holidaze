@@ -1,16 +1,18 @@
 import { Link } from '@tanstack/react-router';
 
 interface LinkToVenueProps {
+  unstyled?: boolean;
   venueId: string;
   children?: string | React.ReactNode;
   styles?: React.CSSProperties;
   icon?: React.ReactNode;
 }
 
-export const LinkToVenue = ({ venueId, children, styles, icon }: LinkToVenueProps) => {
+export const LinkToVenue = ({ unstyled, venueId, children, styles, icon }: LinkToVenueProps) => {
+  if (!venueId) return;
   return (
     <Link
-      className="link-underline"
+      className={unstyled ? "" : "link-underline"}
       to="/venues/$venueId"
       params={{ venueId: venueId }}
       style={{

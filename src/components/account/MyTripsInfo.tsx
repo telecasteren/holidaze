@@ -10,10 +10,9 @@ export const MyTripsInfo = () => {
   const navigate = useNavigate();
   const { bookings, isLoading } = useProfileBookings();
 
-  if (isLoading) return <Box>Loading...</Box>;
+  if (isLoading) return <Box sx={{ px: "auto" }}><strong>Loading...</strong></Box>;
 
   return (
-
     <Stack>
       <Typography variant="h4" sx={{ mb: 2 }}>Total trips: {bookings?.meta.totalCount}</Typography>
       <CardsStack
@@ -24,15 +23,29 @@ export const MyTripsInfo = () => {
             const hasPassed = new Date(booking.dateTo) <= today;
 
             return (
-            <Card key={booking.id} sx={{ opacity: hasPassed ? 0.6 : 1 }}>
-              <Typography variant="body1"><strong>Venue booked:</strong> {booking.venue?.name}</Typography>
-              <img
-                src={booking.venue?.media[0].url}
-                alt={booking.venue?.media[0].alt}
-                style={{ width: 200, height: 200, borderRadius: 4, objectFit: "contain"}}
-              />
+              <Card key={booking.id} sx={{ display: "grid", gap: 1, justifyContent: "center", opacity: hasPassed ? 0.6 : 1 }}>
+                <Typography variant="body1"><strong>Venue booked:</strong> {booking.venue?.name}</Typography>
+
+                <LinkToVenue
+                  venueId={booking.venue?.id || ""}
+                  unstyled
+                >
+                <Box
+                  component="img"
+                  src={booking.venue?.media[0].url}
+                  alt={booking.venue?.media[0].alt}
+                  sx={{
+                    width: 200,
+                    height: 200,
+                    borderRadius: 4,
+                    objectFit: "contain",
+                    transition: "ease-in-out 0.3s",
+                    "&:hover": { opacity: 0.8 }
+                  }}
+                  />
+                </LinkToVenue>
               <Typography variant="body2"><strong>Dates:</strong> {formatDate(booking.dateFrom)} - {formatDate(booking.dateTo)}</Typography>
-              <Typography variant="body2"><strong>Total guests:</strong> {booking.guests}</Typography>
+              <Typography variant="body2"><strong>Total booked guests:</strong> {booking.guests}</Typography>
 
               <LinkToVenue
                 venueId={`${booking.venue?.id}`}

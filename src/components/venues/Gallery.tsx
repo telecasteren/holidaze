@@ -10,11 +10,12 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
     const [item] = venueMedia;
     return (
       <Box sx={{display: "flex", justifyContent: "center"}}>
-        <img
+        <Box
+          component="img"
           src={item.url}
           alt={item.alt}
           loading="lazy"
-          style={{maxWidth: "100%", height: "auto", borderRadius: "4px"}}
+          style={{ maxWidth: "100%", height: "auto", borderRadius: "4px" }}
         />
       </Box>
     )
