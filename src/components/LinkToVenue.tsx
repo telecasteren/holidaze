@@ -1,18 +1,20 @@
 import { Link } from '@tanstack/react-router';
-import { ArrowForwardIcon } from "@/components/layout/icons";
 
 interface LinkToVenueProps {
   venueId: string;
   children?: string | React.ReactNode;
   styles?: React.CSSProperties;
+  icon?: React.ReactNode;
 }
 
-export const LinkToVenue = ({venueId, children, styles}: LinkToVenueProps) => {
+export const LinkToVenue = ({ venueId, children, styles, icon }: LinkToVenueProps) => {
   return (
-  <Link
-    to="/venues/$venueId"
-    params={{ venueId: venueId }}
+    <Link
+      className="link-underline"
+      to="/venues/$venueId"
+      params={{ venueId: venueId }}
       style={{
+        width: "fit-content",
         textDecoration: "none",
         color: "inherit",
         display: "flex",
@@ -21,7 +23,7 @@ export const LinkToVenue = ({venueId, children, styles}: LinkToVenueProps) => {
         ...styles,
       }}
     >
-    {children}{" "}<ArrowForwardIcon />
+      {children}{" "} {icon}
   </Link>
   )
 }

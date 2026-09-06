@@ -1,13 +1,14 @@
-import { createFileRoute, stripSearchParams, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, stripSearchParams, useNavigate, Link } from '@tanstack/react-router'
 import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
-import { Container, Divider, Typography, Card, Alert, Pagination } from '@mui/material';
+import { Container, Divider, Typography, Card, Alert, Pagination, styled } from '@mui/material';
 import { RouteLoader, PageTitle } from '@/components/layout/index';
 import { SearchForm } from '@/components/search/SearchForm';
 import { CardsStack } from "#/components/CardsStack";
 import { Favourites } from '#/components/Favourites';
+import { LinkToVenue } from '#/components/LinkToVenue';
 
 export const Route = createFileRoute('/venues/')({
   head: () => ({
@@ -34,6 +35,12 @@ export const Route = createFileRoute('/venues/')({
    },
 })
 
+const StyledLink = styled(Link)(() => ({
+  textDecoration: "none",
+  color: "inherit",
+  "&:hover": { textDecoration: "underline" }
+}))
+
 function Venues() {
   const { visibleVenues, totalPages, page, query } = useVenuesList();
   const navigate = useNavigate({ from: Route.fullPath });
@@ -59,7 +66,6 @@ function Venues() {
       <CardsStack>
         {visibleVenues.map((venue) => (
           <Card key={venue.id}
-            // onClick={() => navigate({ to: `/venues/${venue.id}` })}
             sx={{cursor: "pointer"}}
           >
             <Favourites
@@ -67,7 +73,16 @@ function Venues() {
               children={<img src={venue.media[0]?.url} alt={venue.name} style={{ width: '100%' }} />}
             />
 
-            <Typography variant="h3">{venue.name}</Typography>
+            <LinkToVenue
+              venueId={venue.id}
+              children={
+                <Typography
+                  variant="h4">
+                  {venue.name}
+                </Typography>
+              }
+            />
+
             {venue.location?.city && venue.location.country && (
             <Typography variant="body1">{venue.location.city} • {venue.location.country}</Typography>
             )}

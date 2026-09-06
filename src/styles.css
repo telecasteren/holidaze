@@ -24,6 +24,10 @@ body {
   color: white;
 }
 
+.link-underline:hover {
+    text-decoration: underline !important;
+}
+
 /*
 MUI COLOUR THEME IN HEX
 900: #1647c1

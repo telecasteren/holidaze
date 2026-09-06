@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Box, Card, Typography, styled } from '@mui/material';
 import { LinkToVenue } from "@/components/LinkToVenue";
+import { ArrowForwardIcon } from "@/components/layout/icons";
 import { AccountVenueActions } from "./AccountVenueActions";
 import { formatDate } from "@/lib/utils/utils";
 import type { Venue } from "@/lib/zod";
@@ -43,12 +44,12 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
         <Typography variant="body2">
           <strong>Total bookings:</strong> {venue._count?.bookings || "No bookings"}
         </Typography>
+
           <LinkToVenue
             venueId={venue.id}
-            styles={{ width: "fit-content" }}
-            >
-            See venue
-          </LinkToVenue>
+            children="See venue"
+            icon={<ArrowForwardIcon />}
+            />
       </Box>
 
       <AccountVenueActions venue={venue} />

@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils/utils";
 import { Stack, Box, Card, Button, Typography } from '@mui/material';
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
+import { ArrowForwardIcon } from "@/components/layout/icons";
 
 export const MyTripsInfo = () => {
   const navigate = useNavigate();
@@ -35,9 +36,9 @@ export const MyTripsInfo = () => {
 
               <LinkToVenue
                 venueId={`${booking.venue?.id}`}
-              >
-                See venue
-              </LinkToVenue>
+                children="See venue"
+                icon={<ArrowForwardIcon />}
+                />
             </Card>
             )})
         ) : (
