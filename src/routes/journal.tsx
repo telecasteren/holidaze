@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Container, Divider } from '@mui/material';
+import { PageTitle } from "@/components/layout/PageTitle";
 
 export const Route = createFileRoute('/journal')({
   component: Journal,
@@ -10,7 +11,9 @@ export const Route = createFileRoute('/journal')({
 
 function Journal() {
   return (
-    <Container id="services" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="services" sx={{ py: 16 }}>
+      <PageTitle title="Holidaze Travel Journal" styles={{ textAlign: "center" }} />
+
       <p>This will be the BLOG page.
         Here comes news and stuff.</p>
         <Divider />

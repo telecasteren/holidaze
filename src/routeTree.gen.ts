@@ -14,7 +14,6 @@ import { Route as JournalRouteImport } from './routes/journal'
 import { Route as AccountProfileIdRouteImport } from './routes/account/$profileId'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthSignupRouteImport } from './routes/auth/signup'
-import { Route as BookingIndexRouteImport } from './routes/booking/index'
 import { Route as BookingSuccessRouteImport } from './routes/booking/success'
 import { Route as CompanyAboutRouteImport } from './routes/company/about'
 import { Route as CompanyCareersRouteImport } from './routes/company/careers'
@@ -48,11 +47,6 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
 const AuthSignupRoute = AuthSignupRouteImport.update({
   id: '/auth/signup',
   path: '/auth/signup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingIndexRoute = BookingIndexRouteImport.update({
-  id: '/booking/',
-  path: '/booking/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingSuccessRoute = BookingSuccessRouteImport.update({
@@ -113,7 +107,6 @@ export interface FileRoutesByFullPath {
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
-  '/booking/': typeof BookingIndexRoute
   '/venues/': typeof VenuesIndexRoute
   '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
@@ -130,7 +123,6 @@ export interface FileRoutesByTo {
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
-  '/booking': typeof BookingIndexRoute
   '/venues': typeof VenuesIndexRoute
   '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact': typeof CompanyContactIndexRoute
@@ -148,7 +140,6 @@ export interface FileRoutesById {
   '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
-  '/booking/': typeof BookingIndexRoute
   '/venues/': typeof VenuesIndexRoute
   '/company/contact/thankYou': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
@@ -167,7 +158,6 @@ export interface FileRouteTypes {
     | '/legal/privacy'
     | '/legal/terms'
     | '/venues/$venueId'
-    | '/booking/'
     | '/venues/'
     | '/company/contact/thankYou'
     | '/company/contact/'
@@ -184,7 +174,6 @@ export interface FileRouteTypes {
     | '/legal/privacy'
     | '/legal/terms'
     | '/venues/$venueId'
-    | '/booking'
     | '/venues'
     | '/company/contact/thankYou'
     | '/company/contact'
@@ -201,7 +190,6 @@ export interface FileRouteTypes {
     | '/legal/privacy'
     | '/legal/terms'
     | '/venues/$venueId'
-    | '/booking/'
     | '/venues/'
     | '/company/contact/thankYou'
     | '/company/contact/'
@@ -219,7 +207,6 @@ export interface RootRouteChildren {
   LegalPrivacyRoute: typeof LegalPrivacyRoute
   LegalTermsRoute: typeof LegalTermsRoute
   VenuesVenueIdRoute: typeof VenuesVenueIdRoute
-  BookingIndexRoute: typeof BookingIndexRoute
   VenuesIndexRoute: typeof VenuesIndexRoute
   CompanyContactThankYouRoute: typeof CompanyContactThankYouRoute
   CompanyContactIndexRoute: typeof CompanyContactIndexRoute
@@ -260,13 +247,6 @@ declare module '@tanstack/react-router' {
       path: '/auth/signup'
       fullPath: '/auth/signup'
       preLoaderRoute: typeof AuthSignupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking/': {
-      id: '/booking/'
-      path: '/booking'
-      fullPath: '/booking/'
-      preLoaderRoute: typeof BookingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking/success': {
@@ -347,7 +327,6 @@ const rootRouteChildren: RootRouteChildren = {
   LegalPrivacyRoute: LegalPrivacyRoute,
   LegalTermsRoute: LegalTermsRoute,
   VenuesVenueIdRoute: VenuesVenueIdRoute,
-  BookingIndexRoute: BookingIndexRoute,
   VenuesIndexRoute: VenuesIndexRoute,
   CompanyContactThankYouRoute: CompanyContactThankYouRoute,
   CompanyContactIndexRoute: CompanyContactIndexRoute,

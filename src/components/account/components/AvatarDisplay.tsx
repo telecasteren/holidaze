@@ -79,8 +79,8 @@ export const AvatarDisplay = ({ user }: { user: Profile }) => {
           src={user.avatar.url}
           alt={user.avatar.alt}
           sx={{
-            width: 150,
-            height: 150,
+            width: { xs: 80, md: 150 },
+            height: { xs: 80, md: 150 },
             boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)"
           }}
         />

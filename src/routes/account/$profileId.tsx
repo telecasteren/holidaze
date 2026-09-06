@@ -55,7 +55,7 @@ function ProfileById() {
 
   return (
     <>
-    <Container id="profile-details" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="profile-details" sx={{ py: 16 }}>
       <AccountHero user={user} />
 
       <Stack id="profile-tabs" sx={{ mt: 2, spaceBetween: 1 }}>

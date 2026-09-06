@@ -14,18 +14,22 @@ export const AccountHero = ({ user }: {user: Profile}) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          px: 6,
-          xs: { px: 2 }
+          px: { xs: 2, md: 6 },
         }}
       >
         <PageTitle title={`Welcome, ${user.name}`} />
         <AvatarDisplay user={user} />
       </Box>
 
-      <img
+      <Box
+        component="img"
         src={user.banner.url}
         alt={user.banner.alt}
-        style={{ width: "100%", height: "200px", borderRadius: '0.2rem' }}
+        sx={{
+          width: "100%",
+          height: { xs: 120, md: 200 },
+          borderRadius: "0.2rem"
+        }}
       />
     </Box>
   );
