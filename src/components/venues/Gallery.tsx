@@ -6,6 +6,8 @@ type GalleryProps = {
 };
 
 export const Gallery = ({ venueMedia }: GalleryProps) => {
+  const totalVenueMediaIs2 = venueMedia.length >= 2;
+
   if (venueMedia.length === 1) {
     const [item] = venueMedia;
     return (
@@ -22,7 +24,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
   }
 
   return (
-  <ImageList variant="masonry" cols={3} gap={8}>
+    <ImageList variant="masonry" cols={totalVenueMediaIs2 ? 2 : 3} gap={8}>
     {venueMedia.map((item) => (
       <ImageListItem key={item.url}>
         <img
