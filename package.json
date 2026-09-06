@@ -84,7 +84,8 @@
       "sharp"
     ],
     "overrides": {
-      "html-encoding-sniffer": "5.0.0"
+      "jsdom": "25.0.1",
+      "jsdom>parse5": "7.3.0"
     }
   },
   "lint-staged": {
