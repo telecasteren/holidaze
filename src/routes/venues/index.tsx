@@ -3,7 +3,7 @@ import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
-import { Container, Divider, Typography, Card, Alert, Pagination, styled } from '@mui/material';
+import { Container, Divider, Typography, Card, Alert, Pagination } from '@mui/material';
 import { RouteLoader, PageTitle } from '@/components/layout/index';
 import { SearchForm } from '@/components/search/SearchForm';
 import { CardsStack } from "#/components/CardsStack";
@@ -34,12 +34,6 @@ export const Route = createFileRoute('/venues/')({
      return <p>This page doesn't exist.</p>
    },
 })
-
-const StyledLink = styled(Link)(() => ({
-  textDecoration: "none",
-  color: "inherit",
-  "&:hover": { textDecoration: "underline" }
-}))
 
 function Venues() {
   const { visibleVenues, totalPages, page, query } = useVenuesList();
