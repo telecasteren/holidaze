@@ -82,7 +82,10 @@
       "esbuild",
       "lightningcss",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "html-encoding-sniffer": "5.0.0"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix"
