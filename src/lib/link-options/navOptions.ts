@@ -11,14 +11,6 @@ export const navOptions = () => [
   },
   {
     link: linkOptions({
-      to: "/booking",
-      activeOptions: { exact: true },
-    }),
-    label: "Booking",
-    icon: false,
-  },
-  {
-    link: linkOptions({
       to: "/journal",
       activeOptions: { exact: true },
     }),

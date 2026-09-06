@@ -1,4 +1,4 @@
-import { createFileRoute, stripSearchParams, useNavigate, Link } from '@tanstack/react-router'
+import { createFileRoute, stripSearchParams, useNavigate } from '@tanstack/react-router'
 import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
