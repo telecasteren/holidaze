@@ -18,7 +18,11 @@ const BoxSummary = styled(Box)(() => ({
   gap: 2
 }));
 
-const HoverBox = styled(Box)(() => ({
+const HoverBox = styled(Box)(({theme}) => ({
+  width: 320,
+  [theme.breakpoints.up("md")]: {
+        width: 400,
+      },
   transition: "opacity 0.3s",
   "&:hover": { opacity: 0.8 }
 }));
@@ -36,11 +40,11 @@ export const VenueDetails = ({ singleVenue, dates, totalPrice, nights, guests }:
       >
         <TooltipWithContent
           trigger={
-          <HoverBox>
+            <HoverBox>
             <img
               src={firstImage?.url}
               alt={firstImage?.alt}
-              style={{ width: 400, height: "auto", borderRadius: 8 }}
+              style={{ width: "100%", height: "auto", borderRadius: 8 }}
             />
           </HoverBox>
         }

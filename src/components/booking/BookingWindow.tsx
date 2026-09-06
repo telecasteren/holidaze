@@ -113,7 +113,7 @@ export const BookingWindow = ({ venueId, open, close, booking }: BookingWindowPr
                   mt: 4,
                   mb: 4,
                   display: "grid",
-                  gridTemplateColumns: "1fr 2fr",
+                  gridTemplateColumns: {xs: "1fr", md: "1fr 2fr"},
                   gap: 6,
                 }}>
                 <PaymentDetails
