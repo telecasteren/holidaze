@@ -1,3 +1,4 @@
+import { IconButton } from "@mui/material";
 import { ClearIcon } from "@/components/layout/icons";
 
 const iconStyles = {
@@ -8,9 +9,11 @@ const iconStyles = {
 
 export const ClearIconButton = ({onClick}: { onClick: () => void}) => {
   return (
-    <ClearIcon
+    <IconButton aria-label="clear-or-cancel-action">
+      <ClearIcon
       onClick={onClick}
       sx={iconStyles}
-    />
+     />
+    </IconButton>
   )
 }

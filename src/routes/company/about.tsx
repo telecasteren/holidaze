@@ -2,6 +2,15 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/company/about')({
   component: About,
+  head: () => ({
+    meta: [
+      {
+        name: "about",
+        content: "Learn about Holidaze and our mission to serve the greatest venues.",
+      },
+      { title: "About us | Holidaze" },
+    ],
+  }),
   notFoundComponent: () => {
      return <p>This page doesn't exist.</p>
    },

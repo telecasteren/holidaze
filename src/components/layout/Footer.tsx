@@ -115,7 +115,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="#"
+            href="/#reviews"
             sx={{
               color: 'text.secondary',
             }}
@@ -124,7 +124,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="#"
+            href="/#faqs"
             sx={{
               color: 'text.secondary',
             }}
@@ -144,7 +144,7 @@ export default function Footer() {
           </Typography>
           <Link
             variant="body2"
-            href="#"
+            href="/company/about"
             sx={{
               color: 'text.secondary',
             }}
@@ -153,7 +153,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="#"
+            href="/company/about"
             sx={{
               color: 'text.secondary',
             }}
@@ -162,7 +162,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="#"
+            href="/company/contact"
             sx={{
               color: 'text.secondary',
             }}
@@ -182,7 +182,7 @@ export default function Footer() {
           </Typography>
           <Link
             variant="body2"
-            href="#"
+            href="/legal/terms"
             sx={{
               color: 'text.secondary',
             }}
@@ -191,7 +191,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="#"
+            href="/legal/privacy"
             sx={{
               color: 'text.secondary',
             }}

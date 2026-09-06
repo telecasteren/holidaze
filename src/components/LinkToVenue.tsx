@@ -12,6 +12,7 @@ export const LinkToVenue = ({ unstyled, venueId, children, styles, icon }: LinkT
   if (!venueId) return;
   return (
     <Link
+      aria-label="Link to venue details"
       className={unstyled ? "" : "link-underline"}
       to="/venues/$venueId"
       params={{ venueId: venueId }}

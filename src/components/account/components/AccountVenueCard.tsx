@@ -35,7 +35,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
           <Box
             component="img"
             src={venue.media[0].url}
-            alt={venue.media[0].alt}
+            alt={venue.media[0].alt || `Image of ${venue.name}`}
             sx={{
               width: 100,
               height: 100,

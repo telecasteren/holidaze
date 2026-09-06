@@ -17,12 +17,15 @@ import {
   Container,
   Divider,
   MenuItem,
-  Avatar
+  Avatar,
+  Typography
 } from '@mui/material';
 
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import { BrandLogo } from '@/components/layout/BrandLogo';
 import { MenuIcon, CloseRoundedIcon, LogoutIcon } from './icons';
+import { LinkToAccount } from '../LinkToAccount';
+import { TooltipWithContent } from "@/components/layout/Tooltips";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -72,7 +75,10 @@ export default function Header() {
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
              <BrandLogo />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}
+              component="nav"
+              aria-label="main menu navigation"
+            >
               {navOptions().map((item) => {
                 return (
                   <Link
@@ -96,11 +102,11 @@ export default function Header() {
           >
             {!isAuthenticated ? (
               <>
-            <Button type="link" color="primary" variant="text" size="small"
+            <Button color="primary" variant="text" size="small"
              href="/auth/login">
              Sign in
            </Button>
-           <Button type="link" color="primary" variant="contained" size="small"
+           <Button color="primary" variant="contained" size="small"
              href="/auth/signup">
              Sign up
                 </Button>
@@ -108,18 +114,36 @@ export default function Header() {
             )
             :
               (
-              <>
-              <Link
-                to="/account/$profileId"
-                params={{ profileId: userName }}
-                style={{ textDecoration: 'none' }}
-              >
-                <Avatar key={userName} {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
-              </Link>
-              <Button size="small"
-                onClick={() => handleLogout()}>
-                <LogoutIcon />
-              </Button>
+                <>
+                  <TooltipWithContent
+                    trigger={
+                      <LinkToAccount
+                        profileId={userName}
+                        unstyled
+                      >
+                        <Avatar
+                          key={userName}
+                          {...avatarProps}
+                          sx={{ ...avatarProps.sx, width: 30, height: 30 }}
+                        />
+                      </LinkToAccount>
+                  }
+                  >
+                    <Typography variant="body1">Go to your account</Typography>
+                  </TooltipWithContent>
+
+                  <TooltipWithContent
+                    trigger={
+                      <Button
+                        size="small"
+                        aria-label="Logout button"
+                        onClick={() => handleLogout()}>
+                        <LogoutIcon />
+                        </Button>
+                  }
+                  >
+                    <Typography variant="body1">Log out</Typography>
+                  </TooltipWithContent>
               </>
             )}
             <ColorModeIconDropdown />
@@ -186,15 +210,21 @@ export default function Header() {
                   (
                     // Show Avatar and logout button if authenticated
                   <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                  <Link
-                    to="/account/$profileId"
-                    params={{ profileId: userName }}
-                    style={{ textDecoration: 'none' }}
+                  <LinkToAccount
+                    profileId={userName}
+                    unstyled
                   >
-                    <Avatar key={userName} {...avatarProps} sx={{ ...avatarProps.sx, width: 30, height: 30 }} />
-                  </Link>
-                  <Button size="small"
-                    onClick={() => handleLogout()}>
+                    <Avatar
+                      key={userName}
+                      {...avatarProps}
+                      sx={{ ...avatarProps.sx, width: 30, height: 30 }}
+                    />
+                  </LinkToAccount>
+                  <Button
+                    size="small"
+                    aria-label="Logout button"
+                    onClick={() => handleLogout()}
+                  >
                     <LogoutIcon />
                   </Button>
                   </Box>

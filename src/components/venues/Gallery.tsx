@@ -15,7 +15,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
         <Box
           component="img"
           src={item.url}
-          alt={item.alt}
+          alt={item.alt || "Gallery image"}
           loading="lazy"
           style={{ maxWidth: "100%", height: "auto", borderRadius: "4px" }}
         />
@@ -30,7 +30,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
         <img
           srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
           src={`${item.url}?w=248&fit=crop&auto=format`}
-          alt={item.alt}
+          alt={item.alt || "Gallery image"}
           loading="lazy"
         />
       </ImageListItem>

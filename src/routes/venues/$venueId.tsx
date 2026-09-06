@@ -49,7 +49,7 @@ function VenueById() {
 
         <Stack sx={{ mt: 2 }}>
           <Box>
-            <Typography variant="h5"><strong>About this venue</strong></Typography>
+            <Typography variant="h2"><strong>About this venue</strong></Typography>
             <VenueDesc content={venue.description}/>
           </Box>
 
@@ -77,7 +77,7 @@ function VenueById() {
 
               {anyVenueMetaIsTrue && (
                 <Box sx={{ display: "grid", gap: 1 }}>
-                <Typography variant="h6" sx={{ mt: 2 }}>What this place offers</Typography>
+                <Typography variant="h3" sx={{ mt: 2 }}>What this place offers</Typography>
                   <VenueMeta venue={venue} />
                 </Box>
               )}
@@ -87,7 +87,7 @@ function VenueById() {
 
         {/* Calendar */}
         <Typography
-          variant="h5"
+          variant="h4"
           sx={{ mt: 8, textAlign: "center" }}
         >
           See availability

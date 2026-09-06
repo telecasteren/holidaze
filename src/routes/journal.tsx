@@ -4,6 +4,15 @@ import { PageTitle } from "@/components/layout/PageTitle";
 
 export const Route = createFileRoute('/journal')({
   component: Journal,
+  head: () => ({
+    meta: [
+      {
+        name: "journal",
+        content: "Get the latest news with Holidaze own travel journal.",
+      },
+      { title: "Travel Journal | Holidaze" },
+    ],
+  }),
   notFoundComponent: () => {
      return <p>This page doesn't exist.</p>
    },

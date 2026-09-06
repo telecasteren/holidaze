@@ -45,7 +45,7 @@ export const VenueDetails = ({ singleVenue, dates, totalPrice, nights, guests }:
             <Box
               component="img"
               src={firstImage?.url}
-              alt={firstImage?.alt}
+              alt={firstImage?.alt  || `Image of ${singleVenue?.name}`}
               style={{ width: "100%", height: "auto", borderRadius: 8 }}
             />
           </HoverBox>

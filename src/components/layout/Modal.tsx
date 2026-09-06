@@ -38,7 +38,11 @@ export const ModalWindow = ({ open, onClose, title, text, content }: ModalWindow
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <Box sx={style}>
+        <Box
+          role="dialog"
+          aria-modal="true"
+          sx={style}
+        >
           <ClearIconButton onClick={onClose} />
           <Typography id="modal-title" variant="h6" component="h6">
             {title}

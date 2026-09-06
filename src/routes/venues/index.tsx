@@ -71,7 +71,7 @@ function Venues() {
               venueId={venue.id}
               children={
                 <Typography
-                  variant="h4">
+                  variant="h2">
                   {venue.name}
                 </Typography>
               }

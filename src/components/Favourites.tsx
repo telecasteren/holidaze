@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Stack from "@mui/material/Stack";
+import { Stack, IconButton } from "@mui/material";
 import { FavoriteBorderIcon, FavoriteIcon } from "@/components/layout/icons";
 import { toast } from "react-hot-toast";
 import type { Venue } from "@/lib/zod/index";
@@ -21,15 +21,19 @@ export const Favourites = ({children, venue}: FavouritesProps ) => {
   return (
     <Stack sx={{ position: 'relative' }}>
       {favorites[venue.id]
-        ? <FavoriteIcon
+        ? <IconButton aria-label="favourite-on">
+          <FavoriteIcon
           onClick={() => handleToggleFavorite(venue.id)}
           sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }}
         />
+          </IconButton>
         :
+        <IconButton aria-label="favourite-off">
         <FavoriteBorderIcon
           onClick={() => handleToggleFavorite(venue.id)}
           sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }}
-        />
+          />
+        </IconButton>
       }
       {children}
     </Stack>

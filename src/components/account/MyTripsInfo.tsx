@@ -32,8 +32,8 @@ export const MyTripsInfo = () => {
                 >
                 <Box
                   component="img"
-                  src={booking.venue?.media[0].url}
-                  alt={booking.venue?.media[0].alt}
+                  src={booking.venue?.media[0]?.url}
+                  alt={booking.venue?.media[0]?.alt || `Image of ${booking.venue?.name}`}
                   sx={{
                     width: 200,
                     height: 200,
