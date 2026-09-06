@@ -1,15 +1,13 @@
-import { useState } from 'react';
 import { createFileRoute, stripSearchParams, useNavigate } from '@tanstack/react-router'
 import { venuesQuery } from '@/lib/queries/venuesQuery';
 import { useVenuesList } from '@/hooks/useVenuesList';
 import { searchSchema, defaultSearch } from '@/lib/zod/index';
 
-import { Container, Divider, Typography, Stack, Card, Alert, Pagination } from '@mui/material';
+import { Container, Divider, Typography, Card, Alert, Pagination } from '@mui/material';
 import { RouteLoader, PageTitle } from '@/components/layout/index';
 import { SearchForm } from '@/components/search/SearchForm';
 import { CardsStack } from "#/components/CardsStack";
-import { FavoriteBorderIcon, FavoriteIcon } from '@/components/layout/icons';
-import { toast } from 'react-hot-toast';
+import { Favourites } from '#/components/Favourites';
 
 export const Route = createFileRoute('/venues/')({
   head: () => ({
@@ -39,7 +37,6 @@ export const Route = createFileRoute('/venues/')({
 function Venues() {
   const { visibleVenues, totalPages, page, query } = useVenuesList();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
   const handleNextPage = (_event: React.ChangeEvent<unknown>) => {
     navigate({
@@ -47,39 +44,30 @@ function Venues() {
     })
   };
 
-  const handleToggleFavorite = (venueId: string) => {
-    setFavorites({ ...favorites, [venueId]: !favorites[venueId] });
-    toast.remove();
-    toast(`${favorites[venueId] ? 'Removed from' : 'Added to'} favorites`);
-  };
-
   return (
-    <Container id="venues" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="venues" sx={{ py: 16 }}>
       <PageTitle title="VENUES" styles={{ textAlign: "center" }} />
 
       <SearchForm />
       {query.trim() && visibleVenues.length === 0 && (
         <Alert
           severity="warning"
-          sx={{ m: 2, justifySelf: 'center'}}
+          sx={{ m: 2, justifySelf: "center"}}
         >This search did not give any results.</Alert>
       )}
 
       <CardsStack>
         {visibleVenues.map((venue) => (
           <Card key={venue.id}
-            onClick={() => navigate({ to: `/venues/${venue.id}` })}
+            // onClick={() => navigate({ to: `/venues/${venue.id}` })}
             sx={{cursor: "pointer"}}
           >
-            <Stack sx={{ position: 'relative' }}>
-              {favorites[venue.id] ? <FavoriteIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }} />
-                :
-                <FavoriteBorderIcon onClick={() => handleToggleFavorite(venue.id)} sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }} />
-              }
-              <img src={venue.media[0]?.url} alt={venue.name} style={{ width: '100%' }} />
-            </Stack>
-            <Typography variant="h3">{venue.name}</Typography>
+            <Favourites
+              venue={venue}
+              children={<img src={venue.media[0]?.url} alt={venue.name} style={{ width: '100%' }} />}
+            />
 
+            <Typography variant="h3">{venue.name}</Typography>
             {venue.location?.city && venue.location.country && (
             <Typography variant="body1">{venue.location.city} • {venue.location.country}</Typography>
             )}

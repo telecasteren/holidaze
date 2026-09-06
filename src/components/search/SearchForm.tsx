@@ -10,7 +10,7 @@ export function SearchForm() {
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        width: '50%',
+        width: { xs: '80%', sm: '50%', },
         mx: 'auto',
         mt: 4,
         mb: 6,
