@@ -14,6 +14,7 @@ import {
   Card,
   Alert,
   Pagination,
+  Box,
 } from '@mui/material'
 import { RouteLoader, PageTitle } from '@/components/layout/index'
 import { SearchForm } from '@/components/search/SearchForm'
@@ -73,10 +74,18 @@ function Venues() {
             <Favourites
               venue={venue}
               children={
-                <img
-                  src={venue.media[0]?.url}
-                  alt={venue.name}
-                  style={{ width: '100%' }}
+                <Box
+                  component="img"
+                  src={venue.media[0]?.url || "/no-image-icon.webp"}
+                  alt={venue.media[0]?.alt || `Image of ${venue.name}`}
+                  sx={{
+                    width: 300,
+                    height: 300,
+                    borderRadius: "inherit",
+                    objectFit: "contain",
+                    transition: "ease-in-out 0.3s",
+                    "&:hover": { opacity: 0.8 },
+                  }}
                 />
               }
             />
