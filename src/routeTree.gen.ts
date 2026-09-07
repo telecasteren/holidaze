@@ -8,310 +8,310 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as JournalRouteImport } from "./routes/journal";
-import { Route as AccountProfileIdRouteImport } from "./routes/account/$profileId";
-import { Route as AuthLoginRouteImport } from "./routes/auth/login";
-import { Route as AuthSignupRouteImport } from "./routes/auth/signup";
-import { Route as BookingSuccessRouteImport } from "./routes/booking/success";
-import { Route as CompanyAboutRouteImport } from "./routes/company/about";
-import { Route as CompanyCareersRouteImport } from "./routes/company/careers";
-import { Route as LegalPrivacyRouteImport } from "./routes/legal/privacy";
-import { Route as LegalTermsRouteImport } from "./routes/legal/terms";
-import { Route as VenuesIndexRouteImport } from "./routes/venues/index";
-import { Route as VenuesVenueIdRouteImport } from "./routes/venues/$venueId";
-import { Route as CompanyContactIndexRouteImport } from "./routes/company/contact/index";
-import { Route as CompanyContactThankYouRouteImport } from "./routes/company/contact/thankYou";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as AccountProfileIdRouteImport } from './routes/account/$profileId'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthSignupRouteImport } from './routes/auth/signup'
+import { Route as BookingSuccessRouteImport } from './routes/booking/success'
+import { Route as CompanyAboutRouteImport } from './routes/company/about'
+import { Route as CompanyCareersRouteImport } from './routes/company/careers'
+import { Route as LegalPrivacyRouteImport } from './routes/legal/privacy'
+import { Route as LegalTermsRouteImport } from './routes/legal/terms'
+import { Route as VenuesIndexRouteImport } from './routes/venues/index'
+import { Route as VenuesVenueIdRouteImport } from './routes/venues/$venueId'
+import { Route as CompanyContactIndexRouteImport } from './routes/company/contact/index'
+import { Route as CompanyContactThankYouRouteImport } from './routes/company/contact/thankYou'
 
 const IndexRoute = IndexRouteImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const JournalRoute = JournalRouteImport.update({
-  id: "/journal",
-  path: "/journal",
+  id: '/journal',
+  path: '/journal',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AccountProfileIdRoute = AccountProfileIdRouteImport.update({
-  id: "/account/$profileId",
-  path: "/account/$profileId",
+  id: '/account/$profileId',
+  path: '/account/$profileId',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: "/auth/login",
-  path: "/auth/login",
+  id: '/auth/login',
+  path: '/auth/login',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AuthSignupRoute = AuthSignupRouteImport.update({
-  id: "/auth/signup",
-  path: "/auth/signup",
+  id: '/auth/signup',
+  path: '/auth/signup',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const BookingSuccessRoute = BookingSuccessRouteImport.update({
-  id: "/booking/success",
-  path: "/booking/success",
+  id: '/booking/success',
+  path: '/booking/success',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const CompanyAboutRoute = CompanyAboutRouteImport.update({
-  id: "/company/about",
-  path: "/company/about",
+  id: '/company/about',
+  path: '/company/about',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const CompanyCareersRoute = CompanyCareersRouteImport.update({
-  id: "/company/careers",
-  path: "/company/careers",
+  id: '/company/careers',
+  path: '/company/careers',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
-  id: "/legal/privacy",
-  path: "/legal/privacy",
+  id: '/legal/privacy',
+  path: '/legal/privacy',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const LegalTermsRoute = LegalTermsRouteImport.update({
-  id: "/legal/terms",
-  path: "/legal/terms",
+  id: '/legal/terms',
+  path: '/legal/terms',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const VenuesIndexRoute = VenuesIndexRouteImport.update({
-  id: "/venues/",
-  path: "/venues/",
+  id: '/venues/',
+  path: '/venues/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const VenuesVenueIdRoute = VenuesVenueIdRouteImport.update({
-  id: "/venues/$venueId",
-  path: "/venues/$venueId",
+  id: '/venues/$venueId',
+  path: '/venues/$venueId',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const CompanyContactIndexRoute = CompanyContactIndexRouteImport.update({
-  id: "/company/contact/",
-  path: "/company/contact/",
+  id: '/company/contact/',
+  path: '/company/contact/',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const CompanyContactThankYouRoute = CompanyContactThankYouRouteImport.update({
-  id: "/company/contact/thankYou",
-  path: "/company/contact/thankYou",
+  id: '/company/contact/thankYou',
+  path: '/company/contact/thankYou',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/journal": typeof JournalRoute;
-  "/account/$profileId": typeof AccountProfileIdRoute;
-  "/auth/login": typeof AuthLoginRoute;
-  "/auth/signup": typeof AuthSignupRoute;
-  "/booking/success": typeof BookingSuccessRoute;
-  "/company/about": typeof CompanyAboutRoute;
-  "/company/careers": typeof CompanyCareersRoute;
-  "/legal/privacy": typeof LegalPrivacyRoute;
-  "/legal/terms": typeof LegalTermsRoute;
-  "/venues/$venueId": typeof VenuesVenueIdRoute;
-  "/venues/": typeof VenuesIndexRoute;
-  "/company/contact/thankYou": typeof CompanyContactThankYouRoute;
-  "/company/contact/": typeof CompanyContactIndexRoute;
+  '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/booking/success': typeof BookingSuccessRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/careers': typeof CompanyCareersRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues/': typeof VenuesIndexRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/journal": typeof JournalRoute;
-  "/account/$profileId": typeof AccountProfileIdRoute;
-  "/auth/login": typeof AuthLoginRoute;
-  "/auth/signup": typeof AuthSignupRoute;
-  "/booking/success": typeof BookingSuccessRoute;
-  "/company/about": typeof CompanyAboutRoute;
-  "/company/careers": typeof CompanyCareersRoute;
-  "/legal/privacy": typeof LegalPrivacyRoute;
-  "/legal/terms": typeof LegalTermsRoute;
-  "/venues/$venueId": typeof VenuesVenueIdRoute;
-  "/venues": typeof VenuesIndexRoute;
-  "/company/contact/thankYou": typeof CompanyContactThankYouRoute;
-  "/company/contact": typeof CompanyContactIndexRoute;
+  '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/booking/success': typeof BookingSuccessRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/careers': typeof CompanyCareersRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues': typeof VenuesIndexRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
-  "/journal": typeof JournalRoute;
-  "/account/$profileId": typeof AccountProfileIdRoute;
-  "/auth/login": typeof AuthLoginRoute;
-  "/auth/signup": typeof AuthSignupRoute;
-  "/booking/success": typeof BookingSuccessRoute;
-  "/company/about": typeof CompanyAboutRoute;
-  "/company/careers": typeof CompanyCareersRoute;
-  "/legal/privacy": typeof LegalPrivacyRoute;
-  "/legal/terms": typeof LegalTermsRoute;
-  "/venues/$venueId": typeof VenuesVenueIdRoute;
-  "/venues/": typeof VenuesIndexRoute;
-  "/company/contact/thankYou": typeof CompanyContactThankYouRoute;
-  "/company/contact/": typeof CompanyContactIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/journal': typeof JournalRoute
+  '/account/$profileId': typeof AccountProfileIdRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/booking/success': typeof BookingSuccessRoute
+  '/company/about': typeof CompanyAboutRoute
+  '/company/careers': typeof CompanyCareersRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/venues/$venueId': typeof VenuesVenueIdRoute
+  '/venues/': typeof VenuesIndexRoute
+  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | "/journal"
-    | "/account/$profileId"
-    | "/auth/login"
-    | "/auth/signup"
-    | "/booking/success"
-    | "/company/about"
-    | "/company/careers"
-    | "/legal/privacy"
-    | "/legal/terms"
-    | "/venues/$venueId"
-    | "/venues/"
-    | "/company/contact/thankYou"
-    | "/company/contact/";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/booking/success'
+    | '/company/about'
+    | '/company/careers'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues/'
+    | '/company/contact/thankYou'
+    | '/company/contact/'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/journal"
-    | "/account/$profileId"
-    | "/auth/login"
-    | "/auth/signup"
-    | "/booking/success"
-    | "/company/about"
-    | "/company/careers"
-    | "/legal/privacy"
-    | "/legal/terms"
-    | "/venues/$venueId"
-    | "/venues"
-    | "/company/contact/thankYou"
-    | "/company/contact";
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/booking/success'
+    | '/company/about'
+    | '/company/careers'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues'
+    | '/company/contact/thankYou'
+    | '/company/contact'
   id:
-    | "__root__"
-    | "/"
-    | "/journal"
-    | "/account/$profileId"
-    | "/auth/login"
-    | "/auth/signup"
-    | "/booking/success"
-    | "/company/about"
-    | "/company/careers"
-    | "/legal/privacy"
-    | "/legal/terms"
-    | "/venues/$venueId"
-    | "/venues/"
-    | "/company/contact/thankYou"
-    | "/company/contact/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/journal'
+    | '/account/$profileId'
+    | '/auth/login'
+    | '/auth/signup'
+    | '/booking/success'
+    | '/company/about'
+    | '/company/careers'
+    | '/legal/privacy'
+    | '/legal/terms'
+    | '/venues/$venueId'
+    | '/venues/'
+    | '/company/contact/thankYou'
+    | '/company/contact/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  JournalRoute: typeof JournalRoute;
-  AccountProfileIdRoute: typeof AccountProfileIdRoute;
-  AuthLoginRoute: typeof AuthLoginRoute;
-  AuthSignupRoute: typeof AuthSignupRoute;
-  BookingSuccessRoute: typeof BookingSuccessRoute;
-  CompanyAboutRoute: typeof CompanyAboutRoute;
-  CompanyCareersRoute: typeof CompanyCareersRoute;
-  LegalPrivacyRoute: typeof LegalPrivacyRoute;
-  LegalTermsRoute: typeof LegalTermsRoute;
-  VenuesVenueIdRoute: typeof VenuesVenueIdRoute;
-  VenuesIndexRoute: typeof VenuesIndexRoute;
-  CompanyContactThankYouRoute: typeof CompanyContactThankYouRoute;
-  CompanyContactIndexRoute: typeof CompanyContactIndexRoute;
+  IndexRoute: typeof IndexRoute
+  JournalRoute: typeof JournalRoute
+  AccountProfileIdRoute: typeof AccountProfileIdRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthSignupRoute: typeof AuthSignupRoute
+  BookingSuccessRoute: typeof BookingSuccessRoute
+  CompanyAboutRoute: typeof CompanyAboutRoute
+  CompanyCareersRoute: typeof CompanyCareersRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalTermsRoute: typeof LegalTermsRoute
+  VenuesVenueIdRoute: typeof VenuesVenueIdRoute
+  VenuesIndexRoute: typeof VenuesIndexRoute
+  CompanyContactThankYouRoute: typeof CompanyContactThankYouRoute
+  CompanyContactIndexRoute: typeof CompanyContactIndexRoute
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/journal": {
-      id: "/journal";
-      path: "/journal";
-      fullPath: "/journal";
-      preLoaderRoute: typeof JournalRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/account/$profileId": {
-      id: "/account/$profileId";
-      path: "/account/$profileId";
-      fullPath: "/account/$profileId";
-      preLoaderRoute: typeof AccountProfileIdRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/auth/login": {
-      id: "/auth/login";
-      path: "/auth/login";
-      fullPath: "/auth/login";
-      preLoaderRoute: typeof AuthLoginRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/auth/signup": {
-      id: "/auth/signup";
-      path: "/auth/signup";
-      fullPath: "/auth/signup";
-      preLoaderRoute: typeof AuthSignupRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/booking/success": {
-      id: "/booking/success";
-      path: "/booking/success";
-      fullPath: "/booking/success";
-      preLoaderRoute: typeof BookingSuccessRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/company/about": {
-      id: "/company/about";
-      path: "/company/about";
-      fullPath: "/company/about";
-      preLoaderRoute: typeof CompanyAboutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/company/careers": {
-      id: "/company/careers";
-      path: "/company/careers";
-      fullPath: "/company/careers";
-      preLoaderRoute: typeof CompanyCareersRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/legal/privacy": {
-      id: "/legal/privacy";
-      path: "/legal/privacy";
-      fullPath: "/legal/privacy";
-      preLoaderRoute: typeof LegalPrivacyRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/legal/terms": {
-      id: "/legal/terms";
-      path: "/legal/terms";
-      fullPath: "/legal/terms";
-      preLoaderRoute: typeof LegalTermsRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/venues/": {
-      id: "/venues/";
-      path: "/venues";
-      fullPath: "/venues/";
-      preLoaderRoute: typeof VenuesIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/venues/$venueId": {
-      id: "/venues/$venueId";
-      path: "/venues/$venueId";
-      fullPath: "/venues/$venueId";
-      preLoaderRoute: typeof VenuesVenueIdRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/company/contact/": {
-      id: "/company/contact/";
-      path: "/company/contact";
-      fullPath: "/company/contact/";
-      preLoaderRoute: typeof CompanyContactIndexRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
-    "/company/contact/thankYou": {
-      id: "/company/contact/thankYou";
-      path: "/company/contact/thankYou";
-      fullPath: "/company/contact/thankYou";
-      preLoaderRoute: typeof CompanyContactThankYouRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/$profileId': {
+      id: '/account/$profileId'
+      path: '/account/$profileId'
+      fullPath: '/account/$profileId'
+      preLoaderRoute: typeof AccountProfileIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/success': {
+      id: '/booking/success'
+      path: '/booking/success'
+      fullPath: '/booking/success'
+      preLoaderRoute: typeof BookingSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/about': {
+      id: '/company/about'
+      path: '/company/about'
+      fullPath: '/company/about'
+      preLoaderRoute: typeof CompanyAboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/careers': {
+      id: '/company/careers'
+      path: '/company/careers'
+      fullPath: '/company/careers'
+      preLoaderRoute: typeof CompanyCareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/': {
+      id: '/venues/'
+      path: '/venues'
+      fullPath: '/venues/'
+      preLoaderRoute: typeof VenuesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/venues/$venueId': {
+      id: '/venues/$venueId'
+      path: '/venues/$venueId'
+      fullPath: '/venues/$venueId'
+      preLoaderRoute: typeof VenuesVenueIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/contact/': {
+      id: '/company/contact/'
+      path: '/company/contact'
+      fullPath: '/company/contact/'
+      preLoaderRoute: typeof CompanyContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/contact/thankYou': {
+      id: '/company/contact/thankYou'
+      path: '/company/contact/thankYou'
+      fullPath: '/company/contact/thankYou'
+      preLoaderRoute: typeof CompanyContactThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -330,16 +330,16 @@ const rootRouteChildren: RootRouteChildren = {
   VenuesIndexRoute: VenuesIndexRoute,
   CompanyContactThankYouRoute: CompanyContactThankYouRoute,
   CompanyContactIndexRoute: CompanyContactIndexRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx";
-import type { createStart } from "@tanstack/react-start";
-declare module "@tanstack/react-start" {
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true;
-    router: Awaited<ReturnType<typeof getRouter>>;
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

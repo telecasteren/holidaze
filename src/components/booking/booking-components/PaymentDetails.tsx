@@ -8,8 +8,14 @@ import {
   FormHelperText,
   TextField,
 } from "@mui/material";
+import {
+  ProvidersDisplay,
+  providerDetails,
+} from "@/components/booking/booking-components/ProvidersDisplay";
 
-export const paymentProviders = ["Credit card", "PayPal", "Klarna", "Vipps"];
+export const paymentProviders = providerDetails.flatMap((provider) =>
+  Object.keys(provider),
+);
 
 interface PaymentDetailsProps {
   checked: boolean;
@@ -33,6 +39,8 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
       <Typography variant="body1">
         <strong>Payment method:</strong>
       </Typography>
+
+      <ProvidersDisplay />
 
       <FormControl>
         {paymentProviders.map((provider) => (
