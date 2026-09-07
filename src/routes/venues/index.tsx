@@ -6,9 +6,9 @@ import { searchSchema, defaultSearch } from '@/lib/zod/index';
 import { Container, Divider, Typography, Card, Alert, Pagination } from '@mui/material';
 import { RouteLoader, PageTitle } from '@/components/layout/index';
 import { SearchForm } from '@/components/search/SearchForm';
-import { CardsStack } from "#/components/CardsStack";
-import { Favourites } from '#/components/Favourites';
-import { LinkToVenue } from '#/components/LinkToVenue';
+import { CardsStack } from "@/components/CardsStack";
+import { Favourites } from '@/components/venues/Favourites';
+import { LinkToVenue } from '@/components/LinkToVenue';
 
 export const Route = createFileRoute('/venues/')({
   head: () => ({

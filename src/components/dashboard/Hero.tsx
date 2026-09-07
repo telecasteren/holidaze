@@ -1,8 +1,9 @@
-import { styled } from '@mui/material/styles';
-import { Typography, Box, Container, Stack } from '@mui/material';
-import HeroTitle from '@/components/layout/HeroTitle';
+import { Typography, Box, Container, Stack, styled } from "@mui/material";
+import HeroTitle from "@/components/layout/HeroTitle";
+import { CarouselDisplay } from "@/components/carousel/CarouselDisplay";
 
 const StyledBox = styled('div')(({ theme }) => ({
+  position: "relative",
   alignSelf: 'center',
   width: '100%',
   height: 400,
@@ -13,15 +14,12 @@ const StyledBox = styled('div')(({ theme }) => ({
   border: '1px solid',
   borderColor: (theme.vars || theme).palette.grey[200],
   boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
-  backgroundImage: "url(/unsplash/sasha-kaunas-TAgGZWz6Qg8-unsplash.jpg)", // use API venue img later ?
-  backgroundSize: 'cover',
   [theme.breakpoints.up('sm')]: {
     marginTop: theme.spacing(6),
-    height: 700,
+    height: 600,
   },
   ...theme.applyStyles('dark', {
     boxShadow: '0 0 24px 12px hsla(210, 100%, 25%, 0.2)',
-    backgroundImage: "url(/unsplash/sasha-kaunas-TAgGZWz6Qg8-unsplash.jpg)", // use API venue img later ?
     outlineColor: 'hsla(220, 20%, 42%, 0.1)',
     borderColor: (theme.vars || theme).palette.grey[700],
   }),
@@ -70,7 +68,11 @@ export function Hero() {
             Be adventurous and discover new places to stay.
           </Typography>
         </Stack>
-        <StyledBox id="image" />
+
+        {/* Venue image Carousel */}
+        <StyledBox>
+          <CarouselDisplay />
+        </StyledBox>
       </Container>
     </Box>
   );

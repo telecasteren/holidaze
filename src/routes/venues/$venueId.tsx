@@ -85,13 +85,9 @@ function VenueById() {
           </Stack>
         </Stack>
 
+        <Divider sx={{ my: 3 }} />
+
         {/* Calendar */}
-        <Typography
-          variant="h4"
-          sx={{ mt: 8, textAlign: "center" }}
-        >
-          See availability
-        </Typography>
         <CalendarDisplay venueId={venue.id} bookings={venue.bookings} />
     </Container>
       <Divider />

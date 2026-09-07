@@ -1,6 +1,6 @@
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { classifyError } from "@/lib/route-states/errorTypes";
-import { GoHomeBtn } from "#/components/layout/GoHomeBtn";
+import { GoHomeBtn } from "@/components/layout/GoHomeBtn";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";

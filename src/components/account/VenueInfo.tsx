@@ -5,7 +5,7 @@ import type { Venue } from '@/lib/zod/index';
 import { Stack, Box, Button, Typography } from '@mui/material';
 import { AccountVenueCard } from "@/components/account/components/AccountVenueCard";
 import { ModalWindow } from '@/components/layout/Modal';
-import { registerVenueFormTitle, venueFormTips, VenueForm } from "#/components/account/components/VenueForm";
+import { registerVenueFormTitle, venueFormTips, VenueForm } from "@/components/account/components/VenueForm";
 
 interface VenueInfoProps {
   venueInfo: Venue[];

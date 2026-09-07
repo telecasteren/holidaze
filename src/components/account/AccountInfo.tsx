@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { ModalWindow } from "@/components/layout/Modal";
-import { VenueManagerForm } from "#/components/account/components/VenueManagerForm";
+import { VenueManagerForm } from "@/components/account/components/VenueManagerForm";
 
 interface AccountInfoProps {
   user: {

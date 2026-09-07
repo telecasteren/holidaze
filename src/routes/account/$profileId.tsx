@@ -10,7 +10,7 @@ import { AccountInfo } from '@/components/account/AccountInfo';
 import { MyTripsInfo } from '@/components/account/MyTripsInfo';
 import { VenueInfo } from '@/components/account/VenueInfo';
 import { AccountHero } from '@/components/account/AccountHero';
-import { BookingsInfo } from '#/components/account/BookingsInfo';
+import { BookingsInfo } from '@/components/account/BookingsInfo';
 
 export const Route = createFileRoute('/account/$profileId')({
   beforeLoad({ context }) {

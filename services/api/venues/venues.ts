@@ -7,7 +7,7 @@ import type { VenuePayload } from "@/lib/zod/index";
 
 export const getAllVenues = withApiHandler({
   label: "getAllVenues",
-  endpoint:  `${API_URL}${VENUES}`,
+  endpoint:  `${API_URL}${VENUES}?sort=created&sortOrder=desc`,
   schema: apiVenueSchema,
 });
 

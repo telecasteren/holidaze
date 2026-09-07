@@ -21,17 +21,19 @@ export const Favourites = ({children, venue}: FavouritesProps ) => {
   return (
     <Stack sx={{ position: 'relative' }}>
       {favorites[venue.id]
-        ? <IconButton aria-label="favourite-on">
+        ? <IconButton aria-label="favourite-on"
+          sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }}
+        >
           <FavoriteIcon
           onClick={() => handleToggleFavorite(venue.id)}
-          sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1, color: 'error.light' }}
         />
           </IconButton>
         :
-        <IconButton aria-label="favourite-off">
-        <FavoriteBorderIcon
-          onClick={() => handleToggleFavorite(venue.id)}
+        <IconButton aria-label="favourite-off"
           sx={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1 }}
+        >
+          <FavoriteBorderIcon
+          onClick={() => handleToggleFavorite(venue.id)}
           />
         </IconButton>
       }

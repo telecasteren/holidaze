@@ -100,6 +100,10 @@ Purely visual, no `remember me` logic implemented.
 **Reviews:**<br/>
 Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
 
+**HTML Validator flags: "Element `style` not allowed as child of element `h1` in this context.."**<br/>
+This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
+
+
 ---
 
 ## AI Usage

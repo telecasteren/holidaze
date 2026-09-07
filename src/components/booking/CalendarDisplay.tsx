@@ -9,12 +9,28 @@ import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import type { BookingForm, Venue } from "@/lib/zod/index";
 
-import { Stack, Box, Typography, Button } from "@mui/material";
+import { Stack, Box, Typography, Button, styled } from "@mui/material";
 import { RangeCalendar } from "@/components/booking/RangeCalendar";
 import { GuestCountPicker } from "@/components/booking/GuestCountPicker"
 import { BookingWindow } from "@/components/booking/BookingWindow";
 import { ModalWindow } from "@/components/layout/Modal";
 import { today, getLocalTimeZone } from "@internationalized/date";
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: 20,
+  padding: 20,
+  borderRadius: 8,
+  height: "fit-content",
+  backgroundColor: theme.palette.background.paper,
+  [theme.breakpoints.up("xs")]: {
+    width: 300,
+  },
+  [theme.breakpoints.up("sm")]: {
+    width: 350,
+  },
+}))
 
 interface CalendarDisplayProps {
   venueId: string;
@@ -71,24 +87,36 @@ export const CalendarDisplay = ({ venueId, bookings }: CalendarDisplayProps) => 
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "1fr 2fr" },
           justifyItems: "center",
+          alignItems: "center",
           width: "100%"
         }}>
-        <Controller
-          name="dateRange"
-          control={control}
-          render={({ field }) => (
-            <RangeCalendar
-              value={field.value}
-              onChange={field.onChange}
-              isDateUnavailable={isDateUnavailable}
-              minValue={today(getLocalTimeZone())}
+
+        <Box>
+          <Typography
+            variant="h4"
+            sx={{ mt: 8, textAlign: "center" }}
+          >
+            See availability
+          </Typography>
+
+          <Controller
+            name="dateRange"
+            control={control}
+            render={({ field }) => (
+              <RangeCalendar
+                value={field.value}
+                onChange={field.onChange}
+                isDateUnavailable={isDateUnavailable}
+                minValue={today(getLocalTimeZone())}
+              />
+            )}
             />
-          )}
-          />
+        </Box>
+
 
         {/* BOOKING SUMMARY */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Typography variant="h5">Booking information</Typography>
+        <StyledBox>
+        <Typography variant="h5">Booking summary</Typography>
               <Typography variant="body1"><strong>Dates selected: </strong>{dates}</Typography>
               <Typography variant="body2"><strong>Total nights: </strong>{nights}</Typography>
 
@@ -105,7 +133,7 @@ export const CalendarDisplay = ({ venueId, bookings }: CalendarDisplayProps) => 
             >
             BOOK THIS VENUE
             </Button>
-          </Box>
+          </StyledBox>
       </Stack>
     </>
   );
