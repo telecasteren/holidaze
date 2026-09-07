@@ -1,15 +1,24 @@
-import { Typography, TextField, Stack, Link, InputLabel, IconButton, Container, Button, Box } from '@mui/material';
-import { BrandLogo } from './BrandLogo';
-import { toast } from 'react-hot-toast';
-import { LinkedInIcon, TwitterIcon, InstagramIcon } from './icons';
-import { brandSettings } from '@/lib/brand/brandSettings';
+import {
+  Typography,
+  TextField,
+  Stack,
+  Link,
+  InputLabel,
+  IconButton,
+  Container,
+  Button,
+  Box,
+} from '@mui/material'
+import { BrandLogo } from './BrandLogo'
+import { toast } from 'react-hot-toast'
+import { LinkedInIcon, TwitterIcon, InstagramIcon } from './icons'
+import { brandSettings } from '@/lib/brand/brandSettings'
 
 function Copyright() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   return (
     <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
-         {currentYear}{" "}
-      {'Copyright © '}
+      {currentYear} {'Copyright © '}
       <Link
         href="/"
         sx={{
@@ -19,14 +28,13 @@ function Copyright() {
         {brandSettings.name}
       </Link>
     </Typography>
-  );
+  )
 }
 
 export default function Footer() {
-
   const handleSubscribe = () => {
-    toast.remove();
-    toast.success("Subscribed! Great content heading your way.");
+    toast.remove()
+    toast.success('Subscribed! Great content heading your way.')
   }
 
   return (
@@ -58,7 +66,11 @@ export default function Footer() {
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <BrandLogo />
-            <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
+            <Typography
+              variant="body2"
+              gutterBottom
+              sx={{ fontWeight: 600, mt: 2 }}
+            >
               Join the newsletter
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
@@ -247,5 +259,5 @@ export default function Footer() {
         </Stack>
       </Box>
     </Container>
-  );
+  )
 }

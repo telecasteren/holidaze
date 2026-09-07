@@ -1,16 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Container } from '@mui/material';
-import { AuthForm } from "@/components/auth/AuthForm";
+import { createFileRoute } from '@tanstack/react-router'
+import { Container } from '@mui/material'
+import { AuthForm } from '@/components/auth/AuthForm'
 
 export const Route = createFileRoute('/auth/login')({
   head: () => ({
     meta: [
       {
-        name: "description",
-        content: "Sign in to your account at Holidaze.",
+        name: 'description',
+        content: 'Sign in to your account at Holidaze.',
       },
       {
-        title: "Signin — Holidaze",
+        title: 'Signin — Holidaze',
       },
     ],
   }),

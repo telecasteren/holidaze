@@ -1,15 +1,15 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import { ExpandMoreIcon } from '@/components/layout/icons';
+import * as React from 'react'
+import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography'
+import { ExpandMoreIcon } from '@/components/layout/icons'
 
 export function FAQ() {
-  const [expanded, setExpanded] = React.useState<string[]>([]);
+  const [expanded, setExpanded] = React.useState<string[]>([])
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -17,8 +17,8 @@ export function FAQ() {
         isExpanded
           ? [...expanded, panel]
           : expanded.filter((item) => item !== panel),
-      );
-    };
+      )
+    }
 
   return (
     <Container
@@ -64,8 +64,11 @@ export function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              You can reach our customer support team by emailing{" "}
-              <Link href="mailto:support@email.com">support@email.com</Link>. We&apos;re here to assist you and normally respond within 48 hours. For more pressing concerns, questions about bookings or cancellations, please contact the venue manager directly.
+              You can reach our customer support team by emailing{' '}
+              <Link href="mailto:support@email.com">support@email.com</Link>.
+              We&apos;re here to assist you and normally respond within 48
+              hours. For more pressing concerns, questions about bookings or
+              cancellations, please contact the venue manager directly.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -88,7 +91,10 @@ export function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              If the venue doesn&apos;t meet our rules for venue standards, you can request a refund within 7 days of the day you arrive. Please note that a complaint and request for a refund will follow our refund policy and may take up to 14 days to process.
+              If the venue doesn&apos;t meet our rules for venue standards, you
+              can request a refund within 7 days of the day you arrive. Please
+              note that a complaint and request for a refund will follow our
+              refund policy and may take up to 14 days to process.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -111,8 +117,10 @@ export function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Our platform distinguishes itself through its market adaptability, user journeys, and innovative features.
-              We prioritize user satisfaction and continually strive to exceed expectations in every aspect.
+              Our platform distinguishes itself through its market adaptability,
+              user journeys, and innovative features. We prioritize user
+              satisfaction and continually strive to exceed expectations in
+              every aspect.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -126,7 +134,8 @@ export function FAQ() {
             id="panel4d-header"
           >
             <Typography component="span" variant="subtitle2">
-              How do I cancel my booking when I've overceeded the cancellation deadline?
+              How do I cancel my booking when I've overceeded the cancellation
+              deadline?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -135,11 +144,15 @@ export function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              If the cancellation deadline is overdue and you have prepaid for the stay, you do not get this payment back. If the payment was due on arrival day, you may be charged a late fee or the entire amount. This is dependant on your venues standards. Please see the venue site for specific information.
+              If the cancellation deadline is overdue and you have prepaid for
+              the stay, you do not get this payment back. If the payment was due
+              on arrival day, you may be charged a late fee or the entire
+              amount. This is dependant on your venues standards. Please see the
+              venue site for specific information.
             </Typography>
           </AccordionDetails>
         </Accordion>
       </Box>
     </Container>
-  );
+  )
 }

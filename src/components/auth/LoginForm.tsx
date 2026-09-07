@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { useNavigate, useRouter } from "@tanstack/react-router";
-import { useForm } from "react-hook-form";
-import { loginFn } from '@/server/authFunctions';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginFormSchema } from "@/lib/zod/loginFormSchema";
-import type { LoginFormSchemaType } from "@/lib/zod/loginFormSchema";
-import { toast } from 'react-hot-toast';
+import * as React from 'react'
+import { useNavigate, useRouter } from '@tanstack/react-router'
+import { useForm } from 'react-hook-form'
+import { loginFn } from '@/server/authFunctions'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginFormSchema } from '@/lib/zod/loginFormSchema'
+import type { LoginFormSchemaType } from '@/lib/zod/loginFormSchema'
+import { toast } from 'react-hot-toast'
 
 import {
   Box,
@@ -19,15 +19,14 @@ import {
   TextField,
   Typography,
   Stack,
-} from "@mui/material";
+} from '@mui/material'
 
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiCard from '@mui/material/Card';
-import { styled } from '@mui/material/styles';
-import AppTheme from '@/components/shared-theme/AppTheme';
-import { BrandLogo } from '@/components/layout/BrandLogo';
-import ForgotPassword from './ForgotPassword';
-
+import CssBaseline from '@mui/material/CssBaseline'
+import MuiCard from '@mui/material/Card'
+import { styled } from '@mui/material/styles'
+import AppTheme from '@/components/shared-theme/AppTheme'
+import { BrandLogo } from '@/components/layout/BrandLogo'
+import ForgotPassword from './ForgotPassword'
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -46,7 +45,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
     boxShadow:
       'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px',
   }),
-}));
+}))
 
 const LoginContainer = styled(Stack)(({ theme }) => ({
   height: 'calc((1 - var(--template-frame-height, 0)) * 100dvh)',
@@ -69,55 +68,56 @@ const LoginContainer = styled(Stack)(({ theme }) => ({
         'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
     }),
   },
-}));
+}))
 
 export default function LoginForm(props: { disableCustomTheme?: boolean }) {
-  const navigate = useNavigate();
-  const router = useRouter();
-  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate()
+  const router = useRouter()
+  const [open, setOpen] = React.useState(false)
 
   const {
     register,
     formState: { errors },
   } = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
-    mode: "onBlur",
-  });
+    mode: 'onBlur',
+  })
 
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
+    const data = new FormData(event.currentTarget)
+    const email = data.get('email') as string
+    const password = data.get('password') as string
 
     try {
-      const { name } = await loginFn({ data: { email, password } });
-      await router.invalidate();
-      toast.success("Signing in...");
+      const { name } = await loginFn({ data: { email, password } })
+      await router.invalidate()
+      toast.success('Signing in...')
 
       setTimeout(() => {
-        navigate({ to: "/account/$profileId", params: { profileId: name } })
+        navigate({ to: '/account/$profileId', params: { profileId: name } })
       }, 1500)
-
     } catch (error) {
-      throw new Error("Login failed", { cause: error as string });
+      throw new Error('Login failed', { cause: error as string })
     }
-  };
-
+  }
 
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
-      <LoginContainer direction="column" sx={{ justifyContent: 'space-between' }}>
+      <LoginContainer
+        direction="column"
+        sx={{ justifyContent: 'space-between' }}
+      >
         <Card variant="outlined">
           <BrandLogo />
           <Typography
@@ -149,7 +149,7 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
                 required
                 fullWidth
                 variant="outlined"
-                {...register("email")}
+                {...register('email')}
                 aria-invalid={!!errors.email}
                 helperText={errors.email ? errors.email.message : null}
                 error={!!errors.email}
@@ -165,7 +165,7 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
                 required
                 fullWidth
                 variant="outlined"
-                {...register("password")}
+                {...register('password')}
                 aria-invalid={!!errors.password}
                 helperText={errors.password ? errors.password.message : null}
                 error={!!errors.password}
@@ -176,11 +176,7 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
               label="Remember me"
             />
             <ForgotPassword open={open} handleClose={handleClose} />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-            >
+            <Button type="submit" fullWidth variant="contained">
               Sign in
             </Button>
             <Link
@@ -211,5 +207,5 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
         </Card>
       </LoginContainer>
     </AppTheme>
-  );
+  )
 }

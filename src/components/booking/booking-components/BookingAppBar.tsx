@@ -1,9 +1,9 @@
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
-import { CloseRoundedIcon } from '@/components/layout/icons';
+import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material'
+import { CloseRoundedIcon } from '@/components/layout/icons'
 
 interface BookingAppBarProps {
-  disabled: boolean;
-  close: () => void;
+  disabled: boolean
+  close: () => void
 }
 
 export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
@@ -25,12 +25,7 @@ export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
         >
           Booking overview
         </Typography>
-        <Button
-          type="submit"
-          autoFocus
-          variant="contained"
-          disabled={disabled}
-        >
+        <Button type="submit" autoFocus variant="contained" disabled={disabled}>
           Confirm booking
         </Button>
       </Toolbar>

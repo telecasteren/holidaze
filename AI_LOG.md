@@ -41,8 +41,8 @@
 **Tool used:** llama3<br/>
 **Date:** 29.08.26<br/>
 **Purpose:** Help me understand the incompatibility of expected `onChange` value on MUIs TextField component.<br/>
-***Example:**
-`onChange={onChange}` vs `onChange={(event) => onChange(Number(event.target.value))}`*<br/>
+_**Example:**
+`onChange={onChange}` vs `onChange={(event) => onChange(Number(event.target.value))}`_<br/>
 **Outcome:** Understood that the onChange event on the TextField expects a function that takes an event.<br/>
 
 **Tool used:** Claude Sonnet 5<br/>

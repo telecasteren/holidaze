@@ -1,6 +1,6 @@
-import React from "react";
-import { styled, Tooltip, tooltipClasses } from '@mui/material';
-import type { TooltipProps } from '@mui/material/Tooltip';
+import React from 'react'
+import { styled, Tooltip, tooltipClasses } from '@mui/material'
+import type { TooltipProps } from '@mui/material/Tooltip'
 
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip describeChild {...props} classes={{ popper: className }} />
@@ -12,22 +12,19 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
     fontSize: theme.typography.pxToRem(12),
     border: '1px solid #dadde9',
   },
-}));
+}))
 
 type TooltipWithContentProps = {
-  trigger: React.ReactElement;
-  children: React.ReactNode;
-};
+  trigger: React.ReactElement
+  children: React.ReactNode
+}
 
-export const TooltipWithContent = ({trigger, children}: TooltipWithContentProps) => {
+export const TooltipWithContent = ({
+  trigger,
+  children,
+}: TooltipWithContentProps) => {
   return (
-    <HtmlTooltip
-      title={
-       <React.Fragment>
-          {children}
-       </React.Fragment>
-      }
-    >
+    <HtmlTooltip title={<React.Fragment>{children}</React.Fragment>}>
       {trigger}
     </HtmlTooltip>
   )

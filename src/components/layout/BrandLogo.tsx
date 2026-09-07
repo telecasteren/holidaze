@@ -1,5 +1,5 @@
-import { brandSettings } from '@/lib/brand/brandSettings';
-import { Link } from '@tanstack/react-router';
+import { brandSettings } from '@/lib/brand/brandSettings'
+import { Link } from '@tanstack/react-router'
 
 export function BrandLogo() {
   return (
@@ -7,7 +7,7 @@ export function BrandLogo() {
       <img
         src={brandSettings.logo}
         alt={`Brand logo for ${brandSettings.name}`}
-        />
+      />
     </Link>
-  );
+  )
 }

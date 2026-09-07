@@ -5,15 +5,16 @@ export const Route = createFileRoute('/legal/privacy')({
   head: () => ({
     meta: [
       {
-        name: "privacy",
-        content: "Get familiar with and understand our policies and how we follow privacy.",
+        name: 'privacy',
+        content:
+          'Get familiar with and understand our policies and how we follow privacy.',
       },
-      { title: "Privacy & Security | Holidaze" },
+      { title: 'Privacy & Security | Holidaze' },
     ],
   }),
   notFoundComponent: () => {
-     return <p>This page doesn't exist.</p>
-   },
+    return <p>This page doesn't exist.</p>
+  },
 })
 
 function Privacy() {

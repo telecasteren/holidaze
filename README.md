@@ -4,10 +4,10 @@ A venue booking system where users can browse and book venues, manage their venu
 **Author:** Tele Caster Nilsen<br/>
 **Live site:** https://holidaze.telecasternilsen.com
 
-
 ---
 
 **Table of Contents**
+
 - [Introduction](#introduction)
 - [Technologies](#technologies)
 - [Installation](#installation)
@@ -16,7 +16,6 @@ A venue booking system where users can browse and book venues, manage their venu
 - [Application Weaknesses](#application-weaknesses)
 - [AI Usage](#ai_usage)
 - [Resources](#resources)
-
 
 ## Introduction
 
@@ -32,8 +31,8 @@ This project is my exams project at Noroff School of Technology and Digital Medi
 - react-hot-toast
 - Noroff v2 REST API
 
-*Noroff API docs:*
-[API overview](https://docs.noroff.dev/docs/v2/holidaze/bookings) | 
+_Noroff API docs:_
+[API overview](https://docs.noroff.dev/docs/v2/holidaze/bookings) |
 [Swagger API](https://v2.api.noroff.dev/docs/static/index.html#/holidaze-profiles)
 
 ## Installation
@@ -71,7 +70,6 @@ This app is deployed on Netlify.<br/>
 
 **Linting & Formatting**
 
-
 This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
 
 ```bash
@@ -103,7 +101,6 @@ Purely mock-data to show how reviews are displayed, because the API does not ser
 **HTML Validator flags: "Element `style` not allowed as child of element `h1` in this context.."**<br/>
 This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
 
-
 ---
 
 ## AI Usage
@@ -115,8 +112,7 @@ In this project, AI can be used to:
 - Generating some boilerplate / scaffolding
 - Drafting initial documentation and JSDocs
 
-*All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md).*
-
+_All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 
 ### Resources
 

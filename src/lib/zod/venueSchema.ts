@@ -1,97 +1,118 @@
-import z from "zod";
-import { customerSchema } from "./customerSchema";
-import { metaSchema, emptyMetaSchema } from "./metaSchema";
+import z from 'zod'
+import { customerSchema } from './customerSchema'
+import { metaSchema, emptyMetaSchema } from './metaSchema'
 
 export const venueMetaSchema = z.object({
   wifi: z.boolean(),
   parking: z.boolean(),
   breakfast: z.boolean(),
   pets: z.boolean(),
-});
+})
 
 export const venueSchema = z.object({
   id: z.string(),
   name: z.string(),
   description: z.string(),
-  media: z.array(z.object({
-    url: z.string(),
-    alt: z.string(),
-  })),
+  media: z.array(
+    z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+  ),
   price: z.number(),
   maxGuests: z.number().int(),
   rating: z.number(),
   created: z.string(),
   updated: z.string(),
   meta: venueMetaSchema,
-  location: z.object({
-    address: z.string().nullable(),
-    city: z.string().nullable(),
-    zip: z.string().nullable(),
-    country: z.string().nullable(),
-    continent: z.string().nullable(),
-    lat: z.number().nullable(),
-    lng: z.number().nullable(),
-  }).optional(),
-  owner: z.object({
-    name: z.string(),
-    email: z.string(),
-    bio: z.string().nullable(),
-    avatar: z.object({ url: z.string(), alt: z.string() }),
-    banner: z.object({ url: z.string(), alt: z.string() }),
-  }).optional(),
-  bookings: z.array(z.object({
-    id: z.string(),
-    dateFrom: z.string(),
-    dateTo: z.string(),
-    guests: z.number(),
-    created: z.string(),
-    updated: z.string(),
-    customer: customerSchema,
-    venue: z.object({
-      id: z.string(),
+  location: z
+    .object({
+      address: z.string().nullable(),
+      city: z.string().nullable(),
+      zip: z.string().nullable(),
+      country: z.string().nullable(),
+      continent: z.string().nullable(),
+      lat: z.number().nullable(),
+      lng: z.number().nullable(),
+    })
+    .optional(),
+  owner: z
+    .object({
       name: z.string(),
-      description: z.string(),
-      media: z.array(z.object({
-        url: z.string(),
-        alt: z.string(),
-      })),
-      price: z.number(),
-      maxGuests: z.number(),
-      rating: z.number(),
-      created: z.string(),
-      updated: z.string(),
-      meta: z.object({
-        wifi: z.boolean(),
-        parking: z.boolean(),
-        breakfast: z.boolean(),
-        pets: z.boolean(),
+      email: z.string(),
+      bio: z.string().nullable(),
+      avatar: z.object({ url: z.string(), alt: z.string() }),
+      banner: z.object({ url: z.string(), alt: z.string() }),
+    })
+    .optional(),
+  bookings: z
+    .array(
+      z.object({
+        id: z.string(),
+        dateFrom: z.string(),
+        dateTo: z.string(),
+        guests: z.number(),
+        created: z.string(),
+        updated: z.string(),
+        customer: customerSchema,
+        venue: z
+          .object({
+            id: z.string(),
+            name: z.string(),
+            description: z.string(),
+            media: z.array(
+              z.object({
+                url: z.string(),
+                alt: z.string(),
+              }),
+            ),
+            price: z.number(),
+            maxGuests: z.number(),
+            rating: z.number(),
+            created: z.string(),
+            updated: z.string(),
+            meta: z.object({
+              wifi: z.boolean(),
+              parking: z.boolean(),
+              breakfast: z.boolean(),
+              pets: z.boolean(),
+            }),
+            location: z
+              .object({
+                address: z.string().nullable(),
+                city: z.string().nullable(),
+                zip: z.string().nullable(),
+                country: z.string().nullable(),
+                continent: z.string().nullable(),
+                lat: z.number().nullable(),
+                lng: z.number().nullable(),
+              })
+              .optional(),
+          })
+          .optional(),
       }),
-      location: z.object({
-        address: z.string().nullable(),
-        city: z.string().nullable(),
-        zip: z.string().nullable(),
-        country: z.string().nullable(),
-        continent: z.string().nullable(),
-        lat: z.number().nullable(),
-        lng: z.number().nullable(),
-      }).optional(),
-    }).optional()
-  })).optional(),
-  _count: z.object({ bookings: z.number().optional()}).optional()
-});
+    )
+    .optional(),
+  _count: z.object({ bookings: z.number().optional() }).optional(),
+})
 
 export const postVenueSchema = z.object({
-    name: z.string(),
-    description: z.string(),
-    media: z.array(z.object({
-      url: z.string(),
-      alt: z.string(),
-    })).optional(),
-    price: z.number(),
-    maxGuests: z.number().int(),
-    rating: z.number().optional(),
-    meta: venueMetaSchema,
-    location: z.object({
+  name: z.string(),
+  description: z.string(),
+  media: z
+    .array(
+      z.object({
+        url: z.string(),
+        alt: z.string(),
+      }),
+    )
+    .optional(),
+  price: z.number(),
+  maxGuests: z.number().int(),
+  rating: z.number().optional(),
+  meta: venueMetaSchema,
+  location: z
+    .object({
       address: z.string().nullable(),
       city: z.string().nullable(),
       zip: z.string().nullable(),
@@ -99,28 +120,31 @@ export const postVenueSchema = z.object({
       continent: z.string().nullable(),
       lat: z.float64().nullable(),
       lng: z.float64().nullable(),
-    }).optional(),
+    })
+    .optional(),
 })
 
 export const apiVenueSchema = z.object({
   data: z.array(venueSchema),
   meta: metaSchema,
-});
+})
 
 export const apiSingleVenueSchema = z.object({
   data: venueSchema,
   meta: emptyMetaSchema,
-});
+})
 
 export const apiVenueResponseSchema = z.object({
   data: z.object({
     id: z.string(),
     name: z.string().nullable(),
     description: z.string().nullable(),
-    media: z.array(z.object({
-      url: z.string(),
-      alt: z.string(),
-    })),
+    media: z.array(
+      z.object({
+        url: z.string(),
+        alt: z.string(),
+      }),
+    ),
     price: z.number(),
     maxGuests: z.number().int(),
     rating: z.number(),
@@ -140,9 +164,9 @@ export const apiVenueResponseSchema = z.object({
   meta: emptyMetaSchema,
 })
 
-export type VenueMeta = z.infer<typeof venueMetaSchema>;
-export type Venue = z.infer<typeof venueSchema>;
-export type VenuePayload = z.infer<typeof postVenueSchema>;
+export type VenueMeta = z.infer<typeof venueMetaSchema>
+export type Venue = z.infer<typeof venueSchema>
+export type VenuePayload = z.infer<typeof postVenueSchema>
 
-export const updateVenueSchema = postVenueSchema.extend({ id: z.string()});
-export type UpdateVenuePayload = z.infer<typeof updateVenueSchema>;
+export const updateVenueSchema = postVenueSchema.extend({ id: z.string() })
+export type UpdateVenuePayload = z.infer<typeof updateVenueSchema>

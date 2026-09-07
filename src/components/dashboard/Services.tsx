@@ -1,19 +1,23 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import MuiChip from '@mui/material/Chip';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-import { DevicesRoundedIcon, ViewQuiltRoundedIcon, CalendarMonthIcon } from "@/components/layout/icons"
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import MuiChip from '@mui/material/Chip'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import { styled } from '@mui/material/styles'
+import {
+  DevicesRoundedIcon,
+  ViewQuiltRoundedIcon,
+  CalendarMonthIcon,
+} from '@/components/layout/icons'
 
 const items = [
   {
-      icon: <ViewQuiltRoundedIcon />,
-      title: 'Metrics',
-      description:
-        'This item will provide important metrics or data points related to the product.',
+    icon: <ViewQuiltRoundedIcon />,
+    title: 'Metrics',
+    description:
+      'This item will provide important metrics or data points related to the product.',
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/dash-light.png")`,
     imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/dash-dark.png")`,
   },
@@ -33,10 +37,10 @@ const items = [
     imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/devices-light.png")`,
     imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/devices-dark.png")`,
   },
-];
+]
 
 interface ChipProps {
-  selected?: boolean;
+  selected?: boolean
 }
 
 const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
@@ -57,12 +61,12 @@ const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
       },
     },
   ],
-}));
+}))
 
 interface MobileLayoutProps {
-  selectedItemIndex: number;
-  handleItemClick: (index: number) => void;
-  selectedFeature: (typeof items)[0];
+  selectedItemIndex: number
+  handleItemClick: (index: number) => void
+  selectedFeature: (typeof items)[0]
 }
 
 export function MobileLayout({
@@ -71,7 +75,7 @@ export function MobileLayout({
   selectedFeature,
 }: MobileLayoutProps) {
   if (!items[selectedItemIndex]) {
-    return null;
+    return null
   }
 
   return (
@@ -127,17 +131,17 @@ export function MobileLayout({
         </Box>
       </Card>
     </Box>
-  );
+  )
 }
 
 export function Services() {
-  const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
+  const [selectedItemIndex, setSelectedItemIndex] = React.useState(0)
 
   const handleItemClick = (index: number) => {
-    setSelectedItemIndex(index);
-  };
+    setSelectedItemIndex(index)
+  }
 
-  const selectedFeature = items[selectedItemIndex];
+  const selectedFeature = items[selectedItemIndex]
 
   return (
     <Container id="services" sx={{ py: { xs: 8, sm: 16 } }}>
@@ -154,7 +158,8 @@ export function Services() {
           variant="body1"
           sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
         >
-          Here comes a brief overview of the key services of the site. About fees, membership benefits, and security.
+          Here comes a brief overview of the key services of the site. About
+          fees, membership benefits, and security.
         </Typography>
       </Box>
       <Box
@@ -184,7 +189,8 @@ export function Services() {
                     height: '100%',
                     width: '100%',
                     '&:hover': {
-                      backgroundColor: (theme.vars || theme).palette.action.hover,
+                      backgroundColor: (theme.vars || theme).palette.action
+                        .hover,
                     },
                   }),
                   selectedItemIndex === index && {
@@ -263,5 +269,5 @@ export function Services() {
         </Box>
       </Box>
     </Container>
-  );
+  )
 }

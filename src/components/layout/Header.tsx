@@ -1,12 +1,13 @@
-import * as React from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import { Link } from '@tanstack/react-router';
-import { navOptions } from "@/lib/link-options/navOptions"
-import { stringAvatar } from '@/lib/utils/stringAvatar';
-import { toast } from 'react-hot-toast';
+import * as React from 'react'
+import { useAuth } from '@/hooks/useAuth'
+import { Link } from '@tanstack/react-router'
+import { navOptions } from '@/lib/link-options/navOptions'
+import { stringAvatar } from '@/lib/utils/stringAvatar'
+import { toast } from 'react-hot-toast'
 
 import {
-  styled, alpha,
+  styled,
+  alpha,
   MenuList,
   Box,
   Drawer,
@@ -18,14 +19,14 @@ import {
   Divider,
   MenuItem,
   Avatar,
-  Typography
-} from '@mui/material';
+  Typography,
+} from '@mui/material'
 
-import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
-import { BrandLogo } from '@/components/layout/BrandLogo';
-import { MenuIcon, CloseRoundedIcon, LogoutIcon } from './icons';
-import { LinkToAccount } from '../LinkToAccount';
-import { TooltipWithContent } from "@/components/layout/Tooltips";
+import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown'
+import { BrandLogo } from '@/components/layout/BrandLogo'
+import { MenuIcon, CloseRoundedIcon, LogoutIcon } from './icons'
+import { LinkToAccount } from '../LinkToAccount'
+import { TooltipWithContent } from '@/components/layout/Tooltips'
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -41,24 +42,24 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     : alpha(theme.palette.background.default, 0.4),
   boxShadow: (theme.vars || theme).shadows[1],
   padding: '8px 12px',
-}));
+}))
 
 export default function Header() {
-  const [open, setOpen] = React.useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
-  const userName = user?.name as string;
-  const avatarProps = stringAvatar(userName || "John Doe");
+  const [open, setOpen] = React.useState(false)
+  const { isAuthenticated, user, logout } = useAuth()
+  const userName = user?.name as string
+  const avatarProps = stringAvatar(userName || 'John Doe')
 
   const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+    setOpen(newOpen)
+  }
 
   const handleLogout = () => {
-    toast.success("Logging out...");
+    toast.success('Logging out...')
     setTimeout(() => {
-      logout();
-    }, 1500);
-  };
+      logout()
+    }, 1500)
+  }
 
   return (
     <AppBar
@@ -73,23 +74,28 @@ export default function Header() {
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-             <BrandLogo />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}
+          <Box
+            sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}
+          >
+            <BrandLogo />
+            <Box
+              sx={{ display: { xs: 'none', md: 'flex' } }}
               component="nav"
               aria-label="main menu navigation"
             >
               {navOptions().map((item) => {
                 return (
-                  <Link
-                    {...item.link}
-                    key={item.label}
-                  >
-                      <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+                  <Link {...item.link} key={item.label}>
+                    <Button
+                      variant="text"
+                      color="info"
+                      size="small"
+                      sx={{ minWidth: 0 }}
+                    >
                       {item.label}
-                        </Button>
-                    </Link>
-                  )
+                    </Button>
+                  </Link>
+                )
               })}
             </Box>
           </Box>
@@ -102,48 +108,52 @@ export default function Header() {
           >
             {!isAuthenticated ? (
               <>
-            <Button color="primary" variant="text" size="small"
-             href="/auth/login">
-             Sign in
-           </Button>
-           <Button color="primary" variant="contained" size="small"
-             href="/auth/signup">
-             Sign up
+                <Button
+                  color="primary"
+                  variant="text"
+                  size="small"
+                  href="/auth/login"
+                >
+                  Sign in
+                </Button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  size="small"
+                  href="/auth/signup"
+                >
+                  Sign up
                 </Button>
               </>
-            )
-            :
-              (
-                <>
-                  <TooltipWithContent
-                    trigger={
-                      <LinkToAccount
-                        profileId={userName}
-                        unstyled
-                      >
-                        <Avatar
-                          key={userName}
-                          {...avatarProps}
-                          sx={{ ...avatarProps.sx, width: 30, height: 30 }}
-                        />
-                      </LinkToAccount>
+            ) : (
+              <>
+                <TooltipWithContent
+                  trigger={
+                    <LinkToAccount profileId={userName} unstyled>
+                      <Avatar
+                        key={userName}
+                        {...avatarProps}
+                        sx={{ ...avatarProps.sx, width: 30, height: 30 }}
+                      />
+                    </LinkToAccount>
                   }
-                  >
-                    <Typography variant="body1">Go to your account</Typography>
-                  </TooltipWithContent>
+                >
+                  <Typography variant="body1">Go to your account</Typography>
+                </TooltipWithContent>
 
-                  <TooltipWithContent
-                    trigger={
-                      <Button
-                        size="small"
-                        aria-label="Logout button"
-                        onClick={() => handleLogout()}>
-                        <LogoutIcon />
-                        </Button>
+                <TooltipWithContent
+                  trigger={
+                    <Button
+                      size="small"
+                      aria-label="Logout button"
+                      onClick={() => handleLogout()}
+                    >
+                      <LogoutIcon />
+                    </Button>
                   }
-                  >
-                    <Typography variant="body1">Log out</Typography>
-                  </TooltipWithContent>
+                >
+                  <Typography variant="body1">Log out</Typography>
+                </TooltipWithContent>
               </>
             )}
             <ColorModeIconDropdown />
@@ -178,16 +188,18 @@ export default function Header() {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <MenuList sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                <MenuList
+                  sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+                >
                   {navOptions().map((item) => {
                     return (
-                    <Link
-                      {...item.link}
+                      <Link
+                        {...item.link}
                         key={item.label}
                         style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      <MenuItem>{item.label}</MenuItem>
-                    </Link>
+                      >
+                        <MenuItem>{item.label}</MenuItem>
+                      </Link>
                     )
                   })}
                 </MenuList>
@@ -196,37 +208,42 @@ export default function Header() {
                 {!isAuthenticated ? (
                   // Show sign in/sign up buttons if not authenticated
                   <>
-                <Button type="link" color="primary" variant="text" size="small"
-                 href="/auth/login">
-                 Sign in
-               </Button>
-               <Button type="link" color="primary" variant="contained" size="small"
-                 href="/auth/signup">
-                 Sign up
+                    <Button
+                      type="link"
+                      color="primary"
+                      variant="text"
+                      size="small"
+                      href="/auth/login"
+                    >
+                      Sign in
+                    </Button>
+                    <Button
+                      type="link"
+                      color="primary"
+                      variant="contained"
+                      size="small"
+                      href="/auth/signup"
+                    >
+                      Sign up
                     </Button>
                   </>
-                )
-                  :
-                  (
-                    // Show Avatar and logout button if authenticated
+                ) : (
+                  // Show Avatar and logout button if authenticated
                   <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                  <LinkToAccount
-                    profileId={userName}
-                    unstyled
-                  >
-                    <Avatar
-                      key={userName}
-                      {...avatarProps}
-                      sx={{ ...avatarProps.sx, width: 30, height: 30 }}
-                    />
-                  </LinkToAccount>
-                  <Button
-                    size="small"
-                    aria-label="Logout button"
-                    onClick={() => handleLogout()}
-                  >
-                    <LogoutIcon />
-                  </Button>
+                    <LinkToAccount profileId={userName} unstyled>
+                      <Avatar
+                        key={userName}
+                        {...avatarProps}
+                        sx={{ ...avatarProps.sx, width: 30, height: 30 }}
+                      />
+                    </LinkToAccount>
+                    <Button
+                      size="small"
+                      aria-label="Logout button"
+                      onClick={() => handleLogout()}
+                    >
+                      <LogoutIcon />
+                    </Button>
                   </Box>
                 )}
               </Box>
@@ -235,5 +252,5 @@ export default function Header() {
         </StyledToolbar>
       </Container>
     </AppBar>
-  );
+  )
 }

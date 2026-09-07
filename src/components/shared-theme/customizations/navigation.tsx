@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { alpha } from '@mui/material/styles';
-import type { Theme, Components } from '@mui/material/styles';
-import type { SvgIconProps } from '@mui/material/SvgIcon';
-import { buttonBaseClasses } from '@mui/material/ButtonBase';
-import { dividerClasses } from '@mui/material/Divider';
-import { menuItemClasses } from '@mui/material/MenuItem';
-import { selectClasses } from '@mui/material/Select';
-import { tabClasses } from '@mui/material/Tab';
-import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import { gray, brand } from '../themePrimitives';
+import * as React from 'react'
+import { alpha } from '@mui/material/styles'
+import type { Theme, Components } from '@mui/material/styles'
+import type { SvgIconProps } from '@mui/material/SvgIcon'
+import { buttonBaseClasses } from '@mui/material/ButtonBase'
+import { dividerClasses } from '@mui/material/Divider'
+import { menuItemClasses } from '@mui/material/MenuItem'
+import { selectClasses } from '@mui/material/Select'
+import { tabClasses } from '@mui/material/Tab'
+import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded'
+import { gray, brand } from '../themePrimitives'
 
-/* eslint-disable import/prefer-default-export */
 export const navigationCustomizations: Components<Theme> = {
   MuiMenuItem: {
     styleOverrides: {
@@ -59,9 +58,11 @@ export const navigationCustomizations: Components<Theme> = {
   },
   MuiSelect: {
     defaultProps: {
-      IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
-        <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
-      )),
+      IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>(
+        (props, ref) => (
+          <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
+        ),
+      ),
     },
     styleOverrides: {
       root: ({ theme }) => ({
@@ -277,4 +278,4 @@ export const navigationCustomizations: Components<Theme> = {
       }),
     },
   },
-};
+}

@@ -5,15 +5,16 @@ export const Route = createFileRoute('/company/about')({
   head: () => ({
     meta: [
       {
-        name: "about",
-        content: "Learn about Holidaze and our mission to serve the greatest venues.",
+        name: 'about',
+        content:
+          'Learn about Holidaze and our mission to serve the greatest venues.',
       },
-      { title: "About us | Holidaze" },
+      { title: 'About us | Holidaze' },
     ],
   }),
   notFoundComponent: () => {
-     return <p>This page doesn't exist.</p>
-   },
+    return <p>This page doesn't exist.</p>
+  },
 })
 
 function About() {

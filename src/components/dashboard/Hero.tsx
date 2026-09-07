@@ -1,9 +1,9 @@
-import { Typography, Box, Container, Stack, styled } from "@mui/material";
-import HeroTitle from "@/components/layout/HeroTitle";
-import { CarouselDisplay } from "@/components/carousel/CarouselDisplay";
+import { Typography, Box, Container, Stack, styled } from '@mui/material'
+import HeroTitle from '@/components/layout/HeroTitle'
+import { CarouselDisplay } from '@/components/carousel/CarouselDisplay'
 
 const StyledBox = styled('div')(({ theme }) => ({
-  position: "relative",
+  position: 'relative',
   alignSelf: 'center',
   width: '100%',
   height: 400,
@@ -23,7 +23,7 @@ const StyledBox = styled('div')(({ theme }) => ({
     outlineColor: 'hsla(220, 20%, 42%, 0.1)',
     borderColor: (theme.vars || theme).palette.grey[700],
   }),
-}));
+}))
 
 export function Hero() {
   return (
@@ -53,9 +53,9 @@ export function Hero() {
         <Stack
           spacing={2}
           useFlexGap
-          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}>
-
-          <HeroTitle title="Most popular" span="venues"/>
+          sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
+        >
+          <HeroTitle title="Most popular" span="venues" />
 
           <Typography
             sx={{
@@ -64,8 +64,8 @@ export function Hero() {
               width: { sm: '100%', md: '80%' },
             }}
           >
-            Explore our remarkable venues and and find your next destination.
-            Be adventurous and discover new places to stay.
+            Explore our remarkable venues and and find your next destination. Be
+            adventurous and discover new places to stay.
           </Typography>
         </Stack>
 
@@ -75,5 +75,5 @@ export function Hero() {
         </StyledBox>
       </Container>
     </Box>
-  );
+  )
 }

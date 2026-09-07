@@ -1,25 +1,31 @@
-import { useSearchForm } from '../../hooks/useSearchForm';
-import { visuallyHidden } from '@mui/utils';
-import { InputLabel, TextField, Button, FormControl } from '@mui/material';
+import { useSearchForm } from '../../hooks/useSearchForm'
+import { visuallyHidden } from '@mui/utils'
+import { InputLabel, TextField, Button, FormControl } from '@mui/material'
 
 export function SearchForm() {
-  const { inputQuery, showClearSearch, handleSubmit, handleOnChange, handleClearSearch } = useSearchForm();
+  const {
+    inputQuery,
+    showClearSearch,
+    handleSubmit,
+    handleOnChange,
+    handleClearSearch,
+  } = useSearchForm()
 
   return (
     <FormControl
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        width: { xs: '80%', sm: '50%', },
+        width: { xs: '80%', sm: '50%' },
         mx: 'auto',
         mt: 4,
         mb: 6,
         display: 'flex',
         alignItems: 'center',
-        gap: 1
+        gap: 1,
       }}
     >
-       <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
+      <InputLabel htmlFor="search-hero" sx={visuallyHidden}>
         Search
       </InputLabel>
       <TextField
@@ -44,11 +50,11 @@ export function SearchForm() {
         color="primary"
         size="medium"
         fullWidth
-        type={showClearSearch ? "button" : "submit"}
+        type={showClearSearch ? 'button' : 'submit'}
         onClick={showClearSearch ? handleClearSearch : undefined}
       >
-        {showClearSearch ? "Clear" : "Search"}
+        {showClearSearch ? 'Clear' : 'Search'}
       </Button>
     </FormControl>
-  );
+  )
 }

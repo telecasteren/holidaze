@@ -1,29 +1,29 @@
-import { linkOptions } from "@tanstack/react-router";
+import { linkOptions } from '@tanstack/react-router'
 
 export const navOptions = () => [
   {
     link: linkOptions({
-      to: "/venues",
+      to: '/venues',
       activeOptions: { exact: true },
     }),
-    label: "Venues",
+    label: 'Venues',
     icon: false,
   },
   {
     link: linkOptions({
-      to: "/journal",
+      to: '/journal',
       activeOptions: { exact: true },
     }),
-    label: "Journal",
+    label: 'Journal',
     icon: false,
   },
   {
     link: linkOptions({
-      to: "/",
-      hash: "reviews",
+      to: '/',
+      hash: 'reviews',
       activeOptions: { exact: true },
     }),
-    label: "Reviews",
+    label: 'Reviews',
     icon: false,
   },
-];
+]

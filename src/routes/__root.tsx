@@ -5,19 +5,19 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast'
 
-import { getSession } from '@/server/authFunctions';
+import { getSession } from '@/server/authFunctions'
 
-import '../styles.css';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppTheme from '@/components/shared-theme/AppTheme';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import '../styles.css'
+import CssBaseline from '@mui/material/CssBaseline'
+import AppTheme from '@/components/shared-theme/AppTheme'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
-import { brandSettings } from '@/lib/brand/brandSettings';
-import { CustomError } from "@/lib/route-states/CustomError";
-import { DefaultNotFound } from "@/lib/route-states/DefaultNotFound";
+import { brandSettings } from '@/lib/brand/brandSettings'
+import { CustomError } from '@/lib/route-states/CustomError'
+import { DefaultNotFound } from '@/lib/route-states/DefaultNotFound'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import type { QueryClient } from '@tanstack/react-query'
@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        name: "description",
+        name: 'description',
         content: `${brandSettings.description}`,
       },
       {
@@ -48,23 +48,29 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     ],
     links: [
       {
-        rel: "icon",
+        rel: 'icon',
         href: `${brandSettings.logo}`,
       },
     ],
   }),
   beforeLoad: async () => {
-      const user = await getSession()
-      return {
-          user,
-      }
-   },
+    const user = await getSession()
+    return {
+      user,
+    }
+  },
   shellComponent: RootDocument,
   errorComponent: CustomError,
   notFoundComponent: DefaultNotFound,
 })
 
-function RootDocument({ children, disableCustomTheme }: { children: React.ReactNode; disableCustomTheme?: boolean }) {
+function RootDocument({
+  children,
+  disableCustomTheme,
+}: {
+  children: React.ReactNode
+  disableCustomTheme?: boolean
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -77,22 +83,22 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
           toastOptions={{
             duration: 3000,
             style: {
-              color: "#1e40af",
-              backgroundColor: "#dbeafe",
-              border: "1px solid #93c5fd",
+              color: '#1e40af',
+              backgroundColor: '#dbeafe',
+              border: '1px solid #93c5fd',
             },
             success: {
               style: {
-                color: "#166534",
-                backgroundColor: "#f0fdf4",
-                border: "1px solid #86efac",
+                color: '#166534',
+                backgroundColor: '#f0fdf4',
+                border: '1px solid #86efac',
               },
             },
             error: {
               style: {
-                color: "#991b1b",
-                backgroundColor: "#fef2f2",
-                border: "1px solid #fca5a5",
+                color: '#991b1b',
+                backgroundColor: '#fef2f2',
+                border: '1px solid #fca5a5',
               },
             },
           }}
@@ -100,9 +106,7 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
         <AppTheme disableCustomTheme={disableCustomTheme}>
           <CssBaseline enableColorScheme />
           <Header />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
           <Footer />
         </AppTheme>
         <TanStackDevtools
@@ -119,6 +123,6 @@ function RootDocument({ children, disableCustomTheme }: { children: React.ReactN
         />
         <Scripts />
       </body>
-      </html>
+    </html>
   )
 }

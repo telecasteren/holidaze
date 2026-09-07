@@ -1,24 +1,26 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { toast } from 'react-hot-toast';
+import * as React from 'react'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import { toast } from 'react-hot-toast'
 
 interface ForgotPasswordProps {
-  open: boolean;
-  handleClose: () => void;
+  open: boolean
+  handleClose: () => void
 }
 
-export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
-
+export default function ForgotPassword({
+  open,
+  handleClose,
+}: ForgotPasswordProps) {
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    toast.success("New activation link sent to your email");
-  };
+    event.preventDefault()
+    toast.success('New activation link sent to your email')
+  }
 
   return (
     <Dialog
@@ -28,9 +30,9 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
         paper: {
           component: 'form',
           onSubmit: (event: React.SubmitEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            handleClose();
-            handleSubmit(event);
+            event.preventDefault()
+            handleClose()
+            handleSubmit(event)
           },
           sx: { backgroundImage: 'none' },
         },
@@ -41,8 +43,8 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
         sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
       >
         <DialogContentText>
-          Enter your account&apos;s email address, and we&apos;ll send you a link to
-          reset your password.
+          Enter your account&apos;s email address, and we&apos;ll send you a
+          link to reset your password.
         </DialogContentText>
         <OutlinedInput
           autoFocus
@@ -63,5 +65,5 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
         </Button>
       </DialogActions>
     </Dialog>
-  );
+  )
 }

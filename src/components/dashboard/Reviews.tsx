@@ -1,15 +1,14 @@
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import { userReviews } from '@/lib/mock-data/reviews';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import { userReviews } from '@/lib/mock-data/reviews'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
 
 export function Reviews() {
-
   return (
     <Container
       id="reviews"
@@ -38,12 +37,17 @@ export function Reviews() {
           Reviews
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-          See what our customers love about our venues. Discover how easy it is to book and stay — from affordable guesthouses to luxury spa hotels.
+          See what our customers love about our venues. Discover how easy it is
+          to book and stay — from affordable guesthouses to luxury spa hotels.
         </Typography>
       </Box>
       <Grid container spacing={2}>
         {userReviews.map((review, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} sx={{ display: 'flex' }}>
+          <Grid
+            size={{ xs: 12, sm: 6, md: 4 }}
+            key={index}
+            sx={{ display: 'flex' }}
+          >
             <Card
               variant="outlined"
               sx={{
@@ -60,7 +64,11 @@ export function Reviews() {
                   gutterBottom
                   sx={{ color: 'text.secondary' }}
                 >
-                  <Typography variant="subtitle1" gutterBottom sx={{ color: 'text.secondary' }}>
+                  <Typography
+                    variant="subtitle1"
+                    gutterBottom
+                    sx={{ color: 'text.secondary' }}
+                  >
                     <Link href="/venues">{review.venue}</Link>
                   </Typography>
                   {review.reviewText}
@@ -73,15 +81,12 @@ export function Reviews() {
                   justifyContent: 'space-between',
                 }}
               >
-                <CardHeader
-                  avatar={review.avatar}
-                  title={review.author}
-                />
+                <CardHeader avatar={review.avatar} title={review.author} />
               </Box>
             </Card>
           </Grid>
         ))}
       </Grid>
     </Container>
-  );
+  )
 }

@@ -1,2 +1,1 @@
-
-export const localCurrency = "NOK";
+export const localCurrency = 'NOK'
