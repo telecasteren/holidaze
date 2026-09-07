@@ -74,19 +74,21 @@ function Venues() {
             <Favourites
               venue={venue}
               children={
-                <Box
-                  component="img"
-                  src={venue.media[0]?.url || "/no-image-icon.webp"}
-                  alt={venue.media[0]?.alt || `Image of ${venue.name}`}
-                  sx={{
-                    width: 300,
-                    height: 300,
-                    borderRadius: "inherit",
-                    objectFit: "contain",
-                    transition: "ease-in-out 0.3s",
-                    "&:hover": { opacity: 0.8 },
-                  }}
-                />
+                <LinkToVenue venueId={venue.id}>
+                  <Box
+                    component="img"
+                    src={venue.media[0]?.url || "/no-image-icon.webp"}
+                    alt={venue.media[0]?.alt || `Image of ${venue.name}`}
+                    sx={{
+                      width: 300,
+                      height: 300,
+                      borderRadius: "inherit",
+                      objectFit: "contain",
+                      transition: "ease-in-out 0.3s",
+                      "&:hover": { opacity: 0.8 },
+                    }}
+                  />
+                </LinkToVenue>
               }
             />
 
