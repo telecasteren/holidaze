@@ -1,11 +1,11 @@
-import { sortOptions } from '@/hooks/useSortBookingsForm'
-import type { SortOption } from '@/hooks/useSortBookingsForm'
-import type { SelectChangeEvent } from '@mui/material'
-import { Box, FormControl, Select, InputLabel, MenuItem } from '@mui/material'
+import { sortOptions } from "@/hooks/useSortBookingsForm";
+import type { SortOption } from "@/hooks/useSortBookingsForm";
+import type { SelectChangeEvent } from "@mui/material";
+import { Box, FormControl, Select, InputLabel, MenuItem } from "@mui/material";
 
 interface SortBookingsFormProps {
-  option: SortOption
-  onChange: (event: SelectChangeEvent) => void
+  option: SortOption;
+  onChange: (event: SelectChangeEvent) => void;
 }
 
 export const SortBookingsForm = ({
@@ -31,5 +31,5 @@ export const SortBookingsForm = ({
         </Select>
       </FormControl>
     </Box>
-  )
-}
+  );
+};

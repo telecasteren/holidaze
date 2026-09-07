@@ -1,5 +1,5 @@
-import z from 'zod'
-import { emptyMetaSchema } from './metaSchema'
+import z from "zod";
+import { emptyMetaSchema } from "./metaSchema";
 
 export const loginAuthSchema = z.object({
   data: z.object({
@@ -11,7 +11,7 @@ export const loginAuthSchema = z.object({
     accessToken: z.string(),
   }),
   meta: emptyMetaSchema,
-})
+});
 
 export const signupAuthSchema = z.object({
   data: z.object({
@@ -23,7 +23,7 @@ export const signupAuthSchema = z.object({
     venueManager: z.boolean().optional(),
   }),
   meta: emptyMetaSchema,
-})
+});
 
-export type LoginProfile = z.infer<typeof loginAuthSchema>
-export type SignupProfile = z.infer<typeof signupAuthSchema>
+export type LoginProfile = z.infer<typeof loginAuthSchema>;
+export type SignupProfile = z.infer<typeof signupAuthSchema>;

@@ -1,13 +1,13 @@
-import z from 'zod'
-import { customerSchema } from './customerSchema'
-import { metaSchema, emptyMetaSchema } from './metaSchema'
+import z from "zod";
+import { customerSchema } from "./customerSchema";
+import { metaSchema, emptyMetaSchema } from "./metaSchema";
 
 export const venueMetaSchema = z.object({
   wifi: z.boolean(),
   parking: z.boolean(),
   breakfast: z.boolean(),
   pets: z.boolean(),
-})
+});
 
 export const venueSchema = z.object({
   id: z.string(),
@@ -94,7 +94,7 @@ export const venueSchema = z.object({
     )
     .optional(),
   _count: z.object({ bookings: z.number().optional() }).optional(),
-})
+});
 
 export const postVenueSchema = z.object({
   name: z.string(),
@@ -122,17 +122,17 @@ export const postVenueSchema = z.object({
       lng: z.float64().nullable(),
     })
     .optional(),
-})
+});
 
 export const apiVenueSchema = z.object({
   data: z.array(venueSchema),
   meta: metaSchema,
-})
+});
 
 export const apiSingleVenueSchema = z.object({
   data: venueSchema,
   meta: emptyMetaSchema,
-})
+});
 
 export const apiVenueResponseSchema = z.object({
   data: z.object({
@@ -162,11 +162,11 @@ export const apiVenueResponseSchema = z.object({
     }),
   }),
   meta: emptyMetaSchema,
-})
+});
 
-export type VenueMeta = z.infer<typeof venueMetaSchema>
-export type Venue = z.infer<typeof venueSchema>
-export type VenuePayload = z.infer<typeof postVenueSchema>
+export type VenueMeta = z.infer<typeof venueMetaSchema>;
+export type Venue = z.infer<typeof venueSchema>;
+export type VenuePayload = z.infer<typeof postVenueSchema>;
 
-export const updateVenueSchema = postVenueSchema.extend({ id: z.string() })
-export type UpdateVenuePayload = z.infer<typeof updateVenueSchema>
+export const updateVenueSchema = postVenueSchema.extend({ id: z.string() });
+export type UpdateVenuePayload = z.infer<typeof updateVenueSchema>;

@@ -1,46 +1,46 @@
-import { useState } from 'react'
-import { toast } from 'react-hot-toast'
-import { useRouter } from '@tanstack/react-router'
-import { deleteVenueFn } from '@/server/venueFunctions'
-import type { Venue } from '@/lib/zod'
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useRouter } from "@tanstack/react-router";
+import { deleteVenueFn } from "@/server/venueFunctions";
+import type { Venue } from "@/lib/zod";
 
-import { Stack, Box, Button, styled, IconButton } from '@mui/material'
-import { EditIcon, DeleteIcon } from '@/components/layout/icons'
-import { ModalWindow } from '@/components/layout/Modal'
-import { venueFormTips, updateVenueFormTitle, VenueForm } from './VenueForm'
+import { Stack, Box, Button, styled, IconButton } from "@mui/material";
+import { EditIcon, DeleteIcon } from "@/components/layout/icons";
+import { ModalWindow } from "@/components/layout/Modal";
+import { venueFormTips, updateVenueFormTitle, VenueForm } from "./VenueForm";
 
 const StyledBox = styled(Box)(() => ({
-  display: 'flex',
+  display: "flex",
   gap: 12,
-  alignItems: 'center',
-  width: 'fit-content',
-}))
+  alignItems: "center",
+  width: "fit-content",
+}));
 
 const iconStyles = {
-  cursor: 'pointer',
-  transition: 'ease-in-out 0.2s',
-}
+  cursor: "pointer",
+  transition: "ease-in-out 0.2s",
+};
 
 interface AccountVenueActionsProps {
-  venue: Venue
+  venue: Venue;
 }
 
 export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
-  const router = useRouter()
-  const [editOpen, setEditOpen] = useState(false)
-  const [deleteOpen, setDeleteOpen] = useState(false)
+  const router = useRouter();
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleDelete = async () => {
     try {
-      await deleteVenueFn({ data: venue.id })
-      await router.invalidate()
-      toast.success('Venue has been deleted.')
+      await deleteVenueFn({ data: venue.id });
+      await router.invalidate();
+      toast.success("Venue has been deleted.");
     } catch (error) {
-      toast.error(`Delete venue failed: ${error}`)
+      toast.error(`Delete venue failed: ${error}`);
     } finally {
-      setDeleteOpen(false)
+      setDeleteOpen(false);
     }
-  }
+  };
 
   return (
     <>
@@ -79,5 +79,5 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
         </IconButton>
       </StyledBox>
     </>
-  )
-}
+  );
+};

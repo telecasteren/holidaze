@@ -1,6 +1,6 @@
-import type { ApiConfig, ApiHandler } from './types'
-import { ApiError } from './apiError'
-import { BASE_URL } from './endpoints'
+import type { ApiConfig, ApiHandler } from "./types";
+import { ApiError } from "./apiError";
+import { BASE_URL } from "./endpoints";
 
 export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   endpoint,
@@ -12,48 +12,48 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   return async (...args: TArgs): Promise<TResult> => {
     try {
       const resolvedEndpoint =
-        typeof endpoint === 'function' ? endpoint(...args) : endpoint
-      const resolvedInit = typeof init === 'function' ? init(...args) : init
-      console.log(`[${label ?? 'unlabeled'}] →`, resolvedEndpoint) // debugging
+        typeof endpoint === "function" ? endpoint(...args) : endpoint;
+      const resolvedInit = typeof init === "function" ? init(...args) : init;
+      console.log(`[${label ?? "unlabeled"}] →`, resolvedEndpoint); // debugging
 
       const response = await fetch(
         `${baseUrl}${resolvedEndpoint}`,
         resolvedInit,
-      )
+      );
 
       if (!response.ok) {
-        const body = await response.text().catch(() => '')
+        const body = await response.text().catch(() => "");
         throw new ApiError(
           `Request to ${baseUrl}${resolvedEndpoint} failed: ${response.status}, ${body}`,
           response.status,
           body,
-        )
+        );
       }
 
       if (response.status === 204) {
-        return schema.parse(undefined)
+        return schema.parse(undefined);
       }
 
-      const payload: unknown = await response.json()
-      const parsedPayload = schema.safeParse(payload)
+      const payload: unknown = await response.json();
+      const parsedPayload = schema.safeParse(payload);
 
       if (!parsedPayload.success) {
-        console.log('parsedPayload: ', parsedPayload) // debugging
+        console.log("parsedPayload: ", parsedPayload); // debugging
         throw new ApiError(
-          'Payload failed schema validation',
+          "Payload failed schema validation",
           500,
           parsedPayload.error,
-        )
+        );
       }
 
-      return parsedPayload.data
+      return parsedPayload.data;
     } catch (error) {
       if (error instanceof ApiError) {
-        throw error
+        throw error;
       }
 
-      console.log('withApiHandler failed: ', error) // debugging
-      throw new ApiError('Internal server error', 500, error)
+      console.log("withApiHandler failed: ", error); // debugging
+      throw new ApiError("Internal server error", 500, error);
     }
-  }
+  };
 }

@@ -1,15 +1,15 @@
-import * as React from 'react'
-import Accordion from '@mui/material/Accordion'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Link from '@mui/material/Link'
-import Typography from '@mui/material/Typography'
-import { ExpandMoreIcon } from '@/components/layout/icons'
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import { ExpandMoreIcon } from "@/components/layout/icons";
 
 export function FAQ() {
-  const [expanded, setExpanded] = React.useState<string[]>([])
+  const [expanded, setExpanded] = React.useState<string[]>([]);
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -17,8 +17,8 @@ export function FAQ() {
         isExpanded
           ? [...expanded, panel]
           : expanded.filter((item) => item !== panel),
-      )
-    }
+      );
+    };
 
   return (
     <Container
@@ -26,10 +26,10 @@ export function FAQ() {
       sx={{
         pt: { xs: 4, sm: 12 },
         pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         gap: { xs: 3, sm: 6 },
       }}
     >
@@ -37,17 +37,17 @@ export function FAQ() {
         component="h2"
         variant="h4"
         sx={{
-          color: 'text.primary',
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
+          color: "text.primary",
+          width: { sm: "100%", md: "60%" },
+          textAlign: { sm: "left", md: "center" },
         }}
       >
         Frequently asked questions
       </Typography>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%" }}>
         <Accordion
-          expanded={expanded.includes('panel1')}
-          onChange={handleChange('panel1')}
+          expanded={expanded.includes("panel1")}
+          onChange={handleChange("panel1")}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -62,9 +62,9 @@ export function FAQ() {
             <Typography
               variant="body2"
               gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
-              You can reach our customer support team by emailing{' '}
+              You can reach our customer support team by emailing{" "}
               <Link href="mailto:support@email.com">support@email.com</Link>.
               We&apos;re here to assist you and normally respond within 48
               hours. For more pressing concerns, questions about bookings or
@@ -73,8 +73,8 @@ export function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded.includes('panel2')}
-          onChange={handleChange('panel2')}
+          expanded={expanded.includes("panel2")}
+          onChange={handleChange("panel2")}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -89,7 +89,7 @@ export function FAQ() {
             <Typography
               variant="body2"
               gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
               If the venue doesn&apos;t meet our rules for venue standards, you
               can request a refund within 7 days of the day you arrive. Please
@@ -99,8 +99,8 @@ export function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded.includes('panel3')}
-          onChange={handleChange('panel3')}
+          expanded={expanded.includes("panel3")}
+          onChange={handleChange("panel3")}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -115,7 +115,7 @@ export function FAQ() {
             <Typography
               variant="body2"
               gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
               Our platform distinguishes itself through its market adaptability,
               user journeys, and innovative features. We prioritize user
@@ -125,8 +125,8 @@ export function FAQ() {
           </AccordionDetails>
         </Accordion>
         <Accordion
-          expanded={expanded.includes('panel4')}
-          onChange={handleChange('panel4')}
+          expanded={expanded.includes("panel4")}
+          onChange={handleChange("panel4")}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -142,7 +142,7 @@ export function FAQ() {
             <Typography
               variant="body2"
               gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
               If the cancellation deadline is overdue and you have prepaid for
               the stay, you do not get this payment back. If the payment was due
@@ -154,5 +154,5 @@ export function FAQ() {
         </Accordion>
       </Box>
     </Container>
-  )
+  );
 }

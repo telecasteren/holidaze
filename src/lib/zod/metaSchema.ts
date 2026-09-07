@@ -1,4 +1,4 @@
-import z from 'zod'
+import z from "zod";
 
 export const metaSchema = z.object({
   currentPage: z.number().int(),
@@ -8,8 +8,8 @@ export const metaSchema = z.object({
   pageCount: z.number().int(),
   previousPage: z.number().int().nullable(),
   totalCount: z.number().int(),
-})
+});
 
-export const emptyMetaSchema = z.object({})
+export const emptyMetaSchema = z.object({});
 
-export type ApiMeta = z.infer<typeof metaSchema>
+export type ApiMeta = z.infer<typeof metaSchema>;

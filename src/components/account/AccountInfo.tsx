@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import { Box, Typography, Button } from '@mui/material'
-import { ModalWindow } from '@/components/layout/Modal'
-import { VenueManagerForm } from '@/components/account/components/VenueManagerForm'
+import { useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { ModalWindow } from "@/components/layout/Modal";
+import { VenueManagerForm } from "@/components/account/components/VenueManagerForm";
 
 interface AccountInfoProps {
   user: {
-    name: string
-    email: string
-  }
-  isManager: boolean
+    name: string;
+    email: string;
+  };
+  isManager: boolean;
 }
 
 export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const openModal = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   return (
     <Box>
       <Typography variant="body1">
@@ -26,7 +26,7 @@ export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
         <strong>Email:</strong> {user.email}
       </Typography>
       <Typography variant="body2">
-        <strong>Venue host:</strong> {isManager ? 'Yes' : 'No'}
+        <strong>Venue host:</strong> {isManager ? "Yes" : "No"}
       </Typography>
 
       {!isManager && (
@@ -43,5 +43,5 @@ export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
         content={<VenueManagerForm />}
       />
     </Box>
-  )
-}
+  );
+};

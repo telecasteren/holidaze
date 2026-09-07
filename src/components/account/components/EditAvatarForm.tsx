@@ -1,20 +1,20 @@
-import type { Profile } from '@/lib/zod/index'
-import { Box, Button, TextField } from '@mui/material'
+import type { Profile } from "@/lib/zod/index";
+import { Box, Button, TextField } from "@mui/material";
 
 export const EditAvatarForm = ({
   user,
   handleSubmit,
   disabled,
 }: {
-  user: Profile
-  handleSubmit: React.SubmitEventHandler<HTMLFormElement>
-  disabled: boolean
+  user: Profile;
+  handleSubmit: React.SubmitEventHandler<HTMLFormElement>;
+  disabled: boolean;
 }) => {
   return (
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+      sx={{ display: "flex", flexDirection: "column", gap: 2 }}
     >
       <TextField
         name="avatarUrl"
@@ -26,5 +26,5 @@ export const EditAvatarForm = ({
         Save avatar
       </Button>
     </Box>
-  )
-}
+  );
+};

@@ -8,63 +8,63 @@ import {
   Container,
   Button,
   Box,
-} from '@mui/material'
-import { BrandLogo } from './BrandLogo'
-import { toast } from 'react-hot-toast'
-import { LinkedInIcon, TwitterIcon, InstagramIcon } from './icons'
-import { brandSettings } from '@/lib/brand/brandSettings'
+} from "@mui/material";
+import { BrandLogo } from "./BrandLogo";
+import { toast } from "react-hot-toast";
+import { LinkedInIcon, TwitterIcon, InstagramIcon } from "./icons";
+import { brandSettings } from "@/lib/brand/brandSettings";
 
 function Copyright() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
   return (
-    <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
-      {currentYear} {'Copyright © '}
+    <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
+      {currentYear} {"Copyright © "}
       <Link
         href="/"
         sx={{
-          color: 'text.secondary',
+          color: "text.secondary",
         }}
       >
         {brandSettings.name}
       </Link>
     </Typography>
-  )
+  );
 }
 
 export default function Footer() {
   const handleSubscribe = () => {
-    toast.remove()
-    toast.success('Subscribed! Great content heading your way.')
-  }
+    toast.remove();
+    toast.success("Subscribed! Great content heading your way.");
+  };
 
   return (
     <Container
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         gap: { xs: 4, sm: 8 },
         py: { xs: 8, sm: 10 },
-        textAlign: { sm: 'center', md: 'left' },
+        textAlign: { sm: "center", md: "left" },
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          width: '100%',
-          justifyContent: 'space-between',
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          width: "100%",
+          justifyContent: "space-between",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             gap: 4,
-            minWidth: { xs: '100%', sm: '60%' },
+            minWidth: { xs: "100%", sm: "60%" },
           }}
         >
-          <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
+          <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
             <BrandLogo />
             <Typography
               variant="body2"
@@ -73,7 +73,7 @@ export default function Footer() {
             >
               Join the newsletter
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
+            <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>
               Subscribe for the best offers and venue updates.
             </Typography>
             <InputLabel htmlFor="email-newsletter">Email</InputLabel>
@@ -88,11 +88,11 @@ export default function Footer() {
                 placeholder="Your email address"
                 slotProps={{
                   htmlInput: {
-                    autoComplete: 'off',
-                    'aria-label': 'Enter your email address',
+                    autoComplete: "off",
+                    "aria-label": "Enter your email address",
                   },
                 }}
-                sx={{ width: '250px' }}
+                sx={{ width: "250px" }}
               />
               <Button
                 variant="contained"
@@ -108,19 +108,19 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: "medium" }}>
             Product
           </Typography>
           <Link
             variant="body2"
             href="#"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Services
@@ -129,7 +129,7 @@ export default function Footer() {
             variant="body2"
             href="/#reviews"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Reviews
@@ -138,7 +138,7 @@ export default function Footer() {
             variant="body2"
             href="/#faqs"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             FAQs
@@ -146,19 +146,19 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: "medium" }}>
             Company
           </Typography>
           <Link
             variant="body2"
             href="/company/about"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             About us
@@ -167,7 +167,7 @@ export default function Footer() {
             variant="body2"
             href="/company/about"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Careers
@@ -176,7 +176,7 @@ export default function Footer() {
             variant="body2"
             href="/company/contact"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Contact
@@ -184,19 +184,19 @@ export default function Footer() {
         </Box>
         <Box
           sx={{
-            display: { xs: 'none', sm: 'flex' },
-            flexDirection: 'column',
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: "medium" }}>
             Legal
           </Typography>
           <Link
             variant="body2"
             href="/legal/terms"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Terms
@@ -205,7 +205,7 @@ export default function Footer() {
             variant="body2"
             href="/legal/privacy"
             sx={{
-              color: 'text.secondary',
+              color: "text.secondary",
             }}
           >
             Privacy
@@ -214,12 +214,12 @@ export default function Footer() {
       </Box>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: "flex",
+          justifyContent: "space-between",
           pt: { xs: 4, sm: 8 },
-          width: '100%',
-          borderTop: '1px solid',
-          borderColor: 'divider',
+          width: "100%",
+          borderTop: "1px solid",
+          borderColor: "divider",
         }}
       >
         <Copyright />
@@ -227,14 +227,14 @@ export default function Footer() {
           direction="row"
           spacing={1}
           useFlexGap
-          sx={{ justifyContent: 'left', color: 'text.secondary' }}
+          sx={{ justifyContent: "left", color: "text.secondary" }}
         >
           <IconButton
             color="inherit"
             size="small"
             href="#"
             aria-label="Instagram"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: "center" }}
           >
             <InstagramIcon />
           </IconButton>
@@ -243,7 +243,7 @@ export default function Footer() {
             size="small"
             href="#"
             aria-label="X"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: "center" }}
           >
             <TwitterIcon />
           </IconButton>
@@ -252,12 +252,12 @@ export default function Footer() {
             size="small"
             href="#"
             aria-label="LinkedIn"
-            sx={{ alignSelf: 'center' }}
+            sx={{ alignSelf: "center" }}
           >
             <LinkedInIcon />
           </IconButton>
         </Stack>
       </Box>
     </Container>
-  )
+  );
 }

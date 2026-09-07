@@ -1,8 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
-import Divider from '@mui/material/Divider'
-import { Reviews, Services, Hero, FAQ } from '@/components/dashboard/index'
+import { createFileRoute } from "@tanstack/react-router";
+import Divider from "@mui/material/Divider";
+import { Reviews, Services, Hero, FAQ } from "@/components/dashboard/index";
 
-export const Route = createFileRoute('/')({ component: Dashboard })
+export const Route = createFileRoute("/")({ component: Dashboard });
 
 function Dashboard() {
   return (
@@ -17,5 +17,5 @@ function Dashboard() {
         <Divider />
       </div>
     </>
-  )
+  );
 }

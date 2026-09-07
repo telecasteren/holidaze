@@ -1,21 +1,21 @@
-import { useNavigate } from '@tanstack/react-router'
-import { useProfileBookings } from '@/hooks/useBookingsList'
-import { formatDate } from '@/lib/utils/utils'
-import { Stack, Box, Card, Button, Typography } from '@mui/material'
-import { CardsStack } from '@/components/CardsStack'
-import { LinkToVenue } from '@/components/LinkToVenue'
-import { ArrowForwardIcon } from '@/components/layout/icons'
+import { useNavigate } from "@tanstack/react-router";
+import { useProfileBookings } from "@/hooks/useBookingsList";
+import { formatDate } from "@/lib/utils/utils";
+import { Stack, Box, Card, Button, Typography } from "@mui/material";
+import { CardsStack } from "@/components/CardsStack";
+import { LinkToVenue } from "@/components/LinkToVenue";
+import { ArrowForwardIcon } from "@/components/layout/icons";
 
 export const MyTripsInfo = () => {
-  const navigate = useNavigate()
-  const { bookings, isLoading } = useProfileBookings()
+  const navigate = useNavigate();
+  const { bookings, isLoading } = useProfileBookings();
 
   if (isLoading)
     return (
-      <Box sx={{ px: 'auto' }}>
+      <Box sx={{ px: "auto" }}>
         <strong>Loading...</strong>
       </Box>
-    )
+    );
 
   return (
     <Stack>
@@ -25,16 +25,16 @@ export const MyTripsInfo = () => {
       <CardsStack>
         {bookings?.data.length ? (
           bookings.data.map((booking) => {
-            const today = new Date()
-            const hasPassed = new Date(booking.dateTo) <= today
+            const today = new Date();
+            const hasPassed = new Date(booking.dateTo) <= today;
 
             return (
               <Card
                 key={booking.id}
                 sx={{
-                  display: 'grid',
+                  display: "grid",
                   gap: 1,
-                  justifyContent: 'center',
+                  justifyContent: "center",
                   opacity: hasPassed ? 0.6 : 1,
                 }}
               >
@@ -42,7 +42,7 @@ export const MyTripsInfo = () => {
                   <strong>Venue booked:</strong> {booking.venue?.name}
                 </Typography>
 
-                <LinkToVenue venueId={booking.venue?.id || ''} unstyled>
+                <LinkToVenue venueId={booking.venue?.id || ""} unstyled>
                   <Box
                     component="img"
                     src={booking.venue?.media[0]?.url}
@@ -54,14 +54,14 @@ export const MyTripsInfo = () => {
                       width: 200,
                       height: 200,
                       borderRadius: 4,
-                      objectFit: 'contain',
-                      transition: 'ease-in-out 0.3s',
-                      '&:hover': { opacity: 0.8 },
+                      objectFit: "contain",
+                      transition: "ease-in-out 0.3s",
+                      "&:hover": { opacity: 0.8 },
                     }}
                   />
                 </LinkToVenue>
                 <Typography variant="body2">
-                  <strong>Dates:</strong> {formatDate(booking.dateFrom)} -{' '}
+                  <strong>Dates:</strong> {formatDate(booking.dateFrom)} -{" "}
                   {formatDate(booking.dateTo)}
                 </Typography>
                 <Typography variant="body2">
@@ -74,7 +74,7 @@ export const MyTripsInfo = () => {
                   icon={<ArrowForwardIcon />}
                 />
               </Card>
-            )
+            );
           })
         ) : (
           <Box>
@@ -82,7 +82,7 @@ export const MyTripsInfo = () => {
             <Button
               variant="contained"
               sx={{ mt: 2 }}
-              onClick={() => navigate({ to: '/venues' })}
+              onClick={() => navigate({ to: "/venues" })}
             >
               Browse venues
             </Button>
@@ -90,5 +90,5 @@ export const MyTripsInfo = () => {
         )}
       </CardsStack>
     </Stack>
-  )
-}
+  );
+};

@@ -1,14 +1,14 @@
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material'
-import { CloseRoundedIcon } from '@/components/layout/icons'
+import { AppBar, Toolbar, Typography, Button, IconButton } from "@mui/material";
+import { CloseRoundedIcon } from "@/components/layout/icons";
 
 interface BookingAppBarProps {
-  disabled: boolean
-  close: () => void
+  disabled: boolean;
+  close: () => void;
 }
 
 export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
   return (
-    <AppBar sx={{ position: 'relative' }}>
+    <AppBar sx={{ position: "relative" }}>
       <Toolbar>
         <IconButton
           edge="start"
@@ -30,5 +30,5 @@ export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
         </Button>
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};

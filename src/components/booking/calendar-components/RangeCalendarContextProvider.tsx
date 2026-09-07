@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import type { PropsWithChildren } from 'react'
-import type { DateValue } from '@internationalized/date'
-import { RangeCalendarContext } from 'react-aria-components'
+import { useState } from "react";
+import type { PropsWithChildren } from "react";
+import type { DateValue } from "@internationalized/date";
+import { RangeCalendarContext } from "react-aria-components";
 
 export const RangeCalendarContextProvider = ({
   children,
 }: PropsWithChildren) => {
   const [value, onChange] = useState<{
-    start: DateValue
-    end: DateValue
-  } | null>(null)
-  const [focusedValue, onFocusChange] = useState<DateValue | undefined>()
+    start: DateValue;
+    end: DateValue;
+  } | null>(null);
+  const [focusedValue, onFocusChange] = useState<DateValue | undefined>();
 
   return (
     <RangeCalendarContext.Provider
@@ -18,5 +18,5 @@ export const RangeCalendarContextProvider = ({
     >
       {children}
     </RangeCalendarContext.Provider>
-  )
-}
+  );
+};

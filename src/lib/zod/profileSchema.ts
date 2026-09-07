@@ -1,6 +1,6 @@
-import z from 'zod'
-import { emptyMetaSchema } from './metaSchema'
-import { venueSchema } from './venueSchema'
+import z from "zod";
+import { emptyMetaSchema } from "./metaSchema";
+import { venueSchema } from "./venueSchema";
 
 export const profileSchema = z.object({
   name: z.string(),
@@ -65,7 +65,7 @@ export const profileSchema = z.object({
     venues: z.number(),
     bookings: z.number(),
   }),
-})
+});
 
 export const baseProfileSchema = z.object({
   name: z.string().optional(),
@@ -83,17 +83,17 @@ export const baseProfileSchema = z.object({
     })
     .optional(),
   venueManager: z.boolean().optional(),
-})
+});
 
 export const apiSingleProfileSchema = z.object({
   data: profileSchema,
   meta: emptyMetaSchema,
-})
+});
 
 export const apibaseProfileSchema = z.object({
   data: baseProfileSchema,
   meta: emptyMetaSchema,
-})
+});
 
-export type Profile = z.infer<typeof profileSchema>
-export type ProfilePayload = z.infer<typeof baseProfileSchema>
+export type Profile = z.infer<typeof profileSchema>;
+export type ProfilePayload = z.infer<typeof baseProfileSchema>;

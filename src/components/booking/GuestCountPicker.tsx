@@ -1,10 +1,10 @@
-import { useVenue } from '@/hooks/useVenue'
-import { Box, InputLabel, MenuItem, TextField } from '@mui/material'
+import { useVenue } from "@/hooks/useVenue";
+import { Box, InputLabel, MenuItem, TextField } from "@mui/material";
 
 interface GuestCountPickerProps {
-  venueId?: string
-  value: number
-  onChange: (value: number) => void
+  venueId?: string;
+  value: number;
+  onChange: (value: number) => void;
 }
 
 export function GuestCountPicker({
@@ -12,24 +12,24 @@ export function GuestCountPicker({
   value,
   onChange,
 }: GuestCountPickerProps) {
-  const { singleVenue } = useVenue(venueId)
-  const totalGuestsAllowed = singleVenue?.maxGuests ?? 1
+  const { singleVenue } = useVenue(venueId);
+  const totalGuestsAllowed = singleVenue?.maxGuests ?? 1;
 
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'row', sm: 'column' },
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: { xs: "row", sm: "column" },
+        justifyContent: "center",
         gap: 0.5,
-        flexWrap: 'wrap',
+        flexWrap: "wrap",
         mt: 2,
       }}
     >
       <InputLabel
         htmlFor="guest-count"
         aria-label="Number of guests"
-        sx={{ fontWeight: 'bold' }}
+        sx={{ fontWeight: "bold" }}
       >
         Number of guests
       </InputLabel>
@@ -50,5 +50,5 @@ export function GuestCountPicker({
         )}
       </TextField>
     </Box>
-  )
+  );
 }

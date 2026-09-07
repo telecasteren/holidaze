@@ -1,7 +1,7 @@
-import { useRef, forwardRef, useImperativeHandle } from 'react'
+import { useRef, forwardRef, useImperativeHandle } from "react";
 
 // import Button from "@mui/material/Button";
-import StarterKit from '@tiptap/starter-kit'
+import StarterKit from "@tiptap/starter-kit";
 import {
   MenuButtonBold,
   MenuButtonItalic,
@@ -15,31 +15,31 @@ import {
   MenuSelectHeading,
   MenuButtonHorizontalRule,
   RichTextEditor,
-} from 'mui-tiptap'
-import type { RichTextEditorRef } from 'mui-tiptap'
+} from "mui-tiptap";
+import type { RichTextEditorRef } from "mui-tiptap";
 
 interface TextEditorProps {
-  defaultValue?: string
+  defaultValue?: string;
 }
 
 export interface TextEditorHandle {
-  getHTML: () => string
+  getHTML: () => string;
 }
 
 export const TextEditor = forwardRef<TextEditorHandle, TextEditorProps>(
   function TextEditorComponent(
-    { defaultValue = '<p>Description of the venue...</p>' },
+    { defaultValue = "<p>Description of the venue...</p>" },
     ref,
   ) {
-    const textEditorRef = useRef<RichTextEditorRef>(null)
+    const textEditorRef = useRef<RichTextEditorRef>(null);
 
     useImperativeHandle(
       ref,
       () => ({
-        getHTML: () => textEditorRef.current?.editor?.getHTML() ?? '',
+        getHTML: () => textEditorRef.current?.editor?.getHTML() ?? "",
       }),
       [],
-    )
+    );
 
     return (
       <div>
@@ -48,11 +48,11 @@ export const TextEditor = forwardRef<TextEditorHandle, TextEditorProps>(
           extensions={[StarterKit]}
           content={defaultValue}
           sx={{
-            width: '100%',
-            '& .ProseMirror': {
+            width: "100%",
+            "& .ProseMirror": {
               minHeight: 250,
               maxHeight: 500,
-              overflowY: 'auto',
+              overflowY: "auto",
             },
           }}
           renderControls={() => (
@@ -82,6 +82,6 @@ export const TextEditor = forwardRef<TextEditorHandle, TextEditorProps>(
           Log HTML
         </Button>*/}
       </div>
-    )
+    );
   },
-)
+);

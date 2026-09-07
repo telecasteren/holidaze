@@ -1,63 +1,63 @@
-import { z } from 'zod'
-import { apiVenueSchema, apiSingleVenueSchema } from '@/lib/zod/index'
-import { withApiHandler } from '../api-config/handler'
-import { getAuthHeaders } from '../api-config/headers'
+import { z } from "zod";
+import { apiVenueSchema, apiSingleVenueSchema } from "@/lib/zod/index";
+import { withApiHandler } from "../api-config/handler";
+import { getAuthHeaders } from "../api-config/headers";
 import {
   API_URL,
   VENUES,
   VENUES_PARAMS,
   PROFILES,
-} from '../api-config/endpoints'
-import type { VenuePayload } from '@/lib/zod/index'
+} from "../api-config/endpoints";
+import type { VenuePayload } from "@/lib/zod/index";
 
 export const getAllVenues = withApiHandler({
-  label: 'getAllVenues',
+  label: "getAllVenues",
   endpoint: `${API_URL}${VENUES}?sort=created&sortOrder=desc`,
   schema: apiVenueSchema,
-})
+});
 
 export const getVenuesByProfile = withApiHandler({
-  label: 'getVenuesByProfile',
+  label: "getVenuesByProfile",
   endpoint: (name: string) =>
     `${API_URL}${PROFILES}/${name}${VENUES}${VENUES_PARAMS}`,
   schema: apiVenueSchema,
   init: () => ({ headers: getAuthHeaders() }),
-})
+});
 
 export const getVenueById = withApiHandler({
-  label: 'getVenueById',
+  label: "getVenueById",
   endpoint: (id: string) => `${API_URL}${VENUES}/${id}${VENUES_PARAMS}`,
   schema: apiSingleVenueSchema,
-})
+});
 
 export const registerNewVenue = withApiHandler({
-  label: 'registerNewVenue',
+  label: "registerNewVenue",
   endpoint: `${API_URL}${VENUES}`,
   schema: apiSingleVenueSchema,
   init: (body: VenuePayload) => ({
-    method: 'POST',
+    method: "POST",
     headers: getAuthHeaders(true),
     body: JSON.stringify(body),
   }),
-})
+});
 
 export const updateVenue = withApiHandler({
-  label: 'updateVenue',
+  label: "updateVenue",
   endpoint: (id: string, _body: VenuePayload) => `${API_URL}${VENUES}/${id}`,
   schema: apiSingleVenueSchema,
   init: (_id: string, body: VenuePayload) => ({
-    method: 'PUT',
+    method: "PUT",
     headers: getAuthHeaders(true),
     body: JSON.stringify(body),
   }),
-})
+});
 
 export const deleteVenue = withApiHandler({
-  label: 'deleteVenue',
+  label: "deleteVenue",
   endpoint: (id: string) => `${API_URL}${VENUES}/${id}`,
   schema: z.void(),
   init: () => ({
-    method: 'DELETE',
+    method: "DELETE",
     headers: getAuthHeaders(),
   }),
-})
+});

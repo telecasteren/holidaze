@@ -1,26 +1,26 @@
-import { ImageList, ImageListItem, Box } from '@mui/material'
-import type { Venue } from '@/lib/zod/index'
+import { ImageList, ImageListItem, Box } from "@mui/material";
+import type { Venue } from "@/lib/zod/index";
 
 type GalleryProps = {
-  venueMedia: Venue['media']
-}
+  venueMedia: Venue["media"];
+};
 
 export const Gallery = ({ venueMedia }: GalleryProps) => {
-  const totalVenueMediaIs2 = venueMedia.length >= 2
+  const totalVenueMediaIs2 = venueMedia.length >= 2;
 
   if (venueMedia.length === 1) {
-    const [item] = venueMedia
+    const [item] = venueMedia;
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Box
           component="img"
           src={item.url}
-          alt={item.alt || 'Gallery image'}
+          alt={item.alt || "Gallery image"}
           loading="lazy"
-          style={{ maxWidth: '100%', height: 'auto', borderRadius: '4px' }}
+          style={{ maxWidth: "100%", height: "auto", borderRadius: "4px" }}
         />
       </Box>
-    )
+    );
   }
 
   return (
@@ -30,11 +30,11 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
           <img
             srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
             src={`${item.url}?w=248&fit=crop&auto=format`}
-            alt={item.alt || 'Gallery image'}
+            alt={item.alt || "Gallery image"}
             loading="lazy"
           />
         </ImageListItem>
       ))}
     </ImageList>
-  )
-}
+  );
+};

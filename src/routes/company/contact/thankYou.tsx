@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Button, Container, Typography } from '@mui/material'
-import { PageTitle } from '@/components/layout'
+import { createFileRoute } from "@tanstack/react-router";
+import { Button, Container, Typography } from "@mui/material";
+import { PageTitle } from "@/components/layout";
 
-export const Route = createFileRoute('/company/contact/thankYou')({
+export const Route = createFileRoute("/company/contact/thankYou")({
   component: ThankYouComponent,
-})
+});
 
 function ThankYouComponent() {
   return (
@@ -13,9 +13,9 @@ function ThankYouComponent() {
         py: {
           xs: 8,
           sm: 16,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           gap: 20,
         },
       }}
@@ -26,5 +26,5 @@ function ThankYouComponent() {
         Return to venues
       </Button>
     </Container>
-  )
+  );
 }

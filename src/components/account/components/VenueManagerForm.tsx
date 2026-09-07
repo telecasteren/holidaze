@@ -1,24 +1,24 @@
-import { useState } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import { useRouter } from '@tanstack/react-router'
-import { updateProfileFn } from '@/server/profileFunctions'
-import { Stack, FormControlLabel, Checkbox, Button } from '@mui/material'
-import { toast } from 'react-hot-toast'
+import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "@tanstack/react-router";
+import { updateProfileFn } from "@/server/profileFunctions";
+import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
+import { toast } from "react-hot-toast";
 
 export const VenueManagerForm = () => {
-  const { user } = useAuth()
-  const router = useRouter()
-  const [isChecked, setIsChecked] = useState(false)
+  const { user } = useAuth();
+  const router = useRouter();
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleSubmit = async () => {
-    if (!isChecked || !user) return
-    await updateProfileFn({ data: { name: user.name, venueManager: true } })
-    toast.success("You've registered as a venue manager!")
-    router.invalidate()
-  }
+    if (!isChecked || !user) return;
+    await updateProfileFn({ data: { name: user.name, venueManager: true } });
+    toast.success("You've registered as a venue manager!");
+    router.invalidate();
+  };
 
   return (
-    <Stack direction={'column'} sx={{}}>
+    <Stack direction={"column"} sx={{}}>
       <FormControlLabel
         required
         control={
@@ -33,5 +33,5 @@ export const VenueManagerForm = () => {
         Submit
       </Button>
     </Stack>
-  )
-}
+  );
+};

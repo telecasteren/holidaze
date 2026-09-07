@@ -1,6 +1,6 @@
-import z from 'zod'
-import { customerSchema } from './customerSchema'
-import { emptyMetaSchema, metaSchema } from './metaSchema'
+import z from "zod";
+import { customerSchema } from "./customerSchema";
+import { emptyMetaSchema, metaSchema } from "./metaSchema";
 
 export const bookingSchema = z.object({
   id: z.string(),
@@ -45,12 +45,12 @@ export const bookingSchema = z.object({
         .optional(),
     })
     .optional(),
-})
+});
 
 export const apiAllBookingsSchema = z.object({
   data: z.array(bookingSchema),
   meta: metaSchema,
-})
+});
 
 export const apiSingleBookingSchema = z.object({
   data: z.object({
@@ -62,7 +62,7 @@ export const apiSingleBookingSchema = z.object({
     updated: z.string(),
   }),
   meta: emptyMetaSchema,
-})
+});
 
-export type Booking = z.infer<typeof bookingSchema>
-export type Bookings = z.infer<typeof apiAllBookingsSchema>
+export type Booking = z.infer<typeof bookingSchema>;
+export type Bookings = z.infer<typeof apiAllBookingsSchema>;

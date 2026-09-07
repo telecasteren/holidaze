@@ -1,59 +1,59 @@
-import { useState } from 'react'
-import { createFileRoute, redirect } from '@tanstack/react-router'
-import { brandSettings } from '@/lib/brand/brandSettings'
-import { profileByIdQuery } from '@/lib/queries/profilesQuery'
-import { venuesByProfileQuery } from '@/lib/queries/venuesQuery'
-import type { Profile } from '@/lib/zod/index'
+import { useState } from "react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { brandSettings } from "@/lib/brand/brandSettings";
+import { profileByIdQuery } from "@/lib/queries/profilesQuery";
+import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
+import type { Profile } from "@/lib/zod/index";
 
-import { Container, Stack, Tabs, Tab, Divider } from '@mui/material'
-import { AccountInfo } from '@/components/account/AccountInfo'
-import { MyTripsInfo } from '@/components/account/MyTripsInfo'
-import { VenueInfo } from '@/components/account/VenueInfo'
-import { AccountHero } from '@/components/account/AccountHero'
-import { BookingsInfo } from '@/components/account/BookingsInfo'
+import { Container, Stack, Tabs, Tab, Divider } from "@mui/material";
+import { AccountInfo } from "@/components/account/AccountInfo";
+import { MyTripsInfo } from "@/components/account/MyTripsInfo";
+import { VenueInfo } from "@/components/account/VenueInfo";
+import { AccountHero } from "@/components/account/AccountHero";
+import { BookingsInfo } from "@/components/account/BookingsInfo";
 
-export const Route = createFileRoute('/account/$profileId')({
+export const Route = createFileRoute("/account/$profileId")({
   beforeLoad({ context }) {
-    if (!context.user) throw redirect({ to: '/auth/login' })
+    if (!context.user) throw redirect({ to: "/auth/login" });
   },
   loader: async ({ context, params }): Promise<Profile> => {
     const data = await context.queryClient.ensureQueryData(
       profileByIdQuery(params.profileId),
-    )
+    );
     if (data.data.venueManager) {
       const venuesData = await context.queryClient.ensureQueryData(
         venuesByProfileQuery(params.profileId),
-      )
-      return { ...data.data, venues: venuesData.data }
+      );
+      return { ...data.data, venues: venuesData.data };
     }
-    return data.data
+    return data.data;
   },
   head: ({ loaderData }) => ({
     meta: [
       {
-        name: 'description',
-        content: `Account details for ${loaderData?.name ?? 'Account'} at ${brandSettings.name}.`,
+        name: "description",
+        content: `Account details for ${loaderData?.name ?? "Account"} at ${brandSettings.name}.`,
       },
-      { title: loaderData?.name ?? 'Account' },
+      { title: loaderData?.name ?? "Account" },
     ],
   }),
   component: ProfileById,
-})
+});
 
 const availableDirectories = {
-  account: 'My account',
-  myTrips: 'My trips',
-  venues: 'Manage venues',
-  bookings: 'Manage bookings',
-} as const
+  account: "My account",
+  myTrips: "My trips",
+  venues: "Manage venues",
+  bookings: "Manage bookings",
+} as const;
 
-type DirectoryKey = keyof typeof availableDirectories
+type DirectoryKey = keyof typeof availableDirectories;
 
 function ProfileById() {
-  const user = Route.useLoaderData()
-  const [activeTab, setActiveTab] = useState<DirectoryKey>('account')
-  const hasVenueManagerRole = user.venueManager
-  const venueInfo = user.venues ?? []
+  const user = Route.useLoaderData();
+  const [activeTab, setActiveTab] = useState<DirectoryKey>("account");
+  const hasVenueManagerRole = user.venueManager;
+  const venueInfo = user.venues ?? [];
 
   return (
     <>
@@ -66,30 +66,30 @@ function ProfileById() {
             onChange={(_, newTab: DirectoryKey) => setActiveTab(newTab)}
           >
             {Object.entries(availableDirectories).map(([key, label]) => {
-              if (key === 'venues' && !hasVenueManagerRole) return null
-              return <Tab key={key} value={key} label={label} />
+              if (key === "venues" && !hasVenueManagerRole) return null;
+              return <Tab key={key} value={key} label={label} />;
             })}
           </Tabs>
 
           <Stack
             sx={{
-              p: '1rem',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
+              p: "1rem",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
               mb: 2,
             }}
           >
-            {activeTab === 'account' && (
+            {activeTab === "account" && (
               <AccountInfo user={user} isManager={hasVenueManagerRole} />
             )}
 
-            {activeTab === 'myTrips' && <MyTripsInfo />}
+            {activeTab === "myTrips" && <MyTripsInfo />}
 
-            {activeTab === 'venues' && hasVenueManagerRole && (
+            {activeTab === "venues" && hasVenueManagerRole && (
               <VenueInfo venueInfo={venueInfo} />
             )}
 
-            {activeTab === 'bookings' && hasVenueManagerRole && (
+            {activeTab === "bookings" && hasVenueManagerRole && (
               <BookingsInfo venueInfo={venueInfo} />
             )}
           </Stack>
@@ -97,5 +97,5 @@ function ProfileById() {
       </Container>
       <Divider />
     </>
-  )
+  );
 }

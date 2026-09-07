@@ -1,21 +1,21 @@
-import { Fragment } from 'react'
-import { Box, useMediaQuery } from '@mui/material'
-import { ChevronLeftIcon, ChevronRightIcon } from '@/components/layout/icons'
+import { Fragment } from "react";
+import { Box, useMediaQuery } from "@mui/material";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/components/layout/icons";
 import type {
   RangeCalendarProps as AriaRangeCalendarProps,
   DateValue,
-} from 'react-aria-components'
+} from "react-aria-components";
 import {
   CalendarGridHeader as AriaCalendarGridHeader,
   RangeCalendarContext,
   useSlottedContext,
-} from 'react-aria-components'
-import { RangeCalendarTitle } from './calendar-components/RangeCalendarTitle'
-import { RangeDateField } from './calendar-components/RangeDateField'
-import { PresetButton } from './calendar-components/PresetButton'
-import { RangeCalendarContextProvider } from './calendar-components/RangeCalendarContextProvider'
-import { NavButton } from './calendar-components/NavButton'
-import { CalendarCell } from './calendar-components/CalendarCell'
+} from "react-aria-components";
+import { RangeCalendarTitle } from "./calendar-components/RangeCalendarTitle";
+import { RangeDateField } from "./calendar-components/RangeDateField";
+import { PresetButton } from "./calendar-components/PresetButton";
+import { RangeCalendarContextProvider } from "./calendar-components/RangeCalendarContextProvider";
+import { NavButton } from "./calendar-components/NavButton";
+import { CalendarCell } from "./calendar-components/CalendarCell";
 import {
   CalendarRoot,
   CalendarPanel,
@@ -25,20 +25,20 @@ import {
   CalendarHeaderCell,
   WeekdayLabel,
   CalendarGridBody,
-} from './calendar-components/CalendarLayout'
+} from "./calendar-components/CalendarLayout";
 
 interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
   /** The dates to highlight. */
-  highlightedDates?: DateValue[]
+  highlightedDates?: DateValue[];
   /** The date presets to display. */
   presets?: Record<
     string,
     { label: string; value: { start: DateValue; end: DateValue } }
-  >
+  >;
   /** Whether to show out of range dates. */
-  showOutOfRangeDates?: boolean
+  showOutOfRangeDates?: boolean;
   /** Whether to show presets on desktop. */
-  showPresetsOnDesktop?: boolean
+  showPresetsOnDesktop?: boolean;
 }
 
 export const RangeCalendar = ({
@@ -50,31 +50,31 @@ export const RangeCalendar = ({
   className,
   ...props
 }: RangeCalendarProps) => {
-  const isDesktop = useMediaQuery('(min-width: 768px)', {
+  const isDesktop = useMediaQuery("(min-width: 768px)", {
     defaultMatches: true,
-  })
-  const context = useSlottedContext(RangeCalendarContext)
+  });
+  const context = useSlottedContext(RangeCalendarContext);
 
-  const ContextWrapper = context ? Fragment : RangeCalendarContextProvider
+  const ContextWrapper = context ? Fragment : RangeCalendarContextProvider;
 
-  const visibleDurationMonths = visibleDuration?.months || (isDesktop ? 2 : 1)
+  const visibleDurationMonths = visibleDuration?.months || (isDesktop ? 2 : 1);
 
   const isHighlighted = (date: DateValue) =>
     highlightedDates?.some(
       (highlightedDate) => date.compare(highlightedDate) === 0,
-    )
+    );
 
   const renderWeekdayHeader = (day: string) => (
     <CalendarHeaderCell>
       <WeekdayLabel>{day.slice(0, 2)}</WeekdayLabel>
     </CalendarHeaderCell>
-  )
+  );
 
   return (
     <ContextWrapper>
       <CalendarRoot
         {...props}
-        className={typeof className === 'string' ? className : undefined}
+        className={typeof className === "string" ? className : undefined}
         visibleDuration={{
           months: visibleDurationMonths,
         }}
@@ -83,11 +83,11 @@ export const RangeCalendar = ({
           <Box
             component="header"
             sx={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
               justifyContent:
-                visibleDurationMonths > 1 ? 'flex-start' : 'space-between',
+                visibleDurationMonths > 1 ? "flex-start" : "space-between",
             }}
           >
             <NavButton slot="previous">
@@ -106,11 +106,11 @@ export const RangeCalendar = ({
           </Box>
 
           {!isDesktop && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <Box sx={{ flex: 1, minWidth: 0 }}>
                 <RangeDateField part="start" />
               </Box>
-              <Box sx={{ fontSize: '1rem', color: 'text.disabled' }}>–</Box>
+              <Box sx={{ fontSize: "1rem", color: "text.disabled" }}>–</Box>
               <Box sx={{ flex: 1, minWidth: 0 }}>
                 <RangeDateField part="end" />
               </Box>
@@ -121,8 +121,8 @@ export const RangeCalendar = ({
             <Box
               sx={{
                 mt: 0.5,
-                display: 'flex',
-                justifyContent: 'space-between',
+                display: "flex",
+                justifyContent: "space-between",
                 gap: 1.5,
                 px: 1,
               }}
@@ -155,10 +155,10 @@ export const RangeCalendar = ({
             <Box
               component="header"
               sx={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-end',
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
               }}
             >
               <CalendarTitle>
@@ -188,5 +188,5 @@ export const RangeCalendar = ({
         )}
       </CalendarRoot>
     </ContextWrapper>
-  )
-}
+  );
+};

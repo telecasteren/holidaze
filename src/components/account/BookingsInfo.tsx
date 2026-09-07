@@ -1,18 +1,18 @@
-import { useMemo } from 'react'
-import { useSortBookingsForm } from '@/hooks/useSortBookingsForm'
-import type { Venue } from '@/lib/zod/index'
+import { useMemo } from "react";
+import { useSortBookingsForm } from "@/hooks/useSortBookingsForm";
+import type { Venue } from "@/lib/zod/index";
 
-import { Stack, Box, Typography } from '@mui/material'
-import { CardsStack } from '@/components/CardsStack'
-import { SortBookingsForm } from '@/components/sorting/SortBookingsForm'
-import { AccountBookingCard } from '@/components/account/components/AccountBookingCard'
+import { Stack, Box, Typography } from "@mui/material";
+import { CardsStack } from "@/components/CardsStack";
+import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
+import { AccountBookingCard } from "@/components/account/components/AccountBookingCard";
 
 interface BookingsInfoProps {
-  venueInfo: Venue[]
+  venueInfo: Venue[];
 }
 
 export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
-  const today = new Date()
+  const today = new Date();
 
   const allBookings = useMemo(
     () =>
@@ -23,10 +23,10 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
         })),
       ),
     [venueInfo],
-  )
+  );
 
   const { option, handleChange, sortedBookings } =
-    useSortBookingsForm(allBookings)
+    useSortBookingsForm(allBookings);
 
   return (
     <Stack>
@@ -37,13 +37,13 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
       <CardsStack>
         {sortedBookings.length ? (
           sortedBookings.map((booking) => {
-            const hasPassed = new Date(booking.dateTo) <= today
+            const hasPassed = new Date(booking.dateTo) <= today;
 
             return !hasPassed ? (
               <AccountBookingCard booking={booking} />
             ) : (
               <AccountBookingCard booking={booking} hasPassed={true} />
-            )
+            );
           })
         ) : (
           <Box>
@@ -52,5 +52,5 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
         )}
       </CardsStack>
     </Stack>
-  )
-}
+  );
+};

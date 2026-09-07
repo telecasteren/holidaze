@@ -1,54 +1,54 @@
-import { useState } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import { useNavigate } from '@tanstack/react-router'
-import { useBookingSummary } from '@/hooks/useBookingSummary'
-import { useAvailability } from '@/hooks/useAvailability'
-import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { calendarBookingSchema } from '@/lib/zod/calendarSchema'
-import { brandSettings } from '@/lib/brand/brandSettings'
-import type { BookingForm, Venue } from '@/lib/zod/index'
+import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "@tanstack/react-router";
+import { useBookingSummary } from "@/hooks/useBookingSummary";
+import { useAvailability } from "@/hooks/useAvailability";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
+import { brandSettings } from "@/lib/brand/brandSettings";
+import type { BookingForm, Venue } from "@/lib/zod/index";
 
-import { Stack, Box, Typography, Button, styled } from '@mui/material'
-import { RangeCalendar } from '@/components/booking/RangeCalendar'
-import { GuestCountPicker } from '@/components/booking/GuestCountPicker'
-import { BookingWindow } from '@/components/booking/BookingWindow'
-import { ModalWindow } from '@/components/layout/Modal'
-import { today, getLocalTimeZone } from '@internationalized/date'
+import { Stack, Box, Typography, Button, styled } from "@mui/material";
+import { RangeCalendar } from "@/components/booking/RangeCalendar";
+import { GuestCountPicker } from "@/components/booking/GuestCountPicker";
+import { BookingWindow } from "@/components/booking/BookingWindow";
+import { ModalWindow } from "@/components/layout/Modal";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 const StyledBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
   gap: 20,
   padding: 20,
   borderRadius: 8,
-  height: 'fit-content',
+  height: "fit-content",
   backgroundColor: theme.palette.background.paper,
-  [theme.breakpoints.up('xs')]: {
+  [theme.breakpoints.up("xs")]: {
     width: 300,
   },
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up("sm")]: {
     width: 350,
   },
-}))
+}));
 
 interface CalendarDisplayProps {
-  venueId: string
-  bookings?: Venue['bookings']
+  venueId: string;
+  bookings?: Venue["bookings"];
 }
 
 export const CalendarDisplay = ({
   venueId,
   bookings,
 }: CalendarDisplayProps) => {
-  const { user } = useAuth()
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
-  const [showLoginModal, setShowLoginModal] = useState(false)
-  const { isDateUnavailable } = useAvailability(bookings)
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isDateUnavailable } = useAvailability(bookings);
 
-  const openBookingWindow = () => setOpen(true)
-  const handleUnAuthenticated = () => setShowLoginModal(true)
+  const openBookingWindow = () => setOpen(true);
+  const handleUnAuthenticated = () => setShowLoginModal(true);
 
   const { control, watch } = useForm<BookingForm>({
     resolver: zodResolver(calendarBookingSchema),
@@ -56,9 +56,9 @@ export const CalendarDisplay = ({
       guests: 1,
       dateRange: null,
     },
-  })
-  const values = watch()
-  const { dates, nights } = useBookingSummary(values.dateRange)
+  });
+  const values = watch();
+  const { dates, nights } = useBookingSummary(values.dateRange);
 
   return (
     <>
@@ -71,17 +71,17 @@ export const CalendarDisplay = ({
       <ModalWindow
         open={showLoginModal}
         onClose={() => setShowLoginModal(false)}
-        title={'Log in to book this venue.'}
+        title={"Log in to book this venue."}
         content={
           <>
             <Button
-              onClick={() => navigate({ to: '/auth/login' })}
+              onClick={() => navigate({ to: "/auth/login" })}
               variant="contained"
             >
               Go to log in
             </Button>
             <Button
-              onClick={() => navigate({ to: '/auth/signup' })}
+              onClick={() => navigate({ to: "/auth/signup" })}
               variant="outlined"
             >
               Sign up to {brandSettings.name}
@@ -92,15 +92,15 @@ export const CalendarDisplay = ({
 
       <Stack
         sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: '1fr 2fr' },
-          justifyItems: 'center',
-          alignItems: 'center',
-          width: '100%',
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 2fr" },
+          justifyItems: "center",
+          alignItems: "center",
+          width: "100%",
         }}
       >
         <Box>
-          <Typography variant="h4" sx={{ mt: 8, textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ mt: 8, textAlign: "center" }}>
             See availability
           </Typography>
 
@@ -150,5 +150,5 @@ export const CalendarDisplay = ({
         </StyledBox>
       </Stack>
     </>
-  )
-}
+  );
+};

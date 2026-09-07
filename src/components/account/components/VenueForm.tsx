@@ -1,12 +1,12 @@
-import { useState, useRef } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import { queryClient } from '@/lib/queries/queryClient'
-import { registerNewVenueFn, updateVenueFn } from '@/server/venueFunctions'
-import { localCurrency } from '@/lib/utils/config'
-import { getFormData } from '@/lib/utils/getVenueFormData'
-import { RequiredField } from '@/components/layout/RequiredField'
-import { MediaInputs } from '@/components/MediaInputs'
-import { GridBox } from '@/components/GridBox'
+import { useState, useRef } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { queryClient } from "@/lib/queries/queryClient";
+import { registerNewVenueFn, updateVenueFn } from "@/server/venueFunctions";
+import { localCurrency } from "@/lib/utils/config";
+import { getFormData } from "@/lib/utils/getVenueFormData";
+import { RequiredField } from "@/components/layout/RequiredField";
+import { MediaInputs } from "@/components/MediaInputs";
+import { GridBox } from "@/components/GridBox";
 import {
   Stack,
   FormControlLabel,
@@ -17,44 +17,44 @@ import {
   Typography,
   Link,
   styled,
-} from '@mui/material'
-import { toast } from 'react-hot-toast'
-import { TextEditor } from '@/components/text-editor/TextEditor'
-import type { TextEditorHandle } from '@/components/text-editor/TextEditor'
-import type { Venue } from '@/lib/zod/index'
+} from "@mui/material";
+import { toast } from "react-hot-toast";
+import { TextEditor } from "@/components/text-editor/TextEditor";
+import type { TextEditorHandle } from "@/components/text-editor/TextEditor";
+import type { Venue } from "@/lib/zod/index";
 
-export const updateVenueFormTitle = 'Update venue'
-export const registerVenueFormTitle = 'Register a new venue'
+export const updateVenueFormTitle = "Update venue";
+export const registerVenueFormTitle = "Register a new venue";
 export const venueFormTips =
-  'Tips: Customers tend to favour venues with that has good information, so add as much about the venue as you can.'
+  "Tips: Customers tend to favour venues with that has good information, so add as much about the venue as you can.";
 
 interface VenueFormProps {
-  venue?: Venue
-  close?: () => void
+  venue?: Venue;
+  close?: () => void;
 }
 
 const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: 12,
   color: theme.palette.text.secondary,
   marginBottom: 10,
-  textDecoration: 'none',
-}))
+  textDecoration: "none",
+}));
 
 export const VenueForm = ({ venue, close }: VenueFormProps) => {
-  const isEditing = Boolean(venue)
-  const [submitting, setSubmitting] = useState(false)
-  const descRef = useRef<TextEditorHandle>(null)
-  const { user } = useAuth()
-  if (!user) return null
+  const isEditing = Boolean(venue);
+  const [submitting, setSubmitting] = useState(false);
+  const descRef = useRef<TextEditorHandle>(null);
+  const { user } = useAuth();
+  if (!user) return null;
 
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setSubmitting(true)
-    const data = new FormData(event.currentTarget)
-    const venueId = venue?.id || ''
+    event.preventDefault();
+    setSubmitting(true);
+    const data = new FormData(event.currentTarget);
+    const venueId = venue?.id || "";
 
-    const { name, media, maxGuests, price, meta, location } = getFormData(data)
-    const description = descRef.current?.getHTML() ?? ''
+    const { name, media, maxGuests, price, meta, location } = getFormData(data);
+    const description = descRef.current?.getHTML() ?? "";
     const payload = {
       name,
       description,
@@ -63,39 +63,39 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
       price,
       meta,
       location,
-    }
+    };
 
     try {
       const result = isEditing
         ? await updateVenueFn({ data: { id: venueId, ...payload } })
-        : await registerNewVenueFn({ data: payload })
+        : await registerNewVenueFn({ data: payload });
 
       toast.success(
         isEditing
-          ? 'Venue updated successfully.'
-          : 'Venue registered successfully.',
-      )
-      return result
+          ? "Venue updated successfully."
+          : "Venue registered successfully.",
+      );
+      return result;
     } catch (error) {
       toast.error(
-        isEditing ? 'Failed to update venue.' : 'Failed to register venue.',
-      )
+        isEditing ? "Failed to update venue." : "Failed to register venue.",
+      );
     } finally {
       queryClient.invalidateQueries({
-        queryKey: [isEditing ? 'venues' : 'profile', user.name],
-      })
-      setSubmitting(false)
+        queryKey: [isEditing ? "venues" : "profile", user.name],
+      });
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <Stack>
       <form
         id="register-venue"
         onSubmit={handleSubmit}
-        style={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+        style={{ display: "flex", flexDirection: "column", gap: 2 }}
       >
-        <Stack sx={{ display: 'grid', gap: 2 }}>
+        <Stack sx={{ display: "grid", gap: 2 }}>
           <GridBox>
             <InputLabel htmlFor="venue-name">
               Name of the venue <RequiredField />
@@ -148,7 +148,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
         </GridBox>
 
         {/* VenueMeta tags: boolean */}
-        <Stack sx={{ display: 'grid', gap: 1, mt: 2 }}>
+        <Stack sx={{ display: "grid", gap: 1, mt: 2 }}>
           <Typography variant="h6" component="h6">
             Select what your venue offers
           </Typography>
@@ -199,7 +199,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
         </Stack>
 
         {/* Venue location data */}
-        <Stack sx={{ display: 'grid', gap: 1, mt: 2 }}>
+        <Stack sx={{ display: "grid", gap: 1, mt: 2 }}>
           <Typography variant="h6" component="h6">
             Location
           </Typography>
@@ -288,9 +288,9 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
           disabled={submitting}
           sx={{ mt: 2 }}
         >
-          {isEditing ? 'Update venue' : 'Register venue'}
+          {isEditing ? "Update venue" : "Register venue"}
         </Button>
       </form>
     </Stack>
-  )
-}
+  );
+};

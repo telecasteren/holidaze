@@ -1,26 +1,26 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/company/about')({
+export const Route = createFileRoute("/company/about")({
   component: About,
   head: () => ({
     meta: [
       {
-        name: 'about',
+        name: "about",
         content:
-          'Learn about Holidaze and our mission to serve the greatest venues.',
+          "Learn about Holidaze and our mission to serve the greatest venues.",
       },
-      { title: 'About us | Holidaze' },
+      { title: "About us | Holidaze" },
     ],
   }),
   notFoundComponent: () => {
-    return <p>This page doesn't exist.</p>
+    return <p>This page doesn't exist.</p>;
   },
-})
+});
 
 function About() {
   return (
     <section>
       <p>About</p>
     </section>
-  )
+  );
 }

@@ -1,22 +1,22 @@
-import { Typography } from '@mui/material'
+import { Typography } from "@mui/material";
 
 export default function HeroTitle({
   title,
   span,
 }: {
-  title: string
-  span: string
+  title: string;
+  span: string;
 }) {
   return (
     <>
       <Typography
         variant="h1"
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
           gap: { sm: 1.5 },
-          fontSize: 'clamp(3rem, 10vw, 3.5rem)',
+          fontSize: "clamp(3rem, 10vw, 3.5rem)",
         }}
       >
         {title}
@@ -24,10 +24,10 @@ export default function HeroTitle({
           component="span"
           variant="h1"
           sx={(theme) => ({
-            fontSize: 'inherit',
-            color: 'primary.main',
-            ...theme.applyStyles('dark', {
-              color: 'primary.light',
+            fontSize: "inherit",
+            color: "primary.main",
+            ...theme.applyStyles("dark", {
+              color: "primary.light",
             }),
           })}
         >
@@ -35,5 +35,5 @@ export default function HeroTitle({
         </Typography>
       </Typography>
     </>
-  )
+  );
 }

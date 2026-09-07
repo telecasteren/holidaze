@@ -1,22 +1,22 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/legal/privacy')({
+export const Route = createFileRoute("/legal/privacy")({
   component: Privacy,
   head: () => ({
     meta: [
       {
-        name: 'privacy',
+        name: "privacy",
         content:
-          'Get familiar with and understand our policies and how we follow privacy.',
+          "Get familiar with and understand our policies and how we follow privacy.",
       },
-      { title: 'Privacy & Security | Holidaze' },
+      { title: "Privacy & Security | Holidaze" },
     ],
   }),
   notFoundComponent: () => {
-    return <p>This page doesn't exist.</p>
+    return <p>This page doesn't exist.</p>;
   },
-})
+});
 
 function Privacy() {
-  return <div>Hello "/legal/privacy"!</div>
+  return <div>Hello "/legal/privacy"!</div>;
 }

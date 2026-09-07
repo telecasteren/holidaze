@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Stack,
   Typography,
@@ -7,24 +7,24 @@ import {
   Checkbox,
   FormHelperText,
   TextField,
-} from '@mui/material'
+} from "@mui/material";
 
-export const paymentProviders = ['Credit card', 'PayPal', 'Klarna', 'Vipps']
+export const paymentProviders = ["Credit card", "PayPal", "Klarna", "Vipps"];
 
 interface PaymentDetailsProps {
-  checked: boolean
-  onCheck: (provider: string, checked: boolean) => void
-  onChange: () => void
+  checked: boolean;
+  onCheck: (provider: string, checked: boolean) => void;
+  onChange: () => void;
 }
 
 export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
-  const [selectedProvider, setSelectedProvider] = useState<string>('')
+  const [selectedProvider, setSelectedProvider] = useState<string>("");
 
   const handleCheck = (provider: string) => {
-    const newChecked = selectedProvider === provider ? '' : provider
-    setSelectedProvider(newChecked)
-    onCheck(provider, newChecked === provider)
-  }
+    const newChecked = selectedProvider === provider ? "" : provider;
+    setSelectedProvider(newChecked);
+    onCheck(provider, newChecked === provider);
+  };
 
   return (
     <Stack spacing={2}>
@@ -48,7 +48,7 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
             label={provider}
           />
         ))}
-        <FormHelperText sx={{ fontStyle: 'italic' }}>
+        <FormHelperText sx={{ fontStyle: "italic" }}>
           Select your preferred provider
         </FormHelperText>
       </FormControl>
@@ -59,7 +59,7 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
             <strong>Card details:</strong>
           </Typography>
 
-          <FormControl sx={{ display: 'flex', gap: 2 }}>
+          <FormControl sx={{ display: "flex", gap: 2 }}>
             <TextField
               id="card-number"
               type="text"
@@ -84,5 +84,5 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
         </>
       )}
     </Stack>
-  )
-}
+  );
+};
