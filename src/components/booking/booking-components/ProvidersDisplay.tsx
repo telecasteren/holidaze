@@ -5,23 +5,26 @@ export const providerDetails = [
     Card: {
       src: "/payment-logos/visa.png",
       alt: "Visa logo",
+      title: "Card details:",
     },
   },
   {
     Klarna: {
       src: "/payment-logos/klarna.png",
       alt: "Klarna logo",
+      title: "Klarna details:",
     },
   },
   {
     Vipps: {
       src: "/payment-logos/vipps.png",
       alt: "Vipps logo",
+      title: "Vipps details:",
     },
   },
 ];
 
-export const ProvidersDisplay = () => {
+export const ProviderLogoDisplay = () => {
   return (
     <Box
       sx={{

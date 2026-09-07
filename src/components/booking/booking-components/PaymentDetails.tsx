@@ -9,12 +9,18 @@ import {
   TextField,
 } from "@mui/material";
 import {
-  ProvidersDisplay,
+  ProviderLogoDisplay,
   providerDetails,
 } from "@/components/booking/booking-components/ProvidersDisplay";
 
 export const paymentProviders = providerDetails.flatMap((provider) =>
   Object.keys(provider),
+);
+
+const providerTitles = Object.fromEntries(
+  providerDetails.flatMap((provider) =>
+    Object.entries(provider).map(([key, value]) => [key, value.title]),
+  ),
 );
 
 interface PaymentDetailsProps {
@@ -32,15 +38,44 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
     onCheck(provider, newChecked === provider);
   };
 
+  const providerForms: Record<string, React.ReactNode> = {
+    Card: (
+      <>
+        <TextField
+          id="card-number"
+          type="text"
+          label="Card number"
+          fullWidth
+          onChange={onChange}
+        />
+        <TextField id="card-expiry" type="date" fullWidth onChange={onChange} />
+        <TextField
+          id="card-cvv"
+          type="number"
+          label="CVV code"
+          fullWidth
+          onChange={onChange}
+        />
+      </>
+    ),
+    Klarna: (
+      <Typography variant="body2">
+        Pay with invoice with Klarna Payment.
+      </Typography>
+    ),
+    Vipps: (
+      <Typography variant="body2">Fastest checkout with Vipps.</Typography>
+    ),
+  };
+
   return (
     <Stack spacing={2}>
       <Typography variant="h4">PAYMENT DETAILS</Typography>
-
       <Typography variant="body1">
         <strong>Payment method:</strong>
       </Typography>
 
-      <ProvidersDisplay />
+      <ProviderLogoDisplay />
 
       <FormControl>
         {paymentProviders.map((provider) => (
@@ -61,33 +96,15 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
         </FormHelperText>
       </FormControl>
 
+      {/* checked provider form */}
       {selectedProvider && (
         <>
           <Typography variant="body1">
-            <strong>Card details:</strong>
+            <strong>{providerTitles[selectedProvider]}</strong>
           </Typography>
 
           <FormControl sx={{ display: "flex", gap: 2 }}>
-            <TextField
-              id="card-number"
-              type="text"
-              label="Card number"
-              fullWidth
-              onChange={onChange}
-            />
-            <TextField
-              id="card-expiry"
-              type="date"
-              fullWidth
-              onChange={onChange}
-            />
-            <TextField
-              id="card-cvv"
-              type="number"
-              label="CVV code"
-              fullWidth
-              onChange={onChange}
-            />
+            {providerForms[selectedProvider]}
           </FormControl>
         </>
       )}

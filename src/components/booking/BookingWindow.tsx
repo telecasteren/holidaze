@@ -60,7 +60,7 @@ export const BookingWindow = ({
     event.preventDefault();
 
     if (!booking.dateRange) {
-      toast.error("No dates selected.");
+      toast.error("No dates selected. Don't you know when to go? Try again.");
       return;
     }
 
