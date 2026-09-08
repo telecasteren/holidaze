@@ -1,19 +1,20 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useProfileBookings } from "@/hooks/useBookingsList";
+import { useBookingsList } from "@/hooks/useBookingsList";
 import { formatDate } from "@/lib/utils/utils";
 import { Stack, Box, Card, Button, Typography } from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { ArrowForwardIcon } from "@/components/layout/icons";
+import { RouteLoader } from "@/components/layout/RouteLoader";
 
 export const MyTripsInfo = () => {
   const navigate = useNavigate();
-  const { bookings, isLoading } = useProfileBookings();
+  const { bookings, isLoading } = useBookingsList();
 
   if (isLoading)
     return (
       <Box sx={{ px: "auto" }}>
-        <strong>Loading...</strong>
+        <RouteLoader />
       </Box>
     );
 

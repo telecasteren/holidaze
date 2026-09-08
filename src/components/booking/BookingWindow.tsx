@@ -44,9 +44,9 @@ export const BookingWindow = ({
   const [disabled, setIsDisabled] = useState(false);
   const [paymentChecked, setPaymentIsChecked] = useState(false);
 
-  const { singleVenue } = useVenue(venueId);
+  const { venue } = useVenue(venueId);
   const { dates, nights } = useBookingSummary(booking.dateRange);
-  const totalPrice = singleVenue?.price ? singleVenue.price * nights : 0;
+  const totalPrice = venue.price ? venue.price * nights : 0;
 
   const handlePaymentChange = (_provider: string, checked: boolean) => {
     setIsChecked(checked);
@@ -120,7 +120,7 @@ export const BookingWindow = ({
             />
 
             <VenueDetails
-              singleVenue={singleVenue}
+              singleVenue={venue}
               dates={dates}
               totalPrice={totalPrice}
               nights={nights}

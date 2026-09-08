@@ -2,7 +2,7 @@ import { useVenue } from "@/hooks/useVenue";
 import { Box, InputLabel, MenuItem, TextField } from "@mui/material";
 
 interface GuestCountPickerProps {
-  venueId?: string;
+  venueId: string;
   value: number;
   onChange: (value: number) => void;
 }
@@ -12,8 +12,8 @@ export function GuestCountPicker({
   value,
   onChange,
 }: GuestCountPickerProps) {
-  const { singleVenue } = useVenue(venueId);
-  const totalGuestsAllowed = singleVenue?.maxGuests ?? 1;
+  const { venue } = useVenue(venueId);
+  const totalGuestsAllowed = venue.maxGuests || 1;
 
   return (
     <Box

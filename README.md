@@ -139,3 +139,4 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - DOMPurify [docs](https://www.npmjs.com/package/isomorphic-dompurify)
 - dangerouslySetInnerHTML [docs](https://dev.to/hijazi313/using-dangerouslysetinnerhtml-safely-in-react-and-nextjs-production-systems-115n)
 - Zod empty states (void/undefined) [docs](https://didoesdigital.com/blog/zod-type-parsing-functions/)
+- TanStack useMutation [docs](https://tanstack.com/query/latest/docs/framework/react/reference/functions/useMutation)
