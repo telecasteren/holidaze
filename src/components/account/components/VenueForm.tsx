@@ -1,9 +1,8 @@
 import { useState, useRef } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { registerNewVenueFn, updateVenueFn } from "@/server/venueFunctions";
-import { queryClient } from "@/lib/queries/queryClient";
 import { localCurrency } from "@/lib/utils/config";
 import { getFormData } from "@/lib/utils/getVenueFormData";
 import type { Venue, VenuePayload } from "@/lib/zod/index";
@@ -45,30 +44,21 @@ interface VenueFormProps {
 
 export const VenueForm = ({ venue, close }: VenueFormProps) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const venueId = venue?.id || "";
   const isEditing = Boolean(venue);
-  const [submitting, setSubmitting] = useState(false);
   const descRef = useRef<TextEditorHandle>(null);
   const { user } = useAuth();
-  if (!user) return null;
 
   const addOrUpdate = useMutation({
     mutationFn: (payload: VenuePayload) =>
       isEditing
         ? updateVenueFn({ data: { id: venueId, ...payload } })
         : registerNewVenueFn({ data: payload }),
-    onMutate: async (newVenue) => {
-      await queryClient.cancelQueries({ queryKey: ["venues"] });
-      const previousVenues = queryClient.getQueryData<Array<Venue>>(["venues"]);
-
-      queryClient.setQueryData<Array<VenuePayload>>(["venues"], (old) => [
-        ...(old ?? []),
-        newVenue,
-      ]);
-
-      return { previousVenues };
-    },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["venues", "profile", user?.name],
+      });
       toast.success(
         isEditing
           ? "Venue updated successfully."
@@ -76,22 +66,20 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
       );
       close?.();
     },
-    onError: (_err, _newVenue, onMutateResult) => {
-      queryClient.setQueryData(["venues"], onMutateResult?.previousVenues);
+    onError: () => {
       toast.error(
         isEditing ? "Failed to update venue." : "Failed to register venue.",
       );
     },
     onSettled: () => {
-      setSubmitting(false);
       router.invalidate();
     },
   });
 
+  if (!user) return null;
+
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitting(true);
-
     const data = new FormData(event.currentTarget);
     const { name, media, maxGuests, price, meta, location } = getFormData(data);
     const description = descRef.current?.getHTML() ?? "";
@@ -104,7 +92,6 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
       meta,
       location,
     };
-
     addOrUpdate.mutate(payload);
   };
 
@@ -304,7 +291,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
         <Button
           type="submit"
           variant="contained"
-          disabled={submitting}
+          disabled={addOrUpdate.isPending}
           sx={{ mt: 2 }}
         >
           {isEditing ? "Update venue" : "Register venue"}
