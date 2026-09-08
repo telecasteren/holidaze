@@ -26,7 +26,7 @@ export const VenueInfo = ({ venueInfo }: VenueInfoProps) => {
         onClose={() => setOpen(false)}
         title={registerVenueFormTitle}
         text={venueFormTips}
-        content={<VenueForm />}
+        content={<VenueForm close={() => setOpen(false)} />}
       />
       <Stack spacing={2} sx={{ display: "grid", gap: 2 }}>
         <Box

@@ -50,7 +50,7 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
         onClose={() => setEditOpen(false)}
         title={updateVenueFormTitle}
         text={venueFormTips}
-        content={<VenueForm venue={venue} />}
+        content={<VenueForm venue={venue} close={() => setEditOpen(false)} />}
       />
 
       {/* Confirm delete venue modal */}

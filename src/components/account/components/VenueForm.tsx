@@ -1,9 +1,13 @@
 import { useState, useRef } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { queryClient } from "@/lib/queries/queryClient";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { registerNewVenueFn, updateVenueFn } from "@/server/venueFunctions";
+import { queryClient } from "@/lib/queries/queryClient";
 import { localCurrency } from "@/lib/utils/config";
 import { getFormData } from "@/lib/utils/getVenueFormData";
+import type { Venue, VenuePayload } from "@/lib/zod/index";
+
 import { RequiredField } from "@/components/layout/RequiredField";
 import { MediaInputs } from "@/components/MediaInputs";
 import { GridBox } from "@/components/GridBox";
@@ -21,17 +25,11 @@ import {
 import { toast } from "react-hot-toast";
 import { TextEditor } from "@/components/text-editor/TextEditor";
 import type { TextEditorHandle } from "@/components/text-editor/TextEditor";
-import type { Venue } from "@/lib/zod/index";
 
 export const updateVenueFormTitle = "Update venue";
 export const registerVenueFormTitle = "Register a new venue";
 export const venueFormTips =
   "Tips: Customers tend to favour venues with that has good information, so add as much about the venue as you can.";
-
-interface VenueFormProps {
-  venue?: Venue;
-  close?: () => void;
-}
 
 const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: 12,
@@ -40,19 +38,61 @@ const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
 }));
 
+interface VenueFormProps {
+  venue?: Venue;
+  close?: () => void;
+}
+
 export const VenueForm = ({ venue, close }: VenueFormProps) => {
+  const router = useRouter();
+  const venueId = venue?.id || "";
   const isEditing = Boolean(venue);
   const [submitting, setSubmitting] = useState(false);
   const descRef = useRef<TextEditorHandle>(null);
   const { user } = useAuth();
   if (!user) return null;
 
+  const addOrUpdate = useMutation({
+    mutationFn: (payload: VenuePayload) =>
+      isEditing
+        ? updateVenueFn({ data: { id: venueId, ...payload } })
+        : registerNewVenueFn({ data: payload }),
+    onMutate: async (newVenue) => {
+      await queryClient.cancelQueries({ queryKey: ["venues"] });
+      const previousVenues = queryClient.getQueryData<Array<Venue>>(["venues"]);
+
+      queryClient.setQueryData<Array<VenuePayload>>(["venues"], (old) => [
+        ...(old ?? []),
+        newVenue,
+      ]);
+
+      return { previousVenues };
+    },
+    onSuccess: () => {
+      toast.success(
+        isEditing
+          ? "Venue updated successfully."
+          : "Venue registered successfully.",
+      );
+      close?.();
+    },
+    onError: (_err, _newVenue, onMutateResult) => {
+      queryClient.setQueryData(["venues"], onMutateResult?.previousVenues);
+      toast.error(
+        isEditing ? "Failed to update venue." : "Failed to register venue.",
+      );
+    },
+    onSettled: () => {
+      setSubmitting(false);
+      router.invalidate();
+    },
+  });
+
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
-    const data = new FormData(event.currentTarget);
-    const venueId = venue?.id || "";
 
+    const data = new FormData(event.currentTarget);
     const { name, media, maxGuests, price, meta, location } = getFormData(data);
     const description = descRef.current?.getHTML() ?? "";
     const payload = {
@@ -65,27 +105,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
       location,
     };
 
-    try {
-      const result = isEditing
-        ? await updateVenueFn({ data: { id: venueId, ...payload } })
-        : await registerNewVenueFn({ data: payload });
-
-      toast.success(
-        isEditing
-          ? "Venue updated successfully."
-          : "Venue registered successfully.",
-      );
-      return result;
-    } catch (error) {
-      toast.error(
-        isEditing ? "Failed to update venue." : "Failed to register venue.",
-      );
-    } finally {
-      queryClient.invalidateQueries({
-        queryKey: [isEditing ? "venues" : "profile", user.name],
-      });
-      setSubmitting(false);
-    }
+    addOrUpdate.mutate(payload);
   };
 
   return (
@@ -244,7 +264,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
           </GridBox>
 
           <GridBox>
-            <InputLabel htmlFor="venue-continent">Country</InputLabel>
+            <InputLabel htmlFor="venue-continent">Continent</InputLabel>
             <TextField
               id="venue-continent"
               name="venue-continent"
@@ -284,7 +304,6 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
         <Button
           type="submit"
           variant="contained"
-          onClick={close}
           disabled={submitting}
           sx={{ mt: 2 }}
         >
