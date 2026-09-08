@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
 import { deleteVenueFn } from "@/server/venueFunctions";
 import type { Venue } from "@/lib/zod";
 
@@ -30,17 +31,19 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
-  const handleDelete = async () => {
-    try {
-      await deleteVenueFn({ data: venue.id });
-      await router.invalidate();
-      toast.success("Venue has been deleted.");
-    } catch (error) {
-      toast.error(`Delete venue failed: ${error}`);
-    } finally {
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteVenueFn({ data: venue.id }),
+    onSuccess: () => {
+      toast.success("Deleted venue successfully.");
       setDeleteOpen(false);
-    }
-  };
+    },
+    onError: (error) => {
+      toast.error(`Deletign venue failed: ${error}`);
+    },
+    onSettled: () => {
+      router.invalidate();
+    },
+  });
 
   return (
     <>
@@ -60,7 +63,7 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
         title="Are you sure?"
         content={
           <Stack spacing={2}>
-            <Button variant="contained" onClick={handleDelete}>
+            <Button variant="contained" onClick={() => deleteMutation.mutate()}>
               Yes, delete venue
             </Button>
             <Button variant="outlined" onClick={() => setDeleteOpen(false)}>
