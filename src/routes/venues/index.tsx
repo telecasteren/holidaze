@@ -109,7 +109,7 @@ function Venues() {
             {venue.rating > 0 ? (
               <Typography
                 variant="body2"
-                sx={{ fontSize: "0.8rem", color: "primary" }}
+                sx={{ fontSize: "0.8rem", color: "primary.main" }}
               >
                 Rating: {venue.rating}
               </Typography>
