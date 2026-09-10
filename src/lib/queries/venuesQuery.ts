@@ -5,10 +5,10 @@ import {
 } from "../../../services/api/venues/venues";
 import { getUserVenuesFn } from "@/server/venueFunctions";
 
-export const venuesQuery = () => {
+export const venuesQuery = (page: number, query: string) => {
   return queryOptions({
-    queryKey: ["venues"],
-    queryFn: getAllVenues,
+    queryKey: ["venues", page, query],
+    queryFn: () => getAllVenues(page, query),
     staleTime: 5 * 1000,
   });
 };

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "@tanstack/react-router";
-import { toast } from "react-hot-toast";
-import type { Profile } from "@/lib/zod/index";
+import { useMutation } from "@tanstack/react-query";
 import { updateProfileFn } from "@/server/profileFunctions";
+import type { Profile } from "@/lib/zod/index";
+
 import { Avatar, Box, styled } from "@mui/material";
 import { ModalWindow } from "@/components/layout/Modal";
 import { EditAvatarForm } from "./EditAvatarForm";
 import { EditIcon } from "@/components/layout/icons";
+import { toast } from "react-hot-toast";
 
 const BoxHover = styled(Box)(() => ({
   position: "relative",
@@ -38,6 +40,26 @@ export const AvatarDisplay = ({ user }: { user: Profile }) => {
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
+  const updateAvatar = useMutation({
+    mutationFn: (payload: Profile["avatar"]) =>
+      updateProfileFn({ data: { name: username, ...payload } }),
+    onMutate: () => {
+      toast("Saving...");
+    },
+    onSuccess: () => {
+      toast.remove();
+      toast.success("Saved!");
+    },
+    onError: () => {
+      toast.error("Failed to update avatar.");
+    },
+    onSettled: () => {
+      setOpen(false);
+      setDisabled(false);
+      router.invalidate();
+    },
+  });
+
   const handleEdit = () => {
     setOpen(true);
   };
@@ -47,19 +69,12 @@ export const AvatarDisplay = ({ user }: { user: Profile }) => {
 
     const data = new FormData(event.currentTarget);
     const newAvatarUrl = data.get("avatarUrl") as string;
+    const payload = {
+      url: newAvatarUrl,
+      alt: `Avatar for ${username}`,
+    };
 
-    toast("Saving...");
-    await updateProfileFn({
-      data: { name: username, avatar: { url: newAvatarUrl, alt: username } },
-    });
-    router.invalidate();
-
-    setTimeout(() => {
-      toast.remove();
-      toast("Saved!");
-      setOpen(false);
-      setDisabled(false);
-    }, 1000);
+    updateAvatar.mutate(payload);
   };
 
   return (

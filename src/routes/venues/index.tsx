@@ -30,11 +30,14 @@ export const Route = createFileRoute("/venues/")({
         content: "Venues page for Holidaze booking application.",
       },
       {
-        title: "Venues — Holidaze",
+        title: "Venues | Holidaze",
       },
     ],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(venuesQuery()),
+  loader: ({ context, location }) => {
+    const { page, query } = searchSchema.parse(location.search);
+    return context.queryClient.ensureQueryData(venuesQuery(page, query));
+  },
   component: Venues,
   pendingComponent: RouteLoader,
   shouldReload: false,
@@ -48,7 +51,7 @@ export const Route = createFileRoute("/venues/")({
 });
 
 function Venues() {
-  const { visibleVenues, totalPages, page, query } = useVenuesList();
+  const { venues, totalPages, page, query } = useVenuesList();
   const navigate = useNavigate({ from: Route.fullPath });
 
   const handleNextPage = (_event: React.ChangeEvent<unknown>) => {
@@ -62,14 +65,14 @@ function Venues() {
       <PageTitle title="VENUES" styles={{ textAlign: "center" }} />
 
       <SearchForm />
-      {query.trim() && visibleVenues.length === 0 && (
+      {query.trim() && venues.length === 0 && (
         <Alert severity="warning" sx={{ m: 2, justifySelf: "center" }}>
           This search did not give any results.
         </Alert>
       )}
 
       <CardsStack>
-        {visibleVenues.map((venue) => (
+        {venues.map((venue) => (
           <Card key={venue.id} sx={{ cursor: "pointer" }}>
             <Favourites
               venue={venue}

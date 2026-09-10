@@ -8,7 +8,7 @@ import { LinkToVenue } from "@/components/LinkToVenue";
 
 export const CarouselDisplay = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { data } = useSuspenseQuery(venuesQuery());
+  const { data } = useSuspenseQuery(venuesQuery(1, ""));
   const venues = data.data;
   const venue = venues[currentIndex];
 

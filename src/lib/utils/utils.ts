@@ -1,5 +1,3 @@
-export const PAGE_SIZE = 10;
-
 export const normalize = (s: string) => s.trim().toLowerCase();
 
 const roundMaxDecimals = (value: number): number => {

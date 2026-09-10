@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useVenue } from "@/hooks/useVenue";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useRouter, useNavigate } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
 import { createNewBookingFn } from "@/server/bookingFunctions";
+import type { BookingFormPayload } from "@/lib/zod";
 
 import type { DateValue, RangeValue } from "react-aria-components";
 import type { TransitionProps } from "@mui/material/transitions";
+import { Dialog, Slide, Container, Divider } from "@mui/material";
 import { VenueDetails } from "./booking-components/VenueDetails";
 import { PaymentDetails } from "./booking-components/PaymentDetails";
 import { BookingAppBar } from "./booking-components/BookingAppBar";
-import { Dialog, Slide, Container, Divider } from "@mui/material";
 import toast from "react-hot-toast";
 
 const Transitions = React.forwardRef(function Transition(
@@ -48,6 +50,26 @@ export const BookingWindow = ({
   const { dates, nights } = useBookingSummary(booking.dateRange);
   const totalPrice = venue.price ? venue.price * nights : 0;
 
+  const addBooking = useMutation({
+    mutationFn: (payload: BookingFormPayload) =>
+      createNewBookingFn({ data: { ...payload } }),
+
+    onSuccess: () => {
+      toast.success("Processing booking...");
+    },
+    onError: (error) => {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      toast.error(`Failed to create booking: ${errorMessage}`);
+    },
+    onSettled: () => {
+      router.invalidate();
+      setTimeout(() => {
+        navigate({ to: "/booking/success" });
+      }, 1500);
+    },
+  });
+
   const handlePaymentChange = (_provider: string, checked: boolean) => {
     setIsChecked(checked);
     setPaymentIsChecked(checked);
@@ -67,20 +89,9 @@ export const BookingWindow = ({
     const dateFrom = booking.dateRange.start.toString();
     const dateTo = booking.dateRange.end.toString();
     const guests = booking.guests;
+    const payload = { venueId, dateFrom, dateTo, guests };
 
-    try {
-      await createNewBookingFn({ data: { venueId, dateFrom, dateTo, guests } });
-      await router.invalidate();
-      toast.success("Processing booking...");
-
-      setTimeout(() => {
-        navigate({ to: "/booking/success" });
-      }, 1500);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      toast.error(`Sending failed: ${errorMessage}`);
-    }
+    addBooking.mutate(payload);
   };
 
   useEffect(() => {

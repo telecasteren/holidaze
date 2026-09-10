@@ -73,6 +73,7 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
         }
       />
 
+      {/* triggers */}
       <StyledBox>
         <IconButton onClick={() => setEditOpen(true)}>
           <EditIcon sx={iconStyles} />
