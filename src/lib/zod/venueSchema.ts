@@ -134,36 +134,6 @@ export const apiSingleVenueSchema = z.object({
   meta: emptyMetaSchema,
 });
 
-export const apiVenueResponseSchema = z.object({
-  data: z.object({
-    id: z.string(),
-    name: z.string().nullable(),
-    description: z.string().nullable(),
-    media: z.array(
-      z.object({
-        url: z.string(),
-        alt: z.string(),
-      }),
-    ),
-    price: z.number(),
-    maxGuests: z.number().int(),
-    rating: z.number(),
-    created: z.string(),
-    updated: z.string(),
-    meta: venueMetaSchema,
-    location: z.object({
-      address: z.string().nullable(),
-      city: z.string().nullable(),
-      zip: z.string().nullable(),
-      country: z.string().nullable(),
-      continent: z.string().nullable(),
-      lat: z.float64().nullable(),
-      lng: z.float64().nullable(),
-    }),
-  }),
-  meta: emptyMetaSchema,
-});
-
 export type VenueMeta = z.infer<typeof venueMetaSchema>;
 export type Venue = z.infer<typeof venueSchema>;
 export type VenuePayload = z.infer<typeof postVenueSchema>;
