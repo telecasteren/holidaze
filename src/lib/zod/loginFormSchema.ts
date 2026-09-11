@@ -1,7 +1,9 @@
 import { z } from "zod";
 
 export const loginFormSchema = z.object({
-  email: z.email("Email must be a valid email.").endsWith("@stud.noroff.no"),
+  email: z
+    .email("Email must be a valid email.")
+    .endsWith("@stud.noroff.no", "Email must end with '@stud.noroff.no'"),
   password: z.string().min(8, "Password must be at least 8 characters."),
 });
 
