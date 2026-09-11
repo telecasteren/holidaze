@@ -1,10 +1,11 @@
 import * as React from "react";
-import { useNavigate, useRouter } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import { loginFn } from "@/server/authFunctions";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginFormSchema } from "@/lib/zod/loginFormSchema";
+import type { SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import type { LoginFormSchemaType } from "@/lib/zod/loginFormSchema";
+import { loginFormSchema } from "@/lib/zod/loginFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginFn } from "@/server/authFunctions";
 import { toast } from "react-hot-toast";
 
 import {
@@ -72,16 +73,29 @@ const LoginContainer = styled(Stack)(({ theme }) => ({
 
 export default function LoginForm(props: { disableCustomTheme?: boolean }) {
   const navigate = useNavigate();
-  const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<LoginFormSchemaType>({
     resolver: zodResolver(loginFormSchema),
     mode: "onBlur",
   });
+  const onSubmit: SubmitHandler<LoginFormSchemaType> = async (data) => {
+    toast.success("Signing in...");
+    const { name } = await loginFn({ data });
+
+    setTimeout(() => {
+      navigate({ to: "/account/$profileId", params: { profileId: name } });
+      toast.remove();
+    }, 1500);
+  };
+  const onError: SubmitErrorHandler<LoginFormSchemaType> = () => {
+    console.log(errors);
+    toast.error("Failed to log you in.");
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -89,26 +103,6 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-
-    try {
-      const { name } = await loginFn({ data: { email, password } });
-      await router.invalidate();
-      toast.success("Signing in...");
-
-      setTimeout(() => {
-        navigate({ to: "/account/$profileId", params: { profileId: name } });
-      }, 1500);
-    } catch (error) {
-      throw new Error("Login failed", { cause: error as string });
-    }
   };
 
   return (
@@ -129,7 +123,7 @@ export default function LoginForm(props: { disableCustomTheme?: boolean }) {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit, onError)}
             noValidate
             sx={{
               display: "flex",

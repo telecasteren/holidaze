@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
-import { useNavigate, useRouter } from "@tanstack/react-router";
+import type { SubmitErrorHandler, SubmitHandler } from "react-hook-form";
+import type { SignUpFormSchemaType } from "@/lib/zod/signUpFormSchema";
+import { signUpFormSchema } from "@/lib/zod/signUpFormSchema";
 import { registerFn } from "@/server/authFunctions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpFormSchema } from "@/lib/zod/signUpFormSchema";
-import type { SignUpFormSchemaType } from "@/lib/zod/signUpFormSchema";
 import { toast } from "react-hot-toast";
 
 import {
@@ -70,40 +71,29 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 
 export default function SignupForm(props: { disableCustomTheme?: boolean }) {
   const navigate = useNavigate();
-  const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormSchemaType>({
     resolver: zodResolver(signUpFormSchema),
     mode: "onBlur",
   });
 
-  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<SignUpFormSchemaType> = async (data) => {
+    toast.success("Signing you up...");
+    const { name } = await registerFn({ data });
 
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-    const name = data.get("name") as string;
-    const venueManager = isChecked;
-
-    try {
-      await registerFn({ data: { name, email, password, venueManager } });
-      await router.invalidate();
-      toast.success("Signing you up...");
-
-      setTimeout(() => {
-        navigate({ to: "/account/$profileId", params: { profileId: name } });
-      }, 1500);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      toast.error(`Sending failed: ${errorMessage}`);
-      throw new Error("Register failed", { cause: error as string });
-    }
+    setTimeout(() => {
+      navigate({ to: "/account/$profileId", params: { profileId: name } });
+      toast.remove();
+    }, 1500);
+  };
+  const onError: SubmitErrorHandler<SignUpFormSchemaType> = () => {
+    console.log(errors);
+    toast.error("Failed to sign up.");
   };
 
   return (
@@ -124,7 +114,8 @@ export default function SignupForm(props: { disableCustomTheme?: boolean }) {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            noValidate
+            onSubmit={handleSubmit(onSubmit, onError)}
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
             <FormControl>
