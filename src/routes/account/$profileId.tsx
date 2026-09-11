@@ -66,7 +66,11 @@ function ProfileById() {
             onChange={(_, newTab: DirectoryKey) => setActiveTab(newTab)}
           >
             {Object.entries(availableDirectories).map(([key, label]) => {
-              if (key === "venues" && !hasVenueManagerRole) return null;
+              if (
+                key === "venues" ||
+                (key === "bookings" && !hasVenueManagerRole)
+              )
+                return null;
               return <Tab key={key} value={key} label={label} />;
             })}
           </Tabs>

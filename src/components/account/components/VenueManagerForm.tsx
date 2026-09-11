@@ -8,14 +8,14 @@ import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
 import { toast } from "react-hot-toast";
 
 export const VenueManagerForm = () => {
-  const { user } = useAuth();
   const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
-  if (!isChecked || !user) return;
+  const { user } = useAuth();
+  const userName = user?.name || "";
 
   const setVenueManager = useMutation({
     mutationFn: () =>
-      updateProfileFn({ data: { name: user.name, venueManager: true } }),
+      updateProfileFn({ data: { name: userName, venueManager: true } }),
     onSuccess: () => {
       toast.success("You are registered as venue manager!");
     },
@@ -28,7 +28,7 @@ export const VenueManagerForm = () => {
   });
 
   return (
-    <Stack direction={"column"} sx={{}}>
+    <Stack direction={"column"}>
       <FormControlLabel
         required
         control={

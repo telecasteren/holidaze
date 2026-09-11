@@ -79,7 +79,9 @@ export const MyTripsInfo = () => {
           })
         ) : (
           <Box>
-            <Typography variant="body1">You have no bookings yet.</Typography>
+            <Typography variant="body1">
+              You haven't booked any trips yet.
+            </Typography>
             <Button
               variant="contained"
               sx={{ mt: 2 }}
