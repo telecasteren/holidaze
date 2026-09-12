@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { CustomPending } from "@/lib/route-states/CustomPending";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/account/$profileId")({
     ],
   }),
   component: ProfileById,
+  pendingComponent: CustomPending,
 });
 
 const availableDirectories = {

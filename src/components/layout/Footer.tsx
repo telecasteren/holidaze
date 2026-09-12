@@ -65,7 +65,9 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
-            <BrandLogo />
+            <Box sx={{ maxWidth: 250, height: "auto" }}>
+              <BrandLogo />
+            </Box>
             <Typography
               variant="body2"
               gutterBottom

@@ -6,6 +6,7 @@ import {
 import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { useVenuesList } from "@/hooks/useVenuesList";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
+import { CustomPending } from "@/lib/route-states/CustomPending";
 
 import {
   Container,
@@ -16,7 +17,7 @@ import {
   Pagination,
   Box,
 } from "@mui/material";
-import { RouteLoader, PageTitle } from "@/components/layout/index";
+import { PageTitle } from "@/components/layout/index";
 import { SearchForm } from "@/components/search/SearchForm";
 import { CardsStack } from "@/components/CardsStack";
 import { Favourites } from "@/components/venues/Favourites";
@@ -38,9 +39,9 @@ export const Route = createFileRoute("/venues/")({
     const { page, query } = searchSchema.parse(location.search);
     return context.queryClient.ensureQueryData(venuesQuery(page, query));
   },
-  component: Venues,
-  pendingComponent: RouteLoader,
+  pendingComponent: CustomPending,
   shouldReload: false,
+  component: Venues,
   validateSearch: searchSchema,
   search: {
     middlewares: [stripSearchParams(defaultSearch)],

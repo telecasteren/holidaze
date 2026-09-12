@@ -7,6 +7,7 @@ export function BrandLogo() {
       <img
         src={brandSettings.logo}
         alt={`Brand logo for ${brandSettings.name}`}
+        style={{ width: "100%", height: "100%" }}
       />
     </Link>
   );
