@@ -25,7 +25,6 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
   if (!mode) {
     return (
       <Box
-        aria-label="toggle-theme"
         data-screenshot="toggle-mode"
         sx={(theme) => ({
           verticalAlign: "bottom",

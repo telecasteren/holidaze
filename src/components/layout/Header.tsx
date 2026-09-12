@@ -85,16 +85,17 @@ export default function Header() {
             >
               {navOptions().map((item) => {
                 return (
-                  <Link {...item.link} key={item.label}>
-                    <Button
-                      variant="text"
-                      color="info"
-                      size="small"
-                      sx={{ minWidth: 0 }}
-                    >
-                      {item.label}
-                    </Button>
-                  </Link>
+                  <Button
+                    key={item.label}
+                    component={Link}
+                    {...item.link}
+                    variant="text"
+                    color="info"
+                    size="small"
+                    sx={{ minWidth: 0 }}
+                  >
+                    {item.label}
+                  </Button>
                 );
               })}
             </Box>

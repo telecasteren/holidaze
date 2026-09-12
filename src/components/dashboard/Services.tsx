@@ -204,7 +204,6 @@ export function Services() {
                       width: "100%",
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: "left",
                       gap: 1,
                       textAlign: "left",
                       textTransform: "none",

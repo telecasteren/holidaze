@@ -86,7 +86,6 @@ export default function Footer() {
                 size="small"
                 variant="outlined"
                 fullWidth
-                aria-label="Enter your email address"
                 placeholder="Your email address"
                 slotProps={{
                   htmlInput: {

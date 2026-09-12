@@ -24,6 +24,7 @@ export const CarouselDisplay = () => {
     <Box
       id="venue-carousel"
       aria-label="Venue image carousel"
+      role="banner"
       sx={{
         position: "absolute",
         width: "100%",
