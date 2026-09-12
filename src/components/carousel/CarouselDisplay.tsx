@@ -68,7 +68,6 @@ export const CarouselDisplay = () => {
         >
           <Typography
             variant="h2"
-            component={"h6"}
             sx={{
               color: "white",
               textShadow: "0 4px 10px rgba(0,0,0,1)",

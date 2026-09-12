@@ -148,7 +148,7 @@ export function Services() {
       <Box sx={{ width: { sm: "100%", md: "60%" } }}>
         <Typography
           component="h2"
-          variant="h4"
+          variant="h6"
           gutterBottom
           sx={{ color: "text.primary" }}
         >
@@ -217,7 +217,9 @@ export function Services() {
                 >
                   {icon}
 
-                  <Typography variant="h6">{title}</Typography>
+                  <Typography variant="h6" component="h3">
+                    {title}
+                  </Typography>
                   <Typography variant="body2">{description}</Typography>
                 </Box>
               </Box>

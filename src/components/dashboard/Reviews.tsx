@@ -30,7 +30,7 @@ export function Reviews() {
       >
         <Typography
           component="h2"
-          variant="h4"
+          variant="h6"
           gutterBottom
           sx={{ color: "text.primary" }}
         >
@@ -65,9 +65,10 @@ export function Reviews() {
                   sx={{ color: "text.secondary" }}
                 >
                   <Typography
+                    component="span"
                     variant="subtitle1"
                     gutterBottom
-                    sx={{ color: "text.secondary" }}
+                    sx={{ color: "text.secondary", display: "block" }}
                   >
                     <Link href="/venues">{review.venue}</Link>
                   </Typography>

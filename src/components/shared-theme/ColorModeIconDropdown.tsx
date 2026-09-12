@@ -25,6 +25,7 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
   if (!mode) {
     return (
       <Box
+        aria-label="toggle-theme"
         data-screenshot="toggle-mode"
         sx={(theme) => ({
           verticalAlign: "bottom",
@@ -43,13 +44,16 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
     light: <LightModeIcon />,
     dark: <DarkModeIcon />,
   }[resolvedMode];
+
   return (
     <React.Fragment>
       <IconButton
+        name="toggle-mode"
         data-screenshot="toggle-mode"
         onClick={handleClick}
         disableRipple
         size="small"
+        aria-label="theme-toggle-icon"
         aria-controls={open ? "color-scheme-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
@@ -58,6 +62,7 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
         {icon}
       </IconButton>
       <Menu
+        aria-label="select-theme-menu"
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -75,13 +80,25 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem selected={mode === "system"} onClick={handleMode("system")}>
+        <MenuItem
+          aria-label="select-system"
+          selected={mode === "system"}
+          onClick={handleMode("system")}
+        >
           System
         </MenuItem>
-        <MenuItem selected={mode === "light"} onClick={handleMode("light")}>
+        <MenuItem
+          aria-label="select-light"
+          selected={mode === "light"}
+          onClick={handleMode("light")}
+        >
           Light
         </MenuItem>
-        <MenuItem selected={mode === "dark"} onClick={handleMode("dark")}>
+        <MenuItem
+          aria-label="select-dark"
+          selected={mode === "dark"}
+          onClick={handleMode("dark")}
+        >
           Dark
         </MenuItem>
       </Menu>

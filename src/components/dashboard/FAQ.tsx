@@ -35,7 +35,7 @@ export function FAQ() {
     >
       <Typography
         component="h2"
-        variant="h4"
+        variant="h6"
         sx={{
           color: "text.primary",
           width: { sm: "100%", md: "60%" },
