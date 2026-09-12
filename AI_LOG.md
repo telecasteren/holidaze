@@ -54,3 +54,8 @@ _**Example:**
 **Date:** 05.09.26<br/>
 **Purpose:** Check if it was safe to delete "unused" utility file that came in during mui-tiptap install.<br/>
 **Outcome:** Got confirmation that it was safe, e.g. functions not used by node_modules etc.<br/>
+
+**Tool used:** Claude Sonnet 4.6<br/>
+**Date:** 11.09.26<br/>
+**Purpose:** Locating strange specific errors from 'validator.w3.org', such as: `Error: Saw U+0000 in stream. !0},$R[14]={i:"",u:178919254`<br/>
+**Outcome:** Understanding that Tanstack/React injects the internal streaming SSR / routers dehydrated state into the `<script>` tag for client hydration. Harmless inside `<script>` tags<br/>

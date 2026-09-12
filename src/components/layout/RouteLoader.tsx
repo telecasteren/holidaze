@@ -6,7 +6,7 @@ export const RouteLoader = () => {
       <CircularProgress
         aria-label="Loading…"
         size="3rem"
-        sx={{ justifyContent: "center" }}
+        sx={{ justifyContent: "center", mx: "auto" }}
       />
     </Container>
   );

@@ -19,7 +19,7 @@ export const Favourites = ({ children, venue }: FavouritesProps) => {
   };
 
   return (
-    <Stack sx={{ position: "relative" }}>
+    <Stack sx={{ position: "relative", justifySelf: "center", width: "100%" }}>
       {favorites[venue.id] ? (
         <IconButton
           aria-label="favourite-on"

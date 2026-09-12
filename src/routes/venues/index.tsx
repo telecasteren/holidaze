@@ -74,54 +74,74 @@ function Venues() {
 
       <CardsStack>
         {venues.map((venue) => (
-          <Card key={venue.id} sx={{ cursor: "pointer" }}>
+          <Card
+            key={venue.id}
+            sx={{
+              display: "grid",
+              cursor: "pointer",
+              width: 300,
+              overflow: "hidden",
+            }}
+          >
             <Favourites
               venue={venue}
               children={
-                <LinkToVenue venueId={venue.id}>
-                  <Box
-                    component="img"
-                    src={venue.media[0]?.url || "/no-image-icon.webp"}
-                    alt={venue.media[0]?.alt || `Image of ${venue.name}`}
-                    sx={{
-                      width: 300,
-                      height: 300,
-                      borderRadius: "inherit",
-                      objectFit: "contain",
-                      transition: "ease-in-out 0.3s",
-                      "&:hover": { opacity: 0.8 },
-                    }}
-                  />
-                </LinkToVenue>
+                <Box
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: 250,
+                    overflow: "hidden",
+                    borderRadius: 1,
+                  }}
+                >
+                  <LinkToVenue venueId={venue.id}>
+                    <Box
+                      component="img"
+                      src={venue.media[0]?.url || "/no-image-icon.webp"}
+                      alt={venue.media[0]?.alt || `Image of ${venue.name}`}
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: 1,
+                        objectFit: "cover",
+                        transition: "ease-in-out 0.3s",
+                        "&:hover": { opacity: 0.8 },
+                      }}
+                    />
+                  </LinkToVenue>
+                </Box>
               }
             />
 
-            <LinkToVenue
-              venueId={venue.id}
-              children={<Typography variant="h2">{venue.name}</Typography>}
-            />
+            <Box>
+              <LinkToVenue
+                venueId={venue.id}
+                children={<Typography variant="h2">{venue.name}</Typography>}
+              />
 
-            {venue.location?.city && venue.location.country && (
-              <Typography variant="body1">
-                {venue.location.city} • {venue.location.country}
-              </Typography>
-            )}
+              {venue.location?.city && venue.location.country && (
+                <Typography variant="body1">
+                  {venue.location.city} • {venue.location.country}
+                </Typography>
+              )}
 
-            {venue.rating > 0 ? (
-              <Typography
-                variant="body2"
-                sx={{ fontSize: "0.8rem", color: "primary.main" }}
-              >
-                Rating: {venue.rating}
-              </Typography>
-            ) : (
-              <Typography
-                variant="body2"
-                sx={{ fontSize: "0.8rem", color: "primary" }}
-              >
-                No rating yet
-              </Typography>
-            )}
+              {venue.rating > 0 ? (
+                <Typography
+                  variant="body2"
+                  sx={{ fontSize: "0.8rem", color: "primary.main" }}
+                >
+                  Rating: {venue.rating}
+                </Typography>
+              ) : (
+                <Typography
+                  variant="body2"
+                  sx={{ fontSize: "0.8rem", color: "primary" }}
+                >
+                  No rating yet
+                </Typography>
+              )}
+            </Box>
           </Card>
         ))}
       </CardsStack>
