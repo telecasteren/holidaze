@@ -196,6 +196,8 @@ export function Services() {
                 width: 420,
                 height: 500,
                 backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
                 backgroundImage: "var(--items-imageLight)",
                 ...theme.applyStyles("dark", {
                   backgroundImage: "var(--items-imageDark)",

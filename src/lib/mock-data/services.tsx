@@ -18,15 +18,15 @@ export const serviceItems = [
     title: "Calendar",
     description:
       "Get your planning done with Holidazes intuitive and easy calendar and booking system.",
-    imageLight: `url("/calendar-dates.png")`,
-    imageDark: `url("/calendar-dates.png")`,
+    imageLight: `url("/calendar-dates.webp")`,
+    imageDark: `url("/calendar-dates.webp")`,
   },
   {
     icon: <DevicesRoundedIcon />,
     title: "Available on all platforms",
     description:
       "Holidaze is just as easy to use on desktop as on mobile devices. This rich and responsive web application will follow you where you need.",
-    imageLight: `url("/calendar-mobile.png")`,
-    imageDark: `url("/calendar-mobile.png")`,
+    imageLight: `url("/mobile_screens.webp")`,
+    imageDark: `url("/mobile_screens.webp")`,
   },
 ];
