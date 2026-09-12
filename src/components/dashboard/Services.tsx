@@ -1,72 +1,13 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import MuiChip from "@mui/material/Chip";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import {
-  DevicesRoundedIcon,
-  ViewQuiltRoundedIcon,
-  CalendarMonthIcon,
-} from "@/components/layout/icons";
+import { serviceItems } from "@/lib/mock-data/services";
 
-const items = [
-  {
-    icon: <ViewQuiltRoundedIcon />,
-    title: "Metrics",
-    description:
-      "This item will provide important metrics or data points related to the product.",
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/dash-light.png")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/dash-dark.png")`,
-  },
-  {
-    icon: <CalendarMonthIcon />,
-    title: "Calendar",
-    description:
-      "This item will provide visualizations of the calendar and booking system.",
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/mobile-light.png")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/mobile-dark.png")`,
-  },
-  {
-    icon: <DevicesRoundedIcon />,
-    title: "Available on all platforms",
-    description:
-      "This item will let users know the product is available on all platforms (web, mobile, and desktop).",
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/devices-light.png")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || "https://mui.com"}/static/images/templates/templates-images/devices-dark.png")`,
-  },
-];
-
-interface ChipProps {
-  selected?: boolean;
-}
-
-const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
-  variants: [
-    {
-      props: ({ selected }) => !!selected,
-      style: {
-        background:
-          "linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))",
-        color: "hsl(0, 0%, 100%)",
-        borderColor: (theme.vars || theme).palette.primary.light,
-        "& .MuiChip-label": {
-          color: "hsl(0, 0%, 100%)",
-        },
-        ...theme.applyStyles("dark", {
-          borderColor: (theme.vars || theme).palette.primary.dark,
-        }),
-      },
-    },
-  ],
-}));
+import { Box, Button, Card, Container, Typography } from "@mui/material";
+import { StyledChip } from "@/components/StyledChip";
 
 interface MobileLayoutProps {
   selectedItemIndex: number;
   handleItemClick: (index: number) => void;
-  selectedFeature: (typeof items)[0];
+  selectedFeature: (typeof serviceItems)[0];
 }
 
 export function MobileLayout({
@@ -74,7 +15,7 @@ export function MobileLayout({
   handleItemClick,
   selectedFeature,
 }: MobileLayoutProps) {
-  if (!items[selectedItemIndex]) {
+  if (!serviceItems[selectedItemIndex]) {
     return null;
   }
 
@@ -87,8 +28,8 @@ export function MobileLayout({
       }}
     >
       <Box sx={{ display: "flex", gap: 2, overflow: "auto" }}>
-        {items.map(({ title }, index) => (
-          <Chip
+        {serviceItems.map(({ title }, index) => (
+          <StyledChip
             size="medium"
             key={index}
             label={title}
@@ -110,10 +51,12 @@ export function MobileLayout({
             }),
           })}
           style={
-            items[selectedItemIndex]
+            serviceItems[selectedItemIndex]
               ? ({
-                  "--items-imageLight": items[selectedItemIndex].imageLight,
-                  "--items-imageDark": items[selectedItemIndex].imageDark,
+                  "--items-imageLight":
+                    serviceItems[selectedItemIndex].imageLight,
+                  "--items-imageDark":
+                    serviceItems[selectedItemIndex].imageDark,
                 } as any)
               : {}
           }
@@ -141,7 +84,7 @@ export function Services() {
     setSelectedItemIndex(index);
   };
 
-  const selectedFeature = items[selectedItemIndex];
+  const selectedFeature = serviceItems[selectedItemIndex];
 
   return (
     <Container id="services" sx={{ py: { xs: 8, sm: 16 } }}>
@@ -158,8 +101,9 @@ export function Services() {
           variant="body1"
           sx={{ color: "text.secondary", mb: { xs: 2, sm: 4 } }}
         >
-          Here comes a brief overview of the key services of the site. About
-          fees, membership benefits, and security.
+          Holidaze vow to simplify booking through our services. Keep track of
+          upcoming trips, bookings and more. Free membership includes great
+          benefits, and a vast community for venue managers.
         </Typography>
       </Box>
       <Box
@@ -178,7 +122,7 @@ export function Services() {
               height: "100%",
             }}
           >
-            {items.map(({ icon, title, description }, index) => (
+            {serviceItems.map(({ icon, title, description }, index) => (
               <Box
                 key={index}
                 component={Button}
@@ -258,10 +202,12 @@ export function Services() {
                 }),
               })}
               style={
-                items[selectedItemIndex]
+                serviceItems[selectedItemIndex]
                   ? ({
-                      "--items-imageLight": items[selectedItemIndex].imageLight,
-                      "--items-imageDark": items[selectedItemIndex].imageDark,
+                      "--items-imageLight":
+                        serviceItems[selectedItemIndex].imageLight,
+                      "--items-imageDark":
+                        serviceItems[selectedItemIndex].imageDark,
                     } as any)
                   : {}
               }
