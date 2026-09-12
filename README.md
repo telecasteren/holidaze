@@ -1,7 +1,8 @@
 # Holidaze
 
 A venue booking system where users can browse and book venues, manage their venues and bookings.<br/>
-![holidaze](public/brand/holidaze-readme.webp)
+![holidaze_dashboard](public/brand/holidaze-readme.webp)
+![holidaze_venue](public/brand/venuedetails.webp)
 **Author:** Tele Caster Nilsen<br/>
 **Live site:** https://holidaze.telecasternilsen.com
 

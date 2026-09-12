@@ -5,7 +5,7 @@ export const userReviews = [
     avatar: (
       <Avatar
         alt="John Show"
-        src="/unsplash/luthfi-alfarizi-jlJpDBK17Hw-unsplash.webp"
+        src="/unsplash-avatars/luthfi-alfarizi-jlJpDBK17Hw-unsplash.webp"
       />
     ),
     author: "John Show",
@@ -18,7 +18,7 @@ export const userReviews = [
     avatar: (
       <Avatar
         alt="Reyna Lewis"
-        src="/unsplash/luthfi-alfarizi-yXAGGbVuhEY-unsplash.webp"
+        src="/unsplash-avatars/luthfi-alfarizi-yXAGGbVuhEY-unsplash.webp"
       />
     ),
     author: "Reyna Lewis",
@@ -31,7 +31,7 @@ export const userReviews = [
     avatar: (
       <Avatar
         alt="Cindy Crawbone"
-        src="/unsplash/luthfi-alfarizi-xRMK0ea-Of4-unsplash.webp"
+        src="/unsplash-avatars/luthfi-alfarizi-xRMK0ea-Of4-unsplash.webp"
       />
     ),
     author: "Cindy Crawbone",

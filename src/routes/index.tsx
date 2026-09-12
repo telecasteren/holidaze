@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
     const url = loaderData?.data[0]?.media?.[0]?.url;
     return {
       links: url
-        ? [{ rel: "preload", as: "image", href: url, fetchpriority: "high" }]
+        ? [{ rel: "preload", as: "image", href: url, fetchPriority: "high" }]
         : [],
     };
   },
