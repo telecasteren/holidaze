@@ -69,7 +69,7 @@ function ProfileById() {
           >
             {Object.entries(availableDirectories).map(([key, label]) => {
               if (
-                key === "venues" ||
+                (key === "venues" && !hasVenueManagerRole) ||
                 (key === "bookings" && !hasVenueManagerRole)
               )
                 return null;

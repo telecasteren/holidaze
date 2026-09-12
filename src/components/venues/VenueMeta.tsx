@@ -25,6 +25,7 @@ export const VenueMeta = ({ venue }: VenueMetaProps) => {
             key={key}
             label={metaLabels[key as keyof Venue["meta"]]}
             color="primary"
+            sx={{ border: "none" }}
           />
         ))}
       </Stack>
