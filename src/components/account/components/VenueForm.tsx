@@ -96,7 +96,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
   };
 
   return (
-    <Stack>
+    <Stack sx={{ width: { xs: 300, sm: 500, md: 800, lg: 1000 } }}>
       <form
         id="register-venue"
         onSubmit={handleSubmit}

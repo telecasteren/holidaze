@@ -79,7 +79,7 @@ function Venues() {
             sx={{
               display: "grid",
               cursor: "pointer",
-              width: 300,
+              width: { xs: 300, sm: 350 },
               overflow: "hidden",
             }}
           >

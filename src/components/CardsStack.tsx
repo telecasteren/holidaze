@@ -22,7 +22,6 @@ export const CardsStack = ({
         gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
         justifyContent: "center",
         gap: 4,
-        m: 4,
         ...styles,
       }}
     >
