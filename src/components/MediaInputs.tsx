@@ -71,7 +71,11 @@ export const MediaInputs = ({
           );
         })}
       </GridBox>
-      <Button variant="outlined" onClick={() => addInput(1)}>
+      <Button
+        variant="contained"
+        sx={{ width: "fit-content" }}
+        onClick={() => addInput(1)}
+      >
         Add image
       </Button>
     </Stack>

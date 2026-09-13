@@ -31,7 +31,7 @@ export const Route = createFileRoute("/venues/$venueId")({
         name: "description",
         content: `Venue details for ${loaderData?.name ?? "Venue"} at ${brandSettings.name}.`,
       },
-      { title: loaderData?.name ?? "Venue" },
+      { title: `${loaderData?.name ?? "Venue details"} | Holidaze` },
     ],
   }),
   component: VenueById,

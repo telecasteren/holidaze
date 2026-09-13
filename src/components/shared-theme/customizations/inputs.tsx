@@ -57,31 +57,22 @@ export const inputsCustomizations: Components<Theme> = {
             },
             style: {
               color: "white",
-              backgroundColor: gray[900],
-              backgroundImage: `linear-gradient(to bottom, ${gray[700]}, ${gray[800]})`,
-              boxShadow: `inset 0 1px 0 ${gray[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
-              border: `1px solid ${gray[700]}`,
+              backgroundColor: "#027AF2",
+              border: "#027AF2",
               "&:hover": {
-                backgroundImage: "none",
-                backgroundColor: gray[700],
-                boxShadow: "none",
+                opacity: 0.9,
               },
               "&:active": {
-                backgroundColor: gray[800],
+                backgroundColor: "#027AF2",
               },
               ...theme.applyStyles("dark", {
-                color: "black",
-                backgroundColor: gray[50],
-                backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow: "inset 0 -1px 0  hsl(220, 30%, 80%)",
-                border: `1px solid ${gray[50]}`,
+                color: "white",
+                backgroundColor: "#027AF2",
                 "&:hover": {
-                  backgroundImage: "none",
-                  backgroundColor: gray[300],
-                  boxShadow: "none",
+                  opacity: 0.9,
                 },
                 "&:active": {
-                  backgroundColor: gray[400],
+                  backgroundColor: "#027AF2",
                 },
               }),
             },
@@ -124,15 +115,15 @@ export const inputsCustomizations: Components<Theme> = {
                 backgroundColor: gray[200],
               },
               ...theme.applyStyles("dark", {
-                backgroundColor: gray[800],
+                backgroundColor: "#202327",
                 borderColor: gray[700],
 
                 "&:hover": {
-                  backgroundColor: gray[900],
+                  backgroundColor: "#202327",
                   borderColor: gray[600],
                 },
                 "&:active": {
-                  backgroundColor: gray[900],
+                  backgroundColor: "#202327",
                 },
               }),
             },
@@ -386,7 +377,7 @@ export const inputsCustomizations: Components<Theme> = {
         padding: "8px 12px",
         color: (theme.vars || theme).palette.text.primary,
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        border: "1px solid #e0e4eb",
         backgroundColor: (theme.vars || theme).palette.background.default,
         transition: "border 120ms ease-in",
         "&:hover": {
@@ -397,6 +388,8 @@ export const inputsCustomizations: Components<Theme> = {
           borderColor: brand[400],
         },
         ...theme.applyStyles("dark", {
+          color: "black",
+          backgroundColor: "#DFDFDF",
           "&:hover": {
             borderColor: gray[500],
           },

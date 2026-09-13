@@ -13,7 +13,7 @@ export const SortBookingsForm = ({
   onChange,
 }: SortBookingsFormProps) => {
   return (
-    <Box>
+    <Box sx={{ width: 150 }}>
       <FormControl fullWidth>
         <InputLabel id="SortBookings">Sort bookings by</InputLabel>
         <Select

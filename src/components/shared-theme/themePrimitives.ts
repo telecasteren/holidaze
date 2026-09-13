@@ -31,17 +31,23 @@ const defaultTheme = createTheme();
 
 const customShadows: Shadows = [...defaultTheme.shadows];
 
+export const accent = {
+  50: "hsl(210, 97%, 71%)", // "6DB5FD"
+  100: "hsl(210, 98%, 48%)", // "#027af2"
+  200: "hsl(210, 100%, 33%)", // "0054A7"
+};
+
 export const brand = {
-  50: "hsl(210, 100%, 95%)",
-  100: "hsl(210, 100%, 92%)",
-  200: "hsl(210, 100%, 80%)",
-  300: "hsl(210, 100%, 65%)",
-  400: "hsl(210, 98%, 48%)",
-  500: "hsl(210, 98%, 42%)",
-  600: "hsl(210, 98%, 55%)",
-  700: "hsl(210, 100%, 35%)",
-  800: "hsl(210, 100%, 16%)",
-  900: "hsl(210, 100%, 21%)",
+  50: "hsl(210, 100%, 95%)", // #e3f3ff
+  100: "hsl(210, 100%, 92%)", // #bbe1ff
+  200: "hsl(210, 100%, 80%)", // #8dceff
+  300: "hsl(210, 100%, 65%)", // #5abbff
+  400: "hsl(210, 98%, 48%)", // #2babff
+  500: "hsl(210, 98%, 42%)", // #009cff
+  600: "hsl(210, 98%, 55%)", // #008dff
+  700: "hsl(210, 100%, 35%)", // #027af2
+  800: "hsl(210, 100%, 16%)", // #0d68e0
+  900: "hsl(210, 100%, 21%)", // #1647c1
 };
 
 export const gray = {
@@ -117,6 +123,16 @@ export const getDesignTokens = (mode: PaletteMode) => {
           dark: brand[700],
         }),
       },
+      accent: {
+        light: accent[50],
+        main: accent[100],
+        dark: brand[200],
+        ...(mode === "dark" && {
+          light: accent[50],
+          main: accent[100],
+          dark: brand[200],
+        }),
+      },
       info: {
         light: brand[100],
         main: brand[300],
@@ -190,7 +206,7 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
     },
     typography: {
-      fontFamily: "Inter, sans-serif",
+      // fontFamily: "Inter, sans-serif",
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
         fontWeight: 600,
@@ -254,6 +270,11 @@ export const colorSchemes = {
         dark: brand[700],
         contrastText: brand[50],
       },
+      accent: {
+        light: accent[50],
+        main: accent[100],
+        dark: brand[200],
+      },
       info: {
         light: brand[100],
         main: brand[300],
@@ -280,7 +301,7 @@ export const colorSchemes = {
       },
       divider: alpha(gray[300], 0.4),
       background: {
-        default: "hsl(0, 0%, 99%)",
+        default: "hsl(0, 0%, 99%)", // #fcfcfc
         paper: "hsl(220, 35%, 97%)",
       },
       text: {
@@ -303,6 +324,11 @@ export const colorSchemes = {
         light: brand[300],
         main: brand[400],
         dark: brand[700],
+      },
+      accent: {
+        light: accent[50],
+        main: accent[100],
+        dark: brand[200],
       },
       info: {
         contrastText: brand[300],
@@ -330,7 +356,7 @@ export const colorSchemes = {
       },
       divider: alpha(gray[700], 0.6),
       background: {
-        default: gray[900],
+        default: "hsl(214, 10%, 14%)", // #202327
         paper: "hsl(220, 30%, 7%)",
       },
       text: {
@@ -348,19 +374,22 @@ export const colorSchemes = {
 };
 
 export const typography = {
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "Roboto, sans-serif",
   h1: {
+    fontFamily: '"Century Gothic", Roboto, sans-serif',
     fontSize: defaultTheme.typography.pxToRem(48),
     fontWeight: 600,
     lineHeight: 1.2,
     letterSpacing: -0.5,
   },
   h2: {
+    fontFamily: '"Century Gothic", Roboto, sans-serif',
     fontSize: defaultTheme.typography.pxToRem(36),
     fontWeight: 600,
     lineHeight: 1.2,
   },
   h3: {
+    fontFamily: '"Century Gothic", Roboto, sans-serif',
     fontSize: defaultTheme.typography.pxToRem(30),
     lineHeight: 1.2,
   },

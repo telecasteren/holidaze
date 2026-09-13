@@ -35,7 +35,7 @@ export const Route = createFileRoute("/account/$profileId")({
         name: "description",
         content: `Account details for ${loaderData?.name ?? "Account"} at ${brandSettings.name}.`,
       },
-      { title: loaderData?.name ?? "Account" },
+      { title: `${loaderData?.name ?? "Account details"} | Holidaze` },
     ],
   }),
   component: ProfileById,

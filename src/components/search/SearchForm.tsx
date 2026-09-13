@@ -34,7 +34,7 @@ export function SearchForm() {
         size="medium"
         variant="outlined"
         aria-label="Search for venues"
-        placeholder="Find your next venue..."
+        placeholder="Find your next adventure..."
         fullWidth
         value={inputQuery}
         onChange={handleOnChange}

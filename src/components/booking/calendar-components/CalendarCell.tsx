@@ -96,6 +96,9 @@ const CellRoot = styled(AriaCalendarCell, {
     [`&[data-unavailable] .${CONTENT_CLASS}`]: {
       textDecoration: "line-through",
       color: alpha(theme.palette.text.secondary, 0.5),
+      ...theme.applyStyles("dark", {
+        color: alpha("#DFDFDF", 0.5),
+      }),
     },
     "&[data-outside-month]": {
       opacity: 0.5,
@@ -146,10 +149,13 @@ const CellRoot = styled(AriaCalendarCell, {
       alignItems: "center",
       justifyContent: "center",
       borderRadius: "50%",
-      fontSize: "0.875rem",
+      fontSize: "1rem",
       lineHeight: 1,
       fontWeight: 400,
       color: theme.palette.text.secondary,
+      ...theme.applyStyles("dark", {
+        color: "white",
+      }),
       backgroundColor: isTodayDate
         ? theme.palette.action.selected
         : "transparent",

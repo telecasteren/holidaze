@@ -37,10 +37,13 @@ export const CalendarTitle = styled("h2")(({ theme }) => ({
   left: "50%",
   transform: "translate(-50%, -50%)",
   margin: 0,
-  fontSize: "0.875rem",
+  fontSize: "1rem",
   lineHeight: 1.25,
   fontWeight: 600,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles("dark", {
+    color: "white",
+  }),
 }));
 
 export const CalendarGrid = styled(AriaCalendarGrid)({
@@ -58,9 +61,12 @@ export const WeekdayLabel = styled("div")(({ theme }) => ({
   height: CELL_SIZE,
   alignItems: "center",
   justifyContent: "center",
-  fontSize: "0.875rem",
+  fontSize: "1rem",
   fontWeight: 500,
   color: theme.palette.text.secondary,
+  ...theme.applyStyles("dark", {
+    color: "white",
+  }),
 }));
 
 export const CalendarGridBody = styled(AriaCalendarGridBody)({

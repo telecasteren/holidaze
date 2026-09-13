@@ -55,7 +55,7 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    toast.success("Logging out...");
+    toast("Logging out...");
     setTimeout(() => {
       logout();
     }, 1500);

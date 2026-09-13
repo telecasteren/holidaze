@@ -16,7 +16,7 @@ import { BookingWindow } from "@/components/booking/BookingWindow";
 import { ModalWindow } from "@/components/layout/Modal";
 import { today, getLocalTimeZone } from "@internationalized/date";
 
-const StyledBox = styled(Box)(({ theme }) => ({
+const SummaryBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: 20,
@@ -24,12 +24,29 @@ const StyledBox = styled(Box)(({ theme }) => ({
   borderRadius: 8,
   height: "fit-content",
   backgroundColor: theme.palette.background.paper,
+  ...theme.applyStyles("dark", {
+    backgroundColor: "hsla(220, 35%, 3%, 0.4)",
+  }),
   [theme.breakpoints.up("xs")]: {
     width: 300,
+    // marginTop: "1rem",
   },
   [theme.breakpoints.up("sm")]: {
     width: 350,
+    // marginTop: "2rem",
   },
+  [theme.breakpoints.up("md")]: {
+    // marginTop: "5.5rem",
+  },
+}));
+
+const CalendarBox = styled(Box)(({ theme }) => ({
+  margin: 0,
+  padding: 0,
+  ...theme.applyStyles("dark", {
+    backgroundColor: "hsla(220, 35%, 3%, 0.4)",
+    borderRadius: 8,
+  }),
 }));
 
 interface CalendarDisplayProps {
@@ -90,6 +107,10 @@ export const CalendarDisplay = ({
         }
       />
 
+      <Typography variant="h4" sx={{ mt: 8, mb: 2 }}>
+        See availability
+      </Typography>
+
       <Stack
         sx={{
           display: "grid",
@@ -99,27 +120,23 @@ export const CalendarDisplay = ({
           width: "100%",
         }}
       >
-        <Box>
-          <Typography variant="h4" sx={{ mt: 8, textAlign: "center" }}>
-            See availability
-          </Typography>
-
-          <Controller
-            name="dateRange"
-            control={control}
-            render={({ field }) => (
+        <Controller
+          name="dateRange"
+          control={control}
+          render={({ field }) => (
+            <CalendarBox>
               <RangeCalendar
                 value={field.value}
                 onChange={field.onChange}
                 isDateUnavailable={isDateUnavailable}
                 minValue={today(getLocalTimeZone())}
               />
-            )}
-          />
-        </Box>
+            </CalendarBox>
+          )}
+        />
 
         {/* BOOKING SUMMARY */}
-        <StyledBox>
+        <SummaryBox>
           <Typography variant="h5">Booking summary</Typography>
           <Typography variant="body1">
             <strong>Dates selected: </strong>
@@ -147,7 +164,7 @@ export const CalendarDisplay = ({
           >
             BOOK THIS VENUE
           </Button>
-        </StyledBox>
+        </SummaryBox>
       </Stack>
     </>
   );

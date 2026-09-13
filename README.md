@@ -142,3 +142,13 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - Zod empty states (void/undefined) [docs](https://didoesdigital.com/blog/zod-type-parsing-functions/)
 - TanStack useMutation [docs](https://tanstack.com/query/latest/docs/framework/react/reference/functions/useMutation)
 - React Hook Form [docs](https://react-hook-form.com/docs/useform/handlesubmit)
+
+## Acknowledgements
+
+FONT FAMILY
+
+- Century Gothic [font](https://online-fonts.com/fonts/century-gothic)
+
+UNSPLASH IMAGES
+
+Thanks to [Luthi Alfarezi](https://unsplash.com/@luthfialfarizi) for the 'Reviews' avatars.

@@ -1,10 +1,9 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import { ClearIconButton } from "@/components/layout/ClearIconButton";
+import { Box, Modal, Typography } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material";
 
-const style = {
+const style: SxProps<Theme> = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -12,7 +11,7 @@ const style = {
   minWidth: 320,
   maxHeight: "90vh",
   overflowY: "auto",
-  bgcolor: "background.paper",
+  backgroundColor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
@@ -44,7 +43,16 @@ export const ModalWindow = ({
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <Box role="dialog" aria-modal="true" sx={style}>
+        <Box
+          role="dialog"
+          aria-modal="true"
+          sx={(theme) => ({
+            ...style,
+            ...theme.applyStyles("dark", {
+              backgroundColor: "#34383D",
+            }),
+          })}
+        >
           <ClearIconButton onClick={onClose} />
           <Typography id="modal-title" variant="h6" component="h6">
             {title}
