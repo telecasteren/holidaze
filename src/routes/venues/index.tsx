@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-router";
 import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { useVenuesList } from "@/hooks/useVenuesList";
+import { useSortVenuesForm } from "@/hooks/useSortVenuesForm";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
 import { CustomPending } from "@/lib/route-states/CustomPending";
 
@@ -19,6 +20,7 @@ import {
 } from "@mui/material";
 import { PageTitle } from "@/components/layout/index";
 import { SearchForm } from "@/components/search/SearchForm";
+import { SortVenuesForm } from "@/components/sorting/SortVenuesForm";
 import { CardsStack } from "@/components/CardsStack";
 import { Favourites } from "@/components/venues/Favourites";
 import { LinkToVenue } from "@/components/LinkToVenue";
@@ -55,6 +57,8 @@ function Venues() {
   const { venues, totalPages, page, query } = useVenuesList();
   const navigate = useNavigate({ from: Route.fullPath });
 
+  const { option, handleChange, sortedVenues } = useSortVenuesForm(venues);
+
   const handleNextPage = (_event: React.ChangeEvent<unknown>) => {
     navigate({
       search: (prev) => ({ ...prev, page: prev.page + 1 }),
@@ -63,7 +67,7 @@ function Venues() {
 
   return (
     <Container id="venues" sx={{ py: 16 }}>
-      <PageTitle title="VENUES" styles={{ textAlign: "center" }} />
+      <PageTitle title="EXPLORE VENUES" styles={{ textAlign: "center" }} />
 
       <SearchForm />
       {query.trim() && venues.length === 0 && (
@@ -71,9 +75,10 @@ function Venues() {
           This search did not give any results.
         </Alert>
       )}
+      <SortVenuesForm option={option} onChange={handleChange} />
 
       <CardsStack>
-        {venues.map((venue) => (
+        {sortedVenues.map((venue) => (
           <Card
             key={venue.id}
             sx={{

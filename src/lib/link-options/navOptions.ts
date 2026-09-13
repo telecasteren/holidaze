@@ -6,7 +6,7 @@ export const navOptions = () => [
       to: "/venues",
       activeOptions: { exact: true },
     }),
-    label: "Venues",
+    label: "Explore",
     icon: false,
   },
   {

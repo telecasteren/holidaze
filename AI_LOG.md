@@ -59,3 +59,8 @@ _**Example:**
 **Date:** 11.09.26<br/>
 **Purpose:** Locating strange specific errors from 'validator.w3.org', such as: `Error: Saw U+0000 in stream. !0},$R[14]={i:"",u:178919254`<br/>
 **Outcome:** Understanding that Tanstack/React injects the internal streaming SSR / routers dehydrated state into the `<script>` tag for client hydration. Harmless inside `<script>` tags<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 13.09.26<br/>
+**Purpose:** Creating boilerplate/mock-content in `journal.tsx`, `/contact/index.tsx`, `about.tsx`, `careers.tsx`, `privacy.tsx`, `terms.tsx`, based on the app's tech and design principles.<br/>
+**Outcome:** Saving time on bolierplate-material insignificant to the assignments requirements, yet makes the application feel wholesome and professional.<br/>

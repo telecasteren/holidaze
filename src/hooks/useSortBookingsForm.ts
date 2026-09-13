@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import type { SelectChangeEvent } from "@mui/material";
+import { useMemo } from "react";
+import { useSortOption } from "@/hooks/useSortOption";
 import type { Booking } from "@/lib/zod/index";
 
 export const sortOptions = [
@@ -12,11 +12,7 @@ export const sortOptions = [
 export type SortOption = (typeof sortOptions)[number];
 
 export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
-  const [option, setOption] = useState<SortOption>(sortOptions[0]);
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setOption(event.target.value as SortOption);
-  };
+  const { option, handleChange } = useSortOption(sortOptions);
 
   const sortedBookings = useMemo(() => {
     const setOfBookings = [...bookings];
