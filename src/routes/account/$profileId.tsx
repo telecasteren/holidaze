@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { CustomPending } from "@/lib/route-states/CustomPending";
 import { brandSettings } from "@/lib/brand/brandSettings";
@@ -7,11 +7,22 @@ import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
 import type { Profile } from "@/lib/zod/index";
 
 import { Container, Stack, Tabs, Tab, Divider } from "@mui/material";
+import { RouteLoader } from "@/components/layout";
 import { AccountInfo } from "@/components/account/AccountInfo";
 import { MyTripsInfo } from "@/components/account/MyTripsInfo";
-import { VenueInfo } from "@/components/account/VenueInfo";
 import { AccountHero } from "@/components/account/AccountHero";
-import { BookingsInfo } from "@/components/account/BookingsInfo";
+
+// lazy imports - these files import large chunks (VenueForm, tiptap etc.)
+const VenueInfo = lazy(() =>
+  import("@/components/account/VenueInfo").then((m) => ({
+    default: m.VenueInfo,
+  })),
+);
+const BookingsInfo = lazy(() =>
+  import("@/components/account/BookingsInfo").then((m) => ({
+    default: m.BookingsInfo,
+  })),
+);
 
 export const Route = createFileRoute("/account/$profileId")({
   beforeLoad({ context }) {
@@ -71,7 +82,8 @@ function ProfileById() {
             {Object.entries(availableDirectories).map(([key, label]) => {
               if (
                 (key === "venues" && !hasVenueManagerRole) ||
-                (key === "bookings" && !hasVenueManagerRole)
+                (key === "bookings" && !hasVenueManagerRole) ||
+                (key === "calendar" && !hasVenueManagerRole)
               )
                 return null;
               return <Tab key={key} value={key} label={label} />;
@@ -93,11 +105,15 @@ function ProfileById() {
             {activeTab === "myTrips" && <MyTripsInfo />}
 
             {activeTab === "venues" && hasVenueManagerRole && (
-              <VenueInfo venueInfo={venueInfo} />
+              <Suspense fallback={<RouteLoader />}>
+                <VenueInfo venueInfo={venueInfo} />
+              </Suspense>
             )}
 
             {activeTab === "bookings" && hasVenueManagerRole && (
-              <BookingsInfo venueInfo={venueInfo} />
+              <Suspense fallback={<RouteLoader />}>
+                <BookingsInfo venueInfo={venueInfo} />
+              </Suspense>
             )}
 
             {activeTab === "calendar" && hasVenueManagerRole && (

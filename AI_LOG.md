@@ -64,3 +64,8 @@ _**Example:**
 **Date:** 13.09.26<br/>
 **Purpose:** Creating boilerplate/mock-content in `journal.tsx`, `/contact/index.tsx`, `about.tsx`, `careers.tsx`, `privacy.tsx`, `terms.tsx`, based on the app's tech and design principles.<br/>
 **Outcome:** Saving time on bolierplate-material insignificant to the assignments requirements, yet makes the application feel wholesome and professional.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 14.09.26<br/>
+**Purpose:** Creating boilerplate Skeleton loader UI `SkeletonGallery.tsx`, based on `Gallery.tsx`<br/>
+**Outcome:** Saving time on bolierplate-material making the application feel professional.<br/>

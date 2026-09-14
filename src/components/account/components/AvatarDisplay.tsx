@@ -42,7 +42,7 @@ export const AvatarDisplay = ({ user }: { user: Profile }) => {
 
   const updateAvatar = useMutation({
     mutationFn: (payload: Profile["avatar"]) =>
-      updateProfileFn({ data: { name: username, ...payload } }),
+      updateProfileFn({ data: { name: username, avatar: payload } }),
     onMutate: () => {
       toast("Saving...");
     },

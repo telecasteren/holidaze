@@ -44,6 +44,7 @@ export const CarouselDisplay = () => {
           <Box
             key={venue.id}
             component="img"
+            loading="lazy"
             src={venue.media[0]?.url || "/no-image-icon.webp"}
             alt={venue.media[0]?.alt || `Image of ${venue.name}`}
             sx={{

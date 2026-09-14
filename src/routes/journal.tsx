@@ -1,3 +1,5 @@
+// CoAuthored with Claude Sonnet 5
+
 import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
@@ -183,6 +185,7 @@ function Journal() {
             >
               <CardMedia
                 component="img"
+                loading="lazy"
                 image={post.image}
                 alt={post.alt}
                 sx={{ height: 180, objectFit: "cover" }}

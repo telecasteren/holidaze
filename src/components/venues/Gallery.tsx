@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { RouteLoader } from "@/components/layout";
+import { SkeletonGallery } from "@/components/venues/SkeletonGallery";
 import { ImageList, ImageListItem, Box } from "@mui/material";
 import type { Venue } from "@/lib/zod/index";
 
@@ -25,7 +25,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
     const [item] = venueMedia;
     return (
       <>
-        {isLoading && <RouteLoader />}
+        {isLoading && <SkeletonGallery count={1} />}
 
         <Box
           sx={{
@@ -36,8 +36,9 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
         >
           <Box
             component="img"
+            loading="lazy"
             ref={handleRef}
-            src={item.url}
+            src={`${item.url}?w=248&fit=crop&auto=format`}
             alt={item.alt || "Gallery image"}
             onLoad={handleSettled}
             onError={handleSettled}
@@ -50,7 +51,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
 
   return (
     <>
-      {isLoading && <RouteLoader />}
+      {isLoading && <SkeletonGallery />}
 
       <ImageList
         variant="masonry"
@@ -61,6 +62,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
         {venueMedia.map((item) => (
           <ImageListItem key={item.url}>
             <img
+              loading="lazy"
               ref={handleRef}
               srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
               src={`${item.url}?w=248&fit=crop&auto=format`}

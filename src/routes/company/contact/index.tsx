@@ -1,3 +1,5 @@
+// CoAuthored with Claude Sonnet 5
+
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import type { SubmitErrorHandler, SubmitHandler } from "react-hook-form";

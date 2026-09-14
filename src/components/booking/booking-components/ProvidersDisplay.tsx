@@ -39,6 +39,7 @@ export const ProviderLogoDisplay = () => {
             <Box
               key={key}
               component="img"
+              loading="lazy"
               src={value.src}
               alt={value.alt}
               sx={{
