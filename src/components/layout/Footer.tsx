@@ -39,6 +39,7 @@ export default function Footer() {
 
   return (
     <Container
+      component="footer"
       sx={{
         display: "flex",
         flexDirection: "column",
