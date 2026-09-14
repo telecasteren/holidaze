@@ -11,7 +11,19 @@ const config = defineConfig({
   ssr: {
     noExternal: ["mui-tiptap"],
   },
-  plugins: [devtools(), netlify(), tanstackStart(), viteReact()],
+  plugins: [
+    devtools(),
+    netlify({
+      dev: {
+        database: { enabled: false },
+        blobs: { enabled: false },
+        edgeFunctions: { enabled: false },
+        functions: { enabled: false },
+      },
+    }),
+    tanstackStart(),
+    viteReact(),
+  ],
 });
 
 export default config;

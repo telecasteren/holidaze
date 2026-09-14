@@ -25,7 +25,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
     const [item] = venueMedia;
     return (
       <>
-        {isLoading && <SkeletonGallery />}
+        {isLoading && <SkeletonGallery count={1} />}
 
         <Box
           sx={{
@@ -38,7 +38,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
             component="img"
             loading="lazy"
             ref={handleRef}
-            src={item.url}
+            src={`${item.url}?w=248&fit=crop&auto=format`}
             alt={item.alt || "Gallery image"}
             onLoad={handleSettled}
             onError={handleSettled}
