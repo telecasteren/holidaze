@@ -5,7 +5,6 @@ import { formatDate } from "@/lib/utils/utils";
 
 import { Stack, Box, Card, Button, Typography, Divider } from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
-import { GridBox } from "@/components/GridBox";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { RouteLoader } from "@/components/layout/RouteLoader";
 import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
@@ -45,14 +44,13 @@ export const MyTripsInfo = () => {
               <Card
                 key={booking.id}
                 sx={{
-                  display: "grid",
-                  width: { xs: 300, sm: 350 },
-                  overflow: "hidden",
-                  gap: 1,
-                  justifyContent: "center",
-                  opacity: hasPassed ? 0.6 : 1,
-                  padding: 0,
+                  opacity: hasPassed ? 0.4 : 1,
+                  p: 0,
                   border: "none",
+                  position: "relative",
+                  width: "fit-content",
+                  minWidth: 250,
+                  maxWidth: 400,
                 }}
               >
                 <LinkToVenue venueId={booking.venue?.id || ""} unstyled>
@@ -64,18 +62,30 @@ export const MyTripsInfo = () => {
                       `Image of ${booking.venue?.name}`
                     }
                     sx={{
+                      display: "block",
                       width: "100%",
-                      height: "100%",
-                      borderTopLeftRadius: 1,
-                      borderTopRightRadius: 1,
-                      objectFit: "cover",
+                      height: "auto",
+                      maxHeight: "100%",
+                      borderRadius: 1,
                       transition: "ease-in-out 0.3s",
-                      "&:hover": { opacity: 0.8 },
+                      "&:hover": { opacity: hasPassed ? 1 : 0.8 },
                     }}
                   />
                 </LinkToVenue>
 
-                <GridBox styles={{ gap: 1, padding: 2 }}>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    display: "grid",
+                    p: 2,
+                    color: "text.tertiary",
+                    background: "linear-gradient(to top, black, transparent)",
+                    pointerEvents: "none",
+                  }}
+                >
                   <Typography variant="h6">{booking.venue?.name}</Typography>
 
                   <Divider />
@@ -88,7 +98,7 @@ export const MyTripsInfo = () => {
                     Booked for {booking.guests}{" "}
                     {booking.guests > 1 ? "guests" : "guest"}
                   </Typography>
-                </GridBox>
+                </Box>
               </Card>
             );
           })

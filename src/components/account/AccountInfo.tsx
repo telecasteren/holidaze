@@ -64,7 +64,7 @@ export const AccountInfo = ({ user, isManager }: AccountInfoProps) => {
         onClose={() => setOpen(false)}
         title="Register as venue manager"
         text=""
-        content={<VenueManagerForm />}
+        content={<VenueManagerForm close={() => setOpen(false)} />}
       />
     </Box>
   );

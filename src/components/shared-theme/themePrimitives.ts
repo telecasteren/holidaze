@@ -146,6 +146,7 @@ export const colorSchemes = {
       text: {
         primary: gray[800],
         secondary: gray[600],
+        tertiary: gray[50],
         warning: orange[400],
       },
       action: {
@@ -201,6 +202,7 @@ export const colorSchemes = {
       text: {
         primary: "hsl(0, 0%, 100%)",
         secondary: gray[400],
+        tertiary: gray[50],
       },
       action: {
         hover: alpha(gray[600], 0.2),

@@ -2,13 +2,7 @@ import { useMemo } from "react";
 import { useSortOption } from "@/hooks/useSortOption";
 import type { Booking } from "@/lib/zod/index";
 
-export const sortOptions = [
-  "All",
-  "Upcoming",
-  "Newest in",
-  "Venues",
-  "Previous",
-] as const;
+export const sortOptions = ["All", "Upcoming", "Venues", "Previous"] as const;
 export type SortOption = (typeof sortOptions)[number];
 
 export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
@@ -19,7 +13,10 @@ export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
 
     switch (option) {
       case "All":
-        return setOfBookings;
+        return setOfBookings.sort(
+          (a, b) =>
+            new Date(b.created).getTime() - new Date(a.created).getTime(),
+        );
       case "Upcoming":
         return setOfBookings
           .filter((booking) => new Date(booking.dateFrom) > new Date())
@@ -27,11 +24,6 @@ export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
             (a, b) =>
               new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime(),
           );
-      case "Newest in":
-        return setOfBookings.sort(
-          (a, b) =>
-            new Date(b.created).getTime() - new Date(a.created).getTime(),
-        );
       case "Venues":
         return setOfBookings.sort((a, b) =>
           (a.venue?.name ?? "").localeCompare(b.venue?.name ?? ""),

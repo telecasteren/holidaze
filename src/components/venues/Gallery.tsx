@@ -31,6 +31,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
           sx={{
             opacity: isLoading ? 0 : 1,
             justifyContent: "center",
+            display: "grid",
           }}
         >
           <Box

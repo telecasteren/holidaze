@@ -7,7 +7,7 @@ import { updateProfileFn } from "@/server/profileFunctions";
 import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
 import { toast } from "react-hot-toast";
 
-export const VenueManagerForm = () => {
+export const VenueManagerForm = ({ close }: { close: () => void }) => {
   const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
   const { user } = useAuth();
@@ -24,6 +24,7 @@ export const VenueManagerForm = () => {
     },
     onSettled: () => {
       router.invalidate();
+      close();
     },
   });
 

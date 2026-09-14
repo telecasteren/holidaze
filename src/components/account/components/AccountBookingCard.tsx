@@ -22,14 +22,18 @@ export const AccountBookingCard = ({
         gap: 0.5,
         width: { xs: 300, sm: 350 },
         opacity: hasPassed ? 0.6 : 1,
+        boxShadow: 1,
+        border: "none",
       }}
     >
       <LinkToVenue
         venueId={booking.venue.id || ""}
-        styles={{ fontSize: 16, fontWeight: "bold" }}
+        styles={{ fontSize: 20, fontWeight: "bold" }}
       >
         {booking.venue.name}
       </LinkToVenue>
+
+      <Divider />
 
       <Typography
         component="span"
@@ -37,8 +41,6 @@ export const AccountBookingCard = ({
       >
         Booking
       </Typography>
-
-      <Divider />
 
       <Typography variant="body1">
         <strong>Dates:</strong> {formatDate(booking.dateFrom)} -{" "}
@@ -49,14 +51,18 @@ export const AccountBookingCard = ({
         <strong>Total guests:</strong> {booking.guests}
       </Typography>
 
+      <Divider />
+
       <Typography
         component="span"
-        sx={{ fontWeight: "bold", color: "text.secondary", mt: 1 }}
+        sx={{
+          fontWeight: "bold",
+          color: "text.secondary",
+          mt: 1,
+        }}
       >
         Customer
       </Typography>
-
-      <Divider />
 
       <Typography variant="body2">
         <strong>Customer:</strong> {booking.customer.name}

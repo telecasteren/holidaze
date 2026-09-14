@@ -89,6 +89,7 @@ function Venues() {
               overflow: "hidden",
               padding: 0,
               border: "none",
+              boxShadow: 1,
             }}
           >
             <Favourites

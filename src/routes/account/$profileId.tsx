@@ -47,6 +47,7 @@ const availableDirectories = {
   myTrips: "My trips",
   venues: "Manage venues",
   bookings: "Manage bookings",
+  calendar: "View calendar",
 } as const;
 
 type DirectoryKey = keyof typeof availableDirectories;
@@ -97,6 +98,10 @@ function ProfileById() {
 
             {activeTab === "bookings" && hasVenueManagerRole && (
               <BookingsInfo venueInfo={venueInfo} />
+            )}
+
+            {activeTab === "calendar" && hasVenueManagerRole && (
+              <i>Feature coming soon...</i>
             )}
           </Stack>
         </Stack>

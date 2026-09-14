@@ -65,6 +65,7 @@ export const CarouselDisplay = () => {
             display: "flex",
             justifyContent: "center",
             p: 2,
+            pointerEvents: "none",
           }}
         >
           <Typography
