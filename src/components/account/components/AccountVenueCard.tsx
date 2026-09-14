@@ -5,6 +5,8 @@ import { formatDate } from "@/lib/utils/utils";
 import type { Venue } from "@/lib/zod";
 
 const StyledCard = styled(Card)(({ theme }) => ({
+  padding: 0,
+  border: "none",
   [theme.breakpoints.up("xs")]: {
     display: "grid",
   },
@@ -12,7 +14,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
     display: "flex",
   },
   gap: 4,
-  padding: 10,
   justifyContent: "space-between",
 }));
 
@@ -30,6 +31,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
             src={venue.media[0].url}
             alt={venue.media[0].alt || `Image of ${venue.name}`}
             sx={{
+              mb: 1,
               width: 500,
               height: "auto",
               maxHeight: 500,
@@ -40,7 +42,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
           />
         </LinkToVenue>
 
-        <Box sx={{ display: "grid", gap: 0.5 }}>
+        <Box sx={{ display: "grid", gap: 0.5, p: 2 }}>
           <Typography variant="h6" component="h6">
             {venue.name}
           </Typography>

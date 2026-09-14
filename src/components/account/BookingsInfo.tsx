@@ -33,7 +33,11 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
       <Typography variant="h4" sx={{ mb: 2 }}>
         Total bookings: {sortedBookings.length}
       </Typography>
-      <SortBookingsForm option={option} onChange={handleChange} />
+
+      <Box sx={{ mb: 2 }}>
+        <SortBookingsForm option={option} onChange={handleChange} />
+      </Box>
+
       <CardsStack>
         {sortedBookings.length ? (
           sortedBookings.map((booking) => {

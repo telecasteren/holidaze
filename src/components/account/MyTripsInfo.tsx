@@ -1,15 +1,22 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useBookingsList } from "@/hooks/useBookingsList";
+import { useSortBookingsForm } from "@/hooks/useSortBookingsForm";
 import { formatDate } from "@/lib/utils/utils";
 
-import { Stack, Box, Card, Button, Typography } from "@mui/material";
+import { Stack, Box, Card, Button, Typography, Divider } from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
+import { GridBox } from "@/components/GridBox";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { RouteLoader } from "@/components/layout/RouteLoader";
+import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
 
 export const MyTripsInfo = () => {
   const navigate = useNavigate();
   const { bookings, isLoading } = useBookingsList();
+  const allBookings = bookings?.data || [];
+
+  const { option, handleChange, sortedBookings } =
+    useSortBookingsForm(allBookings);
 
   if (isLoading)
     return (
@@ -23,9 +30,14 @@ export const MyTripsInfo = () => {
       <Typography variant="h4" sx={{ mb: 2 }}>
         Total trips: {bookings?.meta.totalCount}
       </Typography>
+
+      <Box sx={{ mb: 2 }}>
+        <SortBookingsForm option={option} onChange={handleChange} />
+      </Box>
+
       <CardsStack>
-        {bookings?.data.length ? (
-          bookings.data.map((booking) => {
+        {sortedBookings.length ? (
+          sortedBookings.map((booking) => {
             const today = new Date();
             const hasPassed = new Date(booking.dateTo) <= today;
 
@@ -34,12 +46,13 @@ export const MyTripsInfo = () => {
                 key={booking.id}
                 sx={{
                   display: "grid",
-                  cursor: "pointer",
                   width: { xs: 300, sm: 350 },
                   overflow: "hidden",
                   gap: 1,
                   justifyContent: "center",
                   opacity: hasPassed ? 0.6 : 1,
+                  padding: 0,
+                  border: "none",
                 }}
               >
                 <LinkToVenue venueId={booking.venue?.id || ""} unstyled>
@@ -53,7 +66,8 @@ export const MyTripsInfo = () => {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      borderRadius: 1,
+                      borderTopLeftRadius: 1,
+                      borderTopRightRadius: 1,
                       objectFit: "cover",
                       transition: "ease-in-out 0.3s",
                       "&:hover": { opacity: 0.8 },
@@ -61,16 +75,20 @@ export const MyTripsInfo = () => {
                   />
                 </LinkToVenue>
 
-                <Typography variant="h6">{booking.venue?.name}</Typography>
+                <GridBox styles={{ gap: 1, padding: 2 }}>
+                  <Typography variant="h6">{booking.venue?.name}</Typography>
 
-                <Typography variant="body2">
-                  <strong>Dates:</strong> {formatDate(booking.dateFrom)} -{" "}
-                  {formatDate(booking.dateTo)}
-                </Typography>
-                <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                  Booked for {booking.guests}{" "}
-                  {booking.guests > 1 ? "guests" : "guest"}
-                </Typography>
+                  <Divider />
+
+                  <Typography variant="body2">
+                    <strong>Dates:</strong> {formatDate(booking.dateFrom)} -{" "}
+                    {formatDate(booking.dateTo)}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                    Booked for {booking.guests}{" "}
+                    {booking.guests > 1 ? "guests" : "guest"}
+                  </Typography>
+                </GridBox>
               </Card>
             );
           })

@@ -8,6 +8,7 @@ import { useVenuesList } from "@/hooks/useVenuesList";
 import { useSortVenuesForm } from "@/hooks/useSortVenuesForm";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
 import { CustomPending } from "@/lib/route-states/CustomPending";
+import { localCurrency } from "@/lib/utils/config";
 
 import {
   Container,
@@ -18,6 +19,7 @@ import {
   Pagination,
   Box,
 } from "@mui/material";
+import { LocationOnIcon } from "@/components/layout/icons";
 import { PageTitle } from "@/components/layout/index";
 import { SearchForm } from "@/components/search/SearchForm";
 import { SortVenuesForm } from "@/components/sorting/SortVenuesForm";
@@ -83,9 +85,10 @@ function Venues() {
             key={venue.id}
             sx={{
               display: "grid",
-              cursor: "pointer",
               width: { xs: 300, sm: 350 },
               overflow: "hidden",
+              padding: 0,
+              border: "none",
             }}
           >
             <Favourites
@@ -97,7 +100,8 @@ function Venues() {
                     height: "auto",
                     maxHeight: 250,
                     overflow: "hidden",
-                    borderRadius: 1,
+                    borderTopLeftRadius: 1,
+                    borderTopRightRadius: 1,
                   }}
                 >
                   <LinkToVenue venueId={venue.id}>
@@ -108,7 +112,6 @@ function Venues() {
                       sx={{
                         width: "100%",
                         height: "100%",
-                        borderRadius: 1,
                         objectFit: "cover",
                         transition: "ease-in-out 0.3s",
                         "&:hover": { opacity: 0.8 },
@@ -119,29 +122,44 @@ function Venues() {
               }
             />
 
-            <Box>
+            <Box sx={{ display: "grid", gap: 2, p: 2 }}>
               <LinkToVenue
                 venueId={venue.id}
                 children={<Typography variant="h2">{venue.name}</Typography>}
               />
 
               {venue.location?.city && venue.location.country && (
-                <Typography variant="body1">
-                  {venue.location.city} • {venue.location.country}
+                <Typography
+                  variant="caption"
+                  sx={{
+                    display: "flex",
+                    gap: 0.5,
+                    alignItems: "center",
+                    color: "text.secondary",
+                  }}
+                >
+                  <LocationOnIcon fontSize="small" /> {venue.location.city} •{" "}
+                  {venue.location.country}
                 </Typography>
               )}
 
+              <Divider />
+
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                <strong>
+                  {venue.price} {localCurrency}
+                </strong>{" "}
+                / night
+              </Typography>
+
               {venue.rating > 0 ? (
-                <Typography
-                  variant="body2"
-                  sx={{ fontSize: "0.8rem", color: "primary.main" }}
-                >
+                <Typography variant="caption" sx={{ color: "primary.main" }}>
                   Rating: {venue.rating}
                 </Typography>
               ) : (
                 <Typography
-                  variant="body2"
-                  sx={{ fontSize: "0.8rem", color: "primary" }}
+                  variant="caption"
+                  sx={{ color: "primary.main", fontStyle: "italic" }}
                 >
                   No rating yet
                 </Typography>

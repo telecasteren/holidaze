@@ -20,7 +20,6 @@ export const AccountBookingCard = ({
       sx={{
         display: "grid",
         gap: 0.5,
-        m: 2,
         width: { xs: 300, sm: 350 },
         opacity: hasPassed ? 0.6 : 1,
       }}

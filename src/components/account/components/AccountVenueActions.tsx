@@ -12,7 +12,9 @@ import { venueFormTips, updateVenueFormTitle, VenueForm } from "./VenueForm";
 
 const StyledBox = styled(Box)(() => ({
   display: "flex",
+  flexWrap: "wrap",
   gap: 12,
+  margin: 20,
   alignItems: "center",
   width: "fit-content",
 }));

@@ -48,7 +48,6 @@
     "@tiptap/pm": "^3.31.2",
     "@tiptap/react": "^3.31.2",
     "@tiptap/starter-kit": "^3.31.2",
-    "@untitledui/icons": "^0.0.22",
     "dayjs": "^1.11.23",
     "husky": "^9.1.7",
     "isomorphic-dompurify": "^4.1.0",

@@ -15,12 +15,12 @@ export const SortBookingsForm = ({
   return (
     <Box sx={{ width: 150 }}>
       <FormControl fullWidth>
-        <InputLabel id="SortBookings">Sort bookings by</InputLabel>
+        <InputLabel id="SortBookings">Sort by</InputLabel>
         <Select
           labelId="SortBookings"
           id="SortBookings"
           value={option}
-          label="Sort bookings by"
+          label="Sort by"
           onChange={onChange}
         >
           {sortOptions.map((opt) => (

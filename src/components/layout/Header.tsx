@@ -92,7 +92,7 @@ export default function Header() {
                     variant="text"
                     color="info"
                     size="small"
-                    sx={{ minWidth: 0 }}
+                    sx={{ minWidth: 0, fontSize: "1rem" }}
                   >
                     {item.label}
                   </Button>
