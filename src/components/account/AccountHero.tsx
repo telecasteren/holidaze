@@ -62,6 +62,7 @@ export const AccountHero = ({ user }: { user: Profile }) => {
 
       <Box
         component="img"
+        loading="lazy"
         src={user.banner.url}
         alt={user.banner.alt || `Account banner for ${user.name}`}
         sx={{

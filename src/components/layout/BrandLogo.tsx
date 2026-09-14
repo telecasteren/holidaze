@@ -5,6 +5,7 @@ export function BrandLogo() {
   return (
     <Link to="/" aria-label="Site logo and link to homepage">
       <img
+        loading="lazy"
         src={brandSettings.logo}
         alt={`Brand logo for ${brandSettings.name}`}
         style={{ width: "100%", height: "100%" }}

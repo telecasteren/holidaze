@@ -24,6 +24,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
       <LinkToVenue venueId={venue.id} unstyled>
         <Box
           component="img"
+          loading="lazy"
           src={venue.media[0].url}
           alt={venue.media[0].alt || `Image of ${venue.name}`}
           sx={{

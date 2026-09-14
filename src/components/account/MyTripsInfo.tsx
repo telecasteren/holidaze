@@ -56,6 +56,7 @@ export const MyTripsInfo = () => {
                 <LinkToVenue venueId={booking.venue?.id || ""} unstyled>
                   <Box
                     component="img"
+                    loading="lazy"
                     src={booking.venue?.media[0]?.url}
                     alt={
                       booking.venue?.media[0]?.alt ||

@@ -1,3 +1,5 @@
+// CoAuthored with Claude Sonnet 5
+
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Box,

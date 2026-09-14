@@ -47,6 +47,7 @@ export const VenueDetails = ({
             <HoverBox>
               <Box
                 component="img"
+                loading="lazy"
                 src={firstImage?.url}
                 alt={firstImage?.alt || `Image of ${singleVenue?.name}`}
                 style={{ width: "100%", height: "auto", borderRadius: 8 }}

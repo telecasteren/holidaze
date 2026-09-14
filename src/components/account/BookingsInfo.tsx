@@ -44,9 +44,13 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
             const hasPassed = new Date(booking.dateTo) <= today;
 
             return !hasPassed ? (
-              <AccountBookingCard booking={booking} />
+              <AccountBookingCard key={booking.id} booking={booking} />
             ) : (
-              <AccountBookingCard booking={booking} hasPassed={true} />
+              <AccountBookingCard
+                key={booking.id}
+                booking={booking}
+                hasPassed={true}
+              />
             );
           })
         ) : (
