@@ -48,7 +48,7 @@ export const AccountBookingCard = ({
       </Typography>
 
       <Typography variant="body2">
-        <strong>Total guests:</strong> {booking.guests}
+        <strong>Guest total:</strong> {booking.guests}
       </Typography>
 
       <Divider />
@@ -65,11 +65,11 @@ export const AccountBookingCard = ({
       </Typography>
 
       <Typography variant="body2">
-        <strong>Customer:</strong> {booking.customer.name}
+        <strong>Name:</strong> {booking.customer.name}
       </Typography>
 
       <Typography variant="body2">
-        <strong>Contact customer:</strong>{" "}
+        <strong>Email:</strong>{" "}
         <MUILink
           href={`mailto:${booking.customer.email}`}
           target="_blank"
