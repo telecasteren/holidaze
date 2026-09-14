@@ -7,6 +7,7 @@ import { localCurrency } from "@/lib/utils/config";
 import { getFormData } from "@/lib/utils/getVenueFormData";
 import type { Venue, VenuePayload } from "@/lib/zod/index";
 
+import { FindMyLocation } from "@/components/location/FindMyLocation";
 import { RequiredField } from "@/components/layout/RequiredField";
 import { MediaInputs } from "@/components/MediaInputs";
 import { GridBox } from "@/components/GridBox";
@@ -33,8 +34,8 @@ export const venueFormTips =
 const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: 12,
   color: theme.palette.text.secondary,
+  marginTop: 10,
   marginBottom: 10,
-  textDecoration: "none",
 }));
 
 interface VenueFormProps {
@@ -214,7 +215,8 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
           <Typography variant="h6" component="h6">
             Location
           </Typography>
-          <GridBox>
+
+          <GridBox id="address">
             <InputLabel htmlFor="venue-address">Address</InputLabel>
             <TextField
               id="venue-address"
@@ -224,7 +226,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             />
           </GridBox>
 
-          <GridBox>
+          <GridBox id="city">
             <InputLabel htmlFor="venue-city">City</InputLabel>
             <TextField
               id="venue-city"
@@ -234,7 +236,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             />
           </GridBox>
 
-          <GridBox>
+          <GridBox id="zip">
             <InputLabel htmlFor="venue-zip">Zip Code</InputLabel>
             <TextField
               id="venue-zip"
@@ -244,7 +246,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             />
           </GridBox>
 
-          <GridBox>
+          <GridBox id="country">
             <InputLabel htmlFor="venue-country">Country</InputLabel>
             <TextField
               id="venue-country"
@@ -254,7 +256,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             />
           </GridBox>
 
-          <GridBox>
+          <GridBox id="continent">
             <InputLabel htmlFor="venue-continent">Continent</InputLabel>
             <TextField
               id="venue-continent"
@@ -264,7 +266,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             />
           </GridBox>
 
-          <GridBox>
+          <GridBox id="coordinates">
             <InputLabel htmlFor="venue-lat">Coordinates</InputLabel>
             <StyledLink
               href="https://coordinates-converter.com/en"
@@ -273,22 +275,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
             >
               WGS 84: online converter
             </StyledLink>
-            <GridBox styles={{ gap: 1 }}>
-              <TextField
-                id="venue-lat"
-                name="venue-lat"
-                type="number"
-                placeholder="Latitude..."
-                defaultValue={venue?.location?.lat}
-              />
-              <TextField
-                id="venue-long"
-                name="venue-long"
-                type="number"
-                placeholder="Longitude..."
-                defaultValue={venue?.location?.lng}
-              />
-            </GridBox>
+            <FindMyLocation />
           </GridBox>
         </Stack>
 

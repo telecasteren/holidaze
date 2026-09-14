@@ -25,8 +25,8 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
         <Box
           component="img"
           loading="lazy"
-          src={venue.media[0].url}
-          alt={venue.media[0].alt || `Image of ${venue.name}`}
+          src={venue.media[0]?.url || "/no-image-icon.webp"}
+          alt={venue.media[0]?.alt || `Image of ${venue.name}`}
           sx={{
             display: "block",
             width: "100%",

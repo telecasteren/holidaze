@@ -145,6 +145,7 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - React lazy Suspense [docs](https://react.dev/reference/react/lazy)
 - Netlify plugin features [docs](https://npmx.dev/package/@netlify/vite-plugin)
 - sitemap.xml [docs](https://digital.gov/resources/introduction-xml-sitemaps)
+- Geolocation API [docs](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API)
 
 ## Acknowledgements
 
