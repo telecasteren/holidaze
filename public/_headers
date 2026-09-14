@@ -1,0 +1,21 @@
+
+/assets/*
+    Cache-Control: public, max-age=31536000, immutable
+
+/brand/*
+    Cache-Control: public, max-age=86400, must-revalidate
+
+/century-gothic/*
+    Cache-Control: public, max-age=86400, must-revalidate
+
+/payment-logos/*
+    Cache-Control: public, max-age=86400, must-revalidate
+
+/services/*
+    Cache-Control: public, max-age=86400, must-revalidate
+
+/unsplash-avatars/*
+    Cache-Control: public, max-age=86400, must-revalidate
+
+/no-image-icon.webp
+    Cache-Control: public, max-age=86400, must-revalidate
