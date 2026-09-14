@@ -10,7 +10,9 @@ const isNetworkError = (error: Error) => {
   return false;
 };
 
-export const classifyError = (error: Error): ErrorType => {
+export const classifyError = (error: unknown): ErrorType => {
+  if (!(error instanceof Error)) return "unknown";
+
   if (isNetworkError(error)) return "network";
   if (error instanceof ApiError && error.status === 404) return "missingPage";
   if (error instanceof ApiError && error.status === 502) return "invalid";

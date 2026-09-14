@@ -30,7 +30,9 @@ export const CustomError = ({ error, reset }: ErrorComponentProps) => {
             }
           : {
               title: "Something went wrong",
-              message: error.message || "An unexpected error occurred.",
+              message:
+                (error instanceof Error && error.message) ||
+                "An unexpected error occurred.",
               showRetry: true,
             };
   return (
