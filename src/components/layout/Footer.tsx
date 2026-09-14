@@ -120,7 +120,7 @@ export default function Footer() {
           </Typography>
           <Link
             variant="body2"
-            href="#"
+            href="#services"
             sx={{
               color: "text.secondary",
             }}
@@ -167,7 +167,7 @@ export default function Footer() {
           </Link>
           <Link
             variant="body2"
-            href="/company/about"
+            href="/company/careers"
             sx={{
               color: "text.secondary",
             }}
