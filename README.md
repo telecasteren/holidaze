@@ -143,6 +143,8 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - TanStack useMutation [docs](https://tanstack.com/query/latest/docs/framework/react/reference/functions/useMutation)
 - React Hook Form [docs](https://react-hook-form.com/docs/useform/handlesubmit)
 - React lazy Suspense [docs](https://react.dev/reference/react/lazy)
+- Netlify plugin features [docs](https://npmx.dev/package/@netlify/vite-plugin)
+- sitemap.xml [docs](https://digital.gov/resources/introduction-xml-sitemaps)
 
 ## Acknowledgements
 
