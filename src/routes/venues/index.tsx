@@ -98,14 +98,16 @@ function Venues() {
                 <Box
                   sx={{
                     width: "100%",
-                    height: "auto",
-                    maxHeight: 250,
+                    height: 250,
                     overflow: "hidden",
                     borderTopLeftRadius: 1,
                     borderTopRightRadius: 1,
                   }}
                 >
-                  <LinkToVenue venueId={venue.id}>
+                  <LinkToVenue
+                    venueId={venue.id}
+                    styles={{ width: "100%", height: "100%" }}
+                  >
                     <Box
                       component="img"
                       loading="lazy"
@@ -115,8 +117,10 @@ function Venues() {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        transition: "ease-in-out 0.3s",
-                        "&:hover": { opacity: 0.8 },
+                        objectPosition: "center",
+                        transition: "ease-in-out 0.6s",
+                        transform: "scale(1.08)",
+                        "&:hover": { opacity: 0.8, transform: "scale(1)" },
                       }}
                     />
                   </LinkToVenue>

@@ -38,13 +38,11 @@ export default function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<SignUpFormSchemaType> = async (data) => {
-    toast.success("Signing you up...");
+    toast("Signing you up...");
     const { name } = await registerFn({ data });
 
-    setTimeout(() => {
-      navigate({ to: "/account/$profileId", params: { profileId: name } });
-      toast.remove();
-    }, 1500);
+    navigate({ to: "/account/$profileId", params: { profileId: name } });
+    toast.remove();
   };
   const onError: SubmitErrorHandler<SignUpFormSchemaType> = () => {
     console.log(errors);
