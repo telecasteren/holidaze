@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import type { SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import type { SignUpFormSchemaType } from "@/lib/zod/signUpFormSchema";
@@ -23,10 +23,10 @@ import {
 import { BrandLogo } from "@/components/layout/BrandLogo";
 import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthContainer } from "@/components/auth/AuthContainer";
+import FormHelperText from "@mui/material/FormHelperText";
 
 export default function SignupForm() {
   const navigate = useNavigate();
-  const [isChecked, setIsChecked] = useState(false);
 
   const {
     register,
@@ -37,17 +37,42 @@ export default function SignupForm() {
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<SignUpFormSchemaType> = async (data) => {
-    toast("Signing you up...");
-    const { name } = await registerFn({ data });
+  const { mutate, isPending } = useMutation({
+    mutationFn: registerFn,
+    onMutate: () => {
+      toast("Signing you up...");
+    },
+    onSuccess: ({ name }) => {
+      toast.remove();
+      toast.success("Signed up successfully!");
+      navigate({ to: "/account/$profileId", params: { profileId: name } });
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error("Failed to sign you up. Try again.");
+    },
+    onSettled: () => {
+      toast.remove();
+    },
+  });
 
-    navigate({ to: "/account/$profileId", params: { profileId: name } });
-    toast.remove();
+  const onSubmit: SubmitHandler<SignUpFormSchemaType> = (data) => {
+    mutate({ data });
   };
-  const onError: SubmitErrorHandler<SignUpFormSchemaType> = () => {
-    console.log(errors);
-    toast.error("Failed to sign up.");
+
+  const onInvalid: SubmitErrorHandler<SignUpFormSchemaType> = (err) => {
+    console.log(err);
   };
+
+  if (isPending) {
+    return (
+      <Box sx={{ mx: "auto" }}>
+        <Typography variant="h4">
+          Signing you up to your next adventure...
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <AuthContainer>
@@ -63,7 +88,7 @@ export default function SignupForm() {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit(onSubmit, onError)}
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
           sx={{ display: "flex", flexDirection: "column", gap: 2 }}
         >
           <FormControl>
@@ -79,7 +104,6 @@ export default function SignupForm() {
               helperText={errors.name ? errors.name.message : null}
               error={!!errors.name}
             />
-            {errors.name && <p role="alert">{errors.name.message}</p>}
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="email">Email</FormLabel>
@@ -114,16 +138,14 @@ export default function SignupForm() {
             />
           </FormControl>
 
-          <FormControl>
+          <FormControl error={!!errors.email}>
             <FormControlLabel
               label="Sign me up as a venue manager!"
-              control={
-                <Checkbox
-                  checked={isChecked}
-                  onChange={() => setIsChecked(!isChecked)}
-                />
-              }
+              control={<Checkbox {...register("venueManager")} />}
             />
+            {errors.venueManager && (
+              <FormHelperText>{errors.venueManager.message}</FormHelperText>
+            )}
           </FormControl>
 
           <Button type="submit" fullWidth variant="contained">
