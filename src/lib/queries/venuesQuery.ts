@@ -14,7 +14,7 @@ export const venuesQuery = (
 ) => {
   return queryOptions({
     queryKey: ["venues", page, query, guests, dateFrom, dateTo],
-    queryFn: () => getAllVenues(page, query),
+    queryFn: () => getAllVenues(page, query, Boolean(dateFrom && dateTo)),
     staleTime: 5 * 1000,
   });
 };

@@ -116,7 +116,8 @@ function Venues() {
                     <Box
                       component="img"
                       loading="lazy"
-                      src={venue.media[0]?.url || "/no-image-icon.webp"}
+
+                      src={`${venue.media[0]?.url}?w=248&fit=crop&auto=format`}
                       alt={venue.media[0]?.alt || `Image of ${venue.name}`}
                       sx={{
                         width: "100%",
