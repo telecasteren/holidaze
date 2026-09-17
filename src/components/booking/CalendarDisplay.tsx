@@ -29,14 +29,13 @@ const SummaryBox = styled(Box)(({ theme }) => ({
   }),
   [theme.breakpoints.up("xs")]: {
     width: 300,
-    // marginTop: "1rem",
+    marginTop: "1rem",
   },
   [theme.breakpoints.up("sm")]: {
     width: 350,
-    // marginTop: "2rem",
   },
   [theme.breakpoints.up("md")]: {
-    // marginTop: "5.5rem",
+    marginTop: 0,
   },
 }));
 

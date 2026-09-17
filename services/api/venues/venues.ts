@@ -14,8 +14,8 @@ export const getAllVenues = withApiHandler({
   label: "getAllVenues",
   endpoint: (page: number, query: string) =>
     query
-      ? `${API_URL}${VENUES}/search?q=${query}&sort=created&sortOrder=desc&limit=10&page=${page}`
-      : `${API_URL}${VENUES}?sort=created&sortOrder=desc&limit=10&page=${page}`,
+      ? `${API_URL}${VENUES}/search?q=${query}&_bookings=true&sort=created&sortOrder=desc&limit=100&page=${page}`
+      : `${API_URL}${VENUES}?_bookings=true&sort=created&sortOrder=desc&limit=100&page=${page}`,
   schema: apiVenueSchema,
 });
 

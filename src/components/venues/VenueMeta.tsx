@@ -19,7 +19,11 @@ export const VenueMeta = ({ venue }: VenueMetaProps) => {
 
   return (
     <>
-      <Stack direction="row" spacing={1}>
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{ display: "flex", flexWrap: "wrap", gap: 1, alignItems: "center" }}
+      >
         {activeMeta.map(([key]) => (
           <Chip
             key={key}

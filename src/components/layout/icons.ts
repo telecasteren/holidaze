@@ -18,6 +18,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ClearIcon from "@mui/icons-material/Clear";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import SearchIcon from "@mui/icons-material/Search";
 
 export {
   LinkedInIcon,
@@ -40,4 +41,5 @@ export {
   ClearIcon,
   DeleteIcon,
   LocationOnIcon,
+  SearchIcon,
 };

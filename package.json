@@ -51,6 +51,7 @@
     "dayjs": "^1.11.23",
     "husky": "^9.1.7",
     "isomorphic-dompurify": "^4.2.0",
+    "material-ui-popup-state": "^5.3.7",
     "mui-tiptap": "^1.31.0",
     "react": "^19.3.0",
     "react-aria": "^3.52.1",

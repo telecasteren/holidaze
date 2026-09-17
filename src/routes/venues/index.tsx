@@ -21,8 +21,8 @@ import {
 } from "@mui/material";
 import { LocationOnIcon } from "@/components/layout/icons";
 import { PageTitle } from "@/components/layout/index";
-import { SearchForm } from "@/components/search/SearchForm";
 import { SortVenuesForm } from "@/components/sorting/SortVenuesForm";
+import { SearchDisplay } from "@/components/search/SearchDisplay";
 import { CardsStack } from "@/components/CardsStack";
 import { Favourites } from "@/components/venues/Favourites";
 import { LinkToVenue } from "@/components/LinkToVenue";
@@ -40,8 +40,12 @@ export const Route = createFileRoute("/venues/")({
     ],
   }),
   loader: ({ context, location }) => {
-    const { page, query } = searchSchema.parse(location.search);
-    return context.queryClient.ensureQueryData(venuesQuery(page, query));
+    const { page, query, guests, dateFrom, dateTo } = searchSchema.parse(
+      location.search,
+    );
+    return context.queryClient.ensureQueryData(
+      venuesQuery(page, query, guests, dateFrom, dateTo),
+    );
   },
   pendingComponent: CustomPending,
   shouldReload: false,
@@ -71,7 +75,8 @@ function Venues() {
     <Container id="venues" sx={{ py: 16 }}>
       <PageTitle title="EXPLORE VENUES" styles={{ textAlign: "center" }} />
 
-      <SearchForm />
+      {/* Search  and sort */}
+      <SearchDisplay />
       {query.trim() && venues.length === 0 && (
         <Alert severity="warning" sx={{ m: 2, justifySelf: "center" }}>
           This search did not give any results.
