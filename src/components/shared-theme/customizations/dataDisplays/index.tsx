@@ -4,5 +4,5 @@ export * from "./MuiChip";
 export * from "./MuiList";
 export * from "./MuiListItem";
 export * from "./MuiListItemText";
-export * from "./MuiListSubHeader";
+export * from "./MuiListSubheader";
 export * from "./MuiListItemIcon";
