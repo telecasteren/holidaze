@@ -1,11 +1,6 @@
 import { createTheme, alpha } from "@mui/material/styles";
 import type { Shadows } from "@mui/material/styles";
 
-declare module "@mui/material/Paper" {
-  interface PaperPropsVariantOverrides {
-    highlighted: true;
-  }
-}
 declare module "@mui/material/styles" {
   interface ColorRange {
     50: string;

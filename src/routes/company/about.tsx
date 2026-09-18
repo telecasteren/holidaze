@@ -4,20 +4,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Box,
   Button,
-  Card,
-  CardContent,
   Container,
   Divider,
   Grid,
   Stack,
   Typography,
 } from "@mui/material";
-import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
-import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
-import VerifiedUserRoundedIcon from "@mui/icons-material/VerifiedUserRounded";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { brandSettings } from "@/lib/brand/brandSettings";
+import { ValuesGrid } from "@/components/company/ValuesGrid";
+import { StatsRow } from "@/components/company/StatsRow";
 
 export const Route = createFileRoute("/company/about")({
   component: About,
@@ -35,46 +31,6 @@ export const Route = createFileRoute("/company/about")({
     return <p>This page doesn't exist.</p>;
   },
 });
-
-interface CompanyValue {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const values: Array<CompanyValue> = [
-  {
-    icon: <PublicRoundedIcon />,
-    title: "Global reach",
-    description:
-      "From city guesthouses to countryside cabins, we connect travellers with venues across the globe.",
-  },
-  {
-    icon: <GroupsRoundedIcon />,
-    title: "Community first",
-    description:
-      "We build tools that help venue managers grow their business and help guests find a place that feels right.",
-  },
-  {
-    icon: <VerifiedUserRoundedIcon />,
-    title: "Trust & safety",
-    description:
-      "Every listing and booking runs through the same standards, so you know what to expect before you arrive.",
-  },
-  {
-    icon: <FavoriteRoundedIcon />,
-    title: "Loved by travellers",
-    description:
-      "Thousands of stays booked and reviewed by a community that keeps coming back for their next trip.",
-  },
-];
-
-const stats = [
-  { value: "10K+", label: "Venues listed" },
-  { value: "120+", label: "Countries covered" },
-  { value: "500K+", label: "Bookings made" },
-  { value: "4.8/5", label: "Average guest rating" },
-];
 
 function About() {
   return (
@@ -141,49 +97,12 @@ function About() {
         >
           What we stand for
         </Typography>
-        <Grid container spacing={2} sx={{ mt: 1 }}>
-          {values.map((value, index) => (
-            <Grid
-              size={{ xs: 12, sm: 6, md: 3 }}
-              key={index}
-              sx={{ display: "flex" }}
-            >
-              <Card variant="outlined" sx={{ flexGrow: 1 }}>
-                <CardContent
-                  sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-                >
-                  <Box sx={{ color: "primary.main" }}>{value.icon}</Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: "medium" }}>
-                    {value.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    {value.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        <ValuesGrid />
       </Box>
 
       <Divider sx={{ mb: { xs: 6, sm: 10 } }} />
 
-      <Grid container spacing={2} sx={{ mb: { xs: 6, sm: 10 } }}>
-        {stats.map((stat, index) => (
-          <Grid
-            size={{ xs: 6, sm: 3 }}
-            key={index}
-            sx={{ textAlign: "center" }}
-          >
-            <Typography variant="h4" sx={{ color: "text.primary" }}>
-              {stat.value}
-            </Typography>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {stat.label}
-            </Typography>
-          </Grid>
-        ))}
-      </Grid>
+      <StatsRow />
 
       <Stack spacing={2} sx={{ alignItems: "center", textAlign: "center" }}>
         <Typography component="h2" variant="h6" sx={{ color: "text.primary" }}>

@@ -40,15 +40,14 @@ export default function SignupForm() {
   const { mutate, isPending } = useMutation({
     mutationFn: registerFn,
     onMutate: () => {
-      toast("Signing you up...");
+      toast.loading("Signing you up...");
     },
     onSuccess: ({ name }) => {
       toast.remove();
       toast.success("Signed up successfully!");
       navigate({ to: "/account/$profileId", params: { profileId: name } });
     },
-    onError: (err) => {
-      console.log(err);
+    onError: () => {
       toast.error("Failed to sign you up. Try again.");
     },
     onSettled: () => {

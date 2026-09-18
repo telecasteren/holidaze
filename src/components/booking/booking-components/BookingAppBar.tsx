@@ -25,7 +25,13 @@ export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
         >
           Booking overview
         </Typography>
-        <Button type="submit" autoFocus variant="contained" disabled={disabled}>
+        <Button
+          type="submit"
+          autoFocus
+          variant="contained"
+          color="secondary"
+          disabled={disabled}
+        >
           Confirm booking
         </Button>
       </Toolbar>

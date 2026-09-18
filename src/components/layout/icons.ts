@@ -19,6 +19,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SearchIcon from "@mui/icons-material/Search";
+import InfoIcon from "@mui/icons-material/Info";
 
 export {
   LinkedInIcon,
@@ -42,4 +43,5 @@ export {
   DeleteIcon,
   LocationOnIcon,
   SearchIcon,
+  InfoIcon,
 };

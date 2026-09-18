@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import type { SubmitErrorHandler, SubmitHandler } from "react-hook-form";
 import type { LoginFormSchemaType } from "@/lib/zod/loginFormSchema";
@@ -37,26 +38,43 @@ export default function LoginForm() {
     resolver: zodResolver(loginFormSchema),
     mode: "onBlur",
   });
-  const onSubmit: SubmitHandler<LoginFormSchemaType> = async (data) => {
-    toast.success("Signing in...");
-    const { name } = await loginFn({ data });
 
-    setTimeout(() => {
-      navigate({ to: "/account/$profileId", params: { profileId: name } });
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginFn,
+    onMutate: () => {
+      toast.loading("Signing in...");
+    },
+    onSuccess: ({ name }) => {
       toast.remove();
-    }, 1500);
-  };
-  const onError: SubmitErrorHandler<LoginFormSchemaType> = () => {
-    toast.error("Failed to log you in.");
+      navigate({ to: "/account/$profileId", params: { profileId: name } });
+    },
+    onError: () => {
+      toast.error(
+        "Failed to log you in. Check your information and try again.",
+      );
+    },
+    onSettled: () => {
+      toast.remove();
+    },
+  });
+
+  const onSubmit: SubmitHandler<LoginFormSchemaType> = (data) => {
+    mutate({ data });
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const onInvalid: SubmitErrorHandler<LoginFormSchemaType> = (err) => {
+    console.log(err);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  if (isPending) {
+    return (
+      <Box sx={{ mx: "auto" }}>
+        <Typography variant="h4">
+          Logging into your next adventure...
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <AuthContainer>
@@ -71,7 +89,7 @@ export default function LoginForm() {
         </Typography>
         <Box
           component="form"
-          onSubmit={handleSubmit(onSubmit, onError)}
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
           noValidate
           sx={{
             display: "flex",
@@ -124,11 +142,11 @@ export default function LoginForm() {
             Sign in
           </Button>
 
-          <ForgotPassword open={open} handleClose={handleClose} />
+          <ForgotPassword open={open} handleClose={() => setOpen(false)} />
           <Link
             component="button"
             type="button"
-            onClick={handleClickOpen}
+            onClick={() => setOpen(true)}
             variant="body2"
             sx={{ alignSelf: "center" }}
           >

@@ -10,10 +10,11 @@ import { Toaster } from "react-hot-toast";
 import { getSession } from "@/server/authFunctions";
 
 import "../styles.css";
+import { useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppTheme from "@/components/shared-theme/AppTheme";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import Header from "#/components/layout/header/Header";
+import Footer from "@/components/layout/footer/Footer";
 
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { CustomError } from "@/lib/route-states/CustomError";
@@ -71,6 +72,9 @@ function RootDocument({
   children: React.ReactNode;
   disableCustomTheme?: boolean;
 }) {
+  const theme = useTheme();
+  const v = theme.vars || theme;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -83,22 +87,22 @@ function RootDocument({
           toastOptions={{
             duration: 3000,
             style: {
-              color: "#1e40af",
-              backgroundColor: "#dbeafe",
-              border: "1px solid #93c5fd",
+              color: v.palette.info.dark,
+              backgroundColor: v.palette.info.light,
+              border: `1px solid ${v.palette.info.main}`,
             },
             success: {
               style: {
-                color: "#166534",
-                backgroundColor: "#f0fdf4",
-                border: "1px solid #86efac",
+                color: v.palette.success.dark,
+                backgroundColor: v.palette.success.light,
+                border: `1px solid ${v.palette.success.main}`,
               },
             },
             error: {
               style: {
-                color: "#991b1b",
-                backgroundColor: "#fef2f2",
-                border: "1px solid #fca5a5",
+                color: v.palette.error.dark,
+                backgroundColor: v.palette.error.light,
+                border: `1px solid ${v.palette.error.main}`,
               },
             },
           }}

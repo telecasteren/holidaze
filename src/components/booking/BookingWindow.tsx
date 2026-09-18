@@ -12,6 +12,7 @@ import { Dialog, Slide, Container, Divider } from "@mui/material";
 import { VenueDetails } from "./booking-components/VenueDetails";
 import { PaymentDetails } from "./booking-components/PaymentDetails";
 import { BookingAppBar } from "./booking-components/BookingAppBar";
+import { WarningToast } from "@/components/layout/WarningToast";
 import toast from "react-hot-toast";
 
 const Transitions = React.forwardRef(function Transition(
@@ -82,7 +83,7 @@ export const BookingWindow = ({
     event.preventDefault();
 
     if (!booking.dateRange) {
-      toast.error("No dates selected. Don't you know when to go? Try again.");
+      toast.custom(<WarningToast text="No dates selected. Try again." />);
       return;
     }
 
