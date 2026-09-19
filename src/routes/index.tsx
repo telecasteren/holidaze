@@ -3,7 +3,7 @@ import { CustomPending } from "@/lib/route-states/CustomPending";
 
 import Divider from "@mui/material/Divider";
 import { Reviews, Services, Hero, FAQ } from "@/components/dashboard/index";
-import { venuesQuery } from "#/lib/queries/venuesQuery";
+import { venuesQuery } from "@/lib/queries/venuesQuery";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {

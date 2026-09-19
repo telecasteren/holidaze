@@ -1,5 +1,5 @@
-import { MobileMenu } from "#/components/layout/header/MobileMenu";
-import { DesktopMenu } from "#/components/layout/header/DesktopMenu";
+import { MobileMenu } from "@/components/layout/header/MobileMenu";
+import { DesktopMenu } from "@/components/layout/header/DesktopMenu";
 import { styled, alpha, AppBar, Toolbar, Container } from "@mui/material";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({

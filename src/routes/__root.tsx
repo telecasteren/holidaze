@@ -13,7 +13,7 @@ import "@/styles.css";
 import { useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppTheme from "@/components/shared-theme/AppTheme";
-import Header from "#/components/layout/header/Header";
+import Header from "@/components/layout/header/Header";
 import Footer from "@/components/layout/footer/Footer";
 
 import { brandSettings } from "@/lib/brand/brandSettings";
