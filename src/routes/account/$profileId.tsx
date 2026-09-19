@@ -1,10 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import {
-  CustomPending,
-  CustomError,
-  DefaultNotFound,
-} from "@/lib/route-states/index";
+import { CustomError, DefaultNotFound } from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
@@ -15,6 +11,7 @@ import { RouteLoader } from "@/components/layout";
 import { AccountInfo } from "@/components/account/AccountInfo";
 import { MyTripsInfo } from "@/components/account/MyTripsInfo";
 import { AccountHero } from "@/components/account/AccountHero";
+import { SkeletonAccount } from "@/components/account/SkeletonAccount";
 
 // lazy imports - these files import large chunks (VenueForm, tiptap etc.)
 const VenueInfo = lazy(() =>
@@ -54,7 +51,7 @@ export const Route = createFileRoute("/account/$profileId")({
     ],
   }),
   component: ProfileById,
-  pendingComponent: CustomPending,
+  pendingComponent: SkeletonAccount,
   notFoundComponent: DefaultNotFound,
   errorComponent: CustomError,
 });

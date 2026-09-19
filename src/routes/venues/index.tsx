@@ -8,11 +8,7 @@ import { useSortVenuesForm } from "@/hooks/useSortVenuesForm";
 import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
 import { localCurrency } from "@/lib/utils/config";
-import {
-  DefaultNotFound,
-  CustomPending,
-  CustomError,
-} from "@/lib/route-states/index";
+import { DefaultNotFound, CustomError } from "@/lib/route-states/index";
 
 import {
   Container,
@@ -30,6 +26,7 @@ import { SearchDisplay } from "@/components/search/SearchDisplay";
 import { CardsStack } from "@/components/CardsStack";
 import { Favourites } from "@/components/venues/Favourites";
 import { LinkToVenue } from "@/components/LinkToVenue";
+import { SkeletonVenues } from "@/components/venues/SkeletonVenues";
 
 export const Route = createFileRoute("/venues/")({
   head: () => ({
@@ -51,13 +48,13 @@ export const Route = createFileRoute("/venues/")({
       venuesQuery(page, query, guests, dateFrom, dateTo),
     );
   },
-  pendingComponent: CustomPending,
   shouldReload: true,
   component: Venues,
   validateSearch: searchSchema,
   search: {
     middlewares: [stripSearchParams(defaultSearch)],
   },
+  pendingComponent: SkeletonVenues,
   notFoundComponent: DefaultNotFound,
   errorComponent: CustomError,
 });
