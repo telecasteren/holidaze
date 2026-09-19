@@ -156,6 +156,9 @@ export const SearchDisplay = () => {
       </Box>
 
       <Button
+        aria-role="button"
+        name="search"
+        aria-label="search"
         onClick={handleSearch}
         sx={{ width: "fit-content", height: FIELD_HEIGHT }}
       >
