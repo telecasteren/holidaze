@@ -69,3 +69,8 @@ _**Example:**
 **Date:** 14.09.26<br/>
 **Purpose:** Creating boilerplate Skeleton loader UI `SkeletonGallery.tsx`, based on `Gallery.tsx`<br/>
 **Outcome:** Saving time on bolierplate-material making the application feel professional.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 19.09.26<br/>
+**Purpose:** Creating boilerplate Skeleton loader UI `SkeletonVenues.tsx` and `SkeletonAccount.tsx`, based on `/venues/index.tsx` and `/account/$profileId.tsx`<br/>
+**Outcome:** Saving time on bolierplate-material making the application feel professional.<br/>
