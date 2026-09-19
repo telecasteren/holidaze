@@ -97,7 +97,7 @@ export const RangeDateField = ({
 
   return (
     <AriaDateField
-      value={value}
+      value={value ?? null}
       onChange={handleChange}
       granularity="day"
       aria-label={ariaLabel ?? (part === "start" ? "Start date" : "End date")}

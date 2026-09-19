@@ -1,43 +1,14 @@
-import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "@tanstack/react-router";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useAvailability } from "@/hooks/useAvailability";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
-import { brandSettings } from "@/lib/brand/brandSettings";
 import type { BookingForm, Venue } from "@/lib/zod/index";
 
-import { Stack, Box, Typography, Button, styled } from "@mui/material";
+import { Stack, Box, Typography, styled } from "@mui/material";
 import { RangeCalendar } from "@/components/booking/RangeCalendar";
-import { GuestCountPicker } from "@/components/booking/GuestCountPicker";
-import { BookingWindow } from "@/components/booking/BookingWindow";
-import { ModalWindow } from "@/components/layout/Modal";
 import { today, getLocalTimeZone } from "@internationalized/date";
-
-const SummaryBox = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: 20,
-  padding: 20,
-  borderRadius: 8,
-  height: "fit-content",
-  backgroundColor: theme.palette.background.paper,
-  ...theme.applyStyles("dark", {
-    backgroundColor: "hsla(220, 35%, 3%, 0.4)",
-  }),
-  [theme.breakpoints.up("xs")]: {
-    width: 300,
-    marginTop: "1rem",
-  },
-  [theme.breakpoints.up("sm")]: {
-    width: 350,
-  },
-  [theme.breakpoints.up("md")]: {
-    marginTop: 0,
-  },
-}));
+import { BookingSummary } from "@/components/booking/BookingSummary";
 
 const CalendarBox = styled(Box)(({ theme }) => ({
   margin: 0,
@@ -57,14 +28,7 @@ export const CalendarDisplay = ({
   venueId,
   bookings,
 }: CalendarDisplayProps) => {
-  const { user } = useAuth();
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
   const { isDateUnavailable } = useAvailability(bookings);
-
-  const openBookingWindow = () => setOpen(true);
-  const handleUnAuthenticated = () => setShowLoginModal(true);
 
   const { control, watch } = useForm<BookingForm>({
     resolver: zodResolver(calendarBookingSchema),
@@ -78,35 +42,13 @@ export const CalendarDisplay = ({
 
   return (
     <>
-      <BookingWindow
-        venueId={venueId}
-        open={open}
-        close={() => setOpen(false)}
-        booking={values}
-      />
-      <ModalWindow
-        open={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        title={"Log in to book this venue."}
-        content={
-          <>
-            <Button
-              onClick={() => navigate({ to: "/auth/login" })}
-              variant="contained"
-            >
-              Go to log in
-            </Button>
-            <Button
-              onClick={() => navigate({ to: "/auth/signup" })}
-              variant="outlined"
-            >
-              Sign up to {brandSettings.name}
-            </Button>
-          </>
-        }
-      />
-
-      <Typography variant="h4" sx={{ mt: 8, mb: 2 }}>
+      <Typography
+        variant="h4"
+        sx={{
+          xs: { justifySelf: "center" },
+          md: { justifySelf: "start", mt: 8, mb: 2 },
+        }}
+      >
         See availability
       </Typography>
 
@@ -134,36 +76,13 @@ export const CalendarDisplay = ({
           )}
         />
 
-        {/* BOOKING SUMMARY */}
-        <SummaryBox>
-          <Typography variant="h5">Booking summary</Typography>
-          <Typography variant="body1">
-            <strong>Dates selected: </strong>
-            {dates}
-          </Typography>
-          <Typography variant="body2">
-            <strong>Total nights: </strong>
-            {nights}
-          </Typography>
-
-          <Controller
-            name="guests"
-            control={control}
-            render={({ field }) => (
-              <GuestCountPicker
-                venueId={venueId}
-                value={field.value}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Button
-            variant="contained"
-            onClick={user ? openBookingWindow : handleUnAuthenticated}
-          >
-            BOOK THIS VENUE
-          </Button>
-        </SummaryBox>
+        <BookingSummary
+          venueId={venueId}
+          dates={dates}
+          nights={nights}
+          values={values}
+          control={control}
+        />
       </Stack>
     </>
   );

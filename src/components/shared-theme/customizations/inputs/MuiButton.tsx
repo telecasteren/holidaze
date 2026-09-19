@@ -77,9 +77,9 @@ export const MuiButton: Components<Theme> = {
             },
             style: {
               color: "white",
-              backgroundColor: brand[800],
+              backgroundColor: brand[900],
               "&:hover": {
-                backgroundColor: brand[900],
+                backgroundColor: brand[700],
               },
               "&:active": {
                 backgroundColor: brand[700],
@@ -153,7 +153,7 @@ export const MuiButton: Components<Theme> = {
               variant: "text",
             },
             style: {
-              color: gray[600],
+              color: gray[800],
               "&:hover": {
                 backgroundColor: gray[100],
               },

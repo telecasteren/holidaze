@@ -21,6 +21,7 @@ export const SortBookingsForm = ({
           id="SortBookings"
           value={option}
           label="Sort by"
+          aria-label="Sort bookings by"
           onChange={onChange}
         >
           {sortOptions.map((opt) => (

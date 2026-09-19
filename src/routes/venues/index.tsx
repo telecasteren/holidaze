@@ -7,26 +7,15 @@ import { useVenuesList } from "@/hooks/useVenuesList";
 import { useSortVenuesForm } from "@/hooks/useSortVenuesForm";
 import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
-import { localCurrency } from "@/lib/utils/config";
 import { DefaultNotFound, CustomError } from "@/lib/route-states/index";
 
-import {
-  Container,
-  Divider,
-  Typography,
-  Card,
-  Alert,
-  Pagination,
-  Box,
-} from "@mui/material";
-import { LocationOnIcon } from "@/components/layout/icons";
+import { Container, Divider, Alert, Pagination } from "@mui/material";
 import { PageTitle } from "@/components/layout/index";
 import { SortVenuesForm } from "@/components/sorting/SortVenuesForm";
 import { SearchDisplay } from "@/components/search/SearchDisplay";
 import { CardsStack } from "@/components/CardsStack";
-import { Favourites } from "@/components/venues/Favourites";
-import { LinkToVenue } from "@/components/LinkToVenue";
 import { SkeletonVenues } from "@/components/venues/SkeletonVenues";
+import { VenueCard } from "@/components/venues/venueCard/VenueCard";
 
 export const Route = createFileRoute("/venues/")({
   head: () => ({
@@ -60,9 +49,8 @@ export const Route = createFileRoute("/venues/")({
 });
 
 function Venues() {
-  const { venues, totalPages, page, query } = useVenuesList();
   const navigate = useNavigate({ from: Route.fullPath });
-
+  const { venues, totalPages, page, query } = useVenuesList();
   const { option, handleChange, sortedVenues } = useSortVenuesForm(venues);
 
   const handleNextPage = (_event: React.ChangeEvent<unknown>) => {
@@ -75,7 +63,6 @@ function Venues() {
     <Container id="venues" sx={{ py: 16 }}>
       <PageTitle title="EXPLORE VENUES" styles={{ textAlign: "center" }} />
 
-      {/* Search  and sort */}
       <SearchDisplay />
       {query.trim() && venues.length === 0 && (
         <Alert severity="warning" sx={{ m: 2, justifySelf: "center" }}>
@@ -86,98 +73,7 @@ function Venues() {
 
       <CardsStack>
         {sortedVenues.map((venue) => (
-          <Card
-            key={venue.id}
-            sx={{
-              display: "grid",
-              width: { xs: 300, sm: 350 },
-              overflow: "hidden",
-              padding: 0,
-              border: "none",
-              boxShadow: 1,
-            }}
-          >
-            <Favourites
-              venue={venue}
-              children={
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: 250,
-                    overflow: "hidden",
-                    borderTopLeftRadius: 1,
-                    borderTopRightRadius: 1,
-                  }}
-                >
-                  <LinkToVenue
-                    venueId={venue.id}
-                    styles={{ width: "100%", height: "100%" }}
-                  >
-                    <Box
-                      component="img"
-                      loading="lazy"
-
-                      src={`${venue.media[0]?.url}?w=248&fit=crop&auto=format`}
-                      alt={venue.media[0]?.alt || `Image of ${venue.name}`}
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        transition: "ease-in-out 0.6s",
-                        transform: "scale(1.08)",
-                        "&:hover": { opacity: 0.8, transform: "scale(1)" },
-                      }}
-                    />
-                  </LinkToVenue>
-                </Box>
-              }
-            />
-
-            <Box sx={{ display: "grid", gap: 2, p: 2 }}>
-              <LinkToVenue
-                venueId={venue.id}
-                children={<Typography variant="h2">{venue.name}</Typography>}
-              />
-
-              {venue.location?.city && venue.location.country && (
-                <Typography
-                  variant="caption"
-                  sx={{
-                    display: "flex",
-                    gap: 0.5,
-                    alignItems: "center",
-                    color: "text.secondary",
-                  }}
-                >
-                  <LocationOnIcon fontSize="small" /> {venue.location.city} •{" "}
-                  {venue.location.country}
-                </Typography>
-              )}
-
-              <Divider />
-
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                <strong>
-                  {venue.price} {localCurrency}
-                </strong>{" "}
-                / night
-              </Typography>
-
-              {venue.rating > 0 ? (
-                <Typography variant="caption" sx={{ color: "primary.main" }}>
-                  Rating: {venue.rating}
-                </Typography>
-              ) : (
-                <Typography
-                  variant="caption"
-                  sx={{ color: "primary.main", fontStyle: "italic" }}
-                >
-                  No rating yet
-                </Typography>
-              )}
-            </Box>
-          </Card>
+          <VenueCard key={venue.id} venue={venue} />
         ))}
       </CardsStack>
 

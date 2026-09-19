@@ -65,6 +65,7 @@ export const MobileMenu = () => {
                 <Link
                   {...item.link}
                   key={item.label}
+                  onClick={() => setOpen(false)}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <MenuItem>{item.label}</MenuItem>
