@@ -1,6 +1,10 @@
 import { useState, lazy, Suspense } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { CustomPending } from "@/lib/route-states/CustomPending";
+import {
+  CustomPending,
+  CustomError,
+  DefaultNotFound,
+} from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
@@ -51,6 +55,8 @@ export const Route = createFileRoute("/account/$profileId")({
   }),
   component: ProfileById,
   pendingComponent: CustomPending,
+  notFoundComponent: DefaultNotFound,
+  errorComponent: CustomError,
 });
 
 const availableDirectories = {
@@ -102,7 +108,11 @@ function ProfileById() {
               <AccountInfo user={user} isManager={hasVenueManagerRole} />
             )}
 
-            {activeTab === "myTrips" && <MyTripsInfo />}
+            {activeTab === "myTrips" && (
+              <Suspense fallback={<RouteLoader />}>
+                <MyTripsInfo />
+              </Suspense>
+            )}
 
             {activeTab === "venues" && hasVenueManagerRole && (
               <Suspense fallback={<RouteLoader />}>

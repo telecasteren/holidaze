@@ -6,28 +6,20 @@ import { formatDate } from "@/lib/utils/utils";
 import { Stack, Box, Card, Button, Typography, Divider } from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
-import { RouteLoader } from "@/components/layout/RouteLoader";
 import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
 
 export const MyTripsInfo = () => {
   const navigate = useNavigate();
-  const { bookings, isLoading } = useBookingsList();
-  const allBookings = bookings?.data || [];
+  const { bookings } = useBookingsList();
 
-  const { option, handleChange, sortedBookings } =
-    useSortBookingsForm(allBookings);
-
-  if (isLoading)
-    return (
-      <Box sx={{ mx: "auto" }}>
-        <RouteLoader />
-      </Box>
-    );
+  const { option, handleChange, sortedBookings } = useSortBookingsForm(
+    bookings.data,
+  );
 
   return (
     <Stack>
       <Typography variant="h4" sx={{ mb: 2 }}>
-        Total trips: {bookings?.meta.totalCount}
+        Total trips: {bookings.meta.totalCount}
       </Typography>
 
       <Box sx={{ mb: 2 }}>

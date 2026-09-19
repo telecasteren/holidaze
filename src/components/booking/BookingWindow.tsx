@@ -4,6 +4,7 @@ import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useRouter, useNavigate } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import { createNewBookingFn } from "@/server/bookingFunctions";
+import { getApiErrorInfo } from "@/services/api/api-config/apiError";
 import type { BookingFormPayload } from "@/lib/zod";
 
 import type { DateValue, RangeValue } from "react-aria-components";
@@ -56,18 +57,16 @@ export const BookingWindow = ({
       createNewBookingFn({ data: { ...payload } }),
 
     onSuccess: () => {
-      toast.success("Processing booking...");
+      toast.loading("Processing booking...");
+      navigate({ to: "/booking/success" });
     },
     onError: (error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
+      const errorMessage = getApiErrorInfo(error)?.message;
       toast.error(`Failed to create booking: ${errorMessage}`);
     },
     onSettled: () => {
       router.invalidate();
-      setTimeout(() => {
-        navigate({ to: "/booking/success" });
-      }, 1500);
+      toast.remove();
     },
   });
 

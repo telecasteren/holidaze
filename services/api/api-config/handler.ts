@@ -1,6 +1,7 @@
 import type { ApiConfig, ApiHandler } from "./types";
 import { ApiError } from "./apiError";
 import { BASE_URL } from "./endpoints";
+import { logErrors } from "@/lib/utils/logErrors";
 
 export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   endpoint,
@@ -14,7 +15,6 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
       const resolvedEndpoint =
         typeof endpoint === "function" ? endpoint(...args) : endpoint;
       const resolvedInit = typeof init === "function" ? init(...args) : init;
-      console.log(`[${label ?? "unlabeled"}] →`, resolvedEndpoint); // debugging
 
       const response = await fetch(
         `${baseUrl}${resolvedEndpoint}`,
@@ -23,8 +23,9 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
 
       if (!response.ok) {
         const body = await response.text().catch(() => "");
+
         throw new ApiError(
-          `Request to ${baseUrl}${resolvedEndpoint} failed: ${response.status}, ${body}`,
+          `Request failed (${response.status})`,
           response.status,
           body,
         );
@@ -38,7 +39,6 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
       const parsedPayload = schema.safeParse(payload);
 
       if (!parsedPayload.success) {
-        console.log("parsedPayload: ", parsedPayload); // debugging
         throw new ApiError(
           "Payload failed schema validation",
           500,
@@ -52,7 +52,8 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
         throw error;
       }
 
-      console.log("withApiHandler failed: ", error); // debugging
+      // debugging
+      logErrors(`withApiHandler failed, ${label} :`, error);
       throw new ApiError("Internal server error", 500, error);
     }
   };

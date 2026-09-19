@@ -8,6 +8,7 @@ export const DefaultNotFound = () => {
       component="section"
       sx={{
         display: "flex",
+        gap: 2,
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",

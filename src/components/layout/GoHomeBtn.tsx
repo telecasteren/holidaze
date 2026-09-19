@@ -6,7 +6,11 @@ export const GoHomeBtn = () => {
   const navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate({ to: "/" })}>
+    <Button
+      variant="outlined"
+      color="secondary"
+      onClick={() => navigate({ to: "/" })}
+    >
       <ArrowBack />
       Back home
     </Button>

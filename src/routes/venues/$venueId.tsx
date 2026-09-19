@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CustomPending } from "@/lib/route-states/CustomPending";
+import {
+  CustomPending,
+  CustomError,
+  DefaultNotFound,
+} from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { venueByIdQuery } from "@/lib/queries/venuesQuery";
-import type { Venue } from "../../lib/zod/venueSchema";
+import type { Venue } from "@/lib/zod/venueSchema";
 
 import {
   Container,
@@ -35,7 +39,9 @@ export const Route = createFileRoute("/venues/$venueId")({
     ],
   }),
   component: VenueById,
+  errorComponent: CustomError,
   pendingComponent: CustomPending,
+  notFoundComponent: DefaultNotFound,
 });
 
 function VenueById() {

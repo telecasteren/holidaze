@@ -36,11 +36,11 @@ export const AccountVenueActions = ({ venue }: AccountVenueActionsProps) => {
   const deleteMutation = useMutation({
     mutationFn: () => deleteVenueFn({ data: venue.id }),
     onSuccess: () => {
-      toast.success("Deleted venue successfully.");
+      toast.success("Venue has been deleted.");
       setDeleteOpen(false);
     },
-    onError: (error) => {
-      toast.error(`Deletign venue failed: ${error}`);
+    onError: () => {
+      toast.error(`Failed deleting venue.`);
     },
     onSettled: () => {
       router.invalidate();

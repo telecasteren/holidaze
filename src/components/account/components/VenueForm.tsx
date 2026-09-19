@@ -38,12 +38,16 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
         ? updateVenueFn({ data: { id: venueId, ...payload } })
         : registerNewVenueFn({ data: payload }),
     onMutate: () => {
-      toast(isEditing ? "Updating..." : "Registering...", { duration: 10000 });
+      toast.loading(isEditing ? "Updating..." : "Registering...", {
+        duration: 10000,
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["venues", "profile", user?.name],
       });
+      toast.remove();
+      toast.success(isEditing ? "Venue is updated." : "Venue is registered.");
       close?.();
     },
     onError: () => {
@@ -52,12 +56,6 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
       );
     },
     onSettled: () => {
-      toast.remove();
-      toast.success(
-        isEditing
-          ? "Venue updated successfully."
-          : "Venue registered successfully.",
-      );
       router.invalidate();
     },
   });

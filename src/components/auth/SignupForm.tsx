@@ -59,8 +59,8 @@ export default function SignupForm() {
     mutate({ data });
   };
 
-  const onInvalid: SubmitErrorHandler<SignUpFormSchemaType> = (err) => {
-    console.log(err);
+  const onInvalid: SubmitErrorHandler<SignUpFormSchemaType> = () => {
+    toast.error("Please check the form and try again.");
   };
 
   if (isPending) {

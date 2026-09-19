@@ -1,6 +1,6 @@
 import { signupAuthSchema } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
-import { AUTH, REGISTER } from "../api-config/endpoints";
+import { withApiHandler } from "@/services/api/api-config/handler";
+import { AUTH, REGISTER } from "@/services/api/api-config/endpoints";
 
 type RegisterPayload = {
   name: string;

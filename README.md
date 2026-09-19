@@ -80,6 +80,22 @@ pnpm format
 pnpm check
 ```
 
+**console.logs**
+
+I've added a lint rule that flags any `console` logs used around the codebase, so I remember to clean it up before shipping to production. However, if needed during development, this can easily be ignored for a line by adding the following comment above the `console` log:
+
+```bash
+/* eslint-disable-next-line no-console */
+```
+
+The API calls have all been labeled as well, so a cool way to see whats what when developing is adding this log to `handler.ts` below `resolvedInit`:
+
+```bash
+console.log(`[${label ?? "unlabeled"}] →`, resolvedEndpoint);
+```
+
+NB: Needs the `label` passed as a param though.
+
 ### Session Management
 
 This app uses a cookie-based session management system, utilizing the TanStack Cookie Store. Server functions can be found here: [src/server/](src/server/session.ts).
@@ -147,6 +163,8 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - sitemap.xml [docs](https://digital.gov/resources/introduction-xml-sitemaps)
 - Geolocation API [docs](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API)
 - Popover popupState [docs](https://github.com/jcoreio/material-ui-popup-state)
+- Error statuses [docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400)
+- eslint no-console [docs](https://eslint.org/docs/latest/rules/no-console)
 
 ## Acknowledgements
 

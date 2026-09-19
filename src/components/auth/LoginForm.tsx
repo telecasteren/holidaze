@@ -62,8 +62,8 @@ export default function LoginForm() {
     mutate({ data });
   };
 
-  const onInvalid: SubmitErrorHandler<LoginFormSchemaType> = (err) => {
-    console.log(err);
+  const onInvalid: SubmitErrorHandler<LoginFormSchemaType> = () => {
+    toast.error("Please check the form and try again.");
   };
 
   if (isPending) {

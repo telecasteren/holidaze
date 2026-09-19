@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { createServerFn } from "@tanstack/react-start";
 
-import { loginProfile } from "../../services/api/auth/login";
-import { registerNewProfile } from "../../services/api/auth/register";
-import { createApiKey } from "../../services/api/auth/createApiKey";
+import { loginProfile } from "@/services/api/auth/login";
+import { registerNewProfile } from "@/services/api/auth/register";
+import { createApiKey } from "@/services/api/auth/createApiKey";
 import { createSession } from "./createSession";
 import { clearSessionCookie } from "./session.server";
 import { readSession } from "@/server/readSession.server";
+import { withServerErrors } from "./serverErrors";
 
 const toFormData = (fields: Record<string, string>): FormData => {
   const form = new FormData();
@@ -28,7 +29,7 @@ const establishSession = async (email: string, password: string) => {
 export const loginFn = createServerFn({ method: "POST" })
   .validator(z.object({ email: z.email(), password: z.string().min(1) }))
   .handler(async ({ data }) => {
-    return establishSession(data.email, data.password);
+    return withServerErrors(() => establishSession(data.email, data.password));
   });
 
 export const registerFn = createServerFn({ method: "POST" })
@@ -40,10 +41,12 @@ export const registerFn = createServerFn({ method: "POST" })
       venueManager: z.boolean().optional(),
     }),
   )
-  .handler(async ({ data }) => {
-    await registerNewProfile(data);
-    return establishSession(data.email, data.password);
-  });
+  .handler(async ({ data }) =>
+    withServerErrors(async () => {
+      await registerNewProfile(data);
+      return establishSession(data.email, data.password);
+    }),
+  );
 
 export const logoutFn = createServerFn({ method: "POST" }).handler(async () => {
   clearSessionCookie();

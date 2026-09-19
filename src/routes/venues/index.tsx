@@ -3,12 +3,16 @@ import {
   stripSearchParams,
   useNavigate,
 } from "@tanstack/react-router";
-import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { useVenuesList } from "@/hooks/useVenuesList";
 import { useSortVenuesForm } from "@/hooks/useSortVenuesForm";
+import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { searchSchema, defaultSearch } from "@/lib/zod/index";
-import { CustomPending } from "@/lib/route-states/CustomPending";
 import { localCurrency } from "@/lib/utils/config";
+import {
+  DefaultNotFound,
+  CustomPending,
+  CustomError,
+} from "@/lib/route-states/index";
 
 import {
   Container,
@@ -48,15 +52,14 @@ export const Route = createFileRoute("/venues/")({
     );
   },
   pendingComponent: CustomPending,
-  shouldReload: false,
+  shouldReload: true,
   component: Venues,
   validateSearch: searchSchema,
   search: {
     middlewares: [stripSearchParams(defaultSearch)],
   },
-  notFoundComponent: () => {
-    return <p>This page doesn't exist.</p>;
-  },
+  notFoundComponent: DefaultNotFound,
+  errorComponent: CustomError,
 });
 
 function Venues() {

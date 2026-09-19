@@ -1,11 +1,11 @@
-import { withApiHandler } from "../api-config/handler";
-import { getAuthHeaders } from "../api-config/headers";
+import { withApiHandler } from "@/services/api/api-config/handler";
+import { getAuthHeaders } from "@/services/api/api-config/headers";
 import {
   API_URL,
   BOOKINGS,
   BOOKINGS_PARAMS,
   PROFILES,
-} from "../api-config/endpoints";
+} from "@/services/api/api-config/endpoints";
 import { apiSingleBookingSchema, apiAllBookingsSchema } from "@/lib/zod/index";
 import type { BookingFormPayload } from "@/lib/zod/index";
 
@@ -13,15 +13,6 @@ export const getAllBookings = withApiHandler({
   label: "getAllBookings",
   endpoint: `${API_URL}${BOOKINGS}`,
   schema: apiAllBookingsSchema,
-  init: () => ({
-    headers: getAuthHeaders(),
-  }),
-});
-
-export const getBookingById = withApiHandler({
-  label: "getBookingById",
-  endpoint: (id: string) => `${API_URL}${BOOKINGS}/${id}`,
-  schema: apiSingleBookingSchema,
   init: () => ({
     headers: getAuthHeaders(),
   }),

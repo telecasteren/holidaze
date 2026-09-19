@@ -1,8 +1,12 @@
 import { apiSingleProfileSchema, apibaseProfileSchema } from "@/lib/zod/index";
 import type { ProfilePayload } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
-import { getAuthHeaders } from "../api-config/headers";
-import { API_URL, PROFILES, PROFILE_PARAMS } from "../api-config/endpoints";
+import { withApiHandler } from "@/services/api/api-config/handler";
+import { getAuthHeaders } from "@/services/api/api-config/headers";
+import {
+  API_URL,
+  PROFILES,
+  PROFILE_PARAMS,
+} from "@/services/api/api-config/endpoints";
 
 // Global: API does not support id lookup, so we use name as the identifier
 

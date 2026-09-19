@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { apiVenueSchema, apiSingleVenueSchema } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
-import { getAuthHeaders } from "../api-config/headers";
+import { withApiHandler } from "@/services/api/api-config/handler";
+import { getAuthHeaders } from "@/services/api/api-config/headers";
 import {
   API_URL,
   VENUES,
   VENUES_PARAMS,
   PROFILES,
-} from "../api-config/endpoints";
+} from "@/services/api/api-config/endpoints";
 import type { VenuePayload } from "@/lib/zod/index";
 
 export const getAllVenues = withApiHandler({

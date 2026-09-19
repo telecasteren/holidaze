@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { DefaultNotFound } from "@/lib/route-states/DefaultNotFound";
 import {
   Box,
   Card,
@@ -34,9 +35,7 @@ export const Route = createFileRoute("/journal")({
       { title: "Travel Journal | Holidaze" },
     ],
   }),
-  notFoundComponent: () => {
-    return <p>This page doesn't exist.</p>;
-  },
+  notFoundComponent: DefaultNotFound,
 });
 
 const categories = ["All", "Guides", "Destinations", "Tips"] as const;

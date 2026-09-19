@@ -1,6 +1,6 @@
 import { loginAuthSchema } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
-import { AUTH, LOGIN } from "../api-config/endpoints";
+import { withApiHandler } from "@/services/api/api-config/handler";
+import { AUTH, LOGIN } from "@/services/api/api-config/endpoints";
 
 export const loginProfile = withApiHandler({
   label: "loginProfile",

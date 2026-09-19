@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 
 import { getSession } from "@/server/authFunctions";
 
-import "../styles.css";
+import "@/styles.css";
 import { useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppTheme from "@/components/shared-theme/AppTheme";
@@ -20,7 +20,7 @@ import { brandSettings } from "@/lib/brand/brandSettings";
 import { CustomError } from "@/lib/route-states/CustomError";
 import { DefaultNotFound } from "@/lib/route-states/DefaultNotFound";
 
-import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
+import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import type { QueryClient } from "@tanstack/react-query";
 
 interface MyRouterContext {

@@ -1,8 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import {
-  getAllVenues,
-  getVenueById,
-} from "../../../services/api/venues/venues";
+import { getAllVenues, getVenueById } from "@/services/api/venues/venues";
 import { getUserVenuesFn } from "@/server/venueFunctions";
 
 export const venuesQuery = (

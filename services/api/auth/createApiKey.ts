@@ -1,5 +1,5 @@
 import { apiKeySchema } from "@/lib/zod/index";
-import { withApiHandler } from "../api-config/handler";
+import { withApiHandler } from "@/services/api/api-config/handler";
 import { AUTH, CREATE_API_KEY } from "../api-config/endpoints";
 
 export const createApiKey = withApiHandler({

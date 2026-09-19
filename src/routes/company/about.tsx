@@ -1,6 +1,7 @@
 // CoAuthored with Claude Sonnet 5
 
 import { createFileRoute } from "@tanstack/react-router";
+import { DefaultNotFound } from "@/lib/route-states/DefaultNotFound";
 import {
   Box,
   Button,
@@ -27,9 +28,7 @@ export const Route = createFileRoute("/company/about")({
       { title: "About us | Holidaze" },
     ],
   }),
-  notFoundComponent: () => {
-    return <p>This page doesn't exist.</p>;
-  },
+  notFoundComponent: DefaultNotFound,
 });
 
 function About() {

@@ -12,9 +12,10 @@ export default [
       "@typescript-eslint/array-type": "off",
       "@typescript-eslint/require-await": "off",
       "pnpm/json-enforce-catalog": "off",
+      "no-console": ["error", { allow: ["warn", "error"] }],
     },
   },
   {
-    ignores: ["eslint.config.js", "prettier.config.js"],
+    ignores: ["eslint.config.js", "prettier.config.js", "src/routeTree.gen.ts"],
   },
 ];
