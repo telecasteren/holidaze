@@ -10,6 +10,7 @@ import {
   styled,
 } from "@mui/material";
 
+/** Small secondary-colored link. */
 const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: 12,
   color: theme.palette.text.secondary,
@@ -17,10 +18,16 @@ const StyledLink = styled(Link)(({ theme }) => ({
   marginBottom: 10,
 }));
 
+/** Props for {@link VenueLocationFields}. */
 interface VenueLocationFieldsProps {
+  /** Venue to prefill the fields with. Leave out for empty fields. */
   venue?: Venue;
 }
 
+/**
+ * Form fields for a venue's address, city, zip code, country, continent and coordinates
+ * (coordinates are handled by {@link FindMyLocation}). Fields are uncontrolled.
+ */
 export const VenueLocationFields = ({ venue }: VenueLocationFieldsProps) => {
   return (
     <Stack sx={{ display: "grid", gap: 1, mt: 2 }}>

@@ -19,11 +19,20 @@ const CalendarBox = styled(Box)(({ theme }) => ({
   }),
 }));
 
+/** Props for {@link CalendarDisplay}. */
 interface CalendarDisplayProps {
+  /** ID of the venue to check availability for. */
   venueId: string;
+  /** Existing bookings; their dates are shown as unavailable. */
   bookings?: Venue["bookings"];
 }
 
+/**
+ * Availability calendar for a venue, next to a booking summary.
+ *
+ * Booked dates and dates in the past can't be selected. The selected dates and
+ * guest count (default 1) are held in a local form and passed to {@link BookingSummary}.
+ */
 export const CalendarDisplay = ({
   venueId,
   bookings,

@@ -15,6 +15,7 @@ import { ExploreCalendar } from "@/components/booking/ExploreCalendar";
 import { GuestCountPicker } from "@/components/booking/GuestCountPicker";
 import { SearchIcon } from "@/components/layout/icons";
 
+/** Bordered, wrapping row that holds the search fields and the search button. */
 const StyledBox = styled(Stack)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
@@ -36,7 +37,9 @@ const StyledBox = styled(Stack)(({ theme }) => ({
   marginBottom: 50,
 }));
 
+/** Height (px) shared by the search fields and button. */
 const FIELD_HEIGHT = 80;
+/** Shared styles for the "Where", "When" and "Who" fields. */
 const searchSx = {
   textAlign: "start",
   justifyContent: "start",
@@ -47,6 +50,11 @@ const searchSx = {
   gap: 0.5,
 } as const;
 
+/**
+ * Search bar for venues with three fields: text ("Where"), dates ("When", in a popover calendar)
+ * and guest count ("Who", in a popover). The search button writes the values to the URL.
+ * Its state comes from {@link useSearchDisplay}.
+ */
 export const SearchDisplay = () => {
   const { control, values, dates, handleSearch } = useSearchDisplay();
   const datesPopup = usePopupState({

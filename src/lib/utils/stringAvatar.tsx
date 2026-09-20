@@ -1,5 +1,6 @@
 // Resource: https://mui.com/material-ui/react-avatar/
 
+/** Turns a string into a hex color, always the same color for the same string. */
 function stringToColor(string: string) {
   let hash = 0;
   let i;
@@ -18,6 +19,12 @@ function stringToColor(string: string) {
   return color;
 }
 
+/**
+ * Builds MUI `Avatar` props from a name: uppercase initials as children and a background color based on them.
+ * Two or more words give the first letter of the first two, a single word gives its first two letters, and an empty name gives `?`.
+ *
+ * @param name - Full name.
+ */
 export function stringAvatar(name: string) {
   const normalized = name.trim();
   const parts = normalized.split(/\s+/).filter(Boolean);

@@ -12,12 +12,20 @@ const CalendarBox = styled(Box)(({ theme }) => ({
   }),
 }));
 
+/** Props for {@link ExploreCalendar}. */
 interface ExploreCalendarProps {
+  /** Currently selected date range, or `null`. */
   value: BookingForm["dateRange"];
+  /** Called when the selected range changes. */
   onChange: (value: BookingForm["dateRange"]) => void;
+  /** Text shown after "Selected:", e.g. the formatted date range. */
   dates?: string | null;
 }
 
+/**
+ * Controlled date-range calendar for searching venues, with the selected dates shown below it.
+ * Dates in the past can't be selected.
+ */
 export const ExploreCalendar = ({
   value,
   onChange,

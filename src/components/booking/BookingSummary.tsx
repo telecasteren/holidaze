@@ -34,14 +34,26 @@ const SummaryBox = styled(Box)(({ theme }) => ({
   },
 }));
 
+/** Props for {@link BookingSummary}. */
 interface BookingSummaryProps {
+  /** ID of the venue being booked. */
   venueId: string;
+  /** Formatted selected dates, or `null` if none. */
   dates: string | null;
+  /** Number of nights in the selected range. */
   nights: number | null;
+  /** Current form values (guests and date range), passed on to the booking window. */
   values: BookingForm;
+  /** react-hook-form control, used for the guest count field. */
   control: Control<BookingForm>;
 }
 
+/**
+ * Summary of the selected dates, nights and guest count, with a "book" button.
+ *
+ * Logged-in users get the {@link BookingWindow}. Logged-out users get a modal
+ * with links to log in or sign up.
+ */
 export const BookingSummary = ({
   venueId,
   dates,

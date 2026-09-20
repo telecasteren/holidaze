@@ -1,9 +1,15 @@
 import { Route } from "@/routes/venues/index";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
-import { formatCalendarDate } from "@/lib/utils/formatCalendarDate";
+import { formatCalendarDate } from "@/lib/utils/utils";
 import { useForm } from "react-hook-form";
 import type { ExploreSearchForm } from "@/lib/zod/index";
 
+/**
+ * Search form state for the venues page, initialised from the URL search params.
+ *
+ * @returns `control` (react-hook-form), current `values`, `dates` as a display string,
+ * and `handleSearch()`, which writes the values to the URL and resets to page 1.
+ */
 export const useSearchDisplay = () => {
   const navigate = Route.useNavigate();
   const searchParams = Route.useSearch();

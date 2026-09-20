@@ -13,16 +13,27 @@ import { VenueDetailFields } from "./venueForm/VenueDetailFields";
 import { VenueMetaFields } from "./venueForm/VenueMetaFields";
 import { VenueLocationFields } from "./venueForm/VenueLocationFields";
 
+/** Title to show for the form when editing a venue. */
 export const updateVenueFormTitle = "Update venue";
+/** Title to show for the form when registering a venue. */
 export const registerVenueFormTitle = "Register a new venue";
+/** Tips text to show next to the form. */
 export const venueFormTips =
-  "Tips: Customers tend to favour venues with that has good information, so add as much about the venue as you can.";
+  "Tips: Customers tend to favour venues with rich information, so add as much details about the venue as you can.";
 
+/** Props for {@link VenueForm}. */
 interface VenueFormProps {
+  /** The venue to edit. Leave out to register a new venue. */
   venue?: Venue;
+  /** Called after a successful save, e.g. to close a modal. */
   close?: () => void;
 }
 
+/**
+ * Form for registering a new venue, or editing one when `venue` is passed.
+ * The fields are split into {@link VenueDetailFields}, {@link VenueMetaFields} and {@link VenueLocationFields}.
+ * Renders nothing if the user isn't logged in.
+ */
 export const VenueForm = ({ venue, close }: VenueFormProps) => {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -32,6 +43,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
   const descRef = useRef<TextEditorHandle>(null);
   const { user } = useAuth();
 
+  /** Creates or updates the venue, then refreshes the user's venue list. */
   const addOrUpdate = useMutation({
     mutationFn: (payload: VenuePayload) =>
       isEditing
@@ -62,6 +74,7 @@ export const VenueForm = ({ venue, close }: VenueFormProps) => {
 
   if (!user) return null;
 
+  /** Builds the venue payload from the form (description from the text editor) and saves it. */
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

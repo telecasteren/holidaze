@@ -1,5 +1,11 @@
 import type { Profile } from "@/lib/zod/index";
 
+/**
+ * Calculates the average rating of a profile's venues, ignoring unrated venues (rating 0).
+ *
+ * @param user - The profile whose venues to average.
+ * @returns `averageRating` as a string with one decimal, or `null` if no venue is rated.
+ */
 export const getAvgRating = (user: Profile) => {
   const ratedVenues = user.venues?.filter((venue) => venue.rating > 0) ?? [];
   const averageRating =

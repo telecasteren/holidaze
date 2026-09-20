@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useSortOption } from "@/hooks/useSortOption";
 import type { Venue } from "@/lib/zod/index";
 
+/** Sort choices for venues. The first one is the default. */
 export const sortOptions = [
   "All",
   "Highest price",
@@ -10,6 +11,12 @@ export const sortOptions = [
 ] as const;
 export type SortOption = (typeof sortOptions)[number];
 
+/**
+ * Sorts venues by the selected option. "Highest rating" leaves out unrated venues.
+ *
+ * @param venues - Venues to sort (not mutated).
+ * @returns The selected `option`, `handleChange` for a MUI Select, and `sortedVenues`.
+ */
 export const useSortVenuesForm = <T extends Venue>(venues: T[]) => {
   const { option, handleChange } = useSortOption(sortOptions);
 

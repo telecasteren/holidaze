@@ -26,6 +26,11 @@ import ForgotPassword from "./ForgotPassword";
 import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthContainer } from "@/components/auth/AuthContainer";
 
+/**
+ * Sign-in form (email and password), validated with `loginFormSchema` when a field loses focus.
+ * On success it goes to the user's account page. While signing in, only a loading message is shown.
+ * Includes a "forgot password" dialog and a link to sign up. The "Remember me" checkbox isn't connected to anything.
+ */
 export default function LoginForm() {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -58,10 +63,12 @@ export default function LoginForm() {
     },
   });
 
+  /** Runs on valid input: signs the user in. */
   const onSubmit: SubmitHandler<LoginFormSchemaType> = (data) => {
     mutate({ data });
   };
 
+  /** Runs on invalid input: shows an error toast. */
   const onInvalid: SubmitErrorHandler<LoginFormSchemaType> = () => {
     toast.error("Please check the form and try again.");
   };

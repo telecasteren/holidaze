@@ -9,6 +9,7 @@ import {
 import { baseProfileSchema } from "@/lib/zod/profileSchema";
 import { withServerErrors } from "@/server/serverErrors";
 
+/** Server function: gets a profile by name. Throws `notFound()` if the API returns 404. */
 export const getProfileFn = createServerFn({ method: "GET" })
   .validator(z.string())
   .handler(async ({ data: name }) =>
@@ -22,7 +23,10 @@ export const getProfileFn = createServerFn({ method: "GET" })
     }),
   );
 
-// POST to server > PUT to API from 'updateProfileById'
+/**
+ * Server function: updates a profile. The input must include the profile `name`.
+ * Receives a POST here and sends a PUT to the API (via `updateProfileById`).
+ */
 export const updateProfileFn = createServerFn({ method: "POST" })
   .validator(baseProfileSchema.extend({ name: z.string() }))
   .handler(async ({ data }) => {

@@ -74,3 +74,13 @@ _**Example:**
 **Date:** 19.09.26<br/>
 **Purpose:** Creating boilerplate Skeleton loader UI `SkeletonVenues.tsx` and `SkeletonAccount.tsx`, based on `/venues/index.tsx` and `/account/$profileId.tsx`<br/>
 **Outcome:** Saving time on bolierplate-material making the application feel professional.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 20.09.26<br/>
+**Purpose:** Advice on query stale times<br/>
+**Outcome:** Got advice on recommended stale time length for `bookingsQuery`, I then made a call to editing other queries as well with that in mind.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 20.09.26<br/>
+**Purpose:** Writing initial JSDoc comments<br/>
+**Outcome:** Saving time on code documentation - comments are checked and edited by me.<br/>

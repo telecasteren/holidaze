@@ -1,12 +1,20 @@
 import { useVenue } from "@/hooks/useVenue";
 import { Box, MenuItem, TextField } from "@mui/material";
 
+/** Props for {@link GuestCountPicker}. */
 interface GuestCountPickerProps {
+  /** If set, the maximum is the venue's `maxGuests`. If not, the maximum is 20. */
   venueId?: string;
+  /** Currently selected number of guests. */
   value: number;
+  /** Called with the new guest count. */
   onChange: (value: number) => void;
 }
 
+/**
+ * Dropdown for choosing the number of guests, from 1 up to a maximum.
+ * The maximum is the venue's `maxGuests` when a `venueId` is given, otherwise 20.
+ */
 export const GuestCountPicker = ({
   venueId,
   value,
@@ -27,6 +35,7 @@ export const GuestCountPicker = ({
   );
 };
 
+/** Dropdown with the options 1 to `maxGuests`. */
 function GuestCountSelector({
   maxGuests,
   value,
@@ -66,6 +75,7 @@ function GuestCountSelector({
   );
 }
 
+/** Fetches the venue and limits the dropdown to its `maxGuests` (falls back to 1). */
 function VenuesGuestCountSelector({
   venueId,
   value,

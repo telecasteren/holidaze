@@ -1,6 +1,7 @@
 import type { Venue } from "@/lib/zod";
 import { Stack, Typography, FormControlLabel, Checkbox } from "@mui/material";
 
+/** The amenity checkboxes. Each `name` and `value` matches what `getFormData` reads. */
 const metaFields = {
   wifi: {
     id: "venue-wifi",
@@ -28,10 +29,13 @@ const metaFields = {
   },
 };
 
+/** Props for {@link VenueMetaFields}. */
 interface VenueMetaFieldsProps {
+  /** Venue to prefill the checkboxes with. Leave out for all unchecked. */
   venue?: Venue;
 }
 
+/** Checkboxes for what a venue offers: wifi, pets, parking and breakfast. Fields are uncontrolled. */
 export const VenueMetaFields = ({ venue }: VenueMetaFieldsProps) => {
   return (
     <Stack sx={{ display: "grid", gap: 1, mt: 2 }}>

@@ -8,11 +8,19 @@ import { RequiredField } from "@/components/layout/RequiredField";
 import { MediaInputs } from "@/components/MediaInputs";
 import { GridBox } from "@/components/GridBox";
 
+/** Props for {@link VenueDetailFields}. */
 interface VenueDetailFieldsProps {
+  /** Venue to prefill the fields with. Leave out for empty fields. */
   venue?: Venue;
+  /** Gives the parent access to the description editor (to read its HTML). */
   ref?: Ref<TextEditorHandle>;
 }
 
+/**
+ * Form fields for a venue's name, description, media URLs, max guests and price per night.
+ * Fields are uncontrolled, so the parent reads them from the form's `FormData`,
+ * except the description, which is read through `ref`.
+ */
 export const VenueDetailFields = ({ venue, ref }: VenueDetailFieldsProps) => {
   return (
     <>

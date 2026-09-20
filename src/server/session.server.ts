@@ -7,18 +7,21 @@ import crypto from "node:crypto";
 const SESSION_COOKIE = "__Host-session";
 const ONE_DAY = 60 * 60 * 24;
 
+/** Data stored in the session cookie. */
 export interface SessionPayloadProps {
   name: string;
   accessToken: string;
   apiKey: string;
 }
 
+/** Reads `SESSION_SECRET` from the environment. Throws if it is missing. */
 const getSecret = (): string => {
   const secret = process.env.SESSION_SECRET;
   if (!secret) throw new Error("SESSION_SECRET isn't set");
   return secret;
 };
 
+/** Creates an HMAC-SHA256 signature (base64url) of `body`. */
 const sign = (body: string): string => {
   return crypto
     .createHmac("sha256", getSecret())
@@ -26,11 +29,24 @@ const sign = (body: string): string => {
     .digest("base64url");
 };
 
+/**
+ * Turns a session payload into a signed token (`<base64url payload>.<signature>`).
+ * The payload is signed, not encrypted.
+ *
+ * @param payload - Session data to store.
+ * @returns The signed token.
+ */
 export const signSession = (payload: SessionPayloadProps): string => {
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
   return `${body}.${sign(body)}`;
 };
 
+/**
+ * Checks a token's signature (timing-safe) and decodes its payload.
+ *
+ * @param value - Token from {@link signSession}.
+ * @returns The payload, or `null` if the token is malformed, tampered with, or unreadable.
+ */
 export const verifySession = (value: string): SessionPayloadProps | null => {
   const [body, signature] = value.split(".");
   if (!body || !signature) return null;
@@ -54,6 +70,11 @@ export const verifySession = (value: string): SessionPayloadProps | null => {
   }
 };
 
+/**
+ * Sets the session cookie on the response: HttpOnly, Secure, SameSite=Lax, valid for one day.
+ *
+ * @param token - Signed token from {@link signSession}.
+ */
 export function setSessionCookie(token: string) {
   setResponseHeader(
     "Set-Cookie",
@@ -68,6 +89,7 @@ export function setSessionCookie(token: string) {
   );
 }
 
+/** Expires the session cookie on the response (logs the user out). */
 export function clearSessionCookie() {
   setResponseHeader(
     "Set-Cookie",
@@ -75,6 +97,11 @@ export function clearSessionCookie() {
   );
 }
 
+/**
+ * Reads the raw session token from the request's `cookie` header.
+ *
+ * @returns The token, or `null` if the cookie isn't present.
+ */
 export function readSessionToken(): string | null {
   const header = getRequestHeader("cookie");
   if (!header) return null;

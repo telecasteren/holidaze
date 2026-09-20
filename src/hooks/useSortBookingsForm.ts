@@ -2,9 +2,18 @@ import { useMemo } from "react";
 import { useSortOption } from "@/hooks/useSortOption";
 import type { Booking } from "@/lib/zod/index";
 
+/** Sort/filter choices for bookings. The first one is the default. */
 export const sortOptions = ["All", "Upcoming", "Venues", "Previous"] as const;
 export type SortOption = (typeof sortOptions)[number];
 
+/**
+ * Sorts or filters bookings by the selected option:
+ * "All" = newest created first, "Upcoming" = future check-ins (soonest first),
+ * "Venues" = by venue name, "Previous" = past check-outs (most recent first).
+ *
+ * @param bookings - Bookings to process (not mutated).
+ * @returns The selected `option`, `handleChange` for a MUI Select, and `sortedBookings`.
+ */
 export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
   const { option, handleChange } = useSortOption(sortOptions);
 

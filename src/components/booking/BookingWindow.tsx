@@ -16,6 +16,7 @@ import { BookingAppBar } from "./booking-components/BookingAppBar";
 import { WarningToast } from "@/components/layout/WarningToast";
 import toast from "react-hot-toast";
 
+/** Slide-up transition for the full-screen booking dialog. */
 const Transitions = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<unknown>;
@@ -25,16 +26,28 @@ const Transitions = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+/** Props for {@link BookingWindow}. */
 interface BookingWindowProps {
+  /** ID of the venue being booked. */
   venueId: string;
+  /** Whether the dialog is visible. */
   open: boolean;
+  /** Called to close the dialog. */
   close: () => void;
+  /** The selected guest count and date range. */
   booking: {
     guests: number;
     dateRange: RangeValue<DateValue> | null;
   };
 }
 
+/**
+ * Full-screen dialog for confirming and paying for a booking.
+ *
+ * The confirm button stays disabled until a payment provider is checked.
+ * On submit it creates the booking: success goes to `/booking/success`, failure shows an error toast.
+ * Total price is the venue's price times the number of nights.
+ */
 export const BookingWindow = ({
   venueId,
   open,
@@ -70,12 +83,14 @@ export const BookingWindow = ({
     },
   });
 
+  /** Enables or disables the confirm button based on whether a payment provider is checked. */
   const handlePaymentChange = (_provider: string, checked: boolean) => {
     setIsChecked(checked);
     setPaymentIsChecked(checked);
     setIsDisabled(!checked);
   };
 
+  /** Submits the booking. Shows a warning toast instead if no dates are selected. */
   const handleConfirmBooking = async (
     event: React.SubmitEvent<HTMLFormElement>,
   ) => {

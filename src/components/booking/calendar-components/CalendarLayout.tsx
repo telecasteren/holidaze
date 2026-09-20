@@ -7,13 +7,16 @@ import {
 } from "react-aria-components";
 import { CELL_SIZE } from "@/components/booking/calendar-components/CalendarCell";
 
+/** Invisible border used to space out calendar rows. */
 export const VERTICAL_ROW_SPACING = "4px solid transparent";
 
+/** Root element of the range calendar (flex row). */
 export const CalendarRoot = styled(AriaRangeCalendar)({
   display: "flex",
   alignItems: "flex-start",
 });
 
+/** One month panel: a column with padding, and smaller gaps on desktop. */
 export const CalendarPanel = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -24,6 +27,7 @@ export const CalendarPanel = styled("div")(({ theme }) => ({
   },
 }));
 
+/** {@link CalendarPanel} with a left divider, for panels shown after the first. */
 export const CalendarPanelDivided = styled(CalendarPanel)(({ theme }) => ({
   borderLeft: `1px solid ${theme.palette.divider}`,
   [theme.breakpoints.up("md")]: {
@@ -31,6 +35,7 @@ export const CalendarPanelDivided = styled(CalendarPanel)(({ theme }) => ({
   },
 }));
 
+/** Month/year title, absolutely positioned in the center of its parent. */
 export const CalendarTitle = styled("h2")(({ theme }) => ({
   position: "absolute",
   top: "50%",
@@ -46,15 +51,18 @@ export const CalendarTitle = styled("h2")(({ theme }) => ({
   }),
 }));
 
+/** Calendar grid, sized to its content. */
 export const CalendarGrid = styled(AriaCalendarGrid)({
   width: "max-content",
 });
 
+/** Header cell for a weekday column. */
 export const CalendarHeaderCell = styled(AriaCalendarHeaderCell)({
   padding: 0,
   borderBottom: VERTICAL_ROW_SPACING,
 });
 
+/** Weekday label, sized to match a calendar cell. */
 export const WeekdayLabel = styled("div")(({ theme }) => ({
   display: "flex",
   width: CELL_SIZE,
@@ -69,6 +77,7 @@ export const WeekdayLabel = styled("div")(({ theme }) => ({
   }),
 }));
 
+/** Calendar grid body: removes cell padding and spaces rows with {@link VERTICAL_ROW_SPACING}. */
 export const CalendarGridBody = styled(AriaCalendarGridBody)({
   "& td": {
     padding: 0,

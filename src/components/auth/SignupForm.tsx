@@ -25,6 +25,11 @@ import { AuthCard } from "@/components/auth/AuthCard";
 import { AuthContainer } from "@/components/auth/AuthContainer";
 import FormHelperText from "@mui/material/FormHelperText";
 
+/**
+ * Sign-up form (name, email, password and an optional venue manager checkbox), validated with
+ * `signUpFormSchema` when a field loses focus. On success the user is signed in and taken to their
+ * account page. While signing up, only a loading message is shown.
+ */
 export default function SignupForm() {
   const navigate = useNavigate();
 
@@ -55,10 +60,12 @@ export default function SignupForm() {
     },
   });
 
+  /** Runs on valid input: registers the profile. */
   const onSubmit: SubmitHandler<SignUpFormSchemaType> = (data) => {
     mutate({ data });
   };
 
+  /** Runs on invalid input: shows an error toast. */
   const onInvalid: SubmitErrorHandler<SignUpFormSchemaType> = () => {
     toast.error("Please check the form and try again.");
   };

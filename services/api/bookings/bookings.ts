@@ -9,6 +9,7 @@ import {
 import { apiSingleBookingSchema, apiAllBookingsSchema } from "@/lib/zod/index";
 import type { BookingFormPayload } from "@/lib/zod/index";
 
+/** Fetches all bookings (requires login). */
 export const getAllBookings = withApiHandler({
   label: "getAllBookings",
   endpoint: `${API_URL}${BOOKINGS}`,
@@ -18,6 +19,11 @@ export const getAllBookings = withApiHandler({
   }),
 });
 
+/**
+ * Fetches a profile's bookings, including venue and customer (requires login).
+ *
+ * @param name - Profile name.
+ */
 export const getBookingsByProfileId = withApiHandler({
   label: "getBookingsByProfileId",
   endpoint: (name: string) =>
@@ -28,6 +34,11 @@ export const getBookingsByProfileId = withApiHandler({
   }),
 });
 
+/**
+ * Creates a booking (requires login).
+ *
+ * @param body - Venue ID, dates and guest count.
+ */
 export const postNewBooking = withApiHandler({
   label: "postNewBooking",
   endpoint: `${API_URL}${BOOKINGS}`,

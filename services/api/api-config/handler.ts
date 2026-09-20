@@ -3,6 +3,17 @@ import { ApiError } from "./apiError";
 import { BASE_URL } from "./endpoints";
 import { logErrors } from "@/lib/utils/logErrors";
 
+/**
+ * Builds a typed fetch function for one API endpoint.
+ *
+ * `endpoint` and `init` can be plain values or functions of the call arguments.
+ * The response JSON is validated with `schema`; a 204 response is parsed as `undefined`.
+ *
+ * @param config - See {@link ApiConfig}. `label` is only used in error logs.
+ * @returns An async function that takes `TArgs` and resolves to the validated `TResult`.
+ * @throws {ApiError} On a non-2xx response (with its status and body), on schema
+ * validation failure (500), or on any other failure (500, "Internal server error").
+ */
 export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   endpoint,
   schema,

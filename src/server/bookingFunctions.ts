@@ -7,12 +7,14 @@ import {
 import { apiCalendarBookingSchema } from "@/lib/zod/index";
 import { withServerErrors } from "@/server/serverErrors";
 
+/** Server function: gets a profile's bookings (input: profile name). */
 export const getUserBookingsFn = createServerFn({ method: "GET" })
   .validator(z.string())
   .handler(async ({ data: name }) => {
     return withServerErrors(() => getBookingsByProfileId(name));
   });
 
+/** Server function: creates a new booking. */
 export const createNewBookingFn = createServerFn({ method: "POST" })
   .validator(apiCalendarBookingSchema)
   .handler(async ({ data }) => {

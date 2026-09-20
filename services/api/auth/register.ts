@@ -2,6 +2,7 @@ import { signupAuthSchema } from "@/lib/zod/index";
 import { withApiHandler } from "@/services/api/api-config/handler";
 import { AUTH, REGISTER } from "@/services/api/api-config/endpoints";
 
+/** Data needed to register a profile. */
 type RegisterPayload = {
   name: string;
   email: string;
@@ -9,6 +10,11 @@ type RegisterPayload = {
   venueManager?: boolean;
 };
 
+/**
+ * Registers a new profile.
+ *
+ * @param data - Name, email, password, and optionally `venueManager`.
+ */
 export const registerNewProfile = withApiHandler({
   label: "registerNewProfile",
   endpoint: `${AUTH}${REGISTER}`,

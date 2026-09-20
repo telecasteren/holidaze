@@ -1,3 +1,11 @@
+/**
+ * Converts the venue form's `FormData` into a venue payload.
+ * Empty media URLs are dropped (the venue name is used as alt text),
+ * unchecked amenities become `false`, and empty location fields become `null` (`lat`/`lng` become `0`).
+ *
+ * @param data - Submitted venue form data.
+ * @returns `name`, `media`, `maxGuests`, `price`, `meta` and `location`.
+ */
 export const getFormData = (data: FormData) => {
   const name = data.get("venue-name") as string;
   const mediaUrls = data.getAll("venue-media") as string[];

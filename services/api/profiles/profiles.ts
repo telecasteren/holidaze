@@ -10,6 +10,11 @@ import {
 
 // Global: API does not support id lookup, so we use name as the identifier
 
+/**
+ * Fetches a profile with its bookings and venues (requires login).
+ *
+ * @param name - Profile name.
+ */
 export const getProfileById = withApiHandler({
   label: "getProfileById",
   endpoint: (name: string) => `${API_URL}${PROFILES}/${name}${PROFILE_PARAMS}`,
@@ -19,6 +24,12 @@ export const getProfileById = withApiHandler({
   }),
 });
 
+/**
+ * Updates a profile with a PUT (requires login).
+ *
+ * @param name - Profile name.
+ * @param body - Fields to update.
+ */
 export const updateProfileById = withApiHandler({
   label: "updateProfileById",
   endpoint: (name: string, _body: ProfilePayload) =>
