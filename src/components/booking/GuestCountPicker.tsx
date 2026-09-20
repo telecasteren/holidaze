@@ -1,5 +1,5 @@
 import { useVenue } from "@/hooks/useVenue";
-import { Box, InputLabel, MenuItem, TextField } from "@mui/material";
+import { Box, MenuItem, TextField } from "@mui/material";
 
 interface GuestCountPickerProps {
   venueId?: string;
