@@ -1,8 +1,8 @@
 # Holidaze
 
 A venue booking system where users can browse and book venues, manage their venues and bookings.<br/>
-![holidaze_dashboard](public/brand/holidaze-readme.webp)
-![holidaze_venue](public/brand/venuedetails.webp)
+![holidaze_dashboard](public/readme/home_carousel.webp)
+![holidaze_venue](public/readme/venue_detail.webp)
 **Author:** Tele Caster Nilsen<br/>
 **Live site:** https://holidaze.telecasternilsen.com
 
@@ -12,6 +12,7 @@ A venue booking system where users can browse and book venues, manage their venu
 
 - [Introduction](#introduction)
 - [Technologies](#technologies)
+- [Architecture](#architecture)
 - [Installation](#installation)
 - [Deployment](#deployment)
 - [Session Management](#session_management)
@@ -36,6 +37,12 @@ This project is my exams project at Noroff School of Technology and Digital Medi
 _Noroff API docs:_
 [API overview](https://docs.noroff.dev/docs/v2/holidaze/bookings) |
 [Swagger API](https://v2.api.noroff.dev/docs/static/index.html#/holidaze-profiles)
+
+## Architecture
+
+High level illustration:
+
+![holidaze_architecture](public/readme/holidaze_architecture.webp)
 
 ## Installation
 
@@ -165,6 +172,8 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - Popover popupState [docs](https://github.com/jcoreio/material-ui-popup-state)
 - Error statuses [docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400)
 - eslint no-console [docs](https://eslint.org/docs/latest/rules/no-console)
+- Typescript serialization [docs](https://hackernoon.com/mastering-type-safe-json-serialization-in-typescript)
+- [Excalidraw](https://excalidraw.com)
 
 ## Acknowledgements
 

@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import { useVenue } from "@/hooks/useVenue";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useRouter, useNavigate } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createNewBookingFn } from "@/server/bookingFunctions";
 import { getApiErrorInfo } from "@/services/api/api-config/apiError";
-import type { BookingFormPayload } from "@/lib/zod";
+import type { BookingFormPayload } from "@/lib/zod/index";
 
 import type { DateValue, RangeValue } from "react-aria-components";
 import type { TransitionProps } from "@mui/material/transitions";
-import { Dialog, Slide, Container, Divider } from "@mui/material";
+import { Dialog, Slide, Container, Divider, Box } from "@mui/material";
 import { VenueDetails } from "./booking-components/VenueDetails";
 import { PaymentDetails } from "./booking-components/PaymentDetails";
+import { CustomerDetails } from "./booking-components/CustomerDetails";
 import { BookingAppBar } from "./booking-components/BookingAppBar";
 import { WarningToast } from "@/components/layout/WarningToast";
 import toast from "react-hot-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 
 /** Slide-up transition for the full-screen booking dialog. */
 const Transitions = React.forwardRef(function Transition(
@@ -56,10 +59,16 @@ export const BookingWindow = ({
 }: BookingWindowProps) => {
   const router = useRouter();
   const navigate = useNavigate();
-
   const [isChecked, setIsChecked] = useState(false);
   const [disabled, setIsDisabled] = useState(false);
   const [paymentChecked, setPaymentIsChecked] = useState(false);
+
+  const userData = useAuth();
+  const { data, isPending } = useQuery({
+    ...profileByIdQuery(userData.user?.name ?? ""),
+    enabled: open && !!userData,
+  });
+  const customer = data?.data;
 
   const { venue } = useVenue(venueId);
   const { dates, nights } = useBookingSummary(booking.dateRange);
@@ -139,11 +148,15 @@ export const BookingWindow = ({
               gap: 6,
             }}
           >
-            <PaymentDetails
-              checked={isChecked}
-              onCheck={handlePaymentChange}
-              onChange={() => {}}
-            />
+            <Box sx={{ display: "grid", gap: 2 }}>
+              <CustomerDetails user={customer} isLoading={isPending} />
+
+              <PaymentDetails
+                checked={isChecked}
+                onCheck={handlePaymentChange}
+                onChange={() => {}}
+              />
+            </Box>
 
             <VenueDetails
               singleVenue={venue}

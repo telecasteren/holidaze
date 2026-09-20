@@ -5,12 +5,11 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { Toaster } from "react-hot-toast";
+import { ToasterDisplay } from "@/components/layout/ToasterDisplay";
 
 import { getSession } from "@/server/authFunctions";
 
 import "@/styles.css";
-import { useTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import AppTheme from "@/components/shared-theme/AppTheme";
 import Header from "@/components/layout/header/Header";
@@ -72,9 +71,6 @@ function RootDocument({
   children: React.ReactNode;
   disableCustomTheme?: boolean;
 }) {
-  const theme = useTheme();
-  const v = theme.vars || theme;
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -82,33 +78,9 @@ function RootDocument({
         <HeadContent />
       </head>
       <body>
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              color: v.palette.info.dark,
-              backgroundColor: v.palette.info.light,
-              border: `1px solid ${v.palette.info.main}`,
-            },
-            success: {
-              style: {
-                color: v.palette.success.dark,
-                backgroundColor: v.palette.success.light,
-                border: `1px solid ${v.palette.success.main}`,
-              },
-            },
-            error: {
-              style: {
-                color: v.palette.error.dark,
-                backgroundColor: v.palette.error.light,
-                border: `1px solid ${v.palette.error.main}`,
-              },
-            },
-          }}
-        />
         <AppTheme disableCustomTheme={disableCustomTheme}>
           <CssBaseline enableColorScheme />
+          <ToasterDisplay />
           <Header />
           <main>{children}</main>
           <Footer />

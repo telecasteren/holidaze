@@ -7,3 +7,5 @@ export const customerSchema = z.object({
   avatar: z.object({ url: z.string(), alt: z.string() }),
   banner: z.object({ url: z.string(), alt: z.string() }),
 });
+
+export type Customer = z.infer<typeof customerSchema>;

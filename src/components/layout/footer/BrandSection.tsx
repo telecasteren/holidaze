@@ -11,8 +11,7 @@ import { toast } from "react-hot-toast";
 
 export const BrandSection = () => {
   const handleSubscribe = () => {
-    toast.remove();
-    toast.success("Subscribed! Great content heading your way.");
+    toast.loading("Subscribing — great content heading your way.");
   };
 
   return (

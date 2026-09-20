@@ -1,18 +1,22 @@
 import { InfoIcon } from "@/components/layout/icons";
+import { useTheme } from "@mui/material/styles";
 
 interface WarningToastProps {
   text: string;
 }
 
 export const WarningToast = ({ text }: WarningToastProps) => {
+  const theme = useTheme();
+  const v = theme.vars || theme;
+
   return (
     <span
       style={{
         padding: 8,
-        color: "#503C02", // orange[800]
-        backgroundColor: "#FDF1CE", // orange[100]
-        border: "1px solid #F6CE55", // orange[300]
-        borderRadius: 10,
+        color: v.palette.warning.dark,
+        backgroundColor: v.palette.warning.light,
+        border: `1px solid ${v.palette.warning.main}`,
+        borderRadius: 8,
         display: "flex",
         alignItems: "center",
         gap: 4,

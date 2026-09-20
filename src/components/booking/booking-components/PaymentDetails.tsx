@@ -13,16 +13,6 @@ import {
   providerDetails,
 } from "@/components/booking/booking-components/ProvidersDisplay";
 
-export const paymentProviders = providerDetails.flatMap((provider) =>
-  Object.keys(provider),
-);
-
-const providerTitles = Object.fromEntries(
-  providerDetails.flatMap((provider) =>
-    Object.entries(provider).map(([key, value]) => [key, value.title]),
-  ),
-);
-
 interface PaymentDetailsProps {
   checked: boolean;
   onCheck: (provider: string, checked: boolean) => void;
@@ -31,41 +21,12 @@ interface PaymentDetailsProps {
 
 export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
   const [selectedProvider, setSelectedProvider] = useState<string>("");
+  const selected = providerDetails.find((p) => p.name === selectedProvider);
 
   const handleCheck = (provider: string) => {
     const newChecked = selectedProvider === provider ? "" : provider;
     setSelectedProvider(newChecked);
     onCheck(provider, newChecked === provider);
-  };
-
-  const providerForms: Record<string, React.ReactNode> = {
-    Card: (
-      <>
-        <TextField
-          id="card-number"
-          type="text"
-          label="Card number"
-          fullWidth
-          onChange={onChange}
-        />
-        <TextField id="card-expiry" type="date" fullWidth onChange={onChange} />
-        <TextField
-          id="card-cvv"
-          type="number"
-          label="CVV code"
-          fullWidth
-          onChange={onChange}
-        />
-      </>
-    ),
-    Klarna: (
-      <Typography variant="body2">
-        Pay with invoice with Klarna Payment.
-      </Typography>
-    ),
-    Vipps: (
-      <Typography variant="body2">Fastest checkout with Vipps.</Typography>
-    ),
   };
 
   return (
@@ -75,20 +36,18 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
         <strong>Payment method:</strong>
       </Typography>
 
-      <ProviderLogoDisplay />
-
       <FormControl>
-        {paymentProviders.map((provider) => (
+        {providerDetails.map((provider) => (
           <FormControlLabel
-            key={provider}
+            key={provider.name}
             control={
               <Checkbox
-                key={provider}
-                checked={selectedProvider === provider}
-                onChange={() => handleCheck(provider)}
+                key={provider.name}
+                checked={selectedProvider === provider.name}
+                onChange={() => handleCheck(provider.name)}
               />
             }
-            label={provider}
+            label={provider.name}
           />
         ))}
         <FormHelperText sx={{ fontStyle: "italic" }}>
@@ -96,15 +55,42 @@ export const PaymentDetails = ({ onCheck, onChange }: PaymentDetailsProps) => {
         </FormHelperText>
       </FormControl>
 
+      <ProviderLogoDisplay />
+
       {/* checked provider form */}
-      {selectedProvider && (
+      {selected && (
         <>
           <Typography variant="body1">
-            <strong>{providerTitles[selectedProvider]}</strong>
+            <strong>{selected.title}</strong>
           </Typography>
 
           <FormControl sx={{ display: "flex", gap: 2 }}>
-            {providerForms[selectedProvider]}
+            {selected.name === "Card" ? (
+              <>
+                <TextField
+                  id="card-number"
+                  type="text"
+                  label="Card number"
+                  fullWidth
+                  onChange={onChange}
+                />
+                <TextField
+                  id="card-expiry"
+                  type="date"
+                  fullWidth
+                  onChange={onChange}
+                />
+                <TextField
+                  id="card-cvv"
+                  type="number"
+                  label="CVV code"
+                  fullWidth
+                  onChange={onChange}
+                />
+              </>
+            ) : (
+              <Typography variant="body2">{selected.description}</Typography>
+            )}
           </FormControl>
         </>
       )}

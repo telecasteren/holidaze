@@ -51,16 +51,16 @@ export const gray = {
 };
 
 export const green = {
-  50: "hsl(120, 80%, 98%)",
-  100: "hsl(120, 75%, 94%)",
-  200: "hsl(120, 75%, 87%)",
-  300: "hsl(120, 61%, 77%)",
-  400: "hsl(120, 44%, 53%)",
-  500: "hsl(120, 59%, 30%)",
-  600: "hsl(120, 70%, 25%)",
-  700: "hsl(120, 75%, 16%)",
-  800: "hsl(120, 84%, 10%)",
-  900: "hsl(120, 87%, 6%)",
+  50: "hsl(120, 80%, 98%)", // #f6fef6
+  100: "hsl(120, 75%, 94%)", // #e4fbe4
+  200: "hsl(120, 75%, 87%)", // #c5f7c5
+  300: "hsl(120, 61%, 77%)", // #a1e8a1
+  400: "hsl(120, 44%, 53%)", // #52bc52
+  500: "hsl(120, 59%, 30%)", // #1f7a1f
+  600: "hsl(120, 70%, 25%)", // #136c13
+  700: "hsl(120, 75%, 16%)", // #0a470a
+  800: "hsl(120, 84%, 10%)", // #042f04
+  900: "hsl(120, 87%, 6%)", // #021d02
 };
 
 export const orange = {
@@ -100,23 +100,23 @@ export const colorSchemes = {
       },
       info: {
         light: brand[100],
-        main: brand[300],
-        dark: brand[600],
+        main: brand[400],
+        dark: brand[700],
         contrastText: gray[50],
       },
       warning: {
-        light: orange[300],
+        light: orange[200],
         main: orange[400],
-        dark: orange[800],
+        dark: orange[700],
       },
       error: {
-        light: red[300],
-        main: red[400],
+        light: red[100],
+        main: red[300],
         dark: red[800],
       },
       success: {
-        light: green[300],
-        main: green[400],
+        light: green[100],
+        main: green[300],
         dark: green[800],
       },
       grey: {
@@ -151,24 +151,24 @@ export const colorSchemes = {
       },
       info: {
         contrastText: brand[300],
-        light: brand[500],
-        main: brand[700],
-        dark: brand[900],
+        light: brand[100],
+        main: brand[400],
+        dark: brand[700],
       },
       warning: {
-        light: orange[400],
-        main: orange[500],
-        dark: orange[700],
+        light: orange[200],
+        main: orange[400],
+        dark: orange[800],
       },
       error: {
-        light: red[400],
-        main: red[500],
-        dark: red[700],
+        light: red[200],
+        main: red[400],
+        dark: red[800],
       },
       success: {
-        light: green[400],
-        main: green[500],
-        dark: green[700],
+        light: green[200],
+        main: green[400],
+        dark: green[800],
       },
       grey: {
         ...gray,
