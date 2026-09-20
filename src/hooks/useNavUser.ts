@@ -9,7 +9,9 @@ import { toast } from "react-hot-toast";
 export const useNavUser = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const userName = user?.name as string;
-  const avatarProps = stringAvatar(userName || "John Doe");
+  const avatarProps = user?.avatar?.url
+    ? { src: user.avatar.url, alt: user.avatar.alt, sx: {} }
+    : stringAvatar(userName || "John Doe");
 
   const handleLogout = () => {
     toast.loading("Logging out...");

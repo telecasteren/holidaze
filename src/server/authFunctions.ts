@@ -23,13 +23,13 @@ const toFormData = (fields: Record<string, string>): FormData => {
  */
 const establishSession = async (email: string, password: string) => {
   const result = await loginProfile(toFormData({ email, password }));
-  const { accessToken, name } = result.data;
+  const { accessToken, name, avatar } = result.data;
   const {
     data: { key: apiKey },
   } = await createApiKey(accessToken);
 
-  createSession({ name, accessToken, apiKey });
-  return { name };
+  createSession({ name, avatar, accessToken, apiKey });
+  return { name, avatar };
 };
 
 /** Server function: logs in with `email` and `password` and starts a session. */
@@ -67,6 +67,6 @@ export const getSession = createServerFn({ method: "GET" }).handler(
   async () => {
     const session = readSession();
     if (!session) return null;
-    return { name: session.name };
+    return { name: session.name, avatar: session.avatar };
   },
 );
