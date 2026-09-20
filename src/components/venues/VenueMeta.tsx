@@ -1,4 +1,5 @@
-import { Chip, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
+import { StyledChip } from "@/components/StyledChip";
 import type { Venue } from "@/lib/zod/index";
 
 type VenueMetaProps = {
@@ -22,17 +23,33 @@ export const VenueMeta = ({ venue }: VenueMetaProps) => {
       <Stack
         direction="row"
         spacing={1}
-        sx={{ display: "flex", flexWrap: "wrap", gap: 1, alignItems: "center" }}
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 1,
+          alignItems: "center",
+          mt: 1,
+        }}
       >
         {activeMeta.map(([key]) => (
-          <Chip
+          <StyledChip
+            selected
+            size="medium"
             key={key}
             label={metaLabels[key as keyof Venue["meta"]]}
-            color="primary"
-            sx={{ border: "none" }}
           />
         ))}
       </Stack>
     </>
   );
 };
+
+{
+  /* <Chip
+  size="medium"
+  key={key}
+  label={metaLabels[key as keyof Venue["meta"]]}
+  color="primary"
+  sx={{ border: "none" }}
+  />*/
+}

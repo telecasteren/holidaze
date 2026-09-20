@@ -50,13 +50,13 @@ export const MuiButton: Components<Theme> = {
             },
             style: {
               color: "white",
-              backgroundColor: "#027AF2",
-              border: "#027AF2",
+              backgroundColor: (theme.vars || theme).palette.primary.dark,
+              border: (theme.vars || theme).palette.primary.dark,
               "&:hover": {
                 opacity: 0.9,
               },
               "&:active": {
-                backgroundColor: "#027AF2",
+                backgroundColor: (theme.vars || theme).palette.primary.dark,
               },
               ...theme.applyStyles("dark", {
                 color: "white",

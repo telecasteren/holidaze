@@ -1,6 +1,7 @@
 import type { Profile } from "@/lib/zod/index";
 import { getAvgRating } from "@/lib/utils/getAvgRating";
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { StyledChip } from "@/components/StyledChip";
 import { PageTitle } from "@/components/layout/index";
 import { AvatarDisplay } from "@/components/account/components/AvatarDisplay";
 
@@ -25,14 +26,11 @@ export const AccountHero = ({ user }: { user: Profile }) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <PageTitle title={user.name} />
             {isVenueManager && (
-              <Chip
+              <StyledChip
+                selected
                 key={user.name}
                 label="Venue manager"
-                color="primary"
-                sx={{
-                  border: "none",
-                  width: "fit-content",
-                }}
+                size="small"
               />
             )}
           </Box>
@@ -67,8 +65,9 @@ export const AccountHero = ({ user }: { user: Profile }) => {
         alt={user.banner.alt || `Account banner for ${user.name}`}
         sx={{
           width: "100%",
-          height: { xs: 120, md: 200 },
+          maxHeight: { xs: 120, md: 200 },
           borderRadius: "0.2rem",
+          objectFit: "cover",
         }}
       />
     </Box>

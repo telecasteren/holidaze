@@ -24,12 +24,6 @@ declare module "@mui/material/styles" {
 
 const defaultTheme = createTheme();
 
-export const accent = {
-  50: "hsl(210, 97%, 71%)", // "6DB5FD"
-  100: "hsl(210, 98%, 48%)", // "#027af2"
-  200: "hsl(210, 100%, 33%)", // "0054A7"
-};
-
 export const brand = {
   50: "hsl(210, 100%, 95%)", // #e3f3ff
   100: "hsl(210, 100%, 92%)", // #bbe1ff
@@ -104,11 +98,6 @@ export const colorSchemes = {
         dark: brand[700],
         contrastText: brand[50],
       },
-      accent: {
-        light: accent[50],
-        main: accent[100],
-        dark: brand[200],
-      },
       info: {
         light: brand[100],
         main: brand[300],
@@ -159,11 +148,6 @@ export const colorSchemes = {
         light: brand[300],
         main: brand[400],
         dark: brand[700],
-      },
-      accent: {
-        light: accent[50],
-        main: accent[100],
-        dark: brand[200],
       },
       info: {
         contrastText: brand[300],

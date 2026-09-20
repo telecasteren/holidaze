@@ -47,16 +47,10 @@ function GuestCountSelector({
         m: 2,
       }}
     >
-      <InputLabel
-        htmlFor="guest-count"
-        aria-label="Number of guests"
-        sx={{ fontWeight: "bold" }}
-      >
-        Number of guests
-      </InputLabel>
       <TextField
         id="guest-count"
-        aria-label="Select number of guests"
+        name="guest-count"
+        label="Number of guests"
         select
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}

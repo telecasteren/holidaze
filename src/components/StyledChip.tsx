@@ -1,5 +1,6 @@
 import { Chip as MuiChip, styled } from "@mui/material";
 
+/** props: selected - responsible for showing selected state or set the brand blue colour when stateless */
 interface ChipProps {
   selected?: boolean;
 }
@@ -9,15 +10,17 @@ export const StyledChip = styled(MuiChip)<ChipProps>(({ theme }) => ({
     {
       props: ({ selected }) => !!selected,
       style: {
-        background:
-          "linear-gradient(to bottom right, hsl(210, 98%, 48%), hsl(210, 98%, 35%))",
+        backgroundColor: (theme.vars || theme).palette.primary.dark,
         color: "hsl(0, 0%, 100%)",
-        borderColor: (theme.vars || theme).palette.primary.light,
+        border: "none",
         "& .MuiChip-label": {
           color: "hsl(0, 0%, 100%)",
         },
+        ":hover": {
+          backgroundColor: (theme.vars || theme).palette.primary.dark,
+        },
         ...theme.applyStyles("dark", {
-          borderColor: (theme.vars || theme).palette.primary.dark,
+          backgroundColor: (theme.vars || theme).palette.primary.dark,
         }),
       },
     },

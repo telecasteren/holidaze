@@ -89,7 +89,9 @@ export const BookingSummary = ({
       />
 
       <SummaryBox>
-        <Typography variant="h5">Booking summary</Typography>
+        <Typography variant="h5" component="h2">
+          Booking summary
+        </Typography>
         <Typography variant="body1">
           <strong>Dates selected: </strong>
           {dates}
