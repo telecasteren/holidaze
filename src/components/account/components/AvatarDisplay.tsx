@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useRouter } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfileFn } from "@/server/profileFunctions";
 import type { Profile } from "@/lib/zod/index";
 
@@ -9,6 +8,7 @@ import { ModalWindow } from "@/components/layout/Modal";
 import { EditAvatarForm } from "./EditAvatarForm";
 import { EditIcon } from "@/components/layout/icons";
 import { toast } from "react-hot-toast";
+import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 
 /** Round wrapper that shows an edit icon over the avatar on hover. */
 const BoxHover = styled(Box)(() => ({
@@ -42,7 +42,7 @@ const BoxHover = styled(Box)(() => ({
  * @param props.user - The profile whose avatar is shown.
  */
 export const AvatarDisplay = ({ user }: { user: Profile }) => {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const username = user.name;
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -52,19 +52,34 @@ export const AvatarDisplay = ({ user }: { user: Profile }) => {
     mutationFn: (payload: Profile["avatar"]) =>
       updateProfileFn({ data: { name: username, avatar: payload } }),
     onMutate: () => {
-      toast("Saving...");
+      toast.loading("Saving...", { id: "avatar" });
     },
-    onSuccess: () => {
-      toast.remove();
-      toast.success("Saved!");
+    onSuccess: (result) => {
+      const key = profileByIdQuery(username).queryKey;
+
+      queryClient.setQueryData(key, (old) =>
+        old
+          ? {
+              ...old,
+              data: {
+                ...old.data,
+                avatar: result.data.avatar ?? old.data.avatar, // xtra fallback since avatar is optional
+              },
+            }
+          : old,
+      );
+
+      queryClient.invalidateQueries({
+        queryKey: key,
+      });
+      toast.success("Avatar updated!", { id: "avatar" });
     },
     onError: () => {
-      toast.error("Failed to update avatar.");
+      toast.error("Failed to update avatar.", { id: "avatar" });
     },
     onSettled: () => {
       setOpen(false);
       setDisabled(false);
-      router.invalidate();
     },
   });
 

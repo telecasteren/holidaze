@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfileFn } from "@/server/profileFunctions";
 
 import { Stack, FormControlLabel, Checkbox, Button } from "@mui/material";
 import { toast } from "react-hot-toast";
 
 export const VenueManagerForm = ({ close }: { close: () => void }) => {
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const [isChecked, setIsChecked] = useState(false);
   const { user } = useAuth();
   const userName = user?.name || "";
@@ -17,13 +16,16 @@ export const VenueManagerForm = ({ close }: { close: () => void }) => {
     mutationFn: () =>
       updateProfileFn({ data: { name: userName, venueManager: true } }),
     onSuccess: () => {
-      toast.success("You are registered as venue manager!");
+      queryClient.invalidateQueries({
+        queryKey: ["profile", userName],
+      });
+
+      toast.success("Registered as venue manager!");
     },
     onError: () => {
       toast.error("Failed to register user as venue manager.");
     },
     onSettled: () => {
-      router.invalidate();
       close();
     },
   });

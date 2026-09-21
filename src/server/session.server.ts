@@ -10,7 +10,6 @@ const ONE_DAY = 60 * 60 * 24;
 /** Data stored in the session cookie. */
 export interface SessionPayloadProps {
   name: string;
-  avatar: { url: string; alt: string } | undefined;
   accessToken: string;
   apiKey: string;
 }

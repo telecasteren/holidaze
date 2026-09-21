@@ -12,6 +12,7 @@ import { AccountInfo } from "@/components/account/AccountInfo";
 import { MyTripsInfo } from "@/components/account/MyTripsInfo";
 import { AccountHero } from "@/components/account/AccountHero";
 import { SkeletonAccount } from "@/components/account/SkeletonAccount";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 // lazy imports - these files import large chunks (VenueForm, tiptap etc.)
 const VenueInfo = lazy(() =>
@@ -29,25 +30,21 @@ export const Route = createFileRoute("/account/$profileId")({
   beforeLoad({ context }) {
     if (!context.user) throw redirect({ to: "/auth/login" });
   },
-  loader: async ({ context, params }): Promise<Profile> => {
-    const data = await context.queryClient.ensureQueryData(
+  loader: async ({ context, params }) => {
+    const account = await context.queryClient.query(
       profileByIdQuery(params.profileId),
     );
-    if (data.data.venueManager) {
-      const venuesData = await context.queryClient.ensureQueryData(
-        venuesByProfileQuery(params.profileId),
-      );
-      return { ...data.data, venues: venuesData.data };
+    if (account.data.venueManager) {
+      await context.queryClient.query(venuesByProfileQuery(params.profileId));
     }
-    return data.data;
   },
-  head: ({ loaderData }) => ({
+  head: ({ params }) => ({
     meta: [
       {
         name: "description",
-        content: `Account details for ${loaderData?.name ?? "Account"} at ${brandSettings.name}.`,
+        content: `Account details for ${params.profileId || "this account"} at ${brandSettings.name}.`,
       },
-      { title: `${loaderData?.name ?? "Account details"} | Holidaze` },
+      { title: `${params.profileId || "Account details"} | Holidaze` },
     ],
   }),
   component: ProfileById,
@@ -67,10 +64,21 @@ const availableDirectories = {
 type DirectoryKey = keyof typeof availableDirectories;
 
 function ProfileById() {
-  const user = Route.useLoaderData();
   const [activeTab, setActiveTab] = useState<DirectoryKey>("account");
-  const hasVenueManagerRole = user.venueManager;
-  const venueInfo = user.venues ?? [];
+  const { profileId } = Route.useParams();
+  const { data: accountResult } = useSuspenseQuery(profileByIdQuery(profileId));
+  const hasVenueManagerRole = accountResult.data.venueManager;
+
+  const { data: venuesResult } = useQuery({
+    ...venuesByProfileQuery(profileId),
+    enabled: hasVenueManagerRole,
+  });
+
+  const venueInfo = venuesResult?.data ?? [];
+  const user: Profile = {
+    ...accountResult.data,
+    venues: venuesResult?.data ?? accountResult.data.venues,
+  };
 
   return (
     <>
