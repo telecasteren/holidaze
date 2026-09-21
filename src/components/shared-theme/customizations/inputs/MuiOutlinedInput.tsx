@@ -13,7 +13,7 @@ export const MuiOutlinedInput: Components<Theme> = {
         padding: "8px 12px",
         color: (theme.vars || theme).palette.text.primary,
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: "1px solid #e0e4eb",
+        border: `1px solid ${theme.palette.divider}`,
         backgroundColor: (theme.vars || theme).palette.background.default,
         transition: "border 120ms ease-in",
         "&:hover": {
@@ -24,8 +24,8 @@ export const MuiOutlinedInput: Components<Theme> = {
           borderColor: brand[400],
         },
         ...theme.applyStyles("dark", {
-          color: "black",
-          backgroundColor: "#DFDFDF",
+          color: (theme.vars || theme).palette.text.primary,
+          backgroundColor: (theme.vars || theme).palette.background.paper,
           "&:hover": {
             borderColor: gray[500],
           },

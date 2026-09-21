@@ -2,6 +2,14 @@ import { createTheme, alpha } from "@mui/material/styles";
 import type { Shadows } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
+  interface TypeBackground {
+    tertiary: string;
+  }
+
+  interface TypeText {
+    tertiary: string;
+  }
+
   interface ColorRange {
     50: string;
     100: string;
@@ -126,11 +134,13 @@ export const colorSchemes = {
       background: {
         default: "hsl(0, 0%, 99%)", // #fcfcfc
         paper: "hsl(220, 35%, 97%)", // #F5F6FA
+        tertiary: gray[50],
       },
       text: {
         primary: gray[800],
         secondary: gray[600],
-        tertiary: gray[50],
+        tertiary: gray[900],
+        light: gray[50],
         warning: orange[400],
       },
       action: {
@@ -177,11 +187,13 @@ export const colorSchemes = {
       background: {
         default: "hsl(214, 10%, 14%)", // #202327
         paper: "hsl(220, 30%, 7%)", // #0C1017
+        tertiary: gray[50],
       },
       text: {
         primary: "hsl(0, 0%, 100%)",
         secondary: gray[400],
-        tertiary: gray[50],
+        tertiary: gray[900],
+        light: gray[50],
       },
       action: {
         hover: alpha(gray[600], 0.2),

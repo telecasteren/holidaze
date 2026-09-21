@@ -48,7 +48,7 @@ export const AccountVenueCard = ({ venue }: AccountVenueCardProps) => {
           right: 0,
           display: "grid",
           p: 2,
-          color: "text.tertiary",
+          color: "text.light",
           background: "linear-gradient(to top, black, transparent)",
           pointerEvents: "none",
         }}

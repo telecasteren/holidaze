@@ -16,7 +16,7 @@ const DateInputRoot = styled(AriaDateInput)(({ theme }) => ({
   padding: theme.spacing(0.75, 1.25),
   border: `1px solid ${theme.palette.divider}`,
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   transition: theme.transitions.create(["border-color", "box-shadow"], {
     duration: 100,
     easing: "linear",
@@ -37,21 +37,21 @@ const DateSegment = styled(AriaDateSegment)(({ theme }) => ({
   borderRadius: 4,
   fontSize: "0.875rem",
   fontVariantNumeric: "tabular-nums",
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.secondary,
   caretColor: "transparent",
   outline: "none",
 
   "&[data-placeholder]": {
     textTransform: "uppercase",
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   "&[data-type='literal']": {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   "&[data-focused]": {
     fontWeight: 500,
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.text.disabled,
+    backgroundColor: (theme.vars || theme).palette.primary.main,
+    color: (theme.vars || theme).palette.text.disabled,
   },
 }));
 

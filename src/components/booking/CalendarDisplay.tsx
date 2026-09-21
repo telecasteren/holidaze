@@ -51,15 +51,17 @@ export const CalendarDisplay = ({
 
   return (
     <>
-      <Typography
-        variant="h4"
+      <Box
         sx={{
-          xs: { justifySelf: "center" },
-          md: { justifySelf: "start", mt: 8, mb: 2 },
+          display: "grid",
+          mb: 2,
+          justifyItems: { xs: "center", md: "start" },
         }}
       >
-        See availability
-      </Typography>
+        <Typography variant="h4" component="span">
+          See availability
+        </Typography>
+      </Box>
 
       <Stack
         sx={{

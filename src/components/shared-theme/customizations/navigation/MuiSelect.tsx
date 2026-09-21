@@ -36,8 +36,6 @@ export const MuiSelect: Components<Theme> = {
         ...theme.applyStyles("dark", {
           borderRadius: (theme.vars || theme).shape.borderRadius,
           borderColor: gray[700],
-          color: "white",
-          backgroundColor: "hsla(220, 35%, 3%, 0.4)",
           "&:hover": {
             borderColor: alpha(gray[700], 0.7),
             backgroundColor: (theme.vars || theme).palette.background.paper,

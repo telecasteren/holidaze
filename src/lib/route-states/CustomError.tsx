@@ -2,11 +2,12 @@ import type { ErrorComponentProps } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 import { classifyError } from "@/lib/route-states/errorTypes";
 import { GoHomeBtn } from "@/components/layout/GoHomeBtn";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 
 export const CustomError = ({ error, reset }: ErrorComponentProps) => {
   const navigate = useNavigate();
   const type = classifyError(error);
+  const theme = useTheme();
 
   const errorInfo =
     type === "network"
@@ -78,9 +79,9 @@ export const CustomError = ({ error, reset }: ErrorComponentProps) => {
         alignItems: "center",
         m: 20,
         p: 2,
-        border: "2px dashed #fca5a5",
-        color: "#991b1b",
-        backgroundColor: "#fef2f2",
+        border: `2px dashed ${theme.palette.error.main}`,
+        color: theme.palette.error.dark,
+        backgroundColor: theme.palette.error.light,
       }}
     >
       <Typography variant="h2">{errorInfo.title}</Typography>{" "}
