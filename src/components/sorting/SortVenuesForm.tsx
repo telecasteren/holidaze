@@ -12,9 +12,9 @@ export const SortVenuesForm = ({ option, onChange }: SortBookingsFormProps) => {
   return (
     <Box sx={{ mt: 2, mb: 2, width: 200 }}>
       <FormControl fullWidth>
-        <InputLabel htmlFor="SortVenues">Sort venues by</InputLabel>
+        <InputLabel id="SortVenuesLabel">Sort venues by</InputLabel>
         <Select
-          labelId="SortVenues"
+          labelId="SortVenuesLabel"
           id="SortVenues"
           value={option}
           label="Sort venues by"
