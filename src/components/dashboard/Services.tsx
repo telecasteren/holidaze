@@ -143,6 +143,7 @@ export function Services() {
                 ]}
               >
                 <Box
+                  component="span"
                   sx={[
                     {
                       width: "100%",
@@ -160,7 +161,7 @@ export function Services() {
                 >
                   {icon}
 
-                  <Typography variant="h6" component="h3">
+                  <Typography variant="h6" component="span">
                     {title}
                   </Typography>
                   <Typography variant="body2">{description}</Typography>

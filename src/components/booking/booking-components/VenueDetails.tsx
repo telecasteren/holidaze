@@ -1,6 +1,4 @@
 import { Box, Stack, Typography, styled } from "@mui/material";
-import { TooltipWithContent } from "@/components/layout/Tooltips";
-import { LinkToVenue } from "@/components/LinkToVenue";
 import { formatCurrency } from "@/lib/utils/utils";
 import type { Venue } from "@/lib/zod/index";
 
@@ -19,15 +17,6 @@ const BoxSummary = styled(Box)(() => ({
   gap: 2,
 }));
 
-const HoverBox = styled(Box)(({ theme }) => ({
-  width: 320,
-  [theme.breakpoints.up("md")]: {
-    width: 400,
-  },
-  transition: "opacity 0.3s",
-  "&:hover": { opacity: 0.8 },
-}));
-
 export const VenueDetails = ({
   singleVenue,
   dates,
@@ -35,29 +24,20 @@ export const VenueDetails = ({
   nights,
   guests,
 }: VenueDetailsProps) => {
-  const venueId = singleVenue?.id;
   const firstImage = singleVenue?.media[0];
   const venuePricePerNight = singleVenue?.price ?? 0;
 
   return (
     <Stack sx={{ display: "grid", justifyContent: "center", gap: 2 }}>
-      <LinkToVenue venueId={venueId || ""} unstyled>
-        <TooltipWithContent
-          trigger={
-            <HoverBox>
-              <Box
-                component="img"
-                loading="lazy"
-                src={firstImage?.url}
-                alt={firstImage?.alt || `Image of ${singleVenue?.name}`}
-                style={{ width: "100%", height: "auto", borderRadius: 8 }}
-              />
-            </HoverBox>
-          }
-        >
-          <Typography variant="body1">Click image to go to venue</Typography>
-        </TooltipWithContent>
-      </LinkToVenue>
+      <Box sx={{ width: 200 }}>
+        <Box
+          component="img"
+          loading="lazy"
+          src={firstImage?.url}
+          alt={firstImage?.alt || `Image of ${singleVenue?.name}`}
+          style={{ width: "100%", height: "auto", borderRadius: 8 }}
+        />
+      </Box>
 
       <Typography variant="h6">{singleVenue?.name}</Typography>
 

@@ -111,6 +111,8 @@ All authentication logic is handled server-side. That means that all authenticat
 
 ### Application Weaknesses
 
+#### Features
+
 **Venues: toggling favorites**<br/>
 Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
 
@@ -123,8 +125,23 @@ Purely visual, no `remember me` logic implemented.
 **Reviews:**<br/>
 Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
 
-**HTML Validator flags: "Element `style` not allowed as child of element `h1` in this context.."**<br/>
+#### HTML Validator errors
+
+**"Element `style` not allowed as child of element `h1` in this context.."**<br/>
 This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
+
+**"Saw U+0000 in stream."**<br/>
+My suspicion is it's from TanStack routers SSR state and how its serialised into the <script> tags, so I kind of need to accepted that. Doesn't seem to impact any user-facing parts.
+
+_Example_
+
+```bash
+Error: Saw U+0000 in stream.
+At line 1, column 204503
+2]={i:"__root__",u:1789931836
+```
+
+Will revisit if needed.
 
 ---
 
