@@ -44,11 +44,11 @@ export const brand = {
   400: "hsl(210, 98%, 48%)", // #2babff
   500: "hsl(210, 98%, 42%)", // #009cff
   600: "hsl(210, 98%, 55%)", // #008dff
-  700: "hsl(210, 100%, 35%)", // #027af2
+  700: "hsl(210, 98%, 34%)", // "#0257AC"
   800: "hsl(210, 100%, 16%)", // #0d68e0
   900: "hsl(210, 100%, 21%)", // #1647c1
 };
-
+// dark btn: hsl(210, 98%, 34%) // #0257AC
 export const gray = {
   50: "hsl(220, 35%, 97%)",
   100: "hsl(220, 30%, 94%)",
@@ -100,6 +100,9 @@ export const red = {
   800: "hsl(0, 95%, 12%)",
   900: "hsl(0, 93%, 6%)",
 };
+
+// dark btn: #0257AC
+// light btn:
 
 export const colorSchemes = {
   light: {

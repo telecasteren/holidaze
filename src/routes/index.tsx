@@ -7,9 +7,7 @@ import { venuesQuery } from "@/lib/queries/venuesQuery";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
-    const data = await context.queryClient.ensureQueryData(
-      venuesQuery(1, "", 1, "", ""),
-    );
+    const data = await context.queryClient.query(venuesQuery(1, "", 1, "", ""));
     return data;
   },
   head: ({ loaderData }) => {

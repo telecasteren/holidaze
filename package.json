@@ -14,7 +14,8 @@
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix",
     "check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lh-view": "lighthouse https://holidaze.telecasternilsen.com --preset=desktop --view"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -9,7 +9,7 @@ export const serviceItems = [
     icon: <ViewQuiltRoundedIcon />,
     title: "Metrics",
     description:
-      "Coming soon for venue managers! Your very own metrics dashboard. See your current and expected earnings and more.",
+      "NEW FEATURE, dear venue managers! Your very own metrics dashboard. See your current earnings and more to come.",
     imageLight: `url("/services/BarLineChart-light.webp")`,
     imageDark: `url("/services/BarLineChart-dark.webp")`,
   },

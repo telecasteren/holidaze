@@ -33,7 +33,7 @@ export const Route = createFileRoute("/venues/")({
     const { page, query, guests, dateFrom, dateTo } = searchSchema.parse(
       location.search,
     );
-    return context.queryClient.ensureQueryData(
+    return context.queryClient.query(
       venuesQuery(page, query, guests, dateFrom, dateTo),
     );
   },

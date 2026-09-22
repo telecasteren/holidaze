@@ -24,7 +24,7 @@ import { VenueDesc } from "@/components/venues/VenueDesc";
 
 export const Route = createFileRoute("/venues/$venueId")({
   loader: async ({ context, params }): Promise<Venue> => {
-    const data = await context.queryClient.ensureQueryData(
+    const data = await context.queryClient.query(
       venueByIdQuery(params.venueId),
     );
     return data.data;
