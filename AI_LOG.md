@@ -84,3 +84,8 @@ _**Example:**
 **Date:** 20.09.26<br/>
 **Purpose:** Writing initial JSDoc comments<br/>
 **Outcome:** Saving time on code documentation - comments are checked and edited by me.<br/>
+
+**Tool used:** Claude Sonnet 5<br/>
+**Date:** 22.09.26<br/>
+**Purpose:** Debugging why the revenue totals render like `0000000025025000` instead of `25025`<br/>
+**Outcome:** Improved understanding [memory], `map()` [of course] doesn't summarize (my bad), but concatenates as strings.<br/>

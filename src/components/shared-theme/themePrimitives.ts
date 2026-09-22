@@ -6,6 +6,10 @@ declare module "@mui/material/styles" {
     tertiary: string;
   }
 
+  interface TypeSuccess {
+    chart: string;
+  }
+
   interface TypeText {
     tertiary: string;
   }
@@ -126,6 +130,7 @@ export const colorSchemes = {
         light: green[100],
         main: green[300],
         dark: green[800],
+        chart: green[500],
       },
       grey: {
         ...gray,
@@ -179,6 +184,7 @@ export const colorSchemes = {
         light: green[200],
         main: green[400],
         dark: green[800],
+        chart: green[400],
       },
       grey: {
         ...gray,

@@ -143,6 +143,12 @@ At line 1, column 204503
 
 Will revisit if needed.
 
+**"MUI-x-charts hover bug"**<br/>
+`An input selector returned a different result when passed same arguments.
+This means your output selector will likely run more frequently than intended.
+Avoid returning a new reference inside your input selector`<br/>
+Seems like a developer warning that only happen upon hoverering the chart component, but not affecting the UI or user experience. Someone else experiencing it as-we-speak: [github_issue](https://github.com/mong/mongts/pull/5064). Tested their webpage [skde.no](skde.no) to see if I found the warning in production, but I don't so I'll accept the warning in dev. !!Revisiting this if I can reproduce it in prod after releasing.
+
 ---
 
 ## AI Usage
@@ -191,6 +197,8 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - eslint no-console [docs](https://eslint.org/docs/latest/rules/no-console)
 - Typescript serialization [docs](https://hackernoon.com/mastering-type-safe-json-serialization-in-typescript)
 - [Excalidraw](https://excalidraw.com)
+- MUI X Charts [docs](https://mui.com/x/react-charts/bars/)
+- MUI X Charts styling [docs](https://mui.com/x/react-charts/styling/#colors)
 
 ## Acknowledgements
 

@@ -36,7 +36,7 @@ export const getAllVenues = withApiHandler({
 export const getVenuesByProfile = withApiHandler({
   label: "getVenuesByProfile",
   endpoint: (name: string) =>
-    `${API_URL}${PROFILES}/${name}${VENUES}${VENUES_PARAMS}`,
+    `${API_URL}${PROFILES}/${name}${VENUES}${VENUES_PARAMS}&limit=100`,
   schema: apiVenueSchema,
   init: () => ({ headers: getAuthHeaders() }),
 });

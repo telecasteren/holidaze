@@ -20,6 +20,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SearchIcon from "@mui/icons-material/Search";
 import InfoIcon from "@mui/icons-material/Info";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 
 export {
   LinkedInIcon,
@@ -44,4 +45,5 @@ export {
   LocationOnIcon,
   SearchIcon,
   InfoIcon,
+  SentimentSatisfiedAltIcon,
 };

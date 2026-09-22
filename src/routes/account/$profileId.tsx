@@ -11,6 +11,7 @@ import { RouteLoader } from "@/components/layout";
 import { AccountInfo } from "@/components/account/AccountInfo";
 import { MyTripsInfo } from "@/components/account/MyTripsInfo";
 import { AccountHero } from "@/components/account/AccountHero";
+import { MetricsInfo } from "@/components/account/MetricsInfo";
 import { SkeletonAccount } from "@/components/account/SkeletonAccount";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
@@ -58,7 +59,8 @@ const availableDirectories = {
   myTrips: "My trips",
   venues: "Manage venues",
   bookings: "Manage bookings",
-  calendar: "View calendar",
+  calendar: "Calendar",
+  metrics: "Revenue",
 } as const;
 
 type DirectoryKey = keyof typeof availableDirectories;
@@ -94,7 +96,8 @@ function ProfileById() {
               if (
                 (key === "venues" && !hasVenueManagerRole) ||
                 (key === "bookings" && !hasVenueManagerRole) ||
-                (key === "calendar" && !hasVenueManagerRole)
+                (key === "calendar" && !hasVenueManagerRole) ||
+                (key === "metrics" && !hasVenueManagerRole)
               )
                 return null;
               return <Tab key={key} value={key} label={label} />;
@@ -134,6 +137,8 @@ function ProfileById() {
             {activeTab === "calendar" && hasVenueManagerRole && (
               <i>Feature coming soon...</i>
             )}
+
+            {activeTab === "metrics" && hasVenueManagerRole && <MetricsInfo />}
           </Stack>
         </Stack>
       </Container>
