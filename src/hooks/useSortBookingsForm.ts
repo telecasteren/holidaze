@@ -1,5 +1,11 @@
 import { useMemo } from "react";
 import { useSortOption } from "@/hooks/useSortOption";
+import {
+  formatCalendarDate,
+  isPast,
+  todayDate,
+  toFullTimestamp,
+} from "@/lib/utils/dates";
 import type { Booking } from "@/lib/zod/index";
 
 /** Sort/filter choices for bookings. The first one is the default. */
@@ -22,16 +28,19 @@ export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
 
     switch (option) {
       case "All":
-        return setOfBookings.sort(
-          (a, b) =>
-            new Date(b.created).getTime() - new Date(a.created).getTime(),
+        return setOfBookings.sort((a, b) =>
+          toFullTimestamp(b.created).compare(toFullTimestamp(a.created)),
         );
       case "Upcoming":
         return setOfBookings
-          .filter((booking) => new Date(booking.dateFrom) > new Date())
-          .sort(
-            (a, b) =>
-              new Date(a.dateFrom).getTime() - new Date(b.dateFrom).getTime(),
+          .filter(
+            (booking) =>
+              formatCalendarDate(booking.dateFrom).compare(todayDate()) > 0,
+          )
+          .sort((a, b) =>
+            formatCalendarDate(a.dateFrom).compare(
+              formatCalendarDate(b.dateFrom),
+            ),
           );
       case "Venues":
         return setOfBookings.sort((a, b) =>
@@ -39,10 +48,9 @@ export const useSortBookingsForm = <T extends Booking>(bookings: T[]) => {
         );
       case "Previous":
         return setOfBookings
-          .filter((booking) => new Date(booking.dateTo) < new Date())
-          .sort(
-            (a, b) =>
-              new Date(b.dateTo).getTime() - new Date(a.dateTo).getTime(),
+          .filter((booking) => isPast(booking.dateTo))
+          .sort((a, b) =>
+            formatCalendarDate(b.dateTo).compare(formatCalendarDate(a.dateTo)),
           );
       default:
         return setOfBookings;

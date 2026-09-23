@@ -1,4 +1,4 @@
-import { formatCalendarDate } from "./utils";
+import { formatCalendarDate } from "@/lib/utils/dates";
 import type { Venue } from "@/lib/zod/index";
 import type { CalendarDate } from "@internationalized/date";
 

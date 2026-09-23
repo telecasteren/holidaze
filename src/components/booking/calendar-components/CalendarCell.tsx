@@ -249,7 +249,7 @@ export const CalendarCell = ({
   const isBeforeOrOnEnd = !!end && date.compare(end) <= 0;
   const isInRange = isAfterOrOnStart && isBeforeOrOnEnd;
 
-  const lastDayOfMonth = new Date(date.year, date.month, 0).getDate();
+  const lastDayOfMonth = date.calendar.getDaysInMonth(date);
   const isLastDayOfMonth = date.day === lastDayOfMonth;
   const isFirstDayOfMonth = date.day === 1;
 

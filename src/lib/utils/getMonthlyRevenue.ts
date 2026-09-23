@@ -1,9 +1,11 @@
-import { formatCalendarDate } from "@/lib/utils/utils";
-import { getLocalTimeZone, today } from "@internationalized/date";
+import {
+  formatCalendarDate,
+  nightsBetween,
+  todayDate,
+} from "@/lib/utils/dates";
 import type { CalendarDate } from "@internationalized/date";
 import type { Venue } from "@/lib/zod/index";
 
-const NIGHT_MS = 1000 * 60 * 60 * 24;
 const MONTHS = [
   "January",
   "February",
@@ -29,10 +31,9 @@ const MONTHS = [
 export const getMonthlyRevenue = (
   venues: Venue[],
   year: number,
-  now: CalendarDate = today(getLocalTimeZone()),
+  now: CalendarDate = todayDate(),
 ) => {
   const totals: number[] = new Array(12).fill(0);
-  const timeZone = getLocalTimeZone();
 
   for (const venue of venues) {
     for (const booking of venue.bookings ?? []) {
@@ -42,10 +43,7 @@ export const getMonthlyRevenue = (
       if (endDate.compare(now) > 0) continue;
       if (endDate.year !== year) continue;
 
-      const nights =
-        (endDate.toDate(timeZone).getTime() -
-          startDate.toDate(timeZone).getTime()) /
-        NIGHT_MS;
+      const nights = nightsBetween(startDate, endDate);
       totals[endDate.month - 1] += nights * venue.price;
     }
   }

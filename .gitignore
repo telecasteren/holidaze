@@ -22,3 +22,8 @@ TODO.md
 # lighthouse cli output
 *.report.html
 *report.json
+
+# test results
+test-results/
+playwright-report/
+.vitest/

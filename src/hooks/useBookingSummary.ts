@@ -1,4 +1,4 @@
-import { getLocalTimeZone } from "@internationalized/date";
+import { formatDate, nightsBetween } from "@/lib/utils/dates";
 import type { BookingForm } from "@/lib/zod/index";
 
 /**
@@ -9,15 +9,11 @@ import type { BookingForm } from "@/lib/zod/index";
  * and `nights` as the number of nights between them (`0` if no range).
  */
 export const useBookingSummary = (dateRange: BookingForm["dateRange"]) => {
-  const startDate = dateRange?.start.toDate(getLocalTimeZone());
-  const endDate = dateRange?.end.toDate(getLocalTimeZone());
-  const dates =
-    startDate && endDate
-      ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-      : null;
-  const nights =
-    startDate && endDate
-      ? (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
-      : 0;
+  if (!dateRange) return { dates: null, nights: 0 };
+
+  const { start, end } = dateRange;
+  const dates = `${formatDate(start)} - ${formatDate(end)}`;
+  const nights = nightsBetween(start, end);
+
   return { dates, nights };
 };

@@ -1,6 +1,6 @@
 import { Route } from "@/routes/venues/index";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
-import { formatCalendarDate } from "@/lib/utils/utils";
+import { formatCalendarDate } from "@/lib/utils/dates";
 import { useForm } from "react-hook-form";
 import type { ExploreSearchForm } from "@/lib/zod/index";
 

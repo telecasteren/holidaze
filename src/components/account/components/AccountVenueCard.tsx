@@ -1,7 +1,7 @@
 import { Card, Box, Typography } from "@mui/material";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { AccountVenueActions } from "./AccountVenueActions";
-import { formatDate } from "@/lib/utils/utils";
+import { formatDate } from "@/lib/utils/dates";
 import type { Venue } from "@/lib/zod";
 
 interface AccountVenueCardProps {

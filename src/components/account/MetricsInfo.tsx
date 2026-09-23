@@ -1,5 +1,6 @@
 import { useManagerRevenue } from "@/hooks/useManagerRevenue";
 import { localCurrency } from "@/lib/utils/config";
+import { todayDate } from "@/lib/utils/dates";
 import { setColorByTrend } from "@/lib/utils/setColorByTrend";
 
 import { Stack, Box, Typography, Divider } from "@mui/material";
@@ -7,7 +8,7 @@ import { BarChartDisplay } from "@/components/charts/BarChart";
 import { SentimentSatisfiedAltIcon } from "@/components/layout/icons";
 
 export const MetricsInfo = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = todayDate().year;
   const revenuePerMonth = useManagerRevenue();
   const earningsTotal = revenuePerMonth.reduce(
     (sum, month) => sum + month.revenue,

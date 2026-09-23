@@ -1,12 +1,14 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useBookingsList } from "@/hooks/useBookingsList";
 import { useSortBookingsForm } from "@/hooks/useSortBookingsForm";
-import { formatDate } from "@/lib/utils/utils";
+import { formatDate, isPast } from "@/lib/utils/dates";
 
 import { Stack, Box, Card, Button, Typography, Divider } from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
+
+import { AccountBookingActions } from "@/components/account/components/AccountBookingActions";
 
 export const MyTripsInfo = () => {
   const navigate = useNavigate();
@@ -29,8 +31,7 @@ export const MyTripsInfo = () => {
       <CardsStack>
         {sortedBookings.length ? (
           sortedBookings.map((booking) => {
-            const today = new Date();
-            const hasPassed = new Date(booking.dateTo) <= today;
+            const hasPassed = isPast(booking.dateTo);
 
             return (
               <Card
@@ -91,6 +92,10 @@ export const MyTripsInfo = () => {
                     Booked for {booking.guests}{" "}
                     {booking.guests > 1 ? "guests" : "guest"}
                   </Typography>
+                </Box>
+
+                <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+                  <AccountBookingActions booking={booking} />
                 </Box>
               </Card>
             );

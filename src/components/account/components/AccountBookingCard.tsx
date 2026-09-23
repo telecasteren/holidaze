@@ -1,6 +1,6 @@
 import { Card, Typography, Link as MUILink, Divider } from "@mui/material";
 import { LinkToVenue } from "@/components/LinkToVenue";
-import { formatDate } from "@/lib/utils/utils";
+import { formatDate } from "@/lib/utils/dates";
 import type { Booking } from "@/lib/zod/index";
 
 interface AccountBookingCard {

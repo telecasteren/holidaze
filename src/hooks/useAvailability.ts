@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { formatCalendarDate } from "@/lib/utils/utils";
+import { formatCalendarDate } from "@/lib/utils/dates";
 import type { DateValue } from "react-aria-components";
 import type { Venue } from "@/lib/zod/index";
 

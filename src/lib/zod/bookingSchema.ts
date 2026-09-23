@@ -46,11 +46,13 @@ export const bookingSchema = z.object({
     })
     .optional(),
 });
+export type Booking = z.infer<typeof bookingSchema>;
 
 export const apiAllBookingsSchema = z.object({
   data: z.array(bookingSchema),
   meta: metaSchema,
 });
+export type Bookings = z.infer<typeof apiAllBookingsSchema>;
 
 export const apiSingleBookingSchema = z.object({
   data: z.object({
@@ -64,5 +66,12 @@ export const apiSingleBookingSchema = z.object({
   meta: emptyMetaSchema,
 });
 
-export type Booking = z.infer<typeof bookingSchema>;
-export type Bookings = z.infer<typeof apiAllBookingsSchema>;
+export const postBookingSchema = z.object({
+  dateFrom: z.string(),
+  dateTo: z.string(),
+  guests: z.number(),
+});
+export type BookingPayload = z.infer<typeof postBookingSchema>;
+
+export const updateBookingSchema = postBookingSchema.extend({ id: z.string() });
+export type UpdateBookingPayload = z.infer<typeof updateBookingSchema>;

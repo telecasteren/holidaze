@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useSortBookingsForm } from "@/hooks/useSortBookingsForm";
+import { isPast } from "@/lib/utils/dates";
 import type { Venue } from "@/lib/zod/index";
 
 import { Stack, Box, Typography } from "@mui/material";
@@ -12,8 +13,6 @@ interface BookingsInfoProps {
 }
 
 export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
-  const today = new Date();
-
   const allBookings = useMemo(
     () =>
       venueInfo.flatMap((venue) =>
@@ -41,7 +40,7 @@ export const BookingsInfo = ({ venueInfo }: BookingsInfoProps) => {
       <CardsStack>
         {sortedBookings.length ? (
           sortedBookings.map((booking) => {
-            const hasPassed = new Date(booking.dateTo) <= today;
+            const hasPassed = isPast(booking.dateTo);
 
             return !hasPassed ? (
               <AccountBookingCard key={booking.id} booking={booking} />

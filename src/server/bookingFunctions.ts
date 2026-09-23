@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { createServerFn } from "@tanstack/react-start";
 import {
+  deleteBooking,
   getBookingsByProfileId,
   postNewBooking,
+  updateBooking,
 } from "@/services/api/bookings/bookings";
-import { apiCalendarBookingSchema } from "@/lib/zod/index";
+import { apiCalendarBookingSchema, updateBookingSchema } from "@/lib/zod/index";
 import { withServerErrors } from "@/server/serverErrors";
 
 /** Server function: gets a profile's bookings (input: profile name). */
@@ -20,4 +22,19 @@ export const createNewBookingFn = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { ...body } = data;
     return withServerErrors(() => postNewBooking(body));
+  });
+
+/** Server function: updates a venue. The input must include the venue `id`. */
+export const updateBookingFn = createServerFn({ method: "POST" })
+  .validator(updateBookingSchema)
+  .handler(async ({ data }) => {
+    const { id, ...payload } = data;
+    return withServerErrors(() => updateBooking(id, payload));
+  });
+
+/** Server function: deletes a booking (input: booking ID). */
+export const deleteBookingFn = createServerFn({ method: "POST" })
+  .validator(z.string())
+  .handler(async ({ data: id }) => {
+    return withServerErrors(() => deleteBooking(id));
   });

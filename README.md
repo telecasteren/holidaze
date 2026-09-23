@@ -199,6 +199,9 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - [Excalidraw](https://excalidraw.com)
 - MUI X Charts [docs](https://mui.com/x/react-charts/bars/)
 - MUI X Charts styling [docs](https://mui.com/x/react-charts/styling/#colors)
+- Playwright [docs](https://playwright.dev/docs/intro#installing-playwright)
+- Vitest [docs](https://vitest.dev/guide/)
+- MUI DatePicker [docs](https://mui.com/x/react-date-pickers/)
 
 ## Acknowledgements
 

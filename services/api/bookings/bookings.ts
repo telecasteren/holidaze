@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { withApiHandler } from "@/services/api/api-config/handler";
 import { getAuthHeaders } from "@/services/api/api-config/headers";
 import {
@@ -7,7 +8,7 @@ import {
   PROFILES,
 } from "@/services/api/api-config/endpoints";
 import { apiSingleBookingSchema, apiAllBookingsSchema } from "@/lib/zod/index";
-import type { BookingFormPayload } from "@/lib/zod/index";
+import type { BookingFormPayload, BookingPayload } from "@/lib/zod/index";
 
 /** Fetches all bookings (requires login). */
 export const getAllBookings = withApiHandler({
@@ -47,5 +48,38 @@ export const postNewBooking = withApiHandler({
     method: "POST",
     headers: getAuthHeaders(true),
     body: JSON.stringify(body),
+  }),
+});
+
+/**
+ * Updates a booking with a PUT (requires login).
+ *
+ * @param id - Booking ID.
+ * @param body - Booking data.
+ */
+export const updateBooking = withApiHandler({
+  label: "updateBooking",
+  endpoint: (id: string, _body: BookingPayload) =>
+    `${API_URL}${BOOKINGS}/${id}`,
+  schema: apiSingleBookingSchema,
+  init: (_id: string, body: BookingPayload) => ({
+    method: "PUT",
+    headers: getAuthHeaders(true),
+    body: JSON.stringify(body),
+  }),
+});
+
+/**
+ * Deletes a booking (requires login).
+ *
+ * @param id - Booking ID.
+ */
+export const deleteBooking = withApiHandler({
+  label: "deleteBooking",
+  endpoint: (id: string) => `${API_URL}${BOOKINGS}/${id}`,
+  schema: z.void(),
+  init: () => ({
+    method: "DELETE",
+    headers: getAuthHeaders(),
   }),
 });

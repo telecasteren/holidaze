@@ -1,7 +1,7 @@
 import { venuesQuery } from "@/lib/queries/venuesQuery";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Route } from "@/routes/venues/index";
-import { formatCalendarDate } from "@/lib/utils/utils";
+import { formatCalendarDate } from "@/lib/utils/dates";
 import { hasOverlapBooking } from "@/lib/utils/hasOverlapBooking";
 
 /**

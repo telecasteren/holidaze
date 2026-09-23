@@ -2,12 +2,12 @@ import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useAvailability } from "@/hooks/useAvailability";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { todayDate } from "@/lib/utils/dates";
 import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
 import type { BookingForm, Venue } from "@/lib/zod/index";
 
 import { Stack, Box, Typography, styled } from "@mui/material";
 import { RangeCalendar } from "@/components/booking/RangeCalendar";
-import { today, getLocalTimeZone } from "@internationalized/date";
 import { BookingSummary } from "@/components/booking/BookingSummary";
 
 const CalendarBox = styled(Box)(({ theme }) => ({
@@ -81,7 +81,7 @@ export const CalendarDisplay = ({
                 value={field.value}
                 onChange={field.onChange}
                 isDateUnavailable={isDateUnavailable}
-                minValue={today(getLocalTimeZone())}
+                minValue={todayDate()}
               />
             </CalendarBox>
           )}

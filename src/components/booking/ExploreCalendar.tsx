@@ -1,6 +1,6 @@
 import { Box, styled, Typography } from "@mui/material";
 import { RangeCalendar } from "@/components/booking/RangeCalendar";
-import { today, getLocalTimeZone } from "@internationalized/date";
+import { todayDate } from "@/lib/utils/dates";
 import type { BookingForm } from "@/lib/zod/index";
 
 const CalendarBox = styled(Box)(({ theme }) => ({
@@ -37,7 +37,7 @@ export const ExploreCalendar = ({
         <RangeCalendar
           value={value}
           onChange={onChange}
-          minValue={today(getLocalTimeZone())}
+          minValue={todayDate()}
         />
       </CalendarBox>
 
