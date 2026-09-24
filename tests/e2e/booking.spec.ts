@@ -1,12 +1,18 @@
 import { test, expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { login } from "./shared";
+import { login } from "./helpers/shared";
+import {
+  getBookingsIds,
+  deleteBookings,
+  getTestAuthHeaders,
+} from "./helpers/api";
 
 // Stress test by running: pnpm exec playwright test booking --repeat-each=5
 
 const VENUE_ID = "8263ff7c-e6c0-4956-ac14-a8d3a8a8993b";
 const email = process.env.E2E_EMAIL!;
 const password = process.env.E2E_PASSWORD!;
+const username = process.env.E2E_USERNAME!;
 
 const addDays = (days: number) => {
   const d = new Date();
@@ -38,23 +44,51 @@ test("logged out users cannot book venues", async ({ page }) => {
   const bookBtn = page.getByRole("button", { name: "Book this venue" });
   await expect(bookBtn).toBeEnabled();
   await bookBtn.click();
+
+  await expect(
+    page.getByRole("heading", { name: "Log in to book this venue." }),
+  ).toBeVisible();
 });
 
-// books a venue
-test("logged in user can book venue", async ({ page }) => {
-  await login(page, email, password);
-  await page.goto(`/venues/${VENUE_ID}`, { waitUntil: "commit" });
-  const bookBtn = page.getByRole("button", { name: "Book this venue" });
-  await expect(bookBtn).toBeEnabled();
+test.describe("logged in", () => {
+  let headers: Record<string, string>;
+  let bookingsBeforeTest: string[] = [];
 
-  const randomDates = 30 + Math.floor(Math.random() * 300);
-  await pickADate(page, addDays(randomDates));
-  await pickADate(page, addDays(randomDates + 2));
+  // log in and get user credentials
+  test.beforeAll(async () => {
+    headers = await getTestAuthHeaders(email, password);
+  });
 
-  await bookBtn.click();
-  await page.getByLabel("Klarna").click();
-  await page.getByRole("button", { name: "Confirm booking" }).click();
+  // get booking ids to cleanup
+  test.beforeEach(async () => {
+    bookingsBeforeTest = await getBookingsIds(username, headers);
+  });
 
-  await expect(page).toHaveURL(/\/booking\/success/);
-  await expect(page.getByText("Booking success!")).toBeVisible();
+  // make sure we cleanup after each test
+  test.afterEach(async () => {
+    const after = await getBookingsIds(username, headers);
+    await deleteBookings(
+      after.filter((id) => !bookingsBeforeTest.includes(id)),
+      headers,
+    );
+  });
+
+  // books a venue
+  test("logged in user can book venue", async ({ page }) => {
+    await login(page, email, password);
+    await page.goto(`/venues/${VENUE_ID}`, { waitUntil: "commit" });
+    const bookBtn = page.getByRole("button", { name: "Book this venue" });
+    await expect(bookBtn).toBeEnabled();
+
+    const randomDates = 30 + Math.floor(Math.random() * 300);
+    await pickADate(page, addDays(randomDates));
+    await pickADate(page, addDays(randomDates + 2));
+
+    await bookBtn.click();
+    await page.getByLabel("Klarna").click();
+    await page.getByRole("button", { name: "Confirm booking" }).click();
+
+    await expect(page).toHaveURL(/\/booking\/success/);
+    await expect(page.getByText("Booking success!")).toBeVisible();
+  });
 });

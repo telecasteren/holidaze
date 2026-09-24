@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { login } from "./shared";
+import { login } from "./helpers/shared";
 
 // Stress test by running: pnpm exec playwright test venue --repeat-each=5
 
