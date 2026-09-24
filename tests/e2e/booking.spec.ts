@@ -9,7 +9,7 @@ import {
 
 // Stress test by running: pnpm exec playwright test booking --repeat-each=5
 
-const VENUE_ID = "8263ff7c-e6c0-4956-ac14-a8d3a8a8993b";
+const VENUE_ID = process.env.E2E_VENUE_ID!;
 const email = process.env.E2E_EMAIL!;
 const password = process.env.E2E_PASSWORD!;
 const username = process.env.E2E_USERNAME!;
@@ -45,9 +45,7 @@ test("logged out users cannot book venues", async ({ page }) => {
   await expect(bookBtn).toBeEnabled();
   await bookBtn.click();
 
-  await expect(
-    page.getByRole("heading", { name: "Log in to book this venue." }),
-  ).toBeVisible();
+  await expect(page.getByText("Log in to book this venue.")).toBeEnabled();
 });
 
 test.describe("logged in", () => {
@@ -89,6 +87,6 @@ test.describe("logged in", () => {
     await page.getByRole("button", { name: "Confirm booking" }).click();
 
     await expect(page).toHaveURL(/\/booking\/success/);
-    await expect(page.getByText("Booking success!")).toBeVisible();
+    await expect(page.getByText("Booking success!")).toBeEnabled();
   });
 });
