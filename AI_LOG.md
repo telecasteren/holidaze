@@ -89,3 +89,8 @@ _**Example:**
 **Date:** 22.09.26<br/>
 **Purpose:** Debugging why the revenue totals render like `0000000025025000` instead of `25025`<br/>
 **Outcome:** Improved understanding [memory], `map()` [of course] doesn't summarize (my bad), but concatenates as strings.<br/>
+
+**Tool used:** Claude Opus 5.5<br/>
+**Date:** 25.09.26<br/>
+**Purpose:** Write a basic Github actions CI template<br/>
+**Outcome:** Got the template I needed.<br/>

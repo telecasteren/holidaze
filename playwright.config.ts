@@ -8,6 +8,7 @@ export default defineConfig({
   testDir: "./tests/e2e",
   workers: 1,
   timeout: 60_000,
+  retries: process.env.CI ? 1 : 0,
   use: {
     baseURL: "http://localhost:4173",
     trace: "on-first-retry",

@@ -31,12 +31,14 @@ This project is my exams project at Noroff School of Technology and Digital Medi
 - TanStack Start
 - MUI
 - Zod
-- react-hot-toast
 - Noroff v2 REST API
 
-_Noroff API docs:_
-[API overview](https://docs.noroff.dev/docs/v2/holidaze/bookings) |
-[Swagger API](https://v2.api.noroff.dev/docs/static/index.html#/holidaze-profiles)
+### Misc
+
+- react-hot-toast
+- react-hook-form
+- react-aria-components (RangeCalendar)
+- TipTap (text-editor)
 
 ## Architecture
 
@@ -73,7 +75,7 @@ pnpm build
 
 ### Deployment
 
-This app is deployed on Netlify.<br/>
+This app is deployed on [Netlify](https://www.netlify.com).<br/>
 **Live site:** [holidaze](https://holidaze.telecasternilsen.com)
 <br/>
 
@@ -109,29 +111,49 @@ This app uses a cookie-based session management system, utilizing the TanStack C
 
 All authentication logic is handled server-side. That means that all authenticated endpoints require a valid session cookie, and must be called from the server, never from the client. See example invoked from the server: [profileFunctions](src/server/profileFunctions.ts), then served to the client: [profilesQuery](src/lib/queries/profilesQuery.ts).
 
+## Testing
+
+Unit tests [here](tests/units) | E2E tests [here](tests/e2e)
+
+```bash
+pnpm test # runs all unit tests
+pnpm test booking # runs single unit test (booking.test.ts)
+
+pnpm test:e2e # runs all e2e tests
+pnpm test:e2e booking # runs single e2e test (booking.spec.ts)
+```
+
+You can stress test by adding `repeat` flag
+
+```bash
+pnpm exec playwright test booking --repeat-each=5
+```
+
+---
+
 ### Application Weaknesses
 
 #### Features
 
-**Venues: toggling favorites**<br/>
-Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
+> **Venues: toggling favorites**<br/>
+> Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
 
-**Login: Forgot password route**<br/>
-Purely visual, no `password reset` logic implemented.
+> **Login: Forgot password route**<br/>
+> Purely visual, no `password reset` logic implemented.
 
-**Login: Remember me**<br/>
-Purely visual, no `remember me` logic implemented.
+> **Login: Remember me**<br/>
+> Purely visual, no `remember me` logic implemented.
 
-**Reviews:**<br/>
-Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
+> **Reviews:**<br/>
+> Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
 
 #### HTML Validator errors
 
-**"Element `style` not allowed as child of element `h1` in this context.."**<br/>
-This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
+> **"Element `style` not allowed as child of element `h1` in this context.."**<br/>
+> This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
 
-**"Saw U+0000 in stream."**<br/>
-My suspicion is it's from TanStack routers SSR state and how its serialised into the <script> tags, so I kind of need to accepted that. Doesn't seem to impact any user-facing parts.
+> **"Saw U+0000 in stream."**<br/>
+> My suspicion is it's from TanStack routers SSR state and how its serialised into the <script> tags, so I kind of need to accepted that. Doesn't seem to impact any user-facing parts.
 
 _Example_
 
@@ -143,11 +165,9 @@ At line 1, column 204503
 
 Will revisit if needed.
 
-**"MUI-x-charts hover bug"**<br/>
-`An input selector returned a different result when passed same arguments.
-This means your output selector will likely run more frequently than intended.
-Avoid returning a new reference inside your input selector`<br/>
-Seems like a developer warning that only happen upon hoverering the chart component, but not affecting the UI or user experience. Someone else experiencing it as-we-speak: [github_issue](https://github.com/mong/mongts/pull/5064). Tested their webpage [skde.no](skde.no) to see if I found the warning in production, but I don't so I'll accept the warning in dev. !!Revisiting this if I can reproduce it in prod after releasing.
+> **"MUI-x-charts hover bug"**<br/>
+> `An input selector returned a different result when passed same arguments. This means your output selector will likely run more frequently than intended. Avoid returning a new reference inside your input selector`<br/>
+> Seems like a developer warning that only happen upon hoverering the chart component, but not affecting the UI or user experience. Someone else experiencing it as-we-speak: [github_issue](https://github.com/mong/mongts/pull/5064). Tested their webpage [skde.no](skde.no) to see if I found the warning in production, but I don't so I'll accept the warning in dev. _**Could not reproduce it in prod after release.**_
 
 ---
 
@@ -202,6 +222,8 @@ _All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
 - Playwright [docs](https://playwright.dev/docs/intro#installing-playwright)
 - Vitest [docs](https://vitest.dev/guide/)
 - MUI DatePicker [docs](https://mui.com/x/react-date-pickers/)
+- Noroff API Holidaze [docs](https://docs.noroff.dev/docs/v2/holidaze)
+- Noroff API Swagger [docs](https://v2.api.noroff.dev/docs/static/index.html#/holidaze-profiles)
 
 ## Acknowledgements
 
