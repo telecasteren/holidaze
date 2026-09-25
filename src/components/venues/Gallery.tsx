@@ -35,6 +35,7 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
           }}
         >
           <Box
+            key={item.url}
             component="img"
             loading="lazy"
             ref={handleRef}
@@ -59,8 +60,8 @@ export const Gallery = ({ venueMedia }: GalleryProps) => {
         gap={8}
         sx={{ opacity: isLoading ? 0 : 1 }}
       >
-        {venueMedia.map((item) => (
-          <ImageListItem key={item.url}>
+        {venueMedia.map((item, index) => (
+          <ImageListItem key={`${item.url}-${index}`}>
             <img
               loading="lazy"
               ref={handleRef}

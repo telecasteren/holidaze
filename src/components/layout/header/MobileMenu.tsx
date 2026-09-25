@@ -55,7 +55,10 @@ export const MobileMenu = () => {
               justifyContent: "flex-end",
             }}
           >
-            <IconButton onClick={toggleDrawer(false)}>
+            <IconButton
+              aria-label="Close menu button"
+              onClick={toggleDrawer(false)}
+            >
               <CloseRoundedIcon />
             </IconButton>
           </Box>

@@ -8,7 +8,7 @@ interface BookingAppBarProps {
 
 export const BookingAppBar = ({ disabled, close }: BookingAppBarProps) => {
   return (
-    <AppBar sx={{ position: "relative" }}>
+    <AppBar sx={{ position: "sticky" }}>
       <Toolbar>
         <IconButton
           edge="start"

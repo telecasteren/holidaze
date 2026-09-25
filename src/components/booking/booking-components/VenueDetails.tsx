@@ -1,3 +1,4 @@
+import { AcceptTerms } from "@/components/booking/booking-components/AcceptTerms";
 import { Box, Stack, Typography, styled } from "@mui/material";
 import { formatCurrency } from "@/lib/utils/utils";
 import type { Venue } from "@/lib/zod/index";
@@ -29,13 +30,17 @@ export const VenueDetails = ({
 
   return (
     <Stack sx={{ display: "grid", justifyContent: "center", gap: 2 }}>
-      <Box sx={{ width: 200 }}>
+      <Box sx={{ display: "grid", width: 200, justifySelf: "center" }}>
         <Box
           component="img"
           loading="lazy"
           src={firstImage?.url}
           alt={firstImage?.alt || `Image of ${singleVenue?.name}`}
-          style={{ width: "100%", height: "auto", borderRadius: 8 }}
+          style={{
+            width: "100%",
+            height: "auto",
+            borderRadius: 8,
+          }}
         />
       </Box>
 
@@ -71,6 +76,8 @@ export const VenueDetails = ({
           {formatCurrency(totalPrice)} ({nights} nights)
         </span>
       </BoxSummary>
+
+      <AcceptTerms />
     </Stack>
   );
 };

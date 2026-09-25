@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useVenue } from "@/hooks/useVenue";
+import { useAuth } from "@/hooks/useAuth";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useRouter, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { createNewBookingFn } from "@/server/bookingFunctions";
 import { getApiErrorInfo } from "@/services/api/api-config/apiError";
 import type { BookingFormPayload } from "@/lib/zod/index";
@@ -16,8 +18,6 @@ import { CustomerDetails } from "./booking-components/CustomerDetails";
 import { BookingAppBar } from "./booking-components/BookingAppBar";
 import { WarningToast } from "@/components/layout/WarningToast";
 import toast from "react-hot-toast";
-import { useAuth } from "@/hooks/useAuth";
-import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 
 /** Slide-up transition for the full-screen booking dialog. */
 const Transitions = React.forwardRef(function Transition(

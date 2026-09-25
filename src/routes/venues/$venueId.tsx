@@ -61,7 +61,12 @@ function VenueById() {
         <Gallery venueMedia={venue.media} />
         <PageTitle
           title={venue.name}
-          styles={{ textAlign: "left", marginTop: 4 }}
+          styles={{
+            textAlign: "left",
+            marginTop: 4,
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+          }}
         />
         <Typography variant="body2" sx={{ fontWeight: "semibold" }}>
           {venueCity} • {venueCountry}

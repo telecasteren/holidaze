@@ -37,5 +37,10 @@ export const VenueDesc = ({ content }: { content: string }) => {
     ALLOWED_ATTR,
   });
 
-  return <Box dangerouslySetInnerHTML={{ __html: sanitizedContent }} />;
+  return (
+    <Box
+      dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+      sx={{ textOverflow: "ellipsis", overflow: "hidden" }}
+    />
+  );
 };
