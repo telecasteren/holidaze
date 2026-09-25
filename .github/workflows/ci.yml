@@ -46,6 +46,7 @@ jobs:
     needs: quality
     runs-on: ubuntu-latest
     env:
+      SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
       API_KEY: ${{ secrets.API_KEY }}
       API_URL: ${{ secrets.API_URL }}
       BRAND_URL: ${{ secrets.BRAND_URL }}
