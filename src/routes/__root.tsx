@@ -73,7 +73,7 @@ function RootDocument({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <InitColorSchemeScript defaultMode="system" />
+        <InitColorSchemeScript defaultMode="light" />
         <HeadContent />
       </head>
       <body>
