@@ -2,15 +2,18 @@ import { useNavUser } from "@/hooks/useNavUser";
 import { Link } from "@tanstack/react-router";
 import { navOptions } from "@/lib/link-options/navOptions";
 
-import { Box, Button, Avatar, Typography } from "@mui/material";
+import { Box, Button, Avatar, Typography, IconButton } from "@mui/material";
 import ColorModeIconDropdown from "@/components/shared-theme/ColorModeIconDropdown";
 
 import { BrandLogo } from "@/components/layout/BrandLogo";
-import { LogoutIcon } from "@/components/layout/icons";
+import { LogoutIcon, NotificationsNoneIcon } from "@/components/layout/icons";
 import { LinkToAccount } from "@/components/LinkToAccount";
 import { TooltipWithContent } from "@/components/layout/Tooltips";
+import NotificationCenter from "./NotificationCenter";
+import { useState } from "react";
 
 export const DesktopMenu = () => {
+  const [open, setOpen] = useState(false);
   const { isAuthenticated, userName, avatarProps, handleLogout } = useNavUser();
 
   return (
@@ -80,6 +83,21 @@ export const DesktopMenu = () => {
             >
               <Typography variant="body1">Go to your account</Typography>
             </TooltipWithContent>
+
+            <Box aria-label="Notifications">
+              <IconButton
+                aria-label="Notifications button"
+                onClick={() => setOpen(true)}
+                sx={{ alignSelf: "center" }}
+              >
+                <NotificationsNoneIcon />
+              </IconButton>
+              <NotificationCenter
+                aria-label="Notifications center"
+                open={open}
+                handleClose={() => setOpen(false)}
+              />
+            </Box>
 
             <TooltipWithContent
               trigger={

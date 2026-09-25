@@ -21,6 +21,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SearchIcon from "@mui/icons-material/Search";
 import InfoIcon from "@mui/icons-material/Info";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 
 export {
   LinkedInIcon,
@@ -46,4 +48,6 @@ export {
   SearchIcon,
   InfoIcon,
   SentimentSatisfiedAltIcon,
+  NotificationsNoneIcon,
+  EventAvailableIcon,
 };

@@ -19,12 +19,15 @@ import {
   MenuIcon,
   CloseRoundedIcon,
   LogoutIcon,
+  NotificationsNoneIcon,
 } from "@/components/layout/icons";
 import { LinkToAccount } from "@/components/LinkToAccount";
+import NotificationCenter from "./NotificationCenter";
 
 export const MobileMenu = () => {
   const { isAuthenticated, userName, avatarProps, handleLogout } = useNavUser();
   const [open, setOpen] = useState(false);
+  const [openNotice, setOpenNotice] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -101,7 +104,7 @@ export const MobileMenu = () => {
               </Button>
             </>
           ) : (
-            // Show Avatar and logout button if authenticated
+            // Show Avatar, notifications and logout button if authenticated
             <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
               <LinkToAccount profileId={userName} unstyled>
                 <Avatar
@@ -110,6 +113,22 @@ export const MobileMenu = () => {
                   sx={{ ...avatarProps.sx, width: 30, height: 30 }}
                 />
               </LinkToAccount>
+
+              <Box aria-label="Notifications">
+                <IconButton
+                  aria-label="Notifications button"
+                  onClick={() => setOpenNotice(true)}
+                  sx={{ alignSelf: "center" }}
+                >
+                  <NotificationsNoneIcon />
+                </IconButton>
+                <NotificationCenter
+                  aria-label="Notifications center"
+                  open={openNotice}
+                  handleClose={() => setOpenNotice(false)}
+                />
+              </Box>
+
               <Button
                 size="small"
                 aria-label="Logout button"
