@@ -22,7 +22,9 @@ A venue booking system where users can browse and book venues, manage their venu
 
 ## Introduction
 
-This project is my exams project at Noroff School of Technology and Digital Media. For the project brief provided by the school for this exam, see [here](DOCS/BRIEF.md).
+This project is my exams project at Noroff School of Technology and Digital Media. For the project brief provided by the school for this exam, see [here](DOCS/BRIEF.md).<br/>
+**Link to Github projects:** [kanban/gant](https://github.com/users/telecasteren/projects/5)<br/>
+**Link to Github repository:** [repo](https://github.com/telecasteren/holidaze)
 
 ## Technologies
 
