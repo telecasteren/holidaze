@@ -101,9 +101,6 @@ export const red = {
   900: "hsl(0, 93%, 6%)",
 };
 
-// dark btn: #0257AC
-// light btn:
-
 export const colorSchemes = {
   light: {
     palette: {

@@ -113,6 +113,12 @@ export function ContactForm() {
               fullWidth
               multiline
               rows={5}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  height: "auto",
+                  alignItems: "flex-start",
+                },
+              }}
               {...register("message")}
               aria-invalid={!!errors.message}
               helperText={errors.message ? errors.message.message : null}

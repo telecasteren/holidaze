@@ -1,23 +1,24 @@
-import { Route } from "@/routes/venues/index";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { formatCalendarDate } from "@/lib/utils/dates";
 import { useForm } from "react-hook-form";
+import { defaultSearch } from "@/lib/zod/index";
 import type { ExploreSearchForm } from "@/lib/zod/index";
 
 /**
- * Search form state for the venues page, initialised from the URL search params.
+ * Search form state for the venues/dashboard pages, initialised from the URL search params.
  *
  * @returns `control` (react-hook-form), current `values`, `dates` as a display string,
  * and `handleSearch()`, which writes the values to the URL and resets to page 1.
  */
 export const useSearchDisplay = () => {
-  const navigate = Route.useNavigate();
-  const searchParams = Route.useSearch();
+  const navigate = useNavigate();
+  const searchParams = useSearch({ strict: false });
 
   const { control, watch } = useForm<ExploreSearchForm>({
     values: {
-      query: searchParams.query,
-      guests: searchParams.guests,
+      query: searchParams.query ?? defaultSearch.query,
+      guests: searchParams.guests ?? defaultSearch.guests,
       dateRange:
         searchParams.dateFrom && searchParams.dateTo
           ? {
@@ -34,14 +35,14 @@ export const useSearchDisplay = () => {
     const { query, guests, dateRange } = values;
 
     navigate({
-      search: (prev) => ({
-        ...prev,
+      to: "/venues",
+      search: {
         query: query.trim(),
         guests,
         dateFrom: dateRange?.start.toString(),
         dateTo: dateRange?.end.toString(),
         page: 1,
-      }),
+      },
     });
   };
 

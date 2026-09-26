@@ -10,6 +10,7 @@ import {
   InputBase,
   styled,
 } from "@mui/material";
+import type { Theme } from "@mui/material";
 import { PopoverWindow } from "@/components/layout/Popover";
 import { ExploreCalendar } from "@/components/booking/ExploreCalendar";
 import { GuestCountPicker } from "@/components/booking/GuestCountPicker";
@@ -17,19 +18,20 @@ import { SearchIcon } from "@/components/layout/icons";
 
 /** Bordered, wrapping row that holds the search fields and the search button. */
 const StyledBox = styled(Stack)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  [theme.breakpoints.up("xs")]: {
-    justifyContent: "start",
-  },
-  [theme.breakpoints.up("sm")]: {
-    justifyContent: "center",
-  },
-  alignItems: "center",
-  gap: 1,
+  display: "grid",
+  gridTemplateColumns: "auto 1fr",
+  width: "100%",
   justifySelf: "center",
-  width: "fit-content",
+  [theme.breakpoints.up("md")]: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "fit-content",
+  },
+  backgroundColor: (theme.vars || theme).palette.background.tertiary,
+  gap: 1,
   border: `1px solid ${(theme.vars || theme).palette.divider}`,
   borderRadius: 10,
   padding: 2,
@@ -40,15 +42,27 @@ const StyledBox = styled(Stack)(({ theme }) => ({
 /** Height (px) shared by the search fields and button. */
 const FIELD_HEIGHT = 80;
 /** Shared styles for the "Where", "When" and "Who" fields. */
-const searchSx = {
-  textAlign: "start",
-  justifyContent: "start",
-  width: 250,
-  height: FIELD_HEIGHT,
-  display: "grid",
-  alignContent: "center",
-  gap: 0.5,
-} as const;
+const searchSx = (theme: Theme) =>
+  ({
+    color: (theme.vars || theme).palette.text.tertiary,
+    backgroundColor: "transparent",
+    "&:hover": { backgroundColor: (theme.vars || theme).palette.divider },
+    ...theme.applyStyles("dark", {
+      backgroundColor: "transparent",
+      "&:hover": {
+        backgroundColor: (theme.vars || theme).palette.divider,
+      },
+    }),
+    textAlign: "start",
+    justifyContent: "start",
+    width: 250,
+    height: FIELD_HEIGHT,
+    display: "grid",
+    alignContent: "center",
+    gap: 0.5,
+    fontSize: 14,
+    border: "none",
+  }) as const;
 
 /**
  * Search bar for venues with three fields: text ("Where"), dates ("When", in a popover calendar)
@@ -70,16 +84,11 @@ export const SearchDisplay = () => {
     <StyledBox>
       <Box>
         <Box
-          sx={{
-            ...searchSx,
+          sx={(theme) => ({
+            ...searchSx(theme),
             px: 2,
-            border: (theme) => `1px solid ${theme.palette.divider}`,
             borderRadius: 1,
-            ":hover": {
-              backgroundColor: (theme) => (theme.vars || theme).palette.divider,
-              borderColor: (theme) => (theme.vars || theme).palette.divider,
-            },
-          }}
+          })}
         >
           <Typography
             component="label"
@@ -106,16 +115,14 @@ export const SearchDisplay = () => {
       </Box>
 
       <Box>
-        <Button
-          variant="outlined"
-          {...bindTrigger(datesPopup)}
-          sx={{
-            ...searchSx,
-          }}
-        >
+        <Button variant="outlined" {...bindTrigger(datesPopup)} sx={searchSx}>
           <Typography
             component="span"
-            sx={{ fontSize: 12, fontWeight: "bold", color: "text.secondary" }}
+            sx={{
+              fontSize: 12,
+              fontWeight: "bold",
+              color: "text.secondary",
+            }}
           >
             When
           </Typography>
@@ -137,13 +144,7 @@ export const SearchDisplay = () => {
       </Box>
 
       <Box>
-        <Button
-          variant="outlined"
-          {...bindTrigger(guestsPopup)}
-          sx={{
-            ...searchSx,
-          }}
-        >
+        <Button variant="outlined" {...bindTrigger(guestsPopup)} sx={searchSx}>
           <Typography
             component="span"
             sx={{ fontSize: 12, fontWeight: "bold", color: "text.secondary" }}
@@ -167,7 +168,23 @@ export const SearchDisplay = () => {
         name="search"
         aria-label="search"
         onClick={handleSearch}
-        sx={{ width: "fit-content", height: FIELD_HEIGHT }}
+        sx={(theme) => ({
+          gridColumn: 2,
+          gridRow: "1 / span 3",
+          alignSelf: "stretch",
+          height: { xs: "auto", md: FIELD_HEIGHT },
+          width: { xs: "100%", md: "fit-content" },
+
+          backgroundColor: (theme.vars || theme).palette.divider,
+          "&:hover": {
+            backgroundColor: (theme.vars || theme).palette.primary.light,
+          },
+          ...theme.applyStyles("dark", {
+            "&:hover": {
+              backgroundColor: (theme.vars || theme).palette.info.main,
+            },
+          }),
+        })}
       >
         <SearchIcon />
       </Button>

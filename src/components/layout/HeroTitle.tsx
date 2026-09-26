@@ -17,6 +17,7 @@ export default function HeroTitle({
           alignItems: "center",
           gap: { sm: 1.5 },
           fontSize: "clamp(3rem, 10vw, 3.5rem)",
+          color: "text.light",
         }}
       >
         {title}

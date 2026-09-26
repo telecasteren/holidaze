@@ -226,3 +226,5 @@ FONT FAMILY
 UNSPLASH IMAGES
 
 Thanks to [Luthi Alfarezi](https://unsplash.com/@luthfialfarizi) for the 'Reviews' avatars.
+
+Thanks to [Ishan @seefromthesky](https://unsplash.com/@seefromthesky) for the 'Hero' image.

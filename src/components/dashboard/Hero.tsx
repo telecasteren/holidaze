@@ -1,56 +1,115 @@
-import { Typography, Box, Container, Stack, styled } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Container,
+  Stack,
+  Link as MuiLink,
+  styled,
+} from "@mui/material";
 import HeroTitle from "@/components/layout/HeroTitle";
-import { CarouselDisplay } from "@/components/carousel/CarouselDisplay";
+import { ArrowForwardIcon } from "../layout/icons";
+import { Link as RouterLink } from "@tanstack/react-router";
+import { useAuth } from "@/hooks/useAuth";
+import { LinkToAccount } from "../LinkToAccount";
+import { CarouselGallery } from "../carousel/CarouselGallery";
+import { SearchDisplay } from "@/components/search/SearchDisplay";
 
-const StyledBox = styled("div")(({ theme }) => ({
-  position: "relative",
-  alignSelf: "center",
-  width: "100%",
-  height: 400,
-  marginTop: theme.spacing(6),
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  [theme.breakpoints.up("sm")]: {
-    marginTop: theme.spacing(6),
-    height: 600,
-  },
+const StyledBox = styled(Box)(() => ({
+  display: "grid",
+  justifyContent: "center",
+  borderRadius: 8,
+  padding: 8,
 }));
 
 export function Hero() {
+  const { isAuthenticated, user } = useAuth();
+
   return (
-    <Box id="hero">
-      <Container
+    <Box sx={{ width: "100%" }}>
+      <Box
+        id="hero"
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          width: "100%",
+          minHeight: 500,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/hero/ishan-seefromthesky-qE1Y8GQKhEk-unsplash.jpg)",
         }}
       >
-        <Stack
-          spacing={2}
-          useFlexGap
-          sx={{ alignItems: "center", width: { xs: "100%", sm: "70%" } }}
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            pt: { xs: 14, sm: 20 },
+            pb: { xs: 8, sm: 12 },
+          }}
         >
-          <HeroTitle title="Most popular" span="venues" />
-
-          <Typography
+          <Stack
+            spacing={2}
             sx={{
-              textAlign: "center",
-              color: "text.secondary",
-              width: { sm: "100%", md: "80%" },
+              alignItems: "center",
+              width: { xs: "100%", sm: "70%" },
+              background:
+                "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))",
+              borderRadius: 2,
+              padding: 2,
             }}
           >
-            Explore our remarkable venues and and find your next destination. Be
-            adventurous and discover new places to stay.
-          </Typography>
-        </Stack>
+            <HeroTitle title="Most popular" span="venues" />
 
-        {/* Venue image Carousel */}
-        <StyledBox>
-          <CarouselDisplay />
-        </StyledBox>
-      </Container>
+            <Typography
+              sx={{
+                textAlign: "center",
+                color: "text.light",
+                width: { sm: "100%", md: "80%" },
+                borderRadius: 1,
+              }}
+            >
+              Explore our remarkable venues and and find your next destination.
+              Be adventurous and discover new places.
+            </Typography>
+          </Stack>
+
+          <SearchDisplay />
+
+          <Box>
+            {isAuthenticated ? (
+              <Box sx={{ color: "text.light", fontSize: { xs: 20, sm: 24 } }}>
+                <LinkToAccount profileId={user?.name || ""}>
+                  Register venue now <ArrowForwardIcon />
+                </LinkToAccount>
+              </Box>
+            ) : (
+              <StyledBox sx={{ color: "text.light" }}>
+                <MuiLink
+                  component={RouterLink}
+                  to="/auth/signup"
+                  sx={{
+                    width: "fit-content",
+                    textDecoration: "none",
+                    color: "inherit",
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: { xs: 20, sm: 24 },
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  Sign up now <ArrowForwardIcon />
+                </MuiLink>
+              </StyledBox>
+            )}
+          </Box>
+        </Container>
+      </Box>
+
+      {/* <Stack sx={{ mt: 4, maxWidth: 800, mx: "auto" }}>
+        <CarouselGallery />
+      </Stack>*/}
     </Box>
   );
 }
