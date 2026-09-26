@@ -1,3 +1,4 @@
+import { NotificationsProvider } from "@/components/layout/header/NotificationsProvider";
 import { MobileMenu } from "@/components/layout/header/MobileMenu";
 import { DesktopMenu } from "@/components/layout/header/DesktopMenu";
 import { styled, alpha, AppBar, Toolbar, Container } from "@mui/material";
@@ -20,6 +21,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 /**
  * @file Site header — fixed AppBar rendering the responsive nav (DesktopMenu / MobileMenu).
+ * Content wrapped in NotificationProvider.
  */
 export default function Header() {
   return (
@@ -35,8 +37,10 @@ export default function Header() {
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
-          <DesktopMenu />
-          <MobileMenu />
+          <NotificationsProvider>
+            <DesktopMenu />
+            <MobileMenu />
+          </NotificationsProvider>
         </StyledToolbar>
       </Container>
     </AppBar>

@@ -22,7 +22,7 @@ A venue booking system where users can browse and book venues, manage their venu
 
 ## Introduction
 
-This project is my exams project at Noroff School of Technology and Digital Media.
+This project is my exams project at Noroff School of Technology and Digital Media. For the project brief provided by the school for this exam, see [here](DOCS/BRIEF.md).
 
 ## Technologies
 
@@ -133,7 +133,7 @@ pnpm exec playwright test booking --repeat-each=5
 
 ### Application Weaknesses
 
-#### Features
+#### Mocked features
 
 > **Venues: toggling favorites**<br/>
 > Currently, it only tracks the state of added/removed favorites client side. This is because the API does not support persistent storage of favorites. Hence, this feature is purely visual.
@@ -147,27 +147,10 @@ pnpm exec playwright test booking --repeat-each=5
 > **Reviews:**<br/>
 > Purely mock-data to show how reviews are displayed, because the API does not serve reviews per venues. Clicking a review will redirect to venues list page.
 
-#### HTML Validator errors
+> **Notifications:**<br/>
+> Purely mock-data to visualize in-app notifications. Clicking a notification link will remove the "unread dot" (in memory only, e.g. does not survive page refresh).
 
-> **"Element `style` not allowed as child of element `h1` in this context.."**<br/>
-> This seems to be a known weakness, as Tanstack Start don't solve this atm, so MUI style tags are being added at runtime. Similarily, Next.js solves this through `AppRouterCacheProvider` from `mui/material-nextjs`. I've decided to accept this weakness, since it doesn't affect the end-product in terms of UI styling or accessibility. Will revisit this once Tanstack has a solution to this.
-
-> **"Saw U+0000 in stream."**<br/>
-> My suspicion is it's from TanStack routers SSR state and how its serialised into the <script> tags, so I kind of need to accepted that. Doesn't seem to impact any user-facing parts.
-
-_Example_
-
-```bash
-Error: Saw U+0000 in stream.
-At line 1, column 204503
-2]={i:"__root__",u:1789931836
-```
-
-Will revisit if needed.
-
-> **"MUI-x-charts hover bug"**<br/>
-> `An input selector returned a different result when passed same arguments. This means your output selector will likely run more frequently than intended. Avoid returning a new reference inside your input selector`<br/>
-> Seems like a developer warning that only happen upon hoverering the chart component, but not affecting the UI or user experience. Someone else experiencing it as-we-speak: [github_issue](https://github.com/mong/mongts/pull/5064). Tested their webpage [skde.no](skde.no) to see if I found the warning in production, but I don't so I'll accept the warning in dev. _**Could not reproduce it in prod after release.**_
+ℹ️ **For known issues and warnings see** [ISSUES/WARNINGS](DOCS/ISSUES.md)
 
 ---
 
@@ -180,7 +163,7 @@ In this project, AI can be used to:
 - Generating some boilerplate / scaffolding
 - Drafting initial documentation and JSDocs
 
-_All AI usage is logged and can be found in [AI_LOG.md](AI_LOG.md)._
+_All AI usage is logged and can be found in [AI_LOG.md](DOCS/AI_LOG.md)._
 
 ### Resources
 

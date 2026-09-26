@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavUser } from "@/hooks/useNavUser";
+import { useNotifications } from "@/hooks/useNotifications";
 import { Link } from "@tanstack/react-router";
 import { navOptions } from "@/lib/link-options/navOptions";
 
@@ -22,10 +23,12 @@ import {
   NotificationsNoneIcon,
 } from "@/components/layout/icons";
 import { LinkToAccount } from "@/components/LinkToAccount";
-import NotificationCenter from "./NotificationCenter";
+import { UnreadBadge } from "@/components/layout/header/UnreadBadge";
+import { NotificationCenter } from "@/components/layout/header/NotificationCenter";
 
 export const MobileMenu = () => {
   const { isAuthenticated, userName, avatarProps, handleLogout } = useNavUser();
+  const { notifications } = useNotifications();
   const [open, setOpen] = useState(false);
   const [openNotice, setOpenNotice] = useState(false);
 
@@ -40,6 +43,7 @@ export const MobileMenu = () => {
         <MenuIcon />
       </IconButton>
       <Drawer
+        closeAfterTransition={false}
         anchor="top"
         open={open}
         onClose={toggleDrawer(false)}
@@ -120,13 +124,15 @@ export const MobileMenu = () => {
                   onClick={() => setOpenNotice(true)}
                   sx={{ alignSelf: "center" }}
                 >
-                  <NotificationsNoneIcon />
+                  <UnreadBadge
+                    overlap="circular"
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                    variant="dot"
+                    invisible={notifications.every((n) => n.clicked)}
+                  >
+                    <NotificationsNoneIcon />
+                  </UnreadBadge>
                 </IconButton>
-                <NotificationCenter
-                  aria-label="Notifications center"
-                  open={openNotice}
-                  handleClose={() => setOpenNotice(false)}
-                />
               </Box>
 
               <Button
@@ -140,6 +146,12 @@ export const MobileMenu = () => {
           )}
         </Box>
       </Drawer>
+
+      <NotificationCenter
+        aria-label="Notifications center"
+        open={openNotice}
+        handleClose={() => setOpenNotice(false)}
+      />
     </Box>
   );
 };

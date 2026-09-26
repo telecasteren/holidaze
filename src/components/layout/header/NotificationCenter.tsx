@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useNotifications } from "@/hooks/useNotifications";
 import { UnreadBadge } from "@/components/layout/header/UnreadBadge";
 import {
   EventAvailableIcon,
@@ -22,21 +22,25 @@ interface NotificationCenterProps {
   handleClose: () => void;
 }
 
-export default function NotificationCenter({
+export const NotificationCenter = ({
   open,
   handleClose,
-}: NotificationCenterProps) {
+}: NotificationCenterProps) => {
+  const { notifications, markAsClicked } = useNotifications();
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
+      aria-labelledby="Notifications center"
+      aria-describedby="Notifications dialogue window"
+      closeAfterTransition={false}
       slotProps={{
         paper: {
           onSubmit: (event: React.SubmitEvent<HTMLFormElement>) => {
             event.preventDefault();
             handleClose();
           },
-          sx: { backgroundImage: "none" },
         },
       }}
     >
@@ -52,69 +56,34 @@ export default function NotificationCenter({
         </DialogContentText>
 
         <Stack spacing={2}>
-          <Box
-            sx={{
-              display: "flex",
-              gap: 2,
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <UnreadBadge
-              overlap="rectangular"
-              anchorOrigin={{ vertical: "top", horizontal: "left" }}
-              variant="dot"
+          {notifications.map((n) => (
+            <Box
+              key={n.id}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <Box>
-                <Typography variant="body1">
-                  Whats the best way to get to the venue?
-                </Typography>
-                <Typography variant="caption">by John Show</Typography>
-              </Box>
-            </UnreadBadge>
-
-            <Link href="#">View</Link>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <UnreadBadge
-              overlap="rectangular"
-              anchorOrigin={{ vertical: "top", horizontal: "left" }}
-              variant="dot"
-            >
-              <Box>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                  <EventAvailableIcon />{" "}
-                  <Typography variant="body1">Upcoming booking!</Typography>
+              <UnreadBadge
+                overlap="rectangular"
+                anchorOrigin={{ vertical: "top", horizontal: "left" }}
+                variant="dot"
+                invisible={n.clicked}
+              >
+                <Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                    {n.type === "booking" && <EventAvailableIcon />}{" "}
+                    <Typography variant="body1">{n.title}</Typography>
+                  </Box>
+                  <Typography variant="caption">{n.subtitle}</Typography>
                 </Box>
-                <Typography variant="caption">at Sunrise Inn</Typography>
-              </Box>
-            </UnreadBadge>
-            <Link href="#">View</Link>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                <EventAvailableIcon />{" "}
-                <Typography variant="body1">Upcoming booking!</Typography>
-              </Box>
-              <Typography variant="caption">at Palm Beach House</Typography>
+              </UnreadBadge>
+              <Link href={n.href} onClick={() => markAsClicked(n.id)}>
+                View
+              </Link>
             </Box>
-            <Link href="#">View</Link>
-          </Box>
+          ))}
         </Stack>
       </DialogContent>
       <DialogActions sx={{ pb: 3, px: 3 }}>
@@ -124,4 +93,4 @@ export default function NotificationCenter({
       </DialogActions>
     </Dialog>
   );
-}
+};

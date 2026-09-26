@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavUser } from "@/hooks/useNavUser";
+import { useNotifications } from "@/hooks/useNotifications";
 import { Link } from "@tanstack/react-router";
 import { navOptions } from "@/lib/link-options/navOptions";
 
@@ -9,12 +11,13 @@ import { BrandLogo } from "@/components/layout/BrandLogo";
 import { LogoutIcon, NotificationsNoneIcon } from "@/components/layout/icons";
 import { LinkToAccount } from "@/components/LinkToAccount";
 import { TooltipWithContent } from "@/components/layout/Tooltips";
-import NotificationCenter from "./NotificationCenter";
-import { useState } from "react";
+import { UnreadBadge } from "@/components/layout/header/UnreadBadge";
+import { NotificationCenter } from "@/components/layout/header/NotificationCenter";
 
 export const DesktopMenu = () => {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, userName, avatarProps, handleLogout } = useNavUser();
+  const { notifications } = useNotifications();
 
   return (
     <>
@@ -89,15 +92,20 @@ export const DesktopMenu = () => {
                 aria-label="Notifications button"
                 onClick={() => setOpen(true)}
                 sx={{ alignSelf: "center" }}
+                size="small"
               >
-                <NotificationsNoneIcon />
+                <UnreadBadge
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  variant="dot"
+                  invisible={notifications.every((n) => n.clicked)}
+                >
+                  <NotificationsNoneIcon />
+                </UnreadBadge>
               </IconButton>
-              <NotificationCenter
-                aria-label="Notifications center"
-                open={open}
-                handleClose={() => setOpen(false)}
-              />
             </Box>
+
+            <ColorModeIconDropdown />
 
             <TooltipWithContent
               trigger={
@@ -114,7 +122,12 @@ export const DesktopMenu = () => {
             </TooltipWithContent>
           </>
         )}
-        <ColorModeIconDropdown />
+
+        <NotificationCenter
+          aria-label="Notifications center"
+          open={open}
+          handleClose={() => setOpen(false)}
+        />
       </Box>
     </>
   );
