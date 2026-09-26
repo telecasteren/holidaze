@@ -11,7 +11,7 @@ import { ArrowForwardIcon } from "../layout/icons";
 import { Link as RouterLink } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/useAuth";
 import { LinkToAccount } from "../LinkToAccount";
-import { CarouselGallery } from "../carousel/CarouselGallery";
+// import { CarouselGallery } from "../carousel/CarouselGallery";
 import { SearchDisplay } from "@/components/search/SearchDisplay";
 
 const StyledBox = styled(Box)(() => ({
