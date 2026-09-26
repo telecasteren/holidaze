@@ -35,7 +35,7 @@ export function Hero() {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/hero/ishan-seefromthesky-qE1Y8GQKhEk-unsplash.jpg)",
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/hero/ishan-seefromthesky-qE1Y8GQKhEk-unsplash.webp)",
         }}
       >
         <Container
