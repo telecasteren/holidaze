@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { createNewBookingFn } from "@/server/bookingFunctions";
 import { getApiErrorInfo } from "@/services/api/api-config/apiError";
+import { bookingSuccessOptions } from "@/lib/link-options/generalOptions";
 import type { BookingFormPayload } from "@/lib/zod/index";
 
 import type { DateValue, RangeValue } from "react-aria-components";
@@ -80,7 +81,7 @@ export const BookingWindow = ({
 
     onSuccess: () => {
       toast.loading("Processing booking...");
-      navigate({ to: "/booking/success" });
+      navigate(bookingSuccessOptions);
     },
     onError: (error) => {
       const errorMessage = getApiErrorInfo(error)?.message;

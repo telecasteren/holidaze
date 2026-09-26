@@ -7,7 +7,6 @@ export const navOptions = () => [
       activeOptions: { exact: true },
     }),
     label: "Explore",
-    icon: false,
   },
   {
     link: linkOptions({
@@ -15,7 +14,6 @@ export const navOptions = () => [
       activeOptions: { exact: true },
     }),
     label: "Journal",
-    icon: false,
   },
   {
     link: linkOptions({
@@ -24,6 +22,5 @@ export const navOptions = () => [
       activeOptions: { exact: true },
     }),
     label: "Reviews",
-    icon: false,
   },
 ];

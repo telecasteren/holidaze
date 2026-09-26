@@ -1,113 +1,40 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Link as RouterLink } from "@tanstack/react-router";
+import { Box, Typography, Link as MuiLink } from "@mui/material";
+import { footerOptions } from "@/lib/link-options/footerOptions";
 
 export const FooterLinks = () => {
   return (
     <>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "flex" },
-          flexDirection: "column",
-          gap: 1,
-        }}
-      >
-        <Typography variant="body2" sx={{ fontWeight: "medium" }}>
-          Product
-        </Typography>
-        <Link
-          variant="body2"
-          href="#services"
+      {footerOptions().map((option) => (
+        <Box
+          key={option.group}
+          aria-label="footer nav-links columns"
           sx={{
-            color: "text.secondary",
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
+            gap: 1,
           }}
         >
-          Services
-        </Link>
-        <Link
-          variant="body2"
-          href="/#reviews"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          Reviews
-        </Link>
-        <Link
-          variant="body2"
-          href="/#faqs"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          FAQs
-        </Link>
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "flex" },
-          flexDirection: "column",
-          gap: 1,
-        }}
-      >
-        <Typography variant="body2" sx={{ fontWeight: "medium" }}>
-          Company
-        </Typography>
-        <Link
-          variant="body2"
-          href="/company/about"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          About us
-        </Link>
-        <Link
-          variant="body2"
-          href="/company/careers"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          Careers
-        </Link>
-        <Link
-          variant="body2"
-          href="/company/contact"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          Contact
-        </Link>
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "flex" },
-          flexDirection: "column",
-          gap: 1,
-        }}
-      >
-        <Typography variant="body2" sx={{ fontWeight: "medium" }}>
-          Legal
-        </Typography>
-        <Link
-          variant="body2"
-          href="/legal/terms"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          Terms
-        </Link>
-        <Link
-          variant="body2"
-          href="/legal/privacy"
-          sx={{
-            color: "text.secondary",
-          }}
-        >
-          Privacy
-        </Link>
-      </Box>
+          <Typography variant="body2" sx={{ fontWeight: "medium" }}>
+            {option.group}
+          </Typography>
+          {option.links.map((item) => {
+            return (
+              <MuiLink
+                key={item.label}
+                component={RouterLink}
+                {...item.link}
+                variant="body2"
+                sx={{
+                  color: "text.secondary",
+                }}
+              >
+                {item.label}
+              </MuiLink>
+            );
+          })}
+        </Box>
+      ))}
     </>
   );
 };

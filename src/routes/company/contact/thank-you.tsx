@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Button, Container, Typography } from "@mui/material";
 import { PageTitle } from "@/components/layout";
 
-export const Route = createFileRoute("/company/contact/thankYou")({
+export const Route = createFileRoute("/company/contact/thank-you")({
   component: ThankYouComponent,
 });
 

@@ -22,7 +22,7 @@ import { Route as LegalTermsRouteImport } from './routes/legal/terms'
 import { Route as VenuesIndexRouteImport } from './routes/venues/index'
 import { Route as VenuesVenueIdRouteImport } from './routes/venues/$venueId'
 import { Route as CompanyContactIndexRouteImport } from './routes/company/contact/index'
-import { Route as CompanyContactThankYouRouteImport } from './routes/company/contact/thankYou'
+import { Route as CompanyContactThankYouRouteImport } from './routes/company/contact/thank-you'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -90,8 +90,8 @@ const CompanyContactIndexRoute = CompanyContactIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompanyContactThankYouRoute = CompanyContactThankYouRouteImport.update({
-  id: '/company/contact/thankYou',
-  path: '/company/contact/thankYou',
+  id: '/company/contact/thank-you',
+  path: '/company/contact/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -108,7 +108,7 @@ export interface FileRoutesByFullPath {
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/venues/': typeof VenuesIndexRoute
-  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesByTo {
@@ -124,7 +124,7 @@ export interface FileRoutesByTo {
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/venues': typeof VenuesIndexRoute
-  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
   '/company/contact': typeof CompanyContactIndexRoute
 }
 export interface FileRoutesById {
@@ -141,7 +141,7 @@ export interface FileRoutesById {
   '/legal/terms': typeof LegalTermsRoute
   '/venues/$venueId': typeof VenuesVenueIdRoute
   '/venues/': typeof VenuesIndexRoute
-  '/company/contact/thankYou': typeof CompanyContactThankYouRoute
+  '/company/contact/thank-you': typeof CompanyContactThankYouRoute
   '/company/contact/': typeof CompanyContactIndexRoute
 }
 export interface FileRouteTypes {
@@ -159,7 +159,7 @@ export interface FileRouteTypes {
     | '/legal/terms'
     | '/venues/$venueId'
     | '/venues/'
-    | '/company/contact/thankYou'
+    | '/company/contact/thank-you'
     | '/company/contact/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -175,7 +175,7 @@ export interface FileRouteTypes {
     | '/legal/terms'
     | '/venues/$venueId'
     | '/venues'
-    | '/company/contact/thankYou'
+    | '/company/contact/thank-you'
     | '/company/contact'
   id:
     | '__root__'
@@ -191,7 +191,7 @@ export interface FileRouteTypes {
     | '/legal/terms'
     | '/venues/$venueId'
     | '/venues/'
-    | '/company/contact/thankYou'
+    | '/company/contact/thank-you'
     | '/company/contact/'
   fileRoutesById: FileRoutesById
 }
@@ -305,10 +305,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanyContactIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/company/contact/thankYou': {
-      id: '/company/contact/thankYou'
-      path: '/company/contact/thankYou'
-      fullPath: '/company/contact/thankYou'
+    '/company/contact/thank-you': {
+      id: '/company/contact/thank-you'
+      path: '/company/contact/thank-you'
+      fullPath: '/company/contact/thank-you'
       preLoaderRoute: typeof CompanyContactThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
