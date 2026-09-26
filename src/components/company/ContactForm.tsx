@@ -14,7 +14,7 @@ import {
 import { RequiredField } from "@/components/layout/RequiredField";
 import { GridBox } from "@/components/GridBox";
 import { contactFormSchema } from "@/lib/zod/contactSchema";
-import type { ContactFormSchemaType } from "@/lib/zod/contactSchema";
+import type { ContactFormSchemaType } from "@/lib/zod/index";
 import { contactSuccessOptions } from "@/lib/link-options/generalOptions";
 
 export function ContactForm() {

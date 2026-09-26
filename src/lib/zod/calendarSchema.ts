@@ -1,23 +1,17 @@
 import z from "zod";
 import type { DateValue, RangeValue } from "react-aria-components";
 
-export const calendarBookingSchema = z.object({
-  guests: z.number().min(1),
-  dateRange: z.custom<RangeValue<DateValue> | null>().nullable(),
-});
+export const calendarBookingSchema = z
+  .object({
+    guests: z.number().min(1),
+    dateRange: z.custom<RangeValue<DateValue> | null>().nullable(),
+  })
+  .describe("calendarBookingSchema");
+
 export type BookingForm = z.infer<typeof calendarBookingSchema>;
 
-export const exploreSearchFormSchema = z.object({
+export const exploreSearchFormSchema = calendarBookingSchema.extend({
   query: z.string().trim().default(""),
-  guests: z.number().min(1),
-  dateRange: z.custom<RangeValue<DateValue> | null>().nullable(),
 });
-export type ExploreSearchForm = z.infer<typeof exploreSearchFormSchema>;
 
-export const apiCalendarBookingSchema = z.object({
-  venueId: z.string(),
-  dateFrom: z.string(),
-  dateTo: z.string(),
-  guests: z.number().min(1),
-});
-export type BookingFormPayload = z.infer<typeof apiCalendarBookingSchema>;
+export type ExploreSearchForm = z.infer<typeof exploreSearchFormSchema>;

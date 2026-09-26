@@ -99,10 +99,17 @@ I've added a lint rule that flags any `console` logs used around the codebase, s
 /* eslint-disable-next-line no-console */
 ```
 
-The API calls have all been labeled as well, so a cool way to see whats what when developing is adding this log to `handler.ts` below `resolvedInit`:
+The API calls and Zod schemas have all been labeled as well, so a cool way to see whats what when developing is adding this log to `handler.ts`:
 
 ```bash
+# debugging API endpoints (below `resolvedInit` block)
 console.log(`[${label ?? "unlabeled"}] →`, resolvedEndpoint);
+
+# debugging schema parsing (inside "if (!parsedPayload.success)" block)
+console.log(
+  `[${label ?? "unlabeled"}] → ${schema.description ?? "unamed schema"}\n` +
+    z.prettifyError(parsedPayload.error),
+);
 ```
 
 NB: Needs the `label` passed as a param though.

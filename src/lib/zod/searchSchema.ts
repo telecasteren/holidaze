@@ -16,10 +16,12 @@ export const defaultSearch: DefaultSearchProps = {
   dateTo: "",
 };
 
-export const searchSchema = z.object({
-  page: z.coerce.number().int().min(1).default(1),
-  query: z.string().trim().default(""),
-  guests: z.coerce.number().int().min(1).default(1),
-  dateFrom: z.string().default(""),
-  dateTo: z.string().default(""),
-});
+export const searchSchema = z
+  .object({
+    page: z.coerce.number().int().min(1).default(1),
+    query: z.string().trim().default(""),
+    guests: z.coerce.number().int().min(1).default(1),
+    dateFrom: z.string().default(""),
+    dateTo: z.string().default(""),
+  })
+  .describe("searchSchema");

@@ -1,4 +1,4 @@
-import type { Customer } from "@/lib/zod";
+import type { ProfileBase } from "@/lib/zod";
 import { Box, Stack, Typography, IconButton, styled } from "@mui/material";
 import { TooltipWithContent, RouteLoader } from "@/components/layout";
 import { EditIcon } from "@/components/layout/icons";
@@ -19,7 +19,7 @@ const StyledStack = styled(Stack)(() => ({
 /** Props for {@link CustomerDetails}. */
 interface CustomerDetailsProps {
   /** The customer to display. Falls back to "unknown" placeholders when undefined. */
-  user: Customer | undefined;
+  user: ProfileBase | undefined;
   /** When true, renders a loading message instead of the details. */
   isLoading: boolean;
 }

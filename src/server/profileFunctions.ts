@@ -6,7 +6,7 @@ import {
   getProfileById,
   updateProfileById,
 } from "@/services/api/profiles/profiles";
-import { baseProfileSchema } from "@/lib/zod/profileSchema";
+import { updateProfileSchema } from "@/lib/zod/index";
 import { withServerErrors } from "@/server/serverErrors";
 
 /** Server function: gets a profile by name. Throws `notFound()` if the API returns 404. */
@@ -28,7 +28,7 @@ export const getProfileFn = createServerFn({ method: "GET" })
  * Receives a POST here and sends a PUT to the API (via `updateProfileById`).
  */
 export const updateProfileFn = createServerFn({ method: "POST" })
-  .validator(baseProfileSchema.extend({ name: z.string() }))
+  .validator(updateProfileSchema.extend({ name: z.string() }))
   .handler(async ({ data }) => {
     const { name, ...body } = data;
     return withServerErrors(() => updateProfileById(name, body));

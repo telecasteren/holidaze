@@ -6,7 +6,7 @@ import {
 } from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { venueByIdQuery } from "@/lib/queries/venuesQuery";
-import type { Venue } from "@/lib/zod/venueSchema";
+import type { Venue } from "@/lib/zod/index";
 
 import {
   Container,

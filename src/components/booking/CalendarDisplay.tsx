@@ -3,7 +3,7 @@ import { useAvailability } from "@/hooks/useAvailability";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { todayDate } from "@/lib/utils/dates";
-import { calendarBookingSchema } from "@/lib/zod/calendarSchema";
+import { calendarBookingSchema } from "@/lib/zod/index";
 import type { BookingForm, Venue } from "@/lib/zod/index";
 
 import { Stack, Box, Typography, styled } from "@mui/material";

@@ -6,7 +6,7 @@ import {
   postNewBooking,
   updateBooking,
 } from "@/services/api/bookings/bookings";
-import { apiCalendarBookingSchema, updateBookingSchema } from "@/lib/zod/index";
+import { updateBookingSchema, createBookingSchema } from "@/lib/zod/index";
 import { withServerErrors } from "@/server/serverErrors";
 
 /** Server function: gets a profile's bookings (input: profile name). */
@@ -18,13 +18,12 @@ export const getUserBookingsFn = createServerFn({ method: "GET" })
 
 /** Server function: creates a new booking. */
 export const createNewBookingFn = createServerFn({ method: "POST" })
-  .validator(apiCalendarBookingSchema)
+  .validator(createBookingSchema)
   .handler(async ({ data }) => {
-    const { ...body } = data;
-    return withServerErrors(() => postNewBooking(body));
+    return withServerErrors(() => postNewBooking(data));
   });
 
-/** Server function: updates a venue. The input must include the venue `id`. */
+/** Server function: updates a booking. The input must include the venue `id`. */
 export const updateBookingFn = createServerFn({ method: "POST" })
   .validator(updateBookingSchema)
   .handler(async ({ data }) => {
