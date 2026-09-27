@@ -1,7 +1,6 @@
 import type { ApiConfig, ApiHandler } from "./types";
 import { ApiError } from "./apiError";
 import { BASE_URL } from "./endpoints";
-import { logErrors } from "@/lib/utils/logErrors";
 
 /**
  * Builds a typed fetch function for one API endpoint.
@@ -19,7 +18,6 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
   schema,
   init,
   baseUrl = BASE_URL,
-  label,
 }: ApiConfig<TResult, TArgs>): ApiHandler<TResult, TArgs> {
   return async (...args: TArgs): Promise<TResult> => {
     try {
