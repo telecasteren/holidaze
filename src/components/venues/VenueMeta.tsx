@@ -43,13 +43,3 @@ export const VenueMeta = ({ venue }: VenueMetaProps) => {
     </>
   );
 };
-
-{
-  /* <Chip
-  size="medium"
-  key={key}
-  label={metaLabels[key as keyof Venue["meta"]]}
-  color="primary"
-  sx={{ border: "none" }}
-  />*/
-}

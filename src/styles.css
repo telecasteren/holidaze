@@ -24,16 +24,3 @@ body {
 .link-underline:hover {
   text-decoration: underline !important;
 }
-
-/*
---------------------------------
-*MuiCard DARKMODE*
-backgroundColor: "hsla(220, 35%, 3%, 0.4)",
-
-*MuiOutlinedInput DARKMODE*
-backgroundColor: #DFDFDF
-
-*MuiOutlinedInput LIGHTMODE*
-backgroundColor: (theme.vars || theme).palette.background.default
-border: #e0e4eb
-*/

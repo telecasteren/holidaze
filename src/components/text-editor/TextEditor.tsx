@@ -1,6 +1,4 @@
 import { useRef, forwardRef, useImperativeHandle } from "react";
-
-// import Button from "@mui/material/Button";
 import StarterKit from "@tiptap/starter-kit";
 import {
   MenuButtonBold,
@@ -73,14 +71,6 @@ export const TextEditor = forwardRef<TextEditorHandle, TextEditorProps>(
             </MenuControlsContainer>
           )}
         />
-
-        {/* debugging */}
-        {/* <Button
-          variant="contained"
-          onClick={() => console.log(textEditorRef.current?.editor?.getHTML())}
-        >
-          Log HTML
-        </Button>*/}
       </div>
     );
   },
