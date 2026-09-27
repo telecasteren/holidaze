@@ -94,3 +94,8 @@ _**Example:**
 **Date:** 25.09.26<br/>
 **Purpose:** Write a basic Github actions CI template<br/>
 **Outcome:** Got the template I needed.<br/>
+
+**Tool used:** Claude Opus 5.5<br/>
+**Date:** 27.09.26<br/>
+**Purpose:** Listing up all fontsizes used across the app.<br/>
+**Outcome:** Used the list to update the project Style Guide.<br/>
