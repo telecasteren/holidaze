@@ -2,7 +2,6 @@ import type { ApiConfig, ApiHandler } from "./types";
 import { ApiError } from "./apiError";
 import { BASE_URL } from "./endpoints";
 import { logErrors } from "@/lib/utils/logErrors";
-import z from "zod";
 
 /**
  * Builds a typed fetch function for one API endpoint.
@@ -51,12 +50,6 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
       const parsedPayload = schema.safeParse(payload);
 
       if (!parsedPayload.success) {
-        /* eslint-disable-next-line no-console */
-        console.log(
-          `[${label ?? "unlabeled"}] → ${schema.description ?? "unamed schema"}\n` +
-            z.prettifyError(parsedPayload.error),
-        );
-
         throw new ApiError(
           "Payload failed schema validation",
           500,
@@ -70,8 +63,6 @@ export function withApiHandler<TResult, TArgs extends unknown[] = []>({
         throw error;
       }
 
-      // debugging
-      logErrors(`withApiHandler failed, ${label} :`, error);
       throw new ApiError("Internal server error", 500, error);
     }
   };
