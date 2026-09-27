@@ -6,6 +6,7 @@ import {
 } from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { venueByIdQuery } from "@/lib/queries/venuesQuery";
+import { venueSearchSchema } from "@/lib/zod/index";
 import type { Venue } from "@/lib/zod/index";
 
 import {
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/venues/$venueId")({
       { title: `${loaderData?.name ?? "Venue details"} | Holidaze` },
     ],
   }),
+  validateSearch: venueSearchSchema,
   component: VenueById,
   errorComponent: CustomError,
   pendingComponent: CustomPending,
@@ -45,6 +47,7 @@ export const Route = createFileRoute("/venues/$venueId")({
 });
 
 function VenueById() {
+  const { guests, dateFrom, dateTo } = Route.useSearch();
   const venue = Route.useLoaderData();
   const hasRatings = venue.rating > 0;
   const venueCity = venue.location?.city || "unknown city";
@@ -133,7 +136,13 @@ function VenueById() {
         <Divider sx={{ my: 3 }} />
 
         {/* Calendar */}
-        <CalendarDisplay venueId={venue.id} bookings={venue.bookings} />
+        <CalendarDisplay
+          venueId={venue.id}
+          bookings={venue.bookings}
+          initialDateFrom={dateFrom}
+          initialDateTo={dateTo}
+          initialGuests={guests}
+        />
       </Container>
       <Divider />
     </>
