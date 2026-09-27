@@ -64,6 +64,12 @@ const searchSx = (theme: Theme) =>
     border: "none",
   }) as const;
 
+const searchLabelSx = {
+  fontSize: 12,
+  fontWeight: "bold",
+  color: "text.tertiary",
+};
+
 /**
  * Search bar for venues with three fields: text ("Where"), dates ("When", in a popover calendar)
  * and guest count ("Who", in a popover). The search button writes the values to the URL.
@@ -93,7 +99,7 @@ export const SearchDisplay = () => {
           <Typography
             component="label"
             htmlFor="text-search"
-            sx={{ fontSize: 12, fontWeight: "bold", color: "text.secondary" }}
+            sx={searchLabelSx}
           >
             Where
           </Typography>
@@ -116,14 +122,7 @@ export const SearchDisplay = () => {
 
       <Box>
         <Button variant="outlined" {...bindTrigger(datesPopup)} sx={searchSx}>
-          <Typography
-            component="span"
-            sx={{
-              fontSize: 12,
-              fontWeight: "bold",
-              color: "text.secondary",
-            }}
-          >
+          <Typography component="span" sx={searchLabelSx}>
             When
           </Typography>
           {dates ?? "Add dates"}
@@ -145,10 +144,7 @@ export const SearchDisplay = () => {
 
       <Box>
         <Button variant="outlined" {...bindTrigger(guestsPopup)} sx={searchSx}>
-          <Typography
-            component="span"
-            sx={{ fontSize: 12, fontWeight: "bold", color: "text.secondary" }}
-          >
+          <Typography component="span" sx={searchLabelSx}>
             Who
           </Typography>
           {values.guests ? `${values.guests} guests` : "Add guests"}

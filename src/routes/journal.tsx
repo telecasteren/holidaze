@@ -55,7 +55,7 @@ function Journal() {
   };
 
   return (
-    <Container id="journal" sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container id="journal" sx={{ py: 16 }}>
       <Box
         sx={{
           display: "flex",

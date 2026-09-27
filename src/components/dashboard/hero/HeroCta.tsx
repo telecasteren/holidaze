@@ -11,6 +11,7 @@ const StyledBox = styled(Box)(() => ({
 }));
 
 const linkSx = {
+  padding: 1.5,
   width: "fit-content",
   textDecoration: "none",
   color: "text.light",
@@ -18,6 +19,8 @@ const linkSx = {
   alignItems: "center",
   fontSize: { xs: 20, sm: 22 },
   fontFamily: "Century Gothic",
+  borderRadius: 1.5,
+  backgroundColor: "primary.dark",
   "&:hover": {
     textDecoration: "underline",
   },

@@ -22,7 +22,11 @@ export const PopoverWindow = ({ children, popupState }: PopoverWindowProps) => {
       }}
     >
       {children}
-      <Button variant="outlined" onClick={popupState.close} sx={{ m: 2 }}>
+      <Button
+        variant="outlined"
+        onClick={popupState.close}
+        sx={{ m: 2, display: "flex", justifySelf: "end" }}
+      >
         Confirm
       </Button>
     </Popover>

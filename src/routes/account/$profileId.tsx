@@ -1,19 +1,31 @@
 import { useState, lazy, Suspense } from "react";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { CustomError, DefaultNotFound } from "@/lib/route-states/index";
 import { brandSettings } from "@/lib/brand/brandSettings";
 import { profileByIdQuery } from "@/lib/queries/profilesQuery";
 import { venuesByProfileQuery } from "@/lib/queries/venuesQuery";
+import { availableDirectories } from "@/lib/directories";
+import type { DirectoryKey } from "@/lib/directories";
 import type { Profile } from "@/lib/zod/index";
 
-import { Container, Stack, Tabs, Tab, Divider } from "@mui/material";
+import {
+  Container,
+  Stack,
+  Tabs,
+  Tab,
+  Divider,
+  useMediaQuery,
+  useTheme,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { RouteLoader } from "@/components/layout";
 import { AccountInfo } from "@/components/account/AccountInfo";
 import { MyTripsInfo } from "@/components/account/MyTripsInfo";
 import { AccountHero } from "@/components/account/AccountHero";
 import { MetricsInfo } from "@/components/account/MetricsInfo";
 import { SkeletonAccount } from "@/components/account/SkeletonAccount";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 // lazy imports - these files import large chunks (VenueForm, tiptap etc.)
 const VenueInfo = lazy(() =>
@@ -54,18 +66,9 @@ export const Route = createFileRoute("/account/$profileId")({
   errorComponent: CustomError,
 });
 
-const availableDirectories = {
-  account: "My account",
-  myTrips: "My trips",
-  venues: "Manage venues",
-  bookings: "Manage bookings",
-  calendar: "Calendar",
-  metrics: "Revenue",
-} as const;
-
-type DirectoryKey = keyof typeof availableDirectories;
-
 function ProfileById() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeTab, setActiveTab] = useState<DirectoryKey>("account");
   const { profileId } = Route.useParams();
   const { data: accountResult } = useSuspenseQuery(profileByIdQuery(profileId));
@@ -82,27 +85,42 @@ function ProfileById() {
     venues: venuesResult?.data ?? accountResult.data.venues,
   };
 
+  const visibleTabs = Object.entries(availableDirectories).filter(
+    ([key]) => hasVenueManagerRole || key === "account" || key === "myTrips",
+  ) as [DirectoryKey, string][];
+
   return (
     <>
       <Container id="profile-details" sx={{ py: 16 }}>
         <AccountHero user={user} />
 
+        {/* Render select menu on mobile, otherwise render tabs */}
         <Stack id="profile-tabs" sx={{ mt: 2, spaceBetween: 1 }}>
-          <Tabs
-            value={activeTab}
-            onChange={(_, newTab: DirectoryKey) => setActiveTab(newTab)}
-          >
-            {Object.entries(availableDirectories).map(([key, label]) => {
-              if (
-                (key === "venues" && !hasVenueManagerRole) ||
-                (key === "bookings" && !hasVenueManagerRole) ||
-                (key === "calendar" && !hasVenueManagerRole) ||
-                (key === "metrics" && !hasVenueManagerRole)
-              )
-                return null;
-              return <Tab key={key} value={key} label={label} />;
-            })}
-          </Tabs>
+          {isMobile ? (
+            <Select
+              fullWidth
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value)}
+              inputProps={{ "aria-label": "Select section" }}
+              sx={{ mb: 2 }}
+            >
+              {visibleTabs.map(([key, label]) => (
+                <MenuItem key={key} value={key}>
+                  {label}
+                </MenuItem>
+              ))}
+            </Select>
+          ) : (
+            <Tabs
+              variant="scrollable"
+              value={activeTab}
+              onChange={(_, newTab: DirectoryKey) => setActiveTab(newTab)}
+            >
+              {visibleTabs.map(([key, label]) => (
+                <Tab key={key} value={key} label={label} />
+              ))}
+            </Tabs>
+          )}
 
           <Stack
             sx={{

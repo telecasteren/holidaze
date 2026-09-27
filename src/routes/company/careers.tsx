@@ -31,7 +31,7 @@ export const Route = createFileRoute("/company/careers")({
 
 function Careers() {
   return (
-    <Container sx={{ py: { xs: 8, sm: 16 } }}>
+    <Container sx={{ py: 16 }}>
       <Box
         sx={{
           display: "flex",

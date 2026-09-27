@@ -10,14 +10,11 @@ function ThankYouComponent() {
   return (
     <Container
       sx={{
-        py: {
-          xs: 8,
-          sm: 16,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 20,
-        },
+        py: 16,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
       }}
     >
       <PageTitle title="Thank you for your message" />

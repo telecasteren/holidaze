@@ -10,12 +10,13 @@ export const Route = createFileRoute("/")({
     const data = await context.queryClient.query(venuesQuery(1, "", 1, "", ""));
     return data;
   },
-  head: ({ loaderData }) => {
-    const url = loaderData?.data[0]?.media?.[0]?.url;
+  head: () => {
+    // Hero image rendered in Hero.tsx
+    const url = "/hero/ishan-seefromthesky-qE1Y8GQKhEk-unsplash.webp";
     return {
-      links: url
-        ? [{ rel: "preload", as: "image", href: url, fetchPriority: "high" }]
-        : [],
+      links: [
+        { rel: "preload", as: "image", href: url, fetchPriority: "high" },
+      ],
     };
   },
   component: Dashboard,
