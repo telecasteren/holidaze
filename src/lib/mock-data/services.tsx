@@ -9,7 +9,7 @@ export const serviceItems = [
     icon: <ViewQuiltRoundedIcon />,
     title: "Metrics",
     description:
-      "NEW FEATURE, dear venue managers! Your very own metrics dashboard. See your current earnings and more to come.",
+      "Hosting venues and tired of 'keeping the books'? Holidaze gives you the overview you've needed. A metrics dashboard, with your current earnings and more to come.",
     imageLight: `url("/services/BarLineChart-light.webp")`,
     imageDark: `url("/services/BarLineChart-dark.webp")`,
   },

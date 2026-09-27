@@ -17,13 +17,14 @@ export const useNavUser = () => {
   });
 
   const userName = user?.name as string;
+  const isVenueManager = data?.data.venueManager;
   const avatar = data?.data.avatar;
   const avatarProps = avatar?.url
     ? { src: avatar.url, alt: avatar.alt, sx: {} }
     : stringAvatar(userName || "John Doe");
 
   const handleLogout = () => {
-    toast.loading("Logging out...");
+    toast.loading("Logging out...", { duration: 1000 });
     logout();
   };
 
@@ -32,5 +33,6 @@ export const useNavUser = () => {
     avatarProps,
     isAuthenticated,
     userName,
+    isVenueManager,
   };
 };
