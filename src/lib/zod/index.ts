@@ -14,5 +14,6 @@ export * from "./bookings/bookingSchema";
 export * from "./profile/profileBaseSchema";
 export * from "./profile/profileSchema";
 export * from "./searchSchema";
+export * from "./venues/venueSearchSchema";
 export * from "./calendarSchema";
 export * from "./venues/locationSchema";

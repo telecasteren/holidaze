@@ -22,6 +22,11 @@ export const LinkToVenue = ({
       className={unstyled ? "" : "link-underline"}
       to="/venues/$venueId"
       params={{ venueId: venueId }}
+      search={(prev) => ({
+        dateFrom: prev.dateFrom,
+        dateTo: prev.dateTo,
+        guests: prev.guests,
+      })}
       style={{
         width: "fit-content",
         textDecoration: "none",

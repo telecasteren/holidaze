@@ -2,7 +2,7 @@ import { useBookingSummary } from "@/hooks/useBookingSummary";
 import { useAvailability } from "@/hooks/useAvailability";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { todayDate } from "@/lib/utils/dates";
+import { formatCalendarDate, todayDate } from "@/lib/utils/dates";
 import { calendarBookingSchema } from "@/lib/zod/index";
 import type { BookingForm, Venue } from "@/lib/zod/index";
 
@@ -25,6 +25,9 @@ interface CalendarDisplayProps {
   venueId: string;
   /** Existing bookings; their dates are shown as unavailable. */
   bookings?: Venue["bookings"];
+  initialDateFrom?: string;
+  initialDateTo?: string;
+  initialGuests?: number;
 }
 
 /**
@@ -36,14 +39,23 @@ interface CalendarDisplayProps {
 export const CalendarDisplay = ({
   venueId,
   bookings,
+  initialDateFrom,
+  initialDateTo,
+  initialGuests,
 }: CalendarDisplayProps) => {
   const { isDateUnavailable } = useAvailability(bookings);
 
   const { control, watch } = useForm<BookingForm>({
     resolver: zodResolver(calendarBookingSchema),
     defaultValues: {
-      guests: 1,
-      dateRange: null,
+      guests: initialGuests ?? 1,
+      dateRange:
+        initialDateFrom && initialDateTo
+          ? {
+              start: formatCalendarDate(initialDateFrom),
+              end: formatCalendarDate(initialDateTo),
+            }
+          : null,
     },
   });
   const values = watch();
