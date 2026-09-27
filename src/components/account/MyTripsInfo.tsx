@@ -3,7 +3,15 @@ import { useBookingsList } from "@/hooks/useBookingsList";
 import { useSortBookingsForm } from "@/hooks/useSortBookingsForm";
 import { formatDate, isPast } from "@/lib/utils/dates";
 
-import { Stack, Box, Card, Button, Typography, Divider } from "@mui/material";
+import {
+  Stack,
+  Box,
+  Card,
+  Button,
+  Typography,
+  Divider,
+  Link,
+} from "@mui/material";
 import { CardsStack } from "@/components/CardsStack";
 import { LinkToVenue } from "@/components/LinkToVenue";
 import { SortBookingsForm } from "@/components/sorting/SortBookingsForm";
@@ -92,6 +100,15 @@ export const MyTripsInfo = () => {
                     Booked for {booking.guests}{" "}
                     {booking.guests > 1 ? "guests" : "guest"}
                   </Typography>
+
+                  {booking.venue?.owner && (
+                    <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                      Contact manager:{" "}
+                      <Link href={`mailto:${booking.venue.owner.email}`}>
+                        {booking.venue.owner.email}
+                      </Link>
+                    </Typography>
+                  )}
                 </Box>
 
                 <Box sx={{ position: "absolute", top: 0, right: 0 }}>

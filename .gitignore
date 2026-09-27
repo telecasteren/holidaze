@@ -17,7 +17,6 @@ todos.json
 
 # local files
 .cta.json
-TODO.md
 
 # lighthouse cli output
 *.report.html
